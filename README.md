@@ -1,2 +1,2 @@
-# tower-of-redemption
+# Tower of Redemption | Башня Искупления
 Моя первая публикация в Google Play. Мрачный рогалик с необычной боевой системой.
