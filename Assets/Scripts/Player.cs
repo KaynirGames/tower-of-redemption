@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public PlayerController playerController;
-    public float moveSpeed = 30f; // Скорость перемещения игрока.
+    [SerializeField] private float moveSpeed = 30f; // Скорость перемещения игрока.
+
+    [SerializeField] private MovementController movementController = null;
 
     private float moveX; // Перемещение по оси X.
     private float moveY; // Перемещение по оси Y.
@@ -18,6 +19,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerController.Move(moveX * Time.fixedDeltaTime, moveY * Time.fixedDeltaTime);
+        movementController.Move(moveX * Time.fixedDeltaTime, moveY * Time.fixedDeltaTime);
     }
 }

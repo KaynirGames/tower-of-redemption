@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class MovementController : MonoBehaviour
 {
     [SerializeField, Range(0f, 0.3f)] private float moveSmoothing = 0.05f; // Величина сглаживания перемещения.
 
