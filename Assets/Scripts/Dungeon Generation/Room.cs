@@ -1,16 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Room : MonoBehaviour
 {
     [SerializeField] private int width = 20; // Ширина комнаты.
     [SerializeField] private int height = 12; // Высота комнаты.
-
+    [SerializeField] private RoomType roomType = null; // Тип комнаты.
+    [SerializeField] private GameEvent onRoomLoaded = null; // Cобытие при загрузке комнаты.
+    
     /// <summary>
-    /// Локальная позиция комнаты в сетке координат подземелья.
+    /// Позиция комнаты в локальной сетке координат подземелья.
     /// </summary>
     public Vector2Int LocalGridPosition { get; set; }
+
+    /// <summary>
+    /// Тип комнаты.
+    /// </summary>
+    public RoomType RoomType => roomType;
+
+    private void Start()
+    {
+        onRoomLoaded.NotifyEventSubs();
+    }
 
     /// <summary>
     /// Устанавливает глобальную позицию комнаты на сцене.
