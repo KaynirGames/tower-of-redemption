@@ -253,7 +253,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 663436921}
-        m_MethodName: RegisterRoom
+        m_MethodName: InitializeStageRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -276,8 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStage: {fileID: 11400000, guid: 3e53a6e0713a95f428ff3fc49a2ce46e, type: 2}
-  roomTypes:
-  - {fileID: 11400000, guid: 437c404e92968c04792f5df2f7cbc8fc, type: 2}
+  loadedStageRooms: {fileID: 11400000, guid: c641f4100cea5d0428f1428b23745d1a, type: 2}
 --- !u!1 &2039785442
 GameObject:
   m_ObjectHideFlags: 0

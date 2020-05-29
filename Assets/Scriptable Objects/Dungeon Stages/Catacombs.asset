@@ -15,3 +15,7 @@ MonoBehaviour:
   Name: Catacombs
   MinRoomAmount: 5
   MaxRoomAmount: 10
+  StartRoomType: {fileID: 11400000, guid: ac744e5a683535b4f90c6b472aca43ce, type: 2}
+  BossRoomtype: {fileID: 11400000, guid: 437c404e92968c04792f5df2f7cbc8fc, type: 2}
+  FillerRoomTypes:
+  - {fileID: 11400000, guid: 437c404e92968c04792f5df2f7cbc8fc, type: 2}

@@ -3,95 +3,100 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RoomData
-{
-    public string Name { get; set; }
-    public Vector2Int DungeonGridPosition { get; set; }
-}
-
 public class DungeonStageManager : MonoBehaviour
 {
     [SerializeField] private DungeonStage currentStage = null; // Информация о текущем этаже подземелья.
-
-    public RoomType[] roomTypes;
+    [SerializeField] private RoomRuntimeSet loadedStageRooms = null; // Набор комнат, загруженных на этаже подземелья.
 
     /// <summary>
-    /// Список загруженных комнат на уровне подземелья.
+    /// Очередь загрузки комнат на сетке координат подземелья.
     /// </summary>
-    private List<Room> loadedRooms = new List<Room>();
-
-    private Queue<RoomData> loadRoomQueue = new Queue<RoomData>();
-    
-    private RoomData currentLoadRoomData;
-
+    private readonly Queue<GridRoom> gridRoomQueue = new Queue<GridRoom>(); 
+    /// <summary>
+    /// Комната на сетке координат подземелья, которая загружается в настоящий момент.
+    /// </summary>
+    private GridRoom currentGridRoom;
+    /// <summary>
+    /// Происходит ли загрузка комнаты в настоящий момент?
+    /// </summary>
     private bool isLoadingRoom;
 
     private void Start()
     {
-        CreateDungeonRoom(roomTypes[0], new Vector2Int(0, 0));
-        CreateDungeonRoom(roomTypes[0], new Vector2Int(1, 0));
-        CreateDungeonRoom(roomTypes[0], new Vector2Int(0, 1));
+        CreateGridRoom(currentStage.StartRoomType, new Vector2Int(0, 0));
+        CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(1, 0));
+        CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(0, 1));
+        CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(0, -1));
+        CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(-1, 0));
     }
 
     private void Update()
     {
         UpdateRoomQueue();
     }
-
-    public void UpdateRoomQueue()
+    /// <summary>
+    /// Загрузить комнаты в порядке очереди.
+    /// </summary>
+    private void UpdateRoomQueue()
     {
-        if (isLoadingRoom || loadRoomQueue.Count == 0)
+        if (isLoadingRoom || gridRoomQueue.Count == 0)
             return;
 
-        currentLoadRoomData = loadRoomQueue.Dequeue();
+        currentGridRoom = gridRoomQueue.Dequeue();
         isLoadingRoom = true;
 
-        StartCoroutine(LoadRoomCoroutine(currentLoadRoomData));
+        StartCoroutine(LoadRoom(currentGridRoom));
     }
-
-    public void CreateDungeonRoom(RoomType roomType, Vector2Int gridPosition)
+    /// <summary>
+    /// Создать новую комнату на сетке координат подземелья.
+    /// </summary>
+    /// <param name="roomType">Тип комнаты.</param>
+    /// <param name="gridPosition">Позиция на сетке координат подземелья.</param>
+    public void CreateGridRoom(RoomType roomType, Vector2Int gridPosition)
     {
         if (DoesRoomExist(gridPosition))
             return;
 
-        RoomData newRoomData = new RoomData();
-        newRoomData.Name = $"{currentStage.Name}_{roomType.Name}";
-        newRoomData.DungeonGridPosition = gridPosition;
+        GridRoom newGridRoom = new GridRoom
+        {
+            RoomSceneName = $"{currentStage.Name}_{roomType.Name}",
+            GridPosition = gridPosition
+        };
 
-        loadRoomQueue.Enqueue(newRoomData);
+        gridRoomQueue.Enqueue(newGridRoom);
     }
-
-    public void InitializeDungeonRoom(Room room)
+    /// <summary>
+    /// Присвоить комнате место на этаже подземелья (отклик на событие по окончанию загрузки комнаты).
+    /// </summary>
+    public void InitializeStageRoom()
     {
-        room.LocalGridPosition = currentLoadRoomData.DungeonGridPosition;
-        room.SetWorldPosition();
+        if (loadedStageRooms.Items.Count == 0)
+        {
+            Debug.Log("Набор загруженных комнат пуст!");
+            return;
+        }
+
+        Room currentRoom = loadedStageRooms.Items.Find(room => !room.IsInitialized);
+
+        currentRoom.DungeonGridPosition = currentGridRoom.GridPosition;
+        currentRoom.SetWorldPosition();
+        currentRoom.IsInitialized = true;
 
         isLoadingRoom = false;
-
-        loadedRooms.Add(room);
     }
-
-    public void RegisterRoom()
-    {
-        Debug.Log("Комната загрузилась!");
-    }
-
     /// <summary>
-    /// Существует ли комната в указанной точке на сетке подземелья?
+    /// Существует ли комната на сетке подземелья?
     /// </summary>
-    public bool DoesRoomExist(Vector2Int gridPosition)
+    private bool DoesRoomExist(Vector2Int gridPosition)
     {
-        return loadedRooms.Find(loadedRoom => loadedRoom.LocalGridPosition == gridPosition) != null;  
+        return loadedStageRooms.Items.Find(loadedRoom => loadedRoom.DungeonGridPosition == gridPosition) != null;
     }
-
     /// <summary>
-    /// Асинхронная загрузка сцены с комнатой поверх основной сцены с подземельем.
+    /// Асинхронная загрузка сцены с комнатой.
     /// </summary>
-    /// <param name="roomSceneName">Название сцены с комнатой.</param>
-    /// <returns></returns>
-    private IEnumerator LoadRoomCoroutine(RoomData roomData)
+    private IEnumerator LoadRoom(GridRoom gridRoom)
     {
-        AsyncOperation roomLoadAsync = SceneManager.LoadSceneAsync(roomData.Name, LoadSceneMode.Additive);
+        AsyncOperation roomLoadAsync = SceneManager.LoadSceneAsync(gridRoom.RoomSceneName, LoadSceneMode.Additive);
 
         while (!roomLoadAsync.isDone)
         {

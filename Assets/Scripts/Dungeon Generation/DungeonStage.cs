@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewDungeonStage", menuName = "Dungeon Generation/Dungeon Stage")]
+[CreateAssetMenu(fileName = "NewDungeonStage", menuName = "Scriptable Objects/Dungeon Generation/Dungeon Stage")]
 public class DungeonStage : ScriptableObject
 {
     /// <summary>
@@ -17,4 +15,16 @@ public class DungeonStage : ScriptableObject
     /// Максимальное количество комнат на этаже
     /// </summary>
     public int MaxRoomAmount;
+    /// <summary>
+    /// Обязательная стартовая комната.
+    /// </summary>
+    public RoomType StartRoomType;
+    /// <summary>
+    /// Обязательная комната с боссом.
+    /// </summary>
+    public RoomType BossRoomtype;
+    /// <summary>
+    /// Типы возможных комнат на этаже.
+    /// </summary>
+    public RoomType[] FillerRoomTypes;
 }

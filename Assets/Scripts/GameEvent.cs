@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewGameEvent", menuName = "Custom Event/Game Event")]
+[CreateAssetMenu(fileName = "NewGameEvent", menuName = "Scriptable Objects/Game Event")]
 public class GameEvent : ScriptableObject
 {
-    private List<GameEventListener> subscribers = new List<GameEventListener>(); // Список подписчиков на игровое событие.
+    private readonly List<GameEventListener> subscribers = new List<GameEventListener>(); // Список подписчиков на игровое событие.
 
     /// <summary>
     /// Уведомить подписчиков о возникновении игрового события.
