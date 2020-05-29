@@ -28,6 +28,7 @@ public class DungeonStageManager : MonoBehaviour
         CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(0, 1));
         CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(0, -1));
         CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(-1, 0));
+        CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(2, 0));
     }
 
     private void Update()

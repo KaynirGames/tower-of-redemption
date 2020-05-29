@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a76f163c58288014fa9a7d908af8c46b, type: 3}
-  m_Name: RoomRuntimeSet
+  m_Script: {fileID: 11500000, guid: 3ac9bde774fbac34a9a65e4e40d73967, type: 3}
+  m_Name: ActiveRoomChangedEvent
   m_EditorClassIdentifier: 
-  Items: []

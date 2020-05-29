@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/DungeonScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Dungeon Rooms/Catacombs_StartRoom.unity
+    guid: 9462118dd137f864fa4dffa10be5904d
+  - enabled: 1
     path: Assets/Scenes/Dungeon Rooms/Catacombs_EmptyRoom.unity
     guid: d45bcff52a5e14448a0485d9fe6184d2
   m_configObjects: {}
