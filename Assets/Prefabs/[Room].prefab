@@ -52,7 +52,7 @@ MonoBehaviour:
   onActiveRoomChanged: {fileID: 11400000, guid: c80beea3bcfbbe34e990122704e6d0f7,
     type: 2}
   loadedStageRooms: {fileID: 11400000, guid: c641f4100cea5d0428f1428b23745d1a, type: 2}
-  activeRoom: {fileID: 11400000, guid: 37343c3594c8af941bf2ba4cc063f965, type: 2}
+  activeRoom: {fileID: 11400000, guid: 9c82bacdcebb11648996b381c15a5f21, type: 2}
 --- !u!61 &1961769499459052765
 BoxCollider2D:
   m_ObjectHideFlags: 0

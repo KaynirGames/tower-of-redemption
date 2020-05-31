@@ -1106,6 +1106,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ac744e5a683535b4f90c6b472aca43ce,
         type: 2}
+    - target: {fileID: 1961769499459052764, guid: 2f73de9b6fb354845a5a3e55dc5ea84c,
+        type: 3}
+      propertyPath: roomTypeData
+      value: 
+      objectReference: {fileID: 11400000, guid: ac744e5a683535b4f90c6b472aca43ce,
+        type: 2}
     - target: {fileID: 1961769499459052766, guid: 2f73de9b6fb354845a5a3e55dc5ea84c,
         type: 3}
       propertyPath: m_Name

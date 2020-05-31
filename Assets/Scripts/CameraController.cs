@@ -4,48 +4,47 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private float followSpeed = 100f;
-    [SerializeField] private RoomRuntimeSet loadedStageRooms = null;
+    [SerializeField] private float followSpeed = 100f; // Скорость следования камеры.
+    [SerializeField] private RoomRuntimeSet activeRoom = null; // Активная комната, где находится игрок.
 
-    private Room activeRoom;
     private bool isChangingRoom;
 
     private void Update()
     {
         UpdatePosition();
     }
-
+    /// <summary>
+    /// Обновляет позицию камеры при смене активной комнаты.
+    /// </summary>
     private void UpdatePosition()
     {
-        if (!isChangingRoom)
+        if (!isChangingRoom || activeRoom.GetAmount() == 0)
             return;
 
-        activeRoom = loadedStageRooms.Items.Find(room => room.IsActiveRoom);
+        Vector3 targetPos = GetTargetPosition(activeRoom.GetByIndex(0));
 
-        if (activeRoom == null)
-            return;
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, followSpeed * Time.deltaTime);
 
-        transform.position = Vector3.MoveTowards(transform.position, GetTargetPosition(), followSpeed * Time.deltaTime);
-
-        if (transform.position == GetTargetPosition())
+        if (transform.position == targetPos)
         {
             isChangingRoom = false;
         }
     }
-
+    /// <summary>
+    /// Отклик на событие при смене активной комнаты.
+    /// </summary>
     public void OnActiveRoomChanged()
     {
         isChangingRoom = true;
     }
-
-    private Vector3 GetTargetPosition()
+    /// <summary>
+    /// Получить новую целевую позицию камеры в активной комнате.
+    /// </summary>
+    /// <param name="activeRoom">Активная комната.</param>
+    /// <returns></returns>
+    private Vector3 GetTargetPosition(Room activeRoom)
     {
-        if (activeRoom == null)
-        {
-            return Vector3.zero;
-        }
-
-        Vector3 targetPos = activeRoom.GetRoomCenter();
+        Vector3 targetPos = activeRoom.GetWorldPosition();
         targetPos.z = transform.position.z;
 
         return targetPos;

@@ -7,36 +7,36 @@ public class Room : MonoBehaviour
     [SerializeField] private int width = 20; // Ширина комнаты.
     [SerializeField] private int height = 12; // Высота комнаты.
     [SerializeField] private GameObject roomEnvironment = null; // Объекты в комнате.
-    [SerializeField] private RoomType roomType = null; // Тип комнаты.
+    [SerializeField] private RoomTypeData roomTypeData = null; // Данные о типе комнаты.
     [SerializeField] private GameEvent onRoomLoaded = null; // Cобытие при загрузке комнаты.
     [SerializeField] private GameEvent onActiveRoomChanged = null; // Cобытие при смене активной комнаты.
     [SerializeField] private RoomRuntimeSet loadedStageRooms = null; // Набор комнат, загруженных на этаже подземелья.
+    [SerializeField] private RoomRuntimeSet activeRoom = null; // Активная комната, где находится игрок.
 
     /// <summary>
     /// Позиция комнаты в сетке координат подземелья.
     /// </summary>
     public Vector2Int DungeonGridPosition { get; set; }
     /// <summary>
-    /// Тип комнаты.
+    /// Данные о типе комнаты.
     /// </summary>
-    public RoomType RoomType => roomType;
+    public RoomTypeData RoomTypeData => roomTypeData;
     /// <summary>
     /// Присвоено ли комнате место на этаже подземелья?
     /// </summary>
     public bool IsInitialized { get; set; }
-    /// <summary>
-    /// 
-    /// </summary>
-    public bool IsActiveRoom { get; set; }
 
     private void Start()
     {
         IsInitialized = false;
-        IsActiveRoom = false;
+
+        if (roomTypeData.RoomType == RoomType.Start)
+            activeRoom.Add(this);
 
         loadedStageRooms.Add(this);
         onRoomLoaded.NotifyEventSubs();
     }
+
     /// <summary>
     /// Устанавливает глобальную позицию комнаты на основной сцене.
     /// </summary>
@@ -47,17 +47,17 @@ public class Room : MonoBehaviour
         roomEnvironment.transform.position = worldPos;
     }
 
-    public Vector3 GetRoomCenter()
+    public Vector3 GetWorldPosition()
     {
-        return new Vector3(DungeonGridPosition.x * width, DungeonGridPosition.y * height, 0);
+        return transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            IsActiveRoom = true;
             onActiveRoomChanged.NotifyEventSubs();
+            activeRoom.Add(this);
         }
     }
 
@@ -65,13 +65,14 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            IsActiveRoom = false;
+            activeRoom.Remove(this);
         }
     }
 
     private void OnDestroy()
     {
         loadedStageRooms.Remove(this);
+        activeRoom.Remove(this);
     }
 
     private void OnDrawGizmos()

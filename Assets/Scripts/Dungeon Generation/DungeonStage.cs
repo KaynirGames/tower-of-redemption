@@ -16,15 +16,15 @@ public class DungeonStage : ScriptableObject
     /// </summary>
     public int MaxRoomAmount;
     /// <summary>
-    /// Обязательная стартовая комната.
+    /// Данные об обязательной стартовой комнате на этаже.
     /// </summary>
-    public RoomType StartRoomType;
+    public RoomTypeData[] StartRoomTypes;
     /// <summary>
-    /// Обязательная комната с боссом.
+    /// Данные об обязательной комнате с боссом на этаже.
     /// </summary>
-    public RoomType BossRoomtype;
+    public RoomTypeData[] BossRoomTypes;
     /// <summary>
-    /// Типы возможных комнат на этаже.
+    /// Данные о необязательных типах комнат на этаже.
     /// </summary>
-    public RoomType[] FillerRoomTypes;
+    public RoomTypeData[] OptionalRoomTypes;
 }

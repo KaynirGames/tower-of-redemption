@@ -23,12 +23,12 @@ public class DungeonStageManager : MonoBehaviour
 
     private void Start()
     {
-        CreateGridRoom(currentStage.StartRoomType, new Vector2Int(0, 0));
-        CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(1, 0));
-        CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(0, 1));
-        CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(0, -1));
-        CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(-1, 0));
-        CreateGridRoom(currentStage.FillerRoomTypes[0], new Vector2Int(2, 0));
+        CreateGridRoom(currentStage.StartRoomTypes[0], new Vector2Int(0, 0));
+        CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(1, 0));
+        CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(0, 1));
+        CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(0, -1));
+        CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(-1, 0));
+        CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(2, 0));
     }
 
     private void Update()
@@ -51,16 +51,16 @@ public class DungeonStageManager : MonoBehaviour
     /// <summary>
     /// Создать новую комнату на сетке координат подземелья.
     /// </summary>
-    /// <param name="roomType">Тип комнаты.</param>
+    /// <param name="roomTypeData">Данные о типе комнаты.</param>
     /// <param name="gridPosition">Позиция на сетке координат подземелья.</param>
-    public void CreateGridRoom(RoomType roomType, Vector2Int gridPosition)
+    public void CreateGridRoom(RoomTypeData roomTypeData, Vector2Int gridPosition)
     {
         if (DoesRoomExist(gridPosition))
             return;
 
         GridRoom newGridRoom = new GridRoom
         {
-            RoomSceneName = $"{currentStage.Name}_{roomType.Name}",
+            RoomSceneName = $"{currentStage.Name}_{roomTypeData.Name}",
             GridPosition = gridPosition
         };
 
@@ -71,13 +71,13 @@ public class DungeonStageManager : MonoBehaviour
     /// </summary>
     public void InitializeStageRoom()
     {
-        if (loadedStageRooms.Items.Count == 0)
+        if (loadedStageRooms.GetAmount() == 0)
         {
             Debug.Log("Набор загруженных комнат пуст!");
             return;
         }
 
-        Room currentRoom = loadedStageRooms.Items.Find(room => !room.IsInitialized);
+        Room currentRoom = loadedStageRooms.Find(room => !room.IsInitialized);
 
         currentRoom.DungeonGridPosition = currentGridRoom.GridPosition;
         currentRoom.SetWorldPosition();
@@ -90,7 +90,7 @@ public class DungeonStageManager : MonoBehaviour
     /// </summary>
     private bool DoesRoomExist(Vector2Int gridPosition)
     {
-        return loadedStageRooms.Items.Find(loadedRoom => loadedRoom.DungeonGridPosition == gridPosition) != null;
+        return loadedStageRooms.Find(loadedRoom => loadedRoom.DungeonGridPosition == gridPosition) != null;
     }
     /// <summary>
     /// Асинхронная загрузка сцены с комнатой.
