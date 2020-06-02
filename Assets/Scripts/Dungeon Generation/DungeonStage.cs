@@ -4,17 +4,25 @@
 public class DungeonStage : ScriptableObject
 {
     /// <summary>
-    /// Название этажа подземелья
+    /// Название этажа подземелья.
     /// </summary>
     public string Name;
     /// <summary>
-    /// Минимальное количество комнат на этаже
+    /// Минимальная длина коридора (количество комнат) на этаже.
     /// </summary>
-    public int MinRoomAmount;
+    public int MinRouteLength;
     /// <summary>
-    /// Максимальное количество комнат на этаже
+    /// Максимальная длина коридора (количество комнат) на этаже.
     /// </summary>
-    public int MaxRoomAmount;
+    public int MaxRouteLength;
+    /// <summary>
+    /// Минимальное количество коридоров на этаже.
+    /// </summary>
+    public int MinRouteCount;
+    /// <summary>
+    /// Максимальное количество коридоров на этаже.
+    /// </summary>
+    public int MaxRouteCount;
     /// <summary>
     /// Данные об обязательной стартовой комнате на этаже.
     /// </summary>

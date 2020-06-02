@@ -11,6 +11,13 @@ public class Player : MonoBehaviour
     private float moveX; // Перемещение по оси X.
     private float moveY; // Перемещение по оси Y.
 
+    private Rigidbody2D rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     private void Update()
     {
         moveX = Input.GetAxis("Horizontal") * moveSpeed;
@@ -19,6 +26,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        movementController.Move(moveX * Time.fixedDeltaTime, moveY * Time.fixedDeltaTime);
+        movementController.Move(moveX * Time.fixedDeltaTime, moveY * Time.fixedDeltaTime, rb);
     }
 }

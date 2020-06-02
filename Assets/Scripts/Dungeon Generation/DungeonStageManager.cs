@@ -7,6 +7,7 @@ public class DungeonStageManager : MonoBehaviour
 {
     [SerializeField] private DungeonStage currentStage = null; // Информация о текущем этаже подземелья.
     [SerializeField] private RoomRuntimeSet loadedStageRooms = null; // Набор комнат, загруженных на этаже подземелья.
+    [SerializeField] private DungeonRouteGenerator routeController = null;
 
     /// <summary>
     /// Очередь загрузки комнат на сетке координат подземелья.
@@ -20,15 +21,31 @@ public class DungeonStageManager : MonoBehaviour
     /// Происходит ли загрузка комнаты в настоящий момент?
     /// </summary>
     private bool isLoadingRoom;
+    /// <summary>
+    /// Список занятых позиций на сетке координат подземелья.
+    /// </summary>
+    private List<Vector2Int> takenGridPositions = new List<Vector2Int>();
 
     private void Start()
     {
-        CreateGridRoom(currentStage.StartRoomTypes[0], new Vector2Int(0, 0));
-        CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(1, 0));
-        CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(0, 1));
-        CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(0, -1));
-        CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(-1, 0));
-        CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(2, 0));
+        //CreateGridRoom(currentStage.StartRoomTypes[0], new Vector2Int(0, 0));
+        //CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(1, 0));
+        //CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(0, 1));
+        //CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(0, -1));
+        //CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(-1, 0));
+        //CreateGridRoom(currentStage.OptionalRoomTypes[0], new Vector2Int(2, 0));
+        //routeController = GetComponent<DungeonRouteController>();
+
+        routeController.InitializeGenerator(currentStage);
+
+        List<Vector2Int> poses = routeController.SelectedGridPositions;
+
+        CreateGridRoom(currentStage.StartRoomTypes[0], poses[0]);
+
+        for (int i = 1; i < poses.Count; i++)
+        {
+            CreateGridRoom(currentStage.OptionalRoomTypes[0], poses[i]);
+        }
     }
 
     private void Update()
@@ -55,8 +72,10 @@ public class DungeonStageManager : MonoBehaviour
     /// <param name="gridPosition">Позиция на сетке координат подземелья.</param>
     public void CreateGridRoom(RoomTypeData roomTypeData, Vector2Int gridPosition)
     {
-        if (DoesRoomExist(gridPosition))
-            return;
+        //if (DoesPositionTaken(gridPosition))
+        //    return;
+
+        //takenGridPositions.Add(gridPosition);
 
         GridRoom newGridRoom = new GridRoom
         {
@@ -79,6 +98,9 @@ public class DungeonStageManager : MonoBehaviour
 
         Room currentRoom = loadedStageRooms.Find(room => !room.IsInitialized);
 
+        if (currentRoom == null)
+            return;
+
         currentRoom.DungeonGridPosition = currentGridRoom.GridPosition;
         currentRoom.SetWorldPosition();
         currentRoom.IsInitialized = true;
@@ -86,11 +108,11 @@ public class DungeonStageManager : MonoBehaviour
         isLoadingRoom = false;
     }
     /// <summary>
-    /// Существует ли комната на сетке подземелья?
+    /// Занята ли позиция в сетке подземелья?
     /// </summary>
-    private bool DoesRoomExist(Vector2Int gridPosition)
+    private bool DoesPositionTaken(Vector2Int gridPosition)
     {
-        return loadedStageRooms.Find(loadedRoom => loadedRoom.DungeonGridPosition == gridPosition) != null;
+        return takenGridPositions.Exists(pos => pos == gridPosition);
     }
     /// <summary>
     /// Асинхронная загрузка сцены с комнатой.
