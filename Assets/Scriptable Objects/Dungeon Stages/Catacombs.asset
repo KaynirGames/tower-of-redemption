@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Catacombs
   m_EditorClassIdentifier: 
   Name: Catacombs
-  MinRouteLength: 2
-  MaxRouteLength: 3
-  MinRouteCount: 2
-  MaxRouteCount: 3
+  MinRouteLength: 3
+  MaxRouteLength: 5
+  RouteSpawnerCount: 3
   StartRoomTypes:
   - {fileID: 11400000, guid: ac744e5a683535b4f90c6b472aca43ce, type: 2}
   BossRoomTypes:

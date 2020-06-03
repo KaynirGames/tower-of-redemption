@@ -16,13 +16,9 @@ public class DungeonStage : ScriptableObject
     /// </summary>
     public int MaxRouteLength;
     /// <summary>
-    /// Минимальное количество коридоров на этаже.
+    /// Количество создателей коридоров, распределяющих их на этаже.
     /// </summary>
-    public int MinRouteCount;
-    /// <summary>
-    /// Максимальное количество коридоров на этаже.
-    /// </summary>
-    public int MaxRouteCount;
+    public int RouteSpawnerCount;
     /// <summary>
     /// Данные об обязательной стартовой комнате на этаже.
     /// </summary>
