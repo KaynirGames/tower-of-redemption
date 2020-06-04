@@ -11,7 +11,10 @@ public class RouteSpawner
     /// Предыдущее выбранное направление.
     /// </summary>
     private Vector2Int previousDirection;
-
+    /// <summary>
+    /// Новый создатель коридора.
+    /// </summary>
+    /// <param name="initialPos">Начальная позиция.</param>
     public RouteSpawner(Vector2Int initialPos)
     {
         gridPosition = initialPos;

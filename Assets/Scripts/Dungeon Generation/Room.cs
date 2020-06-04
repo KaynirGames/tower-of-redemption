@@ -38,7 +38,7 @@ public class Room : MonoBehaviour
     }
 
     /// <summary>
-    /// Устанавливает глобальную позицию комнаты на основной сцене.
+    /// Установить глобальную позицию комнаты на основной сцене.
     /// </summary>
     public void SetWorldPosition()
     {
@@ -46,7 +46,10 @@ public class Room : MonoBehaviour
         transform.position = worldPos;
         roomEnvironment.transform.position = worldPos;
     }
-
+    /// <summary>
+    /// Получить глобальную позицию комнаты на основной сцене.
+    /// </summary>
+    /// <returns></returns>
     public Vector3 GetWorldPosition()
     {
         return transform.position;
