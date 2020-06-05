@@ -16,9 +16,7 @@ MonoBehaviour:
   MinRouteLength: 3
   MaxRouteLength: 5
   RouteSpawnerCount: 3
-  StartRoomTypes:
-  - {fileID: 11400000, guid: ac744e5a683535b4f90c6b472aca43ce, type: 2}
-  BossRoomTypes:
-  - {fileID: 11400000, guid: b63a30da179b1fb4aad1a2ec4786acf8, type: 2}
+  StartRoomType: {fileID: 11400000, guid: ac744e5a683535b4f90c6b472aca43ce, type: 2}
+  BossRoomType: {fileID: 11400000, guid: b63a30da179b1fb4aad1a2ec4786acf8, type: 2}
   OptionalRoomTypes:
   - {fileID: 11400000, guid: 437c404e92968c04792f5df2f7cbc8fc, type: 2}

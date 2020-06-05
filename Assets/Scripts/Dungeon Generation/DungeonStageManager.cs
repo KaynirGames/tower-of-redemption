@@ -21,22 +21,59 @@ public class DungeonStageManager : MonoBehaviour
     /// Происходит ли загрузка комнаты в настоящий момент?
     /// </summary>
     private bool isLoadingRoom;
+    /// <summary>
+    /// Текущий список выбранных позиций на сетке координат подземелья.
+    /// </summary>
+    private List<Vector2Int> currentSelectedRoute;
 
     private void Start()
     {
-        routeController.InitializeRouteSpawn(currentStage);
-
-        CreateGridRoom(currentStage.StartRoomTypes[0], routeController.SelectedRoute[0]);
-
-        for (int i = 1; i < routeController.SelectedRoute.Count; i++)
-        {
-            CreateGridRoom(currentStage.OptionalRoomTypes[0], routeController.SelectedRoute[i]);
-        }
+        CreateDungeonStage(currentStage);
     }
 
     private void Update()
     {
         UpdateRoomQueue();
+    }
+    /// <summary>
+    /// Сформировать весь этаж подземелья.
+    /// </summary>
+    /// <param name="dungeonStage">Информация об этаже подземелья.</param>
+    public void CreateDungeonStage(DungeonStage dungeonStage)
+    {
+        routeController.InitializeRouteSpawn(dungeonStage);
+        currentSelectedRoute = routeController.SelectedRoute;
+
+        SpawnStartRoom();
+
+        SpawnBossRoom(routeController.PotentialBossLocation);
+
+        for (int i = 0; i < currentSelectedRoute.Count; i++)
+        {
+            RoomTypeData randomType = (RoomTypeData)dungeonStage.OptionalRoomTypes.ChooseRandom();
+
+            if (randomType == null) return;
+
+            CreateGridRoom(randomType, currentSelectedRoute[i]);
+        }
+    }
+    /// <summary>
+    /// Загрузить обязательную стартовую комнату.
+    /// </summary>
+    private void SpawnStartRoom()
+    {
+        Vector2Int position = currentSelectedRoute[0];
+        CreateGridRoom(currentStage.StartRoomType, position);
+        currentSelectedRoute.Remove(position);
+    }
+    /// <summary>
+    /// Загрузить обязательную комнату с боссом.
+    /// </summary>
+    private void SpawnBossRoom(List<Vector2Int> potentialBossLocation)
+    {
+        Vector2Int position = potentialBossLocation[Random.Range(0, potentialBossLocation.Count)];
+        CreateGridRoom(currentStage.BossRoomType, position);
+        currentSelectedRoute.Remove(position);
     }
     /// <summary>
     /// Загрузить комнаты в порядке очереди.

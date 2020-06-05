@@ -20,15 +20,15 @@ public class DungeonStage : ScriptableObject
     /// </summary>
     public int RouteSpawnerCount;
     /// <summary>
-    /// Список возможных типов стартовой комнаты на этаже.
+    /// Данные об обязательной стартовой комнате на этаже.
     /// </summary>
-    public RoomTypeData[] StartRoomTypes;
+    public RoomTypeData StartRoomType;
     /// <summary>
-    /// Список возможных типов комнаты с боссом на этаже.
+    /// Данные об обязательной комнате с боссом на этаже.
     /// </summary>
-    public RoomTypeData[] BossRoomTypes;
+    public RoomTypeData BossRoomType;
     /// <summary>
-    /// Список возможных опциональных типов комнат на этаже.
+    /// Таблица с вероятностями появления опциональных комнат.
     /// </summary>
-    public RoomTypeData[] OptionalRoomTypes;
+    public SpawnTable OptionalRoomTypes;
 }
