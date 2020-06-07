@@ -18,10 +18,10 @@ public class CameraController : MonoBehaviour
     /// </summary>
     private void UpdatePosition()
     {
-        if (!isChangingRoom || activeRoom.GetAmount() == 0)
+        if (!isChangingRoom || activeRoom.Count == 0)
             return;
 
-        Vector3 targetPos = GetTargetPosition(activeRoom.GetByIndex(0));
+        Vector3 targetPos = GetTargetPosition(activeRoom.GetObject(0));
 
         transform.position = Vector3.MoveTowards(transform.position, targetPos, followSpeed * Time.deltaTime);
 

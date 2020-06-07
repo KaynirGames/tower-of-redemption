@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Набор типов комнат: стартовая (обязательная), пустая (для спавна монстров и лута), с магазином, с боссом (обязательная).
+/// Набор типов комнат: стартовая (обязательная), стандартная (для спавна монстров и лута), с магазином, с боссом (обязательная).
 /// </summary>
-public enum RoomType { Start, Empty, Shop, Boss }
+public enum RoomType { Start, Default, Shop, Boss, Secret }
 
 [CreateAssetMenu(fileName = "NewRoomTypeData", menuName = "Scriptable Objects/Dungeon Generation/Room Type Data")]
 public class RoomTypeData : ScriptableObject
@@ -16,4 +16,10 @@ public class RoomTypeData : ScriptableObject
     /// Тип комнаты.
     /// </summary>
     public RoomType RoomType;
+    /// <summary>
+    /// Тип двери, относящийся к данному типу комнаты.
+    /// </summary>
+    public DoorType DoorType;
+
+    public int DoorTypePriority;
 }

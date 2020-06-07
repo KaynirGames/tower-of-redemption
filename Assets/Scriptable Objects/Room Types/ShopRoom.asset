@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: adce6a689371916469d10644baf1f47e, type: 3}
-  m_Name: BossRoom
+  m_Name: ShopRoom
   m_EditorClassIdentifier: 
-  Name: BossRoom
-  RoomType: 3
-  DoorType: 1
-  DoorTypePriority: 3
+  Name: ShopRoom
+  RoomType: 2
+  DoorType: 2
+  DoorTypePriority: 1

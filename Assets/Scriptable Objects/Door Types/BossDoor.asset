@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adce6a689371916469d10644baf1f47e, type: 3}
-  m_Name: BossRoom
+  m_Script: {fileID: 11500000, guid: e0be3f38a93961842beb1e6fc774009c, type: 3}
+  m_Name: BossDoor
   m_EditorClassIdentifier: 
-  Name: BossRoom
-  RoomType: 3
   DoorType: 1
-  DoorTypePriority: 3
+  IsRequireKey: 0
+  RequiredKey: {fileID: 0}

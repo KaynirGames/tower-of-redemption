@@ -8,10 +8,13 @@ public class Room : MonoBehaviour
     [SerializeField] private int height = 12; // Высота комнаты.
     [SerializeField] private GameObject roomEnvironment = null; // Объекты в комнате.
     [SerializeField] private RoomTypeData roomTypeData = null; // Данные о типе комнаты.
+
     [SerializeField] private GameEvent onRoomLoaded = null; // Cобытие при загрузке комнаты.
     [SerializeField] private GameEvent onActiveRoomChanged = null; // Cобытие при смене активной комнаты.
+
     [SerializeField] private RoomRuntimeSet loadedStageRooms = null; // Набор комнат, загруженных на этаже подземелья.
     [SerializeField] private RoomRuntimeSet activeRoom = null; // Активная комната, где находится игрок.
+    [SerializeField] private DoorRuntimeSet possibleDoors = null; // Набор всех типов дверей в игре.
 
     /// <summary>
     /// Позиция комнаты в сетке координат подземелья.
@@ -24,12 +27,26 @@ public class Room : MonoBehaviour
     /// <summary>
     /// Присвоено ли комнате место на этаже подземелья?
     /// </summary>
-    public bool IsInitialized { get; set; }
+    public bool Initialized { get; set; }
+
+    private List<Door> roomDoors = new List<Door>();
+    private List<Door> correctRoomDoors = new List<Door>();
+
+    public bool HasCorrectDoors { get; set; }
 
     private void Start()
     {
-        IsInitialized = false;
+        Initialized = false;
+        HasCorrectDoors = false;
 
+        // Заполнение списка дверей в комнате.
+        Door[] doors = roomEnvironment.GetComponentsInChildren<Door>();
+        foreach (Door door in doors)
+        {
+            roomDoors.Add(door);
+        }
+
+        // В начале уровня стартовая комната является активной.
         if (roomTypeData.RoomType == RoomType.Start)
             activeRoom.Add(this);
 
@@ -53,6 +70,66 @@ public class Room : MonoBehaviour
     public Vector3 GetWorldPosition()
     {
         return transform.position;
+    }
+
+    public void SetupCorrectDoors()
+    {
+        foreach (Door door in roomDoors)
+        {
+            switch (door.Direction)
+            {
+                case Direction.Up:
+                    UpdateDoor(door, GetNextRoom(Vector2Int.up));
+                    break;
+                case Direction.Right:
+                    UpdateDoor(door, GetNextRoom(Vector2Int.right));
+                    break;
+                case Direction.Down:
+                    UpdateDoor(door, GetNextRoom(Vector2Int.down));
+                    break;
+                case Direction.Left:
+                    UpdateDoor(door, GetNextRoom(Vector2Int.left));
+                    break;
+            }
+        }
+        roomDoors = correctRoomDoors;
+        HasCorrectDoors = true;
+    }
+    /// <summary>
+    /// Найти соседнюю комнату в заданном направлении.
+    /// </summary>
+    /// <param name="direction">Направление (вверх, вниз, вправо, влево).</param>
+    /// <returns></returns>
+    private Room GetNextRoom(Vector2Int direction)
+    {
+        return loadedStageRooms.Find(room => room.DungeonGridPosition == DungeonGridPosition + direction);
+    }
+    /// <summary>
+    /// Обновить дверь в зависимости от соседней комнаты.
+    /// </summary>
+    /// <param name="currentDoor">Обновляемая дверь.</param>
+    /// <param name="nextRoom">Соседняя комната.</param>
+    private void UpdateDoor(Door currentDoor, Room nextRoom)
+    {
+        if (nextRoom == null)
+        {
+            // Убираем дверь.
+            currentDoor.gameObject.SetActive(false);
+        }
+        else
+        {
+            // Проверяем тип дверей в соседней комнате и меняем текущую дверь при необходимости.
+
+            if (roomTypeData.DoorTypePriority < nextRoom.RoomTypeData.DoorTypePriority)
+            {                
+                Door newDoor = possibleDoors.Find(door => door.DoorTypeData.DoorType == nextRoom.RoomTypeData.DoorType);
+                newDoor.Direction = currentDoor.Direction;
+                Instantiate(newDoor, currentDoor.transform.position, currentDoor.transform.rotation, currentDoor.transform.parent);
+                correctRoomDoors.Add(newDoor);
+                currentDoor.gameObject.SetActive(false);
+                //Destroy(currentDoor.gameObject);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

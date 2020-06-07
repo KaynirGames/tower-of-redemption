@@ -14,7 +14,7 @@ public class RoomRuntimeSetEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        if (roomRuntimeSet.GetAmount() == 0)
+        if (roomRuntimeSet.Count == 0)
         {
             GUILayout.Label("Список комнат в наборе пуст.");
             return;
@@ -33,9 +33,9 @@ public class RoomRuntimeSetEditor : Editor
     /// </summary>
     private void DisplayRoomSetInfo()
     {
-        for (int i = 0; i < roomRuntimeSet.GetAmount(); i++)
+        for (int i = 0; i < roomRuntimeSet.Count; i++)
         {
-            Room room = roomRuntimeSet.GetByIndex(i);
+            Room room = roomRuntimeSet.GetObject(i);
 
             EditorGUILayout.BeginVertical("box");
 

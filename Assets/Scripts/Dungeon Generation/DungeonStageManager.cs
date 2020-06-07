@@ -9,6 +9,8 @@ public class DungeonStageManager : MonoBehaviour
     [SerializeField] private RoomRuntimeSet loadedStageRooms = null; // Набор комнат, загруженных на этаже подземелья.
     [SerializeField] private RouteSpawnController routeController = null; // Контроллер, управляющий созданием коридоров на этаже.
 
+    [SerializeField] private GameEvent OnStageLoadComplete = null; // Событие при полной загрузке этажа подземелья.
+
     /// <summary>
     /// Очередь загрузки комнат на сетке координат подземелья.
     /// </summary>
@@ -25,6 +27,10 @@ public class DungeonStageManager : MonoBehaviour
     /// Текущий список выбранных позиций на сетке координат подземелья.
     /// </summary>
     private List<Vector2Int> currentSelectedRoute;
+    /// <summary>
+    /// Загрузились ли все комнаты на этаже?
+    /// </summary>
+    private bool StageLoadComplete = false;
 
     private void Start()
     {
@@ -34,9 +40,19 @@ public class DungeonStageManager : MonoBehaviour
     private void Update()
     {
         UpdateRoomQueue();
+
+        if (!StageLoadComplete)
+        {
+            // Действия при загрузке всех комнат на этаже.
+            if (!isLoadingRoom && gridRoomQueue.Count == 0)
+            {
+                StageLoadComplete = true;
+                OnStageLoadComplete.NotifyEventSubs();
+            }
+        }
     }
     /// <summary>
-    /// Сформировать весь этаж подземелья.
+    /// Сформировать все комнаты на этаже подземелья.
     /// </summary>
     /// <param name="dungeonStage">Информация об этаже подземелья.</param>
     public void CreateDungeonStage(DungeonStage dungeonStage)
@@ -108,20 +124,20 @@ public class DungeonStageManager : MonoBehaviour
     /// </summary>
     public void InitializeRoom()
     {
-        if (loadedStageRooms.GetAmount() == 0)
+        if (loadedStageRooms.Count == 0)
         {
             Debug.Log("Набор загруженных комнат пуст!");
             return;
         }
 
-        Room currentRoom = loadedStageRooms.Find(room => !room.IsInitialized);
+        Room currentRoom = loadedStageRooms.Find(room => !room.Initialized);
 
         if (currentRoom == null)
             return;
 
         currentRoom.DungeonGridPosition = currentGridRoom.GridPosition;
         currentRoom.SetWorldPosition();
-        currentRoom.IsInitialized = true;
+        currentRoom.Initialized = true;
 
         isLoadingRoom = false;
     }
