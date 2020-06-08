@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0be3f38a93961842beb1e6fc774009c, type: 3}
   m_Name: DefaultDoor
   m_EditorClassIdentifier: 
-  DoorType: 0
-  DoorPrefab: {fileID: 4579517341810942672, guid: 751e83e61380e224cb9ec071282136c6,
-    type: 3}
-  isKeyRequired: 0
+  Name: DefaultDoor
+  PlacingPriority: 0
+  IsRequireKey: 0
   RequiredKey: {fileID: 0}

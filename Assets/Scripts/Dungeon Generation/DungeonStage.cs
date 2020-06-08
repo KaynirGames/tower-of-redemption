@@ -22,11 +22,11 @@ public class DungeonStage : ScriptableObject
     /// <summary>
     /// Данные об обязательной стартовой комнате на этаже.
     /// </summary>
-    public RoomTypeData StartRoomType;
+    public RoomType StartRoomType;
     /// <summary>
     /// Данные об обязательной комнате с боссом на этаже.
     /// </summary>
-    public RoomTypeData BossRoomType;
+    public RoomType BossRoomType;
     /// <summary>
     /// Таблица с вероятностями появления опциональных комнат.
     /// </summary>

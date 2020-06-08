@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: StartRoom
   m_EditorClassIdentifier: 
   Name: StartRoom
+  DoorType: {fileID: 11400000, guid: 72c70f045dbf8024bb2a7b0b6aebd805, type: 2}
+  IsStartingPoint: 1

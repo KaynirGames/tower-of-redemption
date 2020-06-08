@@ -66,7 +66,7 @@ public class DungeonStageManager : MonoBehaviour
 
         for (int i = 0; i < currentSelectedRoute.Count; i++)
         {
-            RoomTypeData randomType = (RoomTypeData)dungeonStage.OptionalRoomTypes.ChooseRandom();
+            RoomType randomType = (RoomType)dungeonStage.OptionalRoomTypes.ChooseRandom();
 
             if (randomType == null) return;
 
@@ -109,7 +109,7 @@ public class DungeonStageManager : MonoBehaviour
     /// </summary>
     /// <param name="roomTypeData">Данные о типе комнаты.</param>
     /// <param name="gridPosition">Позиция на сетке координат подземелья.</param>
-    private void CreateGridRoom(RoomTypeData roomTypeData, Vector2Int gridPosition)
+    private void CreateGridRoom(RoomType roomTypeData, Vector2Int gridPosition)
     {
         GridRoom newGridRoom = new GridRoom
         {

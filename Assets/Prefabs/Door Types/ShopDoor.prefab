@@ -96,8 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08eee90ae87c484eb65e306655385fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
-  doorTypeData: {fileID: 11400000, guid: d6723b2a837fbbf4fac79f7cb6de8fe3, type: 2}
+  direction: 4
+  doorType: {fileID: 11400000, guid: d6723b2a837fbbf4fac79f7cb6de8fe3, type: 2}
+  doorwayCollider: {fileID: 6357830993284944808}
+  doorwayTransferRange: 4
 --- !u!61 &6357830993284944808
 BoxCollider2D:
   m_ObjectHideFlags: 0

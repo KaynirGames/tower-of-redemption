@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0be3f38a93961842beb1e6fc774009c, type: 3}
   m_Name: ShopDoor
   m_EditorClassIdentifier: 
-  DoorType: 2
+  Name: ShopDoor
+  PlacingPriority: 1
   IsRequireKey: 0
   RequiredKey: {fileID: 0}

@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: ShopRoom
   m_EditorClassIdentifier: 
   Name: ShopRoom
-  RoomType: 2
-  DoorType: 2
-  DoorTypePriority: 1
+  DoorType: {fileID: 11400000, guid: d6723b2a837fbbf4fac79f7cb6de8fe3, type: 2}
+  IsStartingPoint: 0

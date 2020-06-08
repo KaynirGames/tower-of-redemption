@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: BossRoom
   m_EditorClassIdentifier: 
   Name: BossRoom
-  RoomType: 3
-  DoorType: 1
-  DoorTypePriority: 3
+  DoorType: {fileID: 11400000, guid: 893a2ce6fb8bfca45b6cdc297b26faed, type: 2}
+  IsStartingPoint: 0
