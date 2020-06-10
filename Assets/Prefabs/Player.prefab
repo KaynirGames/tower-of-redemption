@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5363020659833551463}
   - component: {fileID: 5363020659833551460}
   - component: {fileID: 5363020659833551461}
-  - component: {fileID: 5363020659833551466}
+  - component: {fileID: 6474489966509356330}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9507ad589d8aa049859f6a4d867ca74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 40
   moveSmoothing: 0.025
 --- !u!114 &5363020659833551461
 MonoBehaviour:
@@ -131,10 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d062dbe8d48c14e969e301300443ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 35
   movementController: {fileID: 5363020659833551460}
---- !u!61 &5363020659833551466
-BoxCollider2D:
+--- !u!58 &6474489966509356330
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -147,15 +147,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.5}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 20.48, y: 20.48}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5

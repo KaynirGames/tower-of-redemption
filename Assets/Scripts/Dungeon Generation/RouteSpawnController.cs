@@ -4,15 +4,15 @@ using UnityEngine;
 public class RouteSpawnController : MonoBehaviour
 {
     [SerializeField] private List<Vector2Int> selectedRoute = new List<Vector2Int>(); // Выбранные позиции (для отображения в инспекторе).
-    [SerializeField] private List<Vector2Int> potentialBossLocation = new List<Vector2Int>(); // Позиции комнаты с боссом (для отображения в инспекторе).
+    [SerializeField] private List<Vector2Int> potentialBossLocations = new List<Vector2Int>(); // Возможные позиции босс-комнат (для отображения в инспекторе).
     /// <summary>
     /// Список выбранных позиций на сетке координат подземелья.
     /// </summary>
     public List<Vector2Int> SelectedRoute => selectedRoute;
     /// <summary>
-    /// Список потенциальных позиций для комнаты с боссом.
+    /// Список потенциальных позиций для босс-комнат.
     /// </summary>
-    public List<Vector2Int> PotentialBossLocation => potentialBossLocation;
+    public List<Vector2Int> PotentialBossLocations => potentialBossLocations;
     /// <summary>
     /// Список возможных направлений для создания коридора: вверх, вправо, вниз и влево.
     /// </summary>
@@ -63,9 +63,9 @@ public class RouteSpawnController : MonoBehaviour
                 }
             }
 
-            // Запоминаем последнюю позицию текущего создателя как потенциальное место для комнаты с боссом.
-            Vector2Int lastPos = selectedRoute[selectedRoute.Count - 1];
-            potentialBossLocation.Add(lastPos);
+            // Запоминаем конечную позицию текущего создателя (потенциальное место для босс-комнат).
+            Vector2Int endPos = selectedRoute[selectedRoute.Count - 1];
+            potentialBossLocations.Add(endPos);
         }
     }
     /// <summary>

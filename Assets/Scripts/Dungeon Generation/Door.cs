@@ -13,6 +13,7 @@ public class Door : MonoBehaviour
     [SerializeField] private DoorType doorType = null; // Тип двери.
     [SerializeField] private Collider2D doorwayCollider = null; // Дверной проем, ограничивающий переход между комнатами.
     [SerializeField] private float doorwayTransferRange = 4f; // Расстояние переноса игрока при переходе между комнатами.
+    [SerializeField] private GameObject emptyDoorway = null; // Объект, заменяющий убранную дверь.
 
     /// <summary>
     /// Направление, в которое ведет дверь.
@@ -41,9 +42,21 @@ public class Door : MonoBehaviour
         // Звук
     }
     /// <summary>
-    /// Перенести игрока через соседние дверные проемы.
+    /// Убрать дверь.
     /// </summary>
-    /// <param name="player">Переносимый игрок.</param>
+    public void Remove()
+    {
+        // Вместо двери устанавливаем пустой проход с коллайдером.
+        emptyDoorway = Instantiate(emptyDoorway, transform.position, transform.rotation, transform.parent);
+        emptyDoorway.transform.localScale = transform.localScale;
+        emptyDoorway.GetComponent<Collider2D>().offset = doorwayCollider.offset;
+
+        Destroy(gameObject);
+    }
+    /// <summary>
+    /// Перенести игрока в соседнюю комнату.
+    /// </summary>
+    /// <param name="player">Игрок.</param>
     /// <param name="direction">Направление переноса.</param>
     private void TransferPlayer(Transform player, Direction direction)
     {

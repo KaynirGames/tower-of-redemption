@@ -62,7 +62,7 @@ public class DungeonStageManager : MonoBehaviour
 
         SpawnStartRoom();
 
-        SpawnBossRoom(routeController.PotentialBossLocation);
+        SpawnBossRoom(routeController.PotentialBossLocations);
 
         for (int i = 0; i < currentSelectedRoute.Count; i++)
         {
@@ -113,7 +113,7 @@ public class DungeonStageManager : MonoBehaviour
     {
         GridRoom newGridRoom = new GridRoom
         {
-            RoomSceneName = $"{currentStage.Name}_{roomTypeData.Name}",
+            RoomSceneName = string.Concat(currentStage.Name, "_", roomTypeData.Name),
             GridPosition = gridPosition
         };
 

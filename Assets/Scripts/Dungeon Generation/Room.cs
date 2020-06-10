@@ -128,7 +128,7 @@ public class Room : MonoBehaviour
         if (nextRoom == null)
         {
             // Убираем дверь.
-            currentDoor.gameObject.SetActive(false);
+            currentDoor.Remove();
         }
         else
         {
@@ -139,7 +139,7 @@ public class Room : MonoBehaviour
                 newDoor.Direction = currentDoor.Direction;
                 newDoor = Instantiate(newDoor, currentDoor.transform.position, currentDoor.transform.rotation, currentDoor.transform.parent);
                 correctRoomDoors.Add(newDoor);
-                currentDoor.gameObject.SetActive(false);
+                Destroy(currentDoor.gameObject);
             }
             else
             {

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 30f; // Скорость перемещения игрока.
-
     [SerializeField] private MovementController movementController = null;
 
     private float moveX; // Перемещение по оси X.
@@ -20,8 +18,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        moveX = Input.GetAxis("Horizontal") * moveSpeed;
-        moveY = Input.GetAxis("Vertical") * moveSpeed;
+        moveX = Input.GetAxis("Horizontal");
+        moveY = Input.GetAxis("Vertical");
     }
 
     private void FixedUpdate()

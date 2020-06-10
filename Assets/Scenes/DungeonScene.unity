@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedRoute: []
-  potentialBossLocation: []
+  potentialBossLocations: []
 --- !u!1001 &5363020660528455042
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -100,6 +100,8 @@ MonoBehaviour:
   doorType: {fileID: 11400000, guid: 893a2ce6fb8bfca45b6cdc297b26faed, type: 2}
   doorwayCollider: {fileID: -2145243034938423331}
   doorwayTransferRange: 4
+  emptyDoorway: {fileID: 4337851180924145414, guid: 2e4b0ab4b947d3b4caaf93e77a9f66a5,
+    type: 3}
 --- !u!61 &-2145243034938423331
 BoxCollider2D:
   m_ObjectHideFlags: 0
