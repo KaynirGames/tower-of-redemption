@@ -19,7 +19,6 @@ public class DoorTypeEditor : Editor
 
         EditorGUILayout.BeginVertical("box");
 
-        doorType.Name = EditorGUILayout.TextField("Наименование типа двери:", doorType.Name);
         doorType.PlacingPriority = EditorGUILayout.IntField("Приоритет размещения:", doorType.PlacingPriority);
         doorType.IsRequireKey = EditorGUILayout.Toggle("Требуется ключ?", doorType.IsRequireKey);
 

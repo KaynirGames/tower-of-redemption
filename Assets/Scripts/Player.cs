@@ -5,15 +5,19 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private MovementController movementController = null;
+    [SerializeField] private CharacterStats characterStats = null;
 
     private float moveX; // Перемещение по оси X.
     private float moveY; // Перемещение по оси Y.
 
     private Rigidbody2D rb;
 
+    private StatModifier healthModifier;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        healthModifier = new StatModifier(5);
     }
 
     private void Update()

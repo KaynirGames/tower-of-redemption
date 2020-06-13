@@ -6,10 +6,6 @@ using UnityEngine;
 public class DoorType : ScriptableObject
 {
     /// <summary>
-    /// Наименование типа двери.
-    /// </summary>
-    public string Name = "Undefined";
-    /// <summary>
     /// Приоритет размещения типа двери в проходах между комнатами.
     /// </summary>
     public int PlacingPriority = 0;
