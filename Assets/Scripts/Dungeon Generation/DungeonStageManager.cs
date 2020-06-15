@@ -12,13 +12,13 @@ public class DungeonStageManager : MonoBehaviour
     [SerializeField] private GameEvent OnStageLoadComplete = null; // Событие при полной загрузке этажа подземелья.
 
     /// <summary>
-    /// Очередь загрузки комнат на сетке координат подземелья.
+    /// Очередь точек на сетке координат подземелья для загрузки комнат.
     /// </summary>
-    private readonly Queue<GridRoom> gridRoomQueue = new Queue<GridRoom>();
+    private readonly Queue<DungeonGridPoint> gridPointQueue = new Queue<DungeonGridPoint>();
     /// <summary>
-    /// Комната на сетке координат подземелья, которая загружается в настоящий момент.
+    /// Точка на сетке координат подземелья, куда в настоящий момент загружается комната.
     /// </summary>
-    private GridRoom currentGridRoom;
+    private DungeonGridPoint currentGridPoint;
     /// <summary>
     /// Происходит ли загрузка комнаты в настоящий момент?
     /// </summary>
@@ -44,7 +44,7 @@ public class DungeonStageManager : MonoBehaviour
         if (!StageLoadComplete)
         {
             // Действия при загрузке всех комнат на этаже.
-            if (!isLoadingRoom && gridRoomQueue.Count == 0)
+            if (!isLoadingRoom && gridPointQueue.Count == 0)
             {
                 StageLoadComplete = true;
                 OnStageLoadComplete.NotifyEventSubs();
@@ -70,7 +70,7 @@ public class DungeonStageManager : MonoBehaviour
 
             if (randomType == null) return;
 
-            CreateGridRoom(randomType, currentSelectedRoute[i]);
+            CreateGridPoint(randomType, currentSelectedRoute[i]);
         }
     }
     /// <summary>
@@ -79,7 +79,7 @@ public class DungeonStageManager : MonoBehaviour
     private void SpawnStartRoom()
     {
         Vector2Int position = currentSelectedRoute[0];
-        CreateGridRoom(currentStage.StartRoomType, position);
+        CreateGridPoint(currentStage.StartRoomType, position);
         currentSelectedRoute.Remove(position);
     }
     /// <summary>
@@ -88,7 +88,7 @@ public class DungeonStageManager : MonoBehaviour
     private void SpawnBossRoom(List<Vector2Int> potentialBossLocation)
     {
         Vector2Int position = potentialBossLocation[Random.Range(0, potentialBossLocation.Count)];
-        CreateGridRoom(currentStage.BossRoomType, position);
+        CreateGridPoint(currentStage.BossRoomType, position);
         currentSelectedRoute.Remove(position);
     }
     /// <summary>
@@ -96,28 +96,28 @@ public class DungeonStageManager : MonoBehaviour
     /// </summary>
     private void UpdateRoomQueue()
     {
-        if (isLoadingRoom || gridRoomQueue.Count == 0)
+        if (isLoadingRoom || gridPointQueue.Count == 0)
             return;
 
-        currentGridRoom = gridRoomQueue.Dequeue();
+        currentGridPoint = gridPointQueue.Dequeue();
         isLoadingRoom = true;
 
-        StartCoroutine(LoadRoom(currentGridRoom));
+        StartCoroutine(LoadRoom(currentGridPoint));
     }
     /// <summary>
-    /// Создать новую комнату на сетке координат подземелья.
+    /// Создать новую точку на сетке координат подземелья.
     /// </summary>
     /// <param name="roomTypeData">Данные о типе комнаты.</param>
     /// <param name="gridPosition">Позиция на сетке координат подземелья.</param>
-    private void CreateGridRoom(RoomType roomTypeData, Vector2Int gridPosition)
+    private void CreateGridPoint(RoomType roomTypeData, Vector2Int gridPosition)
     {
-        GridRoom newGridRoom = new GridRoom
+        DungeonGridPoint newGridRoom = new DungeonGridPoint
         {
             RoomSceneName = string.Concat(currentStage.Name, "_", roomTypeData.Name),
             GridPosition = gridPosition
         };
 
-        gridRoomQueue.Enqueue(newGridRoom);
+        gridPointQueue.Enqueue(newGridRoom);
     }
     /// <summary>
     /// Присвоить комнате место на этаже подземелья (отклик на событие по окончанию загрузки комнаты).
@@ -135,7 +135,7 @@ public class DungeonStageManager : MonoBehaviour
         if (currentRoom == null)
             return;
 
-        currentRoom.DungeonGridPosition = currentGridRoom.GridPosition;
+        currentRoom.DungeonGridPosition = currentGridPoint.GridPosition;
         currentRoom.SetWorldPosition();
         currentRoom.Initialized = true;
 
@@ -144,7 +144,7 @@ public class DungeonStageManager : MonoBehaviour
     /// <summary>
     /// Асинхронная загрузка сцены с комнатой.
     /// </summary>
-    private IEnumerator LoadRoom(GridRoom gridRoom)
+    private IEnumerator LoadRoom(DungeonGridPoint gridRoom)
     {
         AsyncOperation roomLoadAsync = SceneManager.LoadSceneAsync(gridRoom.RoomSceneName, LoadSceneMode.Additive);
 

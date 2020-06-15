@@ -3,16 +3,14 @@ using UnityEngine;
 
 public class RouteSpawnController : MonoBehaviour
 {
-    [SerializeField] private List<Vector2Int> selectedRoute = new List<Vector2Int>(); // Выбранные позиции (для отображения в инспекторе).
-    [SerializeField] private List<Vector2Int> potentialBossLocations = new List<Vector2Int>(); // Возможные позиции босс-комнат (для отображения в инспекторе).
     /// <summary>
     /// Список выбранных позиций на сетке координат подземелья.
     /// </summary>
-    public List<Vector2Int> SelectedRoute => selectedRoute;
+    public List<Vector2Int> SelectedRoute { get; private set; } = new List<Vector2Int>();
     /// <summary>
     /// Список потенциальных позиций для босс-комнат.
     /// </summary>
-    public List<Vector2Int> PotentialBossLocations => potentialBossLocations;
+    public List<Vector2Int> PotentialBossLocations { get; private set; } = new List<Vector2Int>();
     /// <summary>
     /// Список возможных направлений для создания коридора: вверх, вправо, вниз и влево.
     /// </summary>
@@ -29,7 +27,7 @@ public class RouteSpawnController : MonoBehaviour
     /// <param name="stage">Данные об этаже подземелья.</param>
     public void InitializeRouteSpawn(DungeonStage stage)
     {
-        selectedRoute.Add(Vector2Int.zero); // Добавим позицию для начальной комнаты.
+        SelectedRoute.Add(Vector2Int.zero); // Добавим позицию для начальной комнаты.
 
         int routeLength = Random.Range(stage.MinRouteLength, stage.MaxRouteLength + 1);
         CreateRoute(routeLength, stage.RouteSpawnerCount);
@@ -59,13 +57,13 @@ public class RouteSpawnController : MonoBehaviour
                 // Запоминаем позицию, если она не занята.
                 if (!DoesPositionTaken(newPos))
                 {
-                    selectedRoute.Add(newPos);
+                    SelectedRoute.Add(newPos);
                 }
             }
 
             // Запоминаем конечную позицию текущего создателя (потенциальное место для босс-комнат).
-            Vector2Int endPos = selectedRoute[selectedRoute.Count - 1];
-            potentialBossLocations.Add(endPos);
+            Vector2Int endPos = SelectedRoute[SelectedRoute.Count - 1];
+            PotentialBossLocations.Add(endPos);
         }
     }
     /// <summary>
@@ -73,6 +71,6 @@ public class RouteSpawnController : MonoBehaviour
     /// </summary>
     private bool DoesPositionTaken(Vector2Int gridPosition)
     {
-        return selectedRoute.Exists(pos => pos == gridPosition);
+        return SelectedRoute.Exists(pos => pos == gridPosition);
     }
 }

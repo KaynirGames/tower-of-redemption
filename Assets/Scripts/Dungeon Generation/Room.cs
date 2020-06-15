@@ -152,8 +152,8 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            onActiveRoomChanged.NotifyEventSubs();
             activeRoom.Add(this);
+            onActiveRoomChanged.NotifyEventSubs();
         }
     }
 

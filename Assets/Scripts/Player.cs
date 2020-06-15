@@ -4,30 +4,39 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private MovementController movementController = null;
-    [SerializeField] private CharacterStats characterStats = null;
+    [SerializeField] private float runSpeed = 30f; // Скорость бега.
+    [SerializeField] private CharacterStats characterStats = null; // Статы персонажа.
+    [SerializeField] private PlayerSpec currentSpec = null;
+    [SerializeField] private PlayerRuntimeSet activePlayer = null; // Набор, содержащий активного игрока.
 
-    private float moveX; // Перемещение по оси X.
-    private float moveY; // Перемещение по оси Y.
+    private Vector2 moveDirection; // Направление перемещения.
 
-    private Rigidbody2D rb;
-
-    private StatModifier healthModifier;
+    private PlayerController playerController;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        healthModifier = new StatModifier(5);
+        playerController = GetComponent<PlayerController>();
+        characterStats.SetCharacterStats(currentSpec);
     }
 
     private void Update()
     {
-        moveX = Input.GetAxis("Horizontal");
-        moveY = Input.GetAxis("Vertical");
+        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 
     private void FixedUpdate()
     {
-        movementController.Move(moveX * Time.fixedDeltaTime, moveY * Time.fixedDeltaTime, rb);
+        Vector2 targetVelocity = moveDirection.normalized * runSpeed * Time.fixedDeltaTime;
+        playerController.HandleMovement(targetVelocity);
+    }
+
+    private void OnEnable()
+    {
+        activePlayer.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        activePlayer.Remove(this);
     }
 }

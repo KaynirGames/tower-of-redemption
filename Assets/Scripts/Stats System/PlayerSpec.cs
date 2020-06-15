@@ -8,6 +8,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerSpec", menuName = "Scriptable Objects/Stats System/Player Spec")]
 public class PlayerSpec : BaseStats
 {
+    [Header("Информация о спеке игрока:")]
     /// <summary>
     /// Краткое описание специализации игрока.
     /// </summary>

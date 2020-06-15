@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    [SerializeField] private PlayerSpec currentSpec = null;
     /// <summary>
     /// Максимальное количество здоровья.
     /// </summary>
@@ -39,23 +38,11 @@ public class CharacterStats : MonoBehaviour
     /// </summary>
     public Action OnCharacterDeath;
 
-    private void Awake()
-    {
-        SetPlayerSpec(currentSpec);
-        CurrentHealth = maxHealth.Value;
-        CurrentAbilityPoints = maxAbilityPoints.Value;
-    }
-
-    private void OnValidate()
-    {
-        if (currentSpec != null)
-            SetPlayerSpec(currentSpec);
-    }
     /// <summary>
-    /// Задать текущую специализацию персонажа.
+    /// Задать статы для текущей специализации персонажа.
     /// </summary>
-    /// <param name="currentSpec"></param>
-    public void SetPlayerSpec(PlayerSpec currentSpec)
+    /// <param name="currentSpec">Текущая специализация персонажа.</param>
+    public void SetCharacterStats(BaseStats currentSpec)
     {
         maxHealth = new Stat(currentSpec.BaseHealth);
         maxAbilityPoints = new Stat(currentSpec.BaseAbilityPoints);
@@ -68,6 +55,8 @@ public class CharacterStats : MonoBehaviour
             new ElementEfficacy(currentSpec.BaseEarthEfficacy, MagicElement.Earth),
             new ElementEfficacy(currentSpec.BaseWaterEfficacy, MagicElement.Water)
         };
+        CurrentHealth = maxHealth.Value;
+        CurrentAbilityPoints = maxAbilityPoints.Value;
     }
     /// <summary>
     /// Получить урон текущему здоровью.
@@ -101,7 +90,9 @@ public class CharacterStats : MonoBehaviour
     /// <returns></returns>
     private float CalculateDamageTaken(float damage)
     {
-        return damage - armor.Value;
+        float damageTaken = damage * (1 - armor.Value / 100);
+
+        return Mathf.Round(damageTaken);
     }
     /// <summary>
     /// Рассчитать полученный магический урон.
@@ -112,7 +103,9 @@ public class CharacterStats : MonoBehaviour
     private float CalculateDamageTaken(float damage, MagicElement element)
     {
         ElementEfficacy currentEfficacy = elementEfficacies.Find(efficacy => efficacy.Element == element);
-        return (damage - magicDefence.Value) * currentEfficacy.EfficacyRate.Value / 100;
+        float damageTaken = damage * (1 - magicDefence.Value / 100) * (currentEfficacy.EfficacyRate.Value / 100);
+
+        return Mathf.Round(damageTaken);
     }
     /// <summary>
     /// Достаточно ли текущих очков навыков для применения способности?

@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public abstract class BaseStats : ScriptableObject
 {
+    [Header("Базовые статы персонажа:")]
     /// <summary>
     /// Базовое количество здоровья.
     /// </summary>
@@ -23,6 +24,7 @@ public abstract class BaseStats : ScriptableObject
     /// Базовая защита от магии.
     /// </summary>
     public float BaseMagicDefence;
+    [Header("Эффективность стихий против персонажа:")]
     /// <summary>
     /// Базовая эффективность стихии огня.
     /// </summary>
