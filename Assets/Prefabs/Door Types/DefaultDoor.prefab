@@ -99,7 +99,7 @@ MonoBehaviour:
   direction: 4
   doorType: {fileID: 11400000, guid: 72c70f045dbf8024bb2a7b0b6aebd805, type: 2}
   doorwayCollider: {fileID: 3553874831833354208}
-  doorwayTransferRange: 4
+  doorwayTransferRange: 5
   emptyDoorway: {fileID: 4337851180924145414, guid: 2e4b0ab4b947d3b4caaf93e77a9f66a5,
     type: 3}
 --- !u!61 &3553874831833354208

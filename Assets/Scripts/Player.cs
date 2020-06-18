@@ -4,39 +4,35 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float runSpeed = 30f; // Скорость бега.
-    [SerializeField] private CharacterStats characterStats = null; // Статы персонажа.
     [SerializeField] private PlayerSpec currentSpec = null;
-    [SerializeField] private PlayerRuntimeSet activePlayer = null; // Набор, содержащий активного игрока.
+    [SerializeField] private PlayerRuntimeSet activePlayerRS = null; // Набор, содержащий активного игрока.
+    [SerializeField] private float attackRange = 2f;
+    [SerializeField] private Transform attackPoint = null;
 
-    private Vector2 moveDirection; // Направление перемещения.
-
-    private PlayerController playerController;
+    private CharacterStats playerStats; // Статы персонажа.
 
     private void Awake()
     {
-        playerController = GetComponent<PlayerController>();
-        characterStats.SetCharacterStats(currentSpec);
+        activePlayerRS.Add(this);
+        playerStats = GetComponent<CharacterStats>();
     }
 
-    private void Update()
+    private void Start()
     {
-        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-    }
-
-    private void FixedUpdate()
-    {
-        Vector2 targetVelocity = moveDirection.normalized * runSpeed * Time.fixedDeltaTime;
-        playerController.HandleMovement(targetVelocity);
-    }
-
-    private void OnEnable()
-    {
-        activePlayer.Add(this);
+        playerStats.SetCharacterStats(currentSpec);
     }
 
     private void OnDisable()
     {
-        activePlayer.Remove(this);
+        activePlayerRS.Remove(this);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (attackRange > 0)
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        }
     }
 }
