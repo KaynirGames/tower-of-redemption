@@ -34,15 +34,14 @@ public class CharacterStats : MonoBehaviour
     /// </summary>
     public float CurrentAbilityPoints { get; private set; }
     /// <summary>
-    /// Делегат, сообщающий о гибели персонажа.
+    /// Событие, информирующее подписчиков о гибели персонажа.
     /// </summary>
-    public Action OnCharacterDeath;
-
+    public event Action OnCharacterDeath;
     /// <summary>
     /// Задать статы для текущей специализации персонажа.
     /// </summary>
     /// <param name="currentSpec">Текущая специализация персонажа.</param>
-    public void SetCharacterStats(BaseStats currentSpec)
+    public void SetStats(BaseStats currentSpec)
     {
         maxHealth = new Stat(currentSpec.BaseHealth);
         maxAbilityPoints = new Stat(currentSpec.BaseAbilityPoints);

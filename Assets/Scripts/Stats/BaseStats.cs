@@ -11,34 +11,34 @@ public abstract class BaseStats : ScriptableObject
     /// <summary>
     /// Базовое количество здоровья.
     /// </summary>
-    public float BaseHealth;
+    public float BaseHealth = 100;
     /// <summary>
     /// Базовое количество очков навыков.
     /// </summary>
-    public float BaseAbilityPoints;
+    public float BaseAbilityPoints = 100;
     /// <summary>
     /// Базовое количество брони.
     /// </summary>
-    public float BaseArmor;
+    public float BaseArmor = 0;
     /// <summary>
     /// Базовая защита от магии.
     /// </summary>
-    public float BaseMagicDefence;
+    public float BaseMagicDefence = 0;
     [Header("Эффективность стихий против персонажа:")]
     /// <summary>
     /// Базовая эффективность стихии огня.
     /// </summary>
-    public float BaseFireEfficacy;
+    public float BaseFireEfficacy = 100;
     /// <summary>
     /// Базовая эффективность стихии воздуха.
     /// </summary>
-    public float BaseAirEfficacy;
+    public float BaseAirEfficacy = 100;
     /// <summary>
     /// Базовая эффективность стихии земли.
     /// </summary>
-    public float BaseEarthEfficacy;
+    public float BaseEarthEfficacy = 100;
     /// <summary>
     /// Базовая эффективность стихии воды.
     /// </summary>
-    public float BaseWaterEfficacy;
+    public float BaseWaterEfficacy = 100;
 }

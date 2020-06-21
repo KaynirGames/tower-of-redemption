@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 currentVelocity = Vector2.zero; // Модифицируется функцией сглаживания.
 
     private Rigidbody2D rb;
+    private Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -23,22 +25,26 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 targetVelocity = moveDirection.normalized * moveSpeed * Time.fixedDeltaTime;
-        HandleMovement(targetVelocity);
+        HandleMovement();
     }
     /// <summary>
     /// Обработать нажатие клавиш управления персонажем.
     /// </summary>
     private void HandleInput()
     {
-        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        moveDirection.x = Input.GetAxis("Horizontal");
+        moveDirection.y = Input.GetAxis("Vertical");
+
+        animator.SetFloat("Horizontal", moveDirection.x);
+        animator.SetFloat("Vertical", moveDirection.y);
+        animator.SetFloat("Speed", moveDirection.sqrMagnitude);
     }
     /// <summary>
     /// Осуществить перемещение персонажа.
     /// </summary>
-    /// <param name="targetVelocity">Желаемая величина перемещения.</param>
-    private void HandleMovement(Vector2 targetVelocity)
+    private void HandleMovement()
     {
+        Vector2 targetVelocity = moveDirection.normalized * moveSpeed * Time.fixedDeltaTime;
         rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity * 10f, ref currentVelocity, moveSmoothing);
     }
 }

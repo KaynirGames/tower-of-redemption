@@ -16,13 +16,30 @@ public class EnemySpec : BaseStats
     /// <summary>
     /// Количество очков навыков, которые регенерируются каждый отрезок времени.
     /// </summary>
-    public float AbilityPointRegenOverTime;
+    public float AbilityPointRegenOverTime = 1f;
     /// <summary>
     /// Отрезок времени, спустя который регенерируются очки навыков.
     /// </summary>
-    public float AbilityPointRegenTime;
+    public float AbilityPointRegenTime = 1f;
     /// <summary>
     /// Таблица вероятностей выпадения лута.
     /// </summary>
     public SpawnTable LootTable;
+    [Header("Основные настройки ИИ:")]
+    /// <summary>
+    /// Скорость перемещения.
+    /// </summary>
+    public float MoveSpeed = 2f;
+    /// <summary>
+    /// Дальность обзора.
+    /// </summary>
+    public float ViewDistance = 4f;
+    /// <summary>
+    /// Расстояние атаки.
+    /// </summary>
+    public float AttackDistance = 2f;
+    /// <summary>
+    /// Задержка между атаками.
+    /// </summary>
+    public float AttackCooldown = 1f;
 }

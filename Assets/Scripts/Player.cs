@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        playerStats.SetCharacterStats(currentSpec);
+        playerStats.SetStats(currentSpec);
     }
 
     private void OnDisable()
