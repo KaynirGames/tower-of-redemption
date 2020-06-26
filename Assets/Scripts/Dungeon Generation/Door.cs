@@ -9,26 +9,34 @@ public enum Direction { Up, Right, Down, Left, None }
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private Direction direction = Direction.None; // Направление, в которое ведет дверь.
-    [SerializeField] private DoorType doorType = null; // Тип двери.
-    [SerializeField] private Collider2D doorwayCollider = null; // Дверной проем, ограничивающий переход между комнатами.
-    [SerializeField] private float doorwayTransferRange = 4f; // Расстояние переноса игрока при переходе между комнатами.
-    [SerializeField] private GameObject emptyDoorway = null; // Объект, заменяющий убранную дверь.
-
+    [SerializeField] private Direction _direction = Direction.None; // Направление, в которое ведет дверь.
+    [SerializeField] private DoorType _doorType = null; // Тип двери.
+    [SerializeField] private float _doorwayTransferRange = 4f; // Расстояние переноса игрока при переходе между комнатами.
+    [SerializeField] private GameObject _emptyDoorPrefab = null; // Объект, заменяющий убранную дверь.
+    [SerializeField] private DoorRuntimeSet _possibleDoors = null; // Набор всех типов дверей в игре.
     /// <summary>
-    /// Направление, в которое ведет дверь.
+    /// Направление, куда ведет дверь.
     /// </summary>
-    public Direction Direction { get => direction; set => direction = value; }
+    public Direction Direction => _direction;
     /// <summary>
     /// Тип двери.
     /// </summary>
-    public DoorType DoorType => doorType;
+    public DoorType DoorType => _doorType;
+    /// <summary>
+    /// Дверной проем, ограничивающий переход между комнатами.
+    /// </summary>
+    private Collider2D _doorwayCollider;
+
+    private void Awake()
+    {
+        _doorwayCollider = GetComponent<Collider2D>();
+    }
     /// <summary>
     /// Открыть дверь.
     /// </summary>
     public void Open()
     {
-        doorwayCollider.enabled = false;
+        _doorwayCollider.enabled = false;
         // Анимация
         // Звук
     }
@@ -37,7 +45,7 @@ public class Door : MonoBehaviour
     /// </summary>
     public void Close()
     {
-        doorwayCollider.enabled = true;
+        _doorwayCollider.enabled = true;
         // Анимация
         // Звук
     }
@@ -47,32 +55,40 @@ public class Door : MonoBehaviour
     public void Remove()
     {
         // Вместо двери устанавливаем пустой проход с коллайдером.
-        emptyDoorway = Instantiate(emptyDoorway, transform.position, transform.rotation, transform.parent);
-        emptyDoorway.transform.localScale = transform.localScale;
-        emptyDoorway.GetComponent<Collider2D>().offset = doorwayCollider.offset;
+        GameObject emptyDoor = Instantiate(_emptyDoorPrefab, transform.position, transform.rotation, transform.parent);
+        emptyDoor.transform.localScale = transform.localScale;
+        emptyDoor.GetComponent<Collider2D>().offset = _doorwayCollider.offset;
 
         Destroy(gameObject);
     }
     /// <summary>
+    /// Заменить текущую дверь на другой тип.
+    /// </summary>
+    public Door Swap(DoorType otherType)
+    {
+        Door newDoor = _possibleDoors.Find(door => door.DoorType == otherType);
+        newDoor._direction = _direction;
+        newDoor = Instantiate(newDoor, transform.position, transform.rotation, transform.parent);
+        return newDoor;
+    }
+    /// <summary>
     /// Перенести игрока в соседнюю комнату.
     /// </summary>
-    /// <param name="player">Игрок.</param>
-    /// <param name="direction">Направление переноса.</param>
     private void TransferPlayer(Transform player, Direction direction)
     {
         switch (direction)
         {
             case Direction.Up:
-                player.Translate(Vector3.up * doorwayTransferRange);
+                player.Translate(Vector3.up * _doorwayTransferRange);
                 break;
             case Direction.Right:
-                player.Translate(Vector3.right * doorwayTransferRange);
+                player.Translate(Vector3.right * _doorwayTransferRange);
                 break;
             case Direction.Down:
-                player.Translate(Vector3.down * doorwayTransferRange);
+                player.Translate(Vector3.down * _doorwayTransferRange);
                 break;
             case Direction.Left:
-                player.Translate(Vector3.left * doorwayTransferRange);
+                player.Translate(Vector3.left * _doorwayTransferRange);
                 break;
         }
     }
@@ -81,7 +97,7 @@ public class Door : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            TransferPlayer(other.transform, direction);
+            TransferPlayer(other.transform, _direction);
         }
     }
 }

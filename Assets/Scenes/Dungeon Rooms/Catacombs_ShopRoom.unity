@@ -214,6 +214,11 @@ PrefabInstance:
       propertyPath: direction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 309060180764731014, guid: 1094f36414b062f49aae02ee994b5141,
+        type: 3}
+      propertyPath: _direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6262216853552561816, guid: 1094f36414b062f49aae02ee994b5141,
         type: 3}
       propertyPath: m_Name
@@ -461,6 +466,11 @@ PrefabInstance:
       propertyPath: direction
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 309060180764731014, guid: 1094f36414b062f49aae02ee994b5141,
+        type: 3}
+      propertyPath: _direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6262216853552561816, guid: 1094f36414b062f49aae02ee994b5141,
         type: 3}
       propertyPath: m_Name
@@ -539,6 +549,11 @@ PrefabInstance:
     - target: {fileID: 309060180764731014, guid: 1094f36414b062f49aae02ee994b5141,
         type: 3}
       propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 309060180764731014, guid: 1094f36414b062f49aae02ee994b5141,
+        type: 3}
+      propertyPath: _direction
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6262216853552561816, guid: 1094f36414b062f49aae02ee994b5141,
@@ -3521,6 +3536,17 @@ PrefabInstance:
       propertyPath: doors.Array.data[3]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1961769499459052764, guid: 2f73de9b6fb354845a5a3e55dc5ea84c,
+        type: 3}
+      propertyPath: _roomEnvironment
+      value: 
+      objectReference: {fileID: 1875934320}
+    - target: {fileID: 1961769499459052764, guid: 2f73de9b6fb354845a5a3e55dc5ea84c,
+        type: 3}
+      propertyPath: _roomTypeData
+      value: 
+      objectReference: {fileID: 11400000, guid: cc2097befdd616644be132f4cc741e24,
+        type: 2}
     - target: {fileID: 1961769499459052766, guid: 2f73de9b6fb354845a5a3e55dc5ea84c,
         type: 3}
       propertyPath: m_Name
@@ -3544,6 +3570,11 @@ PrefabInstance:
     - target: {fileID: 309060180764731014, guid: 1094f36414b062f49aae02ee994b5141,
         type: 3}
       propertyPath: direction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 309060180764731014, guid: 1094f36414b062f49aae02ee994b5141,
+        type: 3}
+      propertyPath: _direction
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6262216853552561816, guid: 1094f36414b062f49aae02ee994b5141,

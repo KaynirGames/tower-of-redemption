@@ -96,12 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08eee90ae87c484eb65e306655385fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 4
-  doorType: {fileID: 11400000, guid: 893a2ce6fb8bfca45b6cdc297b26faed, type: 2}
-  doorwayCollider: {fileID: -2145243034938423331}
-  doorwayTransferRange: 5
-  emptyDoorway: {fileID: 4337851180924145414, guid: 2e4b0ab4b947d3b4caaf93e77a9f66a5,
+  _direction: 4
+  _doorType: {fileID: 11400000, guid: 893a2ce6fb8bfca45b6cdc297b26faed, type: 2}
+  _doorwayTransferRange: 4
+  _emptyDoorPrefab: {fileID: 4337851180924145414, guid: 2e4b0ab4b947d3b4caaf93e77a9f66a5,
     type: 3}
+  _possibleDoors: {fileID: 11400000, guid: 77c0dc40b4ff90c49945fdf5a87c840e, type: 2}
 --- !u!61 &-2145243034938423331
 BoxCollider2D:
   m_ObjectHideFlags: 0

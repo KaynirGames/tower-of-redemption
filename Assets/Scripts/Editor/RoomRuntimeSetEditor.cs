@@ -4,38 +4,38 @@ using UnityEngine;
 [CustomEditor(typeof(RoomRuntimeSet))]
 public class RoomRuntimeSetEditor : Editor
 {
-    private RoomRuntimeSet roomRuntimeSet;
-    private bool displayRooms = true;
+    private RoomRuntimeSet _roomRuntimeSet; // Набор комнат.
+    private bool _displayRooms; // Включить отображение комнат в наборе?
 
     public void OnEnable()
     {
-        roomRuntimeSet = (RoomRuntimeSet)target;
+        _roomRuntimeSet = (RoomRuntimeSet)target;
+        _displayRooms = true;
     }
 
     public override void OnInspectorGUI()
     {
-        if (roomRuntimeSet.Count == 0)
+        if (_roomRuntimeSet.Count == 0)
         {
             GUILayout.Label("Список комнат в наборе пуст.");
             return;
         }
 
-        displayRooms = EditorGUILayout.Foldout(displayRooms, "Список комнат в наборе:");
+        _displayRooms = EditorGUILayout.Foldout(_displayRooms, "Список комнат в наборе:");
 
-        if (displayRooms)
+        if (_displayRooms)
         {
             DisplayRoomSetInfo();
         }
     }
-
     /// <summary>
     /// Отобразить информацию о комнатах в наборе.
     /// </summary>
     private void DisplayRoomSetInfo()
     {
-        for (int i = 0; i < roomRuntimeSet.Count; i++)
+        for (int i = 0; i < _roomRuntimeSet.Count; i++)
         {
-            Room room = roomRuntimeSet.GetObject(i);
+            Room room = _roomRuntimeSet.GetObject(i);
 
             EditorGUILayout.BeginVertical("box");
 
@@ -51,7 +51,7 @@ public class RoomRuntimeSetEditor : Editor
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Координаты на сцене:");
-            EditorGUILayout.LabelField($"[{room.GetWorldPosition().x},{room.GetWorldPosition().y}]");
+            EditorGUILayout.LabelField($"[{room.transform.position.x},{room.transform.position.y}]");
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.EndVertical();

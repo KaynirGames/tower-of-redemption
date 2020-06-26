@@ -29,7 +29,7 @@ public class SpawnTable : ScriptableObject
         // Первая итерация => Cовокупный вес: 0 + 50 = 50, 65 <= 50 ? Нет.
         // Вторая итерация => Cовокупный вес: 50 + 30 = 80, 65 <= 80 ? Да, значит выбираем второй объект.
 
-        int totalWeight = CalculateTotalWeight();
+        int totalWeight = GetTotalWeight();
 
         int randomWeight = Random.Range(0, totalWeight);
 
@@ -51,7 +51,7 @@ public class SpawnTable : ScriptableObject
     /// Посчитать общую вероятность появления объектов.
     /// </summary>
     /// <returns></returns>
-    private int CalculateTotalWeight()
+    private int GetTotalWeight()
     {
         int totalWeight = 0;
 

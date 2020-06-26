@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Diagnostics;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,41 +9,50 @@ namespace KaynirGames.Pathfinding2D
     public class Pathfinder : MonoBehaviour
     {
         /// <summary>
+        /// Событие на изменение действующего поисковика пути.
+        /// </summary>
+        public static event Action<Pathfinder> OnActivePathfinderChanged = delegate { };
+        /// <summary>
         /// Сетка узлов.
         /// </summary>
-        private NodeGrid grid;
-
-        public Transform seeker, target;
-
-        private Stopwatch pathTime = new Stopwatch();
+        private NodeGrid _grid;
 
         private void Awake()
         {
-            grid = GetComponent<NodeGrid>();
+            _grid = GetComponent<NodeGrid>();
         }
-
-        private void Update()
+        /// <summary>
+        /// Начать поиск оптимального пути.
+        /// </summary>
+        /// <param name="pathRequest">Запрос на поиск пути.</param>
+        /// <param name="onRequestComplete">Действие по завершению запроса.</param>
+        public void StartFindPath(PathRequest pathRequest, Action onRequestComplete)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                FindPath(seeker.position, target.position);
-            }
+            StartCoroutine(FindPath(pathRequest, onRequestComplete));
         }
         /// <summary>
         /// Найти оптимальный путь.
         /// </summary>
-        /// <param name="startPos">Начальная позиция.</param>
-        /// <param name="targetPos">Конечная позиция.</param>
-        public void FindPath(Vector2 startPos, Vector2 targetPos)
+        /// <param name="pathRequest">Запрос на поиск пути.</param>
+        /// <param name="onRequestComplete">Действие по завершению запроса.</param>
+        private IEnumerator FindPath(PathRequest pathRequest, Action onRequestComplete)
         {
-            pathTime.Start();
+            Node startNode = _grid.GetNode(pathRequest.StartPoint); // Начальный узел сетки.
+            Node endNode = _grid.GetNode(pathRequest.EndPoint); // Конечный узел сетки.
 
-            Node startNode = grid.GetNode(startPos);
-            Node targetNode = grid.GetNode(targetPos);
+            bool pathFound = false; // Найден ли путь?
+            List<Vector2> waypoints = new List<Vector2>(); // Точки найденного пути.
+
+            if (startNode.IsObstacle || endNode.IsObstacle)
+            {
+                pathRequest.OnSearchComplete?.Invoke(waypoints.ToArray(), pathFound);
+                onRequestComplete?.Invoke();
+                yield break;
+            }
 
             List<Node> openSet = new List<Node>(); // Набор узлов для проверки.
             HashSet<Node> closedSet = new HashSet<Node>(); // Набор проверенных узлов.
-
+            
             openSet.Add(startNode);
 
             while (openSet.Count > 0)
@@ -62,27 +70,26 @@ namespace KaynirGames.Pathfinding2D
                 openSet.Remove(currentNode);
                 closedSet.Add(currentNode);
 
-                if (currentNode == targetNode)
+                // Выходим из цикла при достижении нужного узла.
+                if (currentNode == endNode)
                 {
-                    grid.Path = RetracePath(startNode, targetNode);
-                    pathTime.Stop();
-                    UnityEngine.Debug.Log($"Путь найден за: {pathTime.ElapsedMilliseconds} мс.");
-                    return;
+                    pathFound = true;
+                    break;
                 }
 
-                List<Node> neighbours = grid.GetNeighbours(currentNode);
-
+                List<Node> neighbours = _grid.GetNeighbours(currentNode);
+                // Выполняем проверку соседей текущего узла.
                 foreach (Node neighbour in neighbours)
                 {
                     if (neighbour.IsObstacle || closedSet.Contains(neighbour))
                         continue;
-
+                    // Рассчитываем длину пути до соседнего узла.
                     int newPathToNeighbour = currentNode.GCost + currentNode.GetDistance(neighbour);
 
                     if (newPathToNeighbour < neighbour.GCost || !openSet.Contains(neighbour))
                     {
                         neighbour.GCost = newPathToNeighbour;
-                        neighbour.HCost = neighbour.GetDistance(targetNode);
+                        neighbour.HCost = neighbour.GetDistance(endNode);
                         neighbour.Parent = currentNode;
 
                         if (!openSet.Contains(neighbour))
@@ -90,27 +97,38 @@ namespace KaynirGames.Pathfinding2D
                     }
                 }
             }
+
+            yield return null;
+
+            if (pathFound)
+            {
+                waypoints = RetracePath(startNode, endNode);
+            }
+            pathRequest.OnSearchComplete?.Invoke(waypoints.ToArray(), pathFound);
+            onRequestComplete?.Invoke();
         }
         /// <summary>
-        /// Записать найденный путь.
+        /// Записать координаты точек найденного пути.
         /// </summary>
-        /// <param name="startNode">Начальный узел.</param>
-        /// <param name="endNode">Конечный узел.</param>
-        /// <returns></returns>
-        private List<Node> RetracePath(Node startNode, Node endNode)
+        private List<Vector2> RetracePath(Node startNode, Node endNode)
         {
-            List<Node> path = new List<Node>();
+            List<Vector2> waypoints = new List<Vector2>();
             Node currentNode = endNode; // Начинаем с конца пути.
 
             while (currentNode != startNode)
             {
-                path.Add(currentNode);
+                waypoints.Add(currentNode.WorldPosition);
                 currentNode = currentNode.Parent;
             }
             // Переворачиваем путь, так как шли с конца.
-            path.Reverse(); 
+            waypoints.Reverse();
 
-            return path;
+            return waypoints;
+        }
+
+        private void OnEnable()
+        {
+            OnActivePathfinderChanged?.Invoke(this);
         }
     }
 }

@@ -1,156 +1,154 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(RouteSpawnController))]
 public class DungeonStageManager : MonoBehaviour
 {
+    /// <summary>
+    /// Событие на загрузку этажа подземелья.
+    /// </summary>
+    public static event Action OnStageLoaded = delegate { };
+    /// <summary>
+    /// Точка на сетке подземелья для будущей комнаты.
+    /// </summary>
+    private struct GridPoint
+    {
+        /// <summary>
+        /// Название сцены с комнатой.
+        /// </summary>
+        public string RoomScene { get; private set; }
+        /// <summary>
+        /// Позиция на сетке подземелья.
+        /// </summary>
+        public Vector2Int GridPosition { get; private set; }
+
+        public GridPoint(string roomScene, Vector2Int gridPos)
+        {
+            RoomScene = roomScene;
+            GridPosition = gridPos;
+        }
+    }
+
     [SerializeField] private DungeonStage currentStage = null; // Информация о текущем этаже подземелья.
-    [SerializeField] private RoomRuntimeSet loadedStageRooms = null; // Набор комнат, загруженных на этаже подземелья.
-    [SerializeField] private RouteSpawnController routeController = null; // Контроллер, управляющий созданием коридоров на этаже.
-
-    [SerializeField] private GameEvent OnStageLoadComplete = null; // Событие при полной загрузке этажа подземелья.
-
+    /// <summary>
+    /// Контроллер, управляющий созданием коридоров на этаже.
+    /// </summary>
+    private RouteSpawnController _routeController;
     /// <summary>
     /// Очередь точек на сетке координат подземелья для загрузки комнат.
     /// </summary>
-    private readonly Queue<DungeonGridPoint> gridPointQueue = new Queue<DungeonGridPoint>();
+    private Queue<GridPoint> _gridPointQueue;
     /// <summary>
     /// Точка на сетке координат подземелья, куда в настоящий момент загружается комната.
     /// </summary>
-    private DungeonGridPoint currentGridPoint;
+    private GridPoint _currentGridPoint;
     /// <summary>
     /// Происходит ли загрузка комнаты в настоящий момент?
     /// </summary>
-    private bool isLoadingRoom;
+    private bool _isLoadingRoom;
     /// <summary>
-    /// Текущий список выбранных позиций на сетке координат подземелья.
+    /// Выбранные позиции на сетке подземелья.
     /// </summary>
-    private List<Vector2Int> currentSelectedRoute;
+    private List<Vector2Int> _selectedRoute;
     /// <summary>
     /// Загрузились ли все комнаты на этаже?
     /// </summary>
-    private bool StageLoadComplete = false;
+    private bool _stageLoadComplete = false;
+
+    private void Awake()
+    {
+        _routeController = GetComponent<RouteSpawnController>();
+        _gridPointQueue = new Queue<GridPoint>();
+    }
 
     private void Start()
     {
+        Room.OnRoomLoaded += RegisterRoom;
         CreateDungeonStage(currentStage);
     }
 
     private void Update()
     {
-        UpdateRoomQueue();
-
-        if (!StageLoadComplete)
-        {
-            // Действия при загрузке всех комнат на этаже.
-            if (!isLoadingRoom && gridPointQueue.Count == 0)
-            {
-                StageLoadComplete = true;
-                OnStageLoadComplete.NotifyEventSubs();
-            }
-        }
+        TryLoadNext();
     }
     /// <summary>
     /// Сформировать все комнаты на этаже подземелья.
     /// </summary>
     /// <param name="dungeonStage">Информация об этаже подземелья.</param>
     public void CreateDungeonStage(DungeonStage dungeonStage)
-    {
-        routeController.InitializeRouteSpawn(dungeonStage);
-        currentSelectedRoute = routeController.SelectedRoute;
+    {      
+        _selectedRoute = _routeController.RequestRoute(dungeonStage);
 
-        SpawnStartRoom();
+        SpawnSpecificRoom(currentStage.StartRoomType, _selectedRoute[0]);
+        SpawnSpecificRoom(currentStage.BossRoomType, _routeController.RandomBossLocation);
 
-        SpawnBossRoom(routeController.PotentialBossLocations);
-
-        for (int i = 0; i < currentSelectedRoute.Count; i++)
+        for (int i = 0; i < _selectedRoute.Count; i++)
         {
             RoomType randomType = (RoomType)dungeonStage.OptionalRoomTypes.ChooseRandom();
-
-            if (randomType == null) return;
-
-            CreateGridPoint(randomType, currentSelectedRoute[i]);
+            CreateGridPoint(randomType, _selectedRoute[i]);
         }
     }
     /// <summary>
-    /// Загрузить обязательную стартовую комнату.
+    /// Создать новую точку на сетке подземелья.
     /// </summary>
-    private void SpawnStartRoom()
-    {
-        Vector2Int position = currentSelectedRoute[0];
-        CreateGridPoint(currentStage.StartRoomType, position);
-        currentSelectedRoute.Remove(position);
-    }
-    /// <summary>
-    /// Загрузить обязательную комнату с боссом.
-    /// </summary>
-    private void SpawnBossRoom(List<Vector2Int> potentialBossLocation)
-    {
-        Vector2Int position = potentialBossLocation[Random.Range(0, potentialBossLocation.Count)];
-        CreateGridPoint(currentStage.BossRoomType, position);
-        currentSelectedRoute.Remove(position);
-    }
-    /// <summary>
-    /// Загрузить комнаты в порядке очереди.
-    /// </summary>
-    private void UpdateRoomQueue()
-    {
-        if (isLoadingRoom || gridPointQueue.Count == 0)
-            return;
-
-        currentGridPoint = gridPointQueue.Dequeue();
-        isLoadingRoom = true;
-
-        StartCoroutine(LoadRoom(currentGridPoint));
-    }
-    /// <summary>
-    /// Создать новую точку на сетке координат подземелья.
-    /// </summary>
-    /// <param name="roomTypeData">Данные о типе комнаты.</param>
+    /// <param name="roomType">Данные о типе комнаты.</param>
     /// <param name="gridPosition">Позиция на сетке координат подземелья.</param>
-    private void CreateGridPoint(RoomType roomTypeData, Vector2Int gridPosition)
+    private void CreateGridPoint(RoomType roomType, Vector2Int gridPosition)
     {
-        DungeonGridPoint newGridRoom = new DungeonGridPoint
-        {
-            RoomSceneName = string.Concat(currentStage.Name, "_", roomTypeData.Name),
-            GridPosition = gridPosition
-        };
-
-        gridPointQueue.Enqueue(newGridRoom);
+        string roomSceneName = string.Concat(currentStage.Name, "_", roomType.Name);
+        GridPoint newGridPoint = new GridPoint(roomSceneName, gridPosition);
+        _gridPointQueue.Enqueue(newGridPoint);
     }
     /// <summary>
-    /// Присвоить комнате место на этаже подземелья (отклик на событие по окончанию загрузки комнаты).
+    /// Создать комнату конкретного типа.
     /// </summary>
-    public void InitializeRoom()
+    private void SpawnSpecificRoom(RoomType roomType, Vector2Int gridPosition)
     {
-        if (loadedStageRooms.Count == 0)
+        CreateGridPoint(roomType, gridPosition);
+        _selectedRoute.Remove(gridPosition);
+    }
+    /// <summary>
+    /// Начать загрузку следующей комнаты.
+    /// </summary>
+    private void TryLoadNext()
+    {
+        if (_stageLoadComplete)
+            return;
+
+        if (!_isLoadingRoom && _gridPointQueue.Count != 0)
         {
-            Debug.Log("Набор загруженных комнат пуст!");
-            return;
+            _currentGridPoint = _gridPointQueue.Dequeue();
+            _isLoadingRoom = true;
+            StartCoroutine(LoadRoomScene(_currentGridPoint.RoomScene));
         }
-
-        Room currentRoom = loadedStageRooms.Find(room => !room.Initialized);
-
-        if (currentRoom == null)
-            return;
-
-        currentRoom.DungeonGridPosition = currentGridPoint.GridPosition;
-        currentRoom.SetWorldPosition();
-        currentRoom.Initialized = true;
-
-        isLoadingRoom = false;
+        else if (!_isLoadingRoom && _gridPointQueue.Count == 0)
+        {
+            _stageLoadComplete = true;
+            OnStageLoaded?.Invoke();
+        }
     }
     /// <summary>
     /// Асинхронная загрузка сцены с комнатой.
     /// </summary>
-    private IEnumerator LoadRoom(DungeonGridPoint gridRoom)
+    private IEnumerator LoadRoomScene(string sceneName)
     {
-        AsyncOperation roomLoadAsync = SceneManager.LoadSceneAsync(gridRoom.RoomSceneName, LoadSceneMode.Additive);
+        AsyncOperation roomLoadAsync = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
 
         while (!roomLoadAsync.isDone)
         {
             yield return null;
         }
+    }
+    /// <summary>
+    /// Присвоить комнате место на этаже подземелья.
+    /// </summary>
+    private void RegisterRoom(Room room)
+    {
+        room.DungeonGridPosition = _currentGridPoint.GridPosition;
+        room.SetWorldPosition();
+        _isLoadingRoom = false;
     }
 }

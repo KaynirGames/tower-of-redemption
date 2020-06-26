@@ -24,25 +24,25 @@ public class EnemyPatrol : BaseState
             return typeof(EnemyFollow);
         }
 
-        if (hasReachDestination || destination == Vector2.zero)
-            GetDestination();
+        //if (hasReachDestination || destination == Vector2.zero)
+        //    GetDestination();
 
-        if (Vector2.Distance(enemy.transform.position, destination) <= 0.5f)
-        {
-            hasReachDestination = true;
-            GetDestination();
-        }
-        else
-        {
-            if (CheckObstacles(destination.normalized))
-            {
-                Debug.Log("Пусть заблокирован!");
-                GetDestination();
-            }
-            enemy.transform.position = Vector2.MoveTowards(enemy.transform.position,
-                                               destination,
-                                               enemy.Spec.MoveSpeed * Time.deltaTime);
-        }
+        //if (Vector2.Distance(enemy.transform.position, destination) <= 0.5f)
+        //{
+        //    hasReachDestination = true;
+        //    GetDestination();
+        //}
+        //else
+        //{
+        //    if (CheckObstacles(destination.normalized))
+        //    {
+        //        Debug.Log("Пусть заблокирован!");
+        //        GetDestination();
+        //    }
+        //    enemy.transform.position = Vector2.MoveTowards(enemy.transform.position,
+        //                                       destination,
+        //                                       enemy.Spec.MoveSpeed * Time.deltaTime);
+        //}
 
         return null;
     }

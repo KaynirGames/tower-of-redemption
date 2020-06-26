@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1961769499459052763}
   - component: {fileID: 1961769499459052764}
   - component: {fileID: 1961769499459052765}
-  - component: {fileID: -7056509327944522492}
+  - component: {fileID: 4189698777723909438}
+  - component: {fileID: -4361671502371995663}
   m_Layer: 0
   m_Name: '[Room]'
   m_TagString: Untagged
@@ -45,16 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed6efa66d8665548b0667d71d5c576d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 20
-  height: 12
-  roomEnvironment: {fileID: 0}
-  roomTypeData: {fileID: 0}
-  onRoomLoaded: {fileID: 11400000, guid: 12501a59a760d9e40ac6b16d0218b4eb, type: 2}
-  onActiveRoomChanged: {fileID: 11400000, guid: c80beea3bcfbbe34e990122704e6d0f7,
-    type: 2}
-  loadedStageRooms: {fileID: 11400000, guid: c641f4100cea5d0428f1428b23745d1a, type: 2}
-  activeRoom: {fileID: 11400000, guid: 9c82bacdcebb11648996b381c15a5f21, type: 2}
-  possibleDoors: {fileID: 11400000, guid: 77c0dc40b4ff90c49945fdf5a87c840e, type: 2}
+  _width: 20
+  _height: 12
+  _roomEnvironment: {fileID: 0}
+  _roomTypeData: {fileID: 0}
+  _loadedStageRooms: {fileID: 11400000, guid: c641f4100cea5d0428f1428b23745d1a, type: 2}
+  _activeRoom: {fileID: 11400000, guid: 9c82bacdcebb11648996b381c15a5f21, type: 2}
 --- !u!61 &1961769499459052765
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -81,7 +78,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 18, y: 10}
   m_EdgeRadius: 0
---- !u!114 &-7056509327944522492
+--- !u!114 &4189698777723909438
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,32 +87,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1961769499459052766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76d58a3f83f84f147aef679b885d166f, type: 3}
+  m_Script: {fileID: 11500000, guid: 04daa389f93bf7a4cb73d9aa23d3e270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 7182a19068fb0624d873d9618a5ef5f2, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1961769499459052764}
-        m_MethodName: SetupCorrectDoors
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1961769499459052764}
-        m_MethodName: OpenKeylessDoors
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _gridWorldSize: {x: 1, y: 1}
+  nodeSize: {x: 1, y: 1}
+  displayGridGizmos: 1
+--- !u!114 &-4361671502371995663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961769499459052766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce0b9ce174d16a04383f7082dd43b376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

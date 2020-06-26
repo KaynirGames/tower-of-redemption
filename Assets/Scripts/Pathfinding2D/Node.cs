@@ -12,32 +12,37 @@ namespace KaynirGames.Pathfinding2D
         /// <summary>
         /// Позиция узла на сцене.
         /// </summary>
-        public Vector2 WorldPosition;
+        public Vector2 WorldPosition { get; private set; }
         /// <summary>
-        /// Позиция узла в сетке.
+        /// Позиция узла на сетке.
         /// </summary>
-        public Vector2Int GridPosition;
+        public Vector2Int GridPosition { get; private set; }
         /// <summary>
         /// Является ли узел препятствием на пути?
         /// </summary>
-        public bool IsObstacle;
+        public bool IsObstacle { get; private set; }
         /// <summary>
         /// Расстояние от начальной точки пути.
         /// </summary>
-        public int GCost;
+        public int GCost { get; set; }
         /// <summary>
         /// Расстояние от конечной точки пути.
         /// </summary>
-        public int HCost;
+        public int HCost { get; set; }
         /// <summary>
         /// Суммарное расстояние от начальной и конечной точек пути.
         /// </summary>
         public int FCost => GCost + HCost;
         /// <summary>
-        /// Родительский узел, из которого пришли.
+        /// Родительский узел, из которого осуществлен переход.
         /// </summary>
-        public Node Parent;
-
+        public Node Parent { get; set; }
+        /// <summary>
+        /// Новый узел сетки.
+        /// </summary>
+        /// <param name="worldPos">Позиция узла на сцене.</param>
+        /// <param name="gridPos">Позиция узла на сетке.</param>
+        /// <param name="isObstacle">Является ли узел препятствием?</param>
         public Node(Vector2 worldPos, Vector2Int gridPos, bool isObstacle)
         {
             WorldPosition = worldPos;
@@ -45,17 +50,17 @@ namespace KaynirGames.Pathfinding2D
             IsObstacle = isObstacle;
         }
         /// <summary>
-        /// Получить расстояние до выбранного узла.
+        /// Получить расстояние до желаемого узла.
         /// </summary>
-        /// <param name="target">Выбранный узел.</param>
+        /// <param name="targetNode">Желаемый узел.</param>
         /// <returns></returns>
-        public int GetDistance(Node target)
+        public int GetDistance(Node targetNode)
         {
             // Находим расстояние (в клетках) между узлами.
-            int distanceX = Mathf.Abs(GridPosition.x - target.GridPosition.x);
-            int distanceY = Mathf.Abs(GridPosition.y - target.GridPosition.y);
+            int distanceX = Mathf.Abs(GridPosition.x - targetNode.GridPosition.x);
+            int distanceY = Mathf.Abs(GridPosition.y - targetNode.GridPosition.y);
             // Возвращаем расстояние до цели в юнитах (сумма диагональных и прямых шагов),
-            // где 1,4 * 10 = 14 - шаг по диагонали, 1 * 10 = 10 - прямой шаг (умножение на 10 для работы с int значениями).
+            // где 1.4 * 10 = 14 - шаг по диагонали, 1 * 10 = 10 - прямой шаг (умножаем на 10 для работы с int значениями).
             return distanceX > distanceY
                 ? 14 * distanceY + 10 * (distanceX - distanceY)
                 : 14 * distanceX + 10 * (distanceY - distanceX);
