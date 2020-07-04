@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemySpec spec = null; // Спек противника.
     [SerializeField] private Transform attackPoint = null; // Точка, откуда производится атака.
     [SerializeField] private PlayerRuntimeSet activePlayerRS = null; // Набор с активным игроком.
-
     /// <summary>
     /// Специализация противника.
     /// </summary>
@@ -33,7 +32,6 @@ public class Enemy : MonoBehaviour
     /// Направление взгляда противника.
     /// </summary>
     private bool FacingRight = true;
-
     private StateMachine stateMachine;
     private CharacterStats enemyStats;
 

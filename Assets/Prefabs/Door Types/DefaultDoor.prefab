@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _direction: 4
   _doorType: {fileID: 11400000, guid: 72c70f045dbf8024bb2a7b0b6aebd805, type: 2}
-  _doorwayTransferRange: 4
+  _doorwayTransferRange: 5
   _emptyDoorPrefab: {fileID: 4337851180924145414, guid: 2e4b0ab4b947d3b4caaf93e77a9f66a5,
     type: 3}
   _possibleDoors: {fileID: 11400000, guid: 77c0dc40b4ff90c49945fdf5a87c840e, type: 2}

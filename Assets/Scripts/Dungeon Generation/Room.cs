@@ -16,8 +16,8 @@ public class Room : MonoBehaviour
 
     [SerializeField] private int _width = 20; // Ширина комнаты.
     [SerializeField] private int _height = 12; // Высота комнаты.
-    [SerializeField] private GameObject _roomEnvironment = null; // Объекты в комнате.
     [SerializeField] private RoomType _roomTypeData = null; // Данные о типе комнаты.
+    [SerializeField] private GameObject _roomEnvironment = null; // Объекты в комнате.
     [SerializeField] private RoomRuntimeSet _loadedStageRooms = null; // Набор комнат, загруженных на этаже подземелья.
     /// <summary>
     /// Позиция комнаты в сетке координат подземелья.
@@ -40,9 +40,9 @@ public class Room : MonoBehaviour
 
         DungeonStageManager.OnStageLoaded += SetupCorrectDoors;
         DungeonStageManager.OnStageLoaded += OpenKeylessDoors;
-
+        DungeonStageManager.OnStageLoaded += InitializePathfinding;
         // Выставляем точку старта на этаже в качестве активной комнаты.
-        if (_roomTypeData.IsStartingPoint)
+        if (_roomTypeData.IsStartPoint)
         {
             OnActiveRoomChanged?.Invoke(this);
         }
@@ -63,7 +63,7 @@ public class Room : MonoBehaviour
     {
         foreach (Door door in _roomDoors)
         {
-            if (!door.DoorType.IsRequireKey)
+            if (!door.DoorType.NeedKey)
             {
                 door.Open();
             }
@@ -122,12 +122,28 @@ public class Room : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Иницилизировать систему поиска пути для комнаты.
+    /// </summary>
+    private void InitializePathfinding()
+    {
+        //_pathfinder.Initialize();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            //_pathfinder.gameObject.SetActive(true);
             OnActiveRoomChanged?.Invoke(this);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //_pathfinder.gameObject.SetActive(false);
         }
     }
 

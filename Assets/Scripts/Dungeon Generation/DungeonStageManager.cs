@@ -82,12 +82,12 @@ public class DungeonStageManager : MonoBehaviour
     {      
         _selectedRoute = _routeController.RequestRoute(dungeonStage);
 
-        SpawnSpecificRoom(currentStage.StartRoomType, _selectedRoute[0]);
-        SpawnSpecificRoom(currentStage.BossRoomType, _routeController.RandomBossLocation);
+        SpawnSpecificRoom(currentStage.StartRoom, _selectedRoute[0]);
+        SpawnSpecificRoom(currentStage.BossRoom, _routeController.RandomBossLocation);
 
         for (int i = 0; i < _selectedRoute.Count; i++)
         {
-            RoomType randomType = (RoomType)dungeonStage.OptionalRoomTypes.ChooseRandom();
+            RoomType randomType = (RoomType)dungeonStage.OptionalRooms.ChooseRandom();
             CreateGridPoint(randomType, _selectedRoute[i]);
         }
     }

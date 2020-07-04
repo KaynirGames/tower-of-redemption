@@ -25,6 +25,6 @@ MonoBehaviour:
   AbilityPointRegenTime: 0.5
   LootTable: {fileID: 0}
   MoveSpeed: 1
-  ViewDistance: 4
+  ViewDistance: 6
   AttackDistance: 1.25
   AttackCooldown: 1.5

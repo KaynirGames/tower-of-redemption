@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0be3f38a93961842beb1e6fc774009c, type: 3}
   m_Name: BossDoor
   m_EditorClassIdentifier: 
-  Name: BossDoor
-  PlacingPriority: 3
-  IsRequireKey: 0
-  RequiredKey: {fileID: 0}
+  _placingPriority: 3
+  _needKey: 1
+  _requiredKey: {fileID: 0}

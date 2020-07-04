@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adce6a689371916469d10644baf1f47e, type: 3}
   m_Name: ShopRoom
   m_EditorClassIdentifier: 
-  Name: ShopRoom
-  DoorType: {fileID: 11400000, guid: d6723b2a837fbbf4fac79f7cb6de8fe3, type: 2}
-  IsStartingPoint: 0
+  _name: ShopRoom
+  _doorType: {fileID: 11400000, guid: d6723b2a837fbbf4fac79f7cb6de8fe3, type: 2}
+  _isStartPoint: 0

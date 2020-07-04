@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.kaynirgames.core": "file:D:/Unity Dev/Git Repos/KaynirGames Core Package/Assets/com.kaynirgames.core",
     "com.unity.2d.animation": "3.2.1",
     "com.unity.2d.pixel-perfect": "2.0.4",
     "com.unity.2d.psdimporter": "2.1.3",

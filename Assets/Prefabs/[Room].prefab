@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 1961769499459052763}
   - component: {fileID: 1961769499459052764}
   - component: {fileID: 1961769499459052765}
-  - component: {fileID: 4189698777723909438}
-  - component: {fileID: -4361671502371995663}
   m_Layer: 0
   m_Name: '[Room]'
   m_TagString: Untagged
@@ -48,10 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _width: 20
   _height: 12
-  _roomEnvironment: {fileID: 0}
   _roomTypeData: {fileID: 0}
+  _roomEnvironment: {fileID: 0}
+  _pathfinder: {fileID: 0}
   _loadedStageRooms: {fileID: 11400000, guid: c641f4100cea5d0428f1428b23745d1a, type: 2}
-  _activeRoom: {fileID: 11400000, guid: 9c82bacdcebb11648996b381c15a5f21, type: 2}
 --- !u!61 &1961769499459052765
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -78,33 +76,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 18, y: 10}
   m_EdgeRadius: 0
---- !u!114 &4189698777723909438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961769499459052766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04daa389f93bf7a4cb73d9aa23d3e270, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  _gridWorldSize: {x: 1, y: 1}
-  nodeSize: {x: 1, y: 1}
-  displayGridGizmos: 1
---- !u!114 &-4361671502371995663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961769499459052766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce0b9ce174d16a04383f7082dd43b376, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

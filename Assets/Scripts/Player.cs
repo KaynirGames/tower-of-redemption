@@ -29,10 +29,10 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (attackRange > 0)
-        {
-            Gizmos.color = Color.white;
-            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-        }
+        //if (attackRange > 0)
+        //{
+        //    Gizmos.color = Color.white;
+        //    Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        //}
     }
 }
