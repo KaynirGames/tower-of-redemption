@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3779271734121245040}
-  - component: {fileID: 3779271734121245041}
-  - component: {fileID: 3779271734121245042}
+  - component: {fileID: 3298525679103432423}
   m_Layer: 0
   m_Name: '[Pathfinding]'
   m_TagString: Untagged
@@ -32,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3779271734121245041
+--- !u!114 &3298525679103432423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,24 +40,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3779271734121245047}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04daa389f93bf7a4cb73d9aa23d3e270, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ecfbfcfc7a228f47a0a035c01d0b970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gridSize: {x: 16, y: 8}
+  _nodeSize: 1
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 512
-  _gridSize: {x: 16, y: 8}
-  _nodeSize: {x: 1, y: 1}
   _displayGrid: 1
---- !u!114 &3779271734121245042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3779271734121245047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce0b9ce174d16a04383f7082dd43b376, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

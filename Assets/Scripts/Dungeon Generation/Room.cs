@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using KaynirGames.Pathfinding;
 
 public class Room : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Room : MonoBehaviour
     [SerializeField] private int _height = 12; // Высота комнаты.
     [SerializeField] private RoomType _roomTypeData = null; // Данные о типе комнаты.
     [SerializeField] private GameObject _roomEnvironment = null; // Объекты в комнате.
+    [SerializeField] private Pathfinder _pathfinder = null; // Искатель оптимального пути для перемещения ИИ.
     [SerializeField] private RoomRuntimeSet _loadedStageRooms = null; // Набор комнат, загруженных на этаже подземелья.
     /// <summary>
     /// Позиция комнаты в сетке координат подземелья.
@@ -127,14 +129,14 @@ public class Room : MonoBehaviour
     /// </summary>
     private void InitializePathfinding()
     {
-        //_pathfinder.Initialize();
+        _pathfinder.CreateGrid();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            //_pathfinder.gameObject.SetActive(true);
+            _pathfinder.gameObject.SetActive(true);
             OnActiveRoomChanged?.Invoke(this);
         }
     }
@@ -143,7 +145,7 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //_pathfinder.gameObject.SetActive(false);
+            _pathfinder.gameObject.SetActive(false);
         }
     }
 

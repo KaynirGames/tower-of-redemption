@@ -8,10 +8,12 @@ using UnityEngine;
 /// <typeparam name="T">Тип объектов в наборе.</typeparam>
 public abstract class RuntimeSet<T> : ScriptableObject
 {
+    [SerializeField] protected List<T> objects = new List<T>(); // Список объектов в наборе.
+
     /// <summary>
-    /// Список объектов в наборе.
+    /// Получить количество объектов в наборе.
     /// </summary>
-    [SerializeField] protected List<T> objects = new List<T>();
+    public virtual int Count => objects.Count;
     /// <summary>
     /// Добавить в набор, если такого объекта еще нет.
     /// </summary>
@@ -38,23 +40,15 @@ public abstract class RuntimeSet<T> : ScriptableObject
     /// Найти первый объект, удовлетворяющий условиям.
     /// </summary>
     /// <param name="match">Условия для соответствия.</param>
-    /// <returns></returns>
     public virtual T Find(Predicate<T> match)
     {
         return objects.Find(match);
     }
     /// <summary>
-    /// Получить объект с указанным индексом (нумерация начинается с 0).
+    /// Получить объект с указанным индексом (нумерация с 0).
     /// </summary>
-    /// <param name="index"></param>
-    /// <returns></returns>
     public virtual T GetObject(int index)
     {
         return objects[index];
     }
-    /// <summary>
-    /// Получить количество объектов в наборе.
-    /// </summary>
-    /// <returns></returns>
-    public virtual int Count => objects.Count;
 }

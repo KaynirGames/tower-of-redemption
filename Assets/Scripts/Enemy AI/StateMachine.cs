@@ -1,49 +1,44 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-
-/// <summary>
-/// Конечный автомат, обрабатывающий поведение игрового объекта.
-/// </summary>
-public class StateMachine : MonoBehaviour
+﻿namespace KaynirGames.AI
 {
     /// <summary>
-    /// Словарь доступных состояний игрового объекта для конечного автомата.
+    /// Конечный автомат, управляющий поведением игровых объектов.
     /// </summary>
-    private Dictionary<Type, BaseState> availableStates;
-    /// <summary>
-    /// Текущее состояние игрового объекта.
-    /// </summary>
-    public BaseState CurrentState { get; private set; }
-    /// <summary>
-    /// Записать словарь доступных состояний игрового объекта.
-    /// </summary>
-    /// <param name="availableStates">Доступные состояния игрового объекта.</param>
-    public void SetStates(Dictionary<Type, BaseState> availableStates)
+    /// <typeparam name="TKey">Ключ перехода в состояние.</typeparam>
+    public class StateMachine<TKey>
     {
-        this.availableStates = availableStates;
-    }
+        private BaseState<TKey> _currentState; // Текущее состояние конечного автомата.
 
-    private void Update()
-    {
-        if (CurrentState == null)
+        public StateMachine(BaseState<TKey> defaultState)
         {
-            BaseState defaultState = availableStates.Values.FirstOrDefault(state => state.IsDefault);
-            CurrentState = defaultState != null ? defaultState : availableStates.Values.First();
+            _currentState = defaultState;
         }
-
-        Type nextStateType = CurrentState?.Handle();
-
-        if (nextStateType != null && nextStateType != CurrentState.GetType())
+        /// <summary>
+        /// Обработать текущее состояние конечного автомата.
+        /// </summary>
+        public void Update()
         {
-            SwitchState(nextStateType);
+            BaseState<TKey> nextState = _currentState.UpdateState();
+            SwitchState(nextState);
         }
-    }
-
-    private void SwitchState(Type nextStateType)
-    {
-        CurrentState = availableStates[nextStateType];
+        /// <summary>
+        /// Перейти к следующему состоянию согласно ключу перехода.
+        /// </summary>
+        public void TransitionNext(TKey transitionKey)
+        {
+            BaseState<TKey> nextState = _currentState.GetTransitionState(transitionKey);
+            SwitchState(nextState);
+        }
+        /// <summary>
+        /// Сменить текущее состояние.
+        /// </summary>
+        private void SwitchState(BaseState<TKey> nextState)
+        {
+            if (nextState != null)
+            {
+                _currentState?.ExitState();
+                _currentState = nextState;
+                _currentState.EnterState();
+            }
+        }
     }
 }

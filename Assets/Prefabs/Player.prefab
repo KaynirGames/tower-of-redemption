@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: -8178965504062303560}
   - component: {fileID: 3072255034078526015}
   - component: {fileID: 5363020659833551461}
-  - component: {fileID: 7164423606547379880}
   - component: {fileID: -6761181298449929119}
   - component: {fileID: 5363020660528455044}
+  - component: {fileID: 1821722741}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -169,22 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSpec: {fileID: 11400000, guid: 57db7f12630d5a44b81264d6bb185e8d, type: 2}
   activePlayerRS: {fileID: 11400000, guid: d6a68d5b5f9d73943ae4256ea48c4b12, type: 2}
-  attackRange: 0.75
-  attackPoint: {fileID: 7941319475583927758}
---- !u!114 &7164423606547379880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5363020659833551456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9507ad589d8aa049859f6a4d867ca74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 35
-  moveSmoothing: 0.05
 --- !u!114 &-6761181298449929119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,3 +200,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1821722741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5363020659833551456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63395e1d3e8be7548b4129cb19df82aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _horizontalMoveParam: Horizontal
+  _verticalMoveParam: Vertical
+  _moveSpeedParam: Speed
+  _attackParam: Attack

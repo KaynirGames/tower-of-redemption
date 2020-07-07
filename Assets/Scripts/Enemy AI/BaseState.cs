@@ -1,30 +1,43 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
-/// <summary>
-/// Базовое состояние игрового объекта.
-/// </summary>
-public abstract class BaseState
+namespace KaynirGames.AI
 {
     /// <summary>
-    /// Игровой объект, обладающий текущим состоянием.
+    /// Базовое состояние конечного автомата.
     /// </summary>
-    protected GameObject gameObject;
-    /// <summary>
-    /// Это состояние игрового объекта по умолчанию?
-    /// </summary>
-    public bool IsDefault { get; private set; }
-
-    public BaseState(GameObject gameObject, bool isDefault)
+    /// <typeparam name="TKey">Ключ перехода в состояние.</typeparam>
+    public abstract class BaseState<TKey>
     {
-        this.gameObject = gameObject;
-        IsDefault = isDefault;
+        private Dictionary<TKey, BaseState<TKey>> _transitions = new Dictionary<TKey, BaseState<TKey>>(); // Словарь переходов в другие состояния.
+        /// <summary>
+        /// Добавить переход в другое состояние.
+        /// </summary>
+        /// <param name="transitionKey">Ключ перехода.</param>
+        /// <param name="state">Другое состояние.</param>
+        public void AddTransition(TKey transitionKey, BaseState<TKey> state)
+        {
+            _transitions[transitionKey] = state;
+        }
+        /// <summary>
+        /// Получить состояние согласно ключу перехода.
+        /// </summary>
+        public BaseState<TKey> GetTransitionState(TKey transitionKey)
+        {
+            return _transitions.ContainsKey(transitionKey)
+                ? _transitions[transitionKey]
+                : null;
+        }
+        /// <summary>
+        /// Выполнить действия при входе в состояние.
+        /// </summary>
+        public abstract void EnterState();
+        /// <summary>
+        /// Обработать состояние.
+        /// </summary>
+        public abstract BaseState<TKey> UpdateState();
+        /// <summary>
+        /// Выполнить действия при выходе из состояния.
+        /// </summary>
+        public abstract void ExitState();
     }
-    /// <summary>
-    /// Обработать текущее состояние игрового объекта.
-    /// </summary>
-    /// <returns></returns>
-    public abstract Type Handle();
 }

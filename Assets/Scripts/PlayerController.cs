@@ -3,48 +3,46 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 35f; // Скорость перемещения.
-    [SerializeField, Range(0f, 0.3f)] private float moveSmoothing = 0.05f; // Величина сглаживания перемещения.
+    [SerializeField] private float _moveSpeed = 35f; // Скорость перемещения.
+    [SerializeField, Range(0f, 0.3f)] private float _moveSmoothing = 0.05f; // Величина сглаживания перемещения.
 
-    private Vector2 moveDirection; // Направление перемещения.
-    private Vector2 currentVelocity = Vector2.zero; // Модифицируется функцией сглаживания.
+    private Vector2 _moveDirection = Vector2.zero; // Направление перемещения.
+    private Vector2 _currentVelocity = Vector2.zero; // Модифицируется функцией сглаживания.
 
-    private Rigidbody2D rb;
-    private Animator animator;
+    private Rigidbody2D _playerRigidbody;
+    private BaseAnimation _animation;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        _playerRigidbody = GetComponent<Rigidbody2D>();
+        _animation = GetComponent<BaseAnimation>();
     }
 
     private void Update()
     {
-        HandleInput();
+        if (Input.GetButtonDown("Attack"))
+        {
+            _animation.PlayAttackClip(.75f);
+        }
+        else
+        {
+            _moveDirection.x = Input.GetAxisRaw("Horizontal");
+            _moveDirection.y = Input.GetAxisRaw("Vertical");
+            _animation.PlayMoveClip(_moveDirection);
+        }
     }
 
     private void FixedUpdate()
     {
         HandleMovement();
     }
-    /// <summary>
-    /// Обработать нажатие клавиш управления персонажем.
-    /// </summary>
-    private void HandleInput()
-    {
-        moveDirection.x = Input.GetAxis("Horizontal");
-        moveDirection.y = Input.GetAxis("Vertical");
 
-        animator.SetFloat("Horizontal", moveDirection.x);
-        animator.SetFloat("Vertical", moveDirection.y);
-        animator.SetFloat("Speed", moveDirection.sqrMagnitude);
-    }
     /// <summary>
     /// Осуществить перемещение персонажа.
     /// </summary>
     private void HandleMovement()
     {
-        Vector2 targetVelocity = moveDirection.normalized * moveSpeed * Time.fixedDeltaTime;
-        rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity * 10f, ref currentVelocity, moveSmoothing);
+        Vector2 targetVelocity = _moveDirection.normalized * _moveSpeed * Time.fixedDeltaTime;
+        _playerRigidbody.velocity = Vector2.SmoothDamp(_playerRigidbody.velocity, targetVelocity * 10f, ref _currentVelocity, _moveSmoothing);
     }
 }
