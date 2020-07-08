@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Набор направлений, куда может вести дверь (вверх, вправо, вниз, влево, по умолчанию - отсутствует).
@@ -13,7 +11,6 @@ public class Door : MonoBehaviour
     [SerializeField] private DoorType _doorType = null; // Тип двери.
     [SerializeField] private float _doorwayTransferRange = 4f; // Расстояние переноса игрока при переходе между комнатами.
     [SerializeField] private GameObject _emptyDoorPrefab = null; // Объект, заменяющий убранную дверь.
-    [SerializeField] private DoorRuntimeSet _possibleDoors = null; // Набор всех типов дверей в игре.
     /// <summary>
     /// Направление, куда ведет дверь.
     /// </summary>
@@ -66,7 +63,7 @@ public class Door : MonoBehaviour
     /// </summary>
     public Door Swap(DoorType otherType)
     {
-        Door newDoor = _possibleDoors.Find(door => door.DoorType == otherType);
+        Door newDoor = GameMaster.Instance.DoorPrefabSet.Find(door => door.DoorType == otherType);
         newDoor._direction = _direction;
         newDoor = Instantiate(newDoor, transform.position, transform.rotation, transform.parent);
         return newDoor;

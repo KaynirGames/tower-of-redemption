@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3779271734121245040}
-  - component: {fileID: 3298525679103432423}
+  - component: {fileID: -6575229193445566040}
   m_Layer: 0
   m_Name: '[Pathfinding]'
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3298525679103432423
+--- !u!114 &-6575229193445566040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

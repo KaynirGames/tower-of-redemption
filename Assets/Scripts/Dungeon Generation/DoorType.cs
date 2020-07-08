@@ -5,7 +5,7 @@ public class DoorType : ScriptableObject
 {
     [SerializeField] private int _placingPriority = 0;
     [SerializeField] private bool _needKey = false;
-    [SerializeField] private GameObject _requiredKey = null;
+    [SerializeField] private Door _requiredKey = null;
     /// <summary>
     /// Приоритет размещения типа двери в проходах между комнатами.
     /// </summary>
@@ -17,5 +17,5 @@ public class DoorType : ScriptableObject
     /// <summary>
     /// Ключ, открывающий двери данного типа (если требуется).
     /// </summary>
-    public GameObject RequiredKey => _requiredKey;
+    public Door RequiredKey => _requiredKey;
 }

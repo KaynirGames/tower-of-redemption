@@ -8,7 +8,6 @@ using KaynirGames.Movement;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemySpec spec = null; // Спек противника.
-    [SerializeField] private PlayerRuntimeSet activePlayerRS = null; // Набор с активным игроком.
     /// <summary>
     /// Специализация противника.
     /// </summary>
@@ -38,7 +37,6 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        Target = activePlayerRS.GetObject(0).transform;
         //Seeker.SetFollowSpeed(spec.MoveSpeed);
 
         enemyStats.SetStats(spec);

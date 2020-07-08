@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using KaynirGames.Pathfinding;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using KaynirGames.Pathfinding;
 
 public class Room : MonoBehaviour
 {
@@ -20,7 +19,6 @@ public class Room : MonoBehaviour
     [SerializeField] private RoomType _roomTypeData = null; // Данные о типе комнаты.
     [SerializeField] private GameObject _roomEnvironment = null; // Объекты в комнате.
     [SerializeField] private Pathfinder _pathfinder = null; // Искатель оптимального пути для перемещения ИИ.
-    [SerializeField] private RoomRuntimeSet _loadedStageRooms = null; // Набор комнат, загруженных на этаже подземелья.
     /// <summary>
     /// Позиция комнаты в сетке координат подземелья.
     /// </summary>
@@ -34,20 +32,13 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
-        _loadedStageRooms.Add(this);
+        GameMaster.Instance.LoadedRooms.Add(this);
         OnRoomLoaded?.Invoke(this);
 
         // Заполняем список дверей в комнате.
         _roomDoors.AddRange(_roomEnvironment.GetComponentsInChildren<Door>());
 
-        DungeonStageManager.OnStageLoaded += SetupCorrectDoors;
-        DungeonStageManager.OnStageLoaded += OpenKeylessDoors;
-        DungeonStageManager.OnStageLoaded += InitializePathfinding;
-        // Выставляем точку старта на этаже в качестве активной комнаты.
-        if (_roomTypeData.IsStartPoint)
-        {
-            OnActiveRoomChanged?.Invoke(this);
-        }
+        DungeonStageManager.OnStageLoaded += PrepareRoom;
     }
     /// <summary>
     /// Установить глобальную позицию комнаты на основной сцене.
@@ -57,6 +48,7 @@ public class Room : MonoBehaviour
         Vector3 worldPos = new Vector3(DungeonGridPosition.x * _width, DungeonGridPosition.y * _height, 0);
         transform.position = worldPos;
         _roomEnvironment.transform.position = worldPos;
+        if (_pathfinder != null) _pathfinder.transform.position = worldPos;
     }
     /// <summary>
     /// Открывает двери в комнате, не требующие ключа.
@@ -70,6 +62,15 @@ public class Room : MonoBehaviour
                 door.Open();
             }
         }
+    }
+    /// <summary>
+    /// Подготовить комнату после загрузки этажа.
+    /// </summary>
+    private void PrepareRoom()
+    {
+        SetupCorrectDoors();
+        OpenKeylessDoors();
+        CreatePathfindingGrid();
     }
     /// <summary>
     /// Установить двери, соответствующие соседним комнатам.
@@ -100,10 +101,10 @@ public class Room : MonoBehaviour
     /// </summary>
     private Room GetNextRoom(Vector2Int direction)
     {
-        return _loadedStageRooms.Find(room => room.DungeonGridPosition == DungeonGridPosition + direction);
+        return GameMaster.Instance.LoadedRooms.Find(room => room.DungeonGridPosition == DungeonGridPosition + direction);
     }
     /// <summary>
-    /// Обновить дверь, исходя от соседней комнаты.
+    /// Обновить дверь согласно соседней комнаты.
     /// </summary>
     private void UpdateDoor(Door door, Room nextRoom)
     {
@@ -127,16 +128,20 @@ public class Room : MonoBehaviour
     /// <summary>
     /// Иницилизировать систему поиска пути для комнаты.
     /// </summary>
-    private void InitializePathfinding()
+    private void CreatePathfindingGrid()
     {
-        _pathfinder.CreateGrid();
+        if (_pathfinder != null)
+        {
+            _pathfinder.CreateGrid();
+            _pathfinder.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            _pathfinder.gameObject.SetActive(true);
+            _pathfinder?.gameObject.SetActive(true);
             OnActiveRoomChanged?.Invoke(this);
         }
     }
@@ -145,13 +150,8 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _pathfinder.gameObject.SetActive(false);
+            _pathfinder?.gameObject.SetActive(false);
         }
-    }
-
-    private void OnDestroy()
-    {
-        _loadedStageRooms.Remove(this);
     }
 
     private void OnDrawGizmos()

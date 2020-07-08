@@ -5,19 +5,26 @@ using KaynirGames.AI;
 
 public class EnemyPatrol : BaseState<EnemyStateKey>
 {
+    EnemyAI _enemyAI;
+
+    public EnemyPatrol(EnemyAI enemyAI)
+    {
+        _enemyAI = enemyAI;
+    }
+
     public override void EnterState()
     {
-        Debug.Log("Begin patrol.");
+        
     }
 
     public override BaseState<EnemyStateKey> UpdateState()
     {
-        Debug.Log("Stop patrol.");
+        
         return null;
     }
 
     public override void ExitState()
     {
-        Debug.Log("Patrolling...");
+        
     }
 }

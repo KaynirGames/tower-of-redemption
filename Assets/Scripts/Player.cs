@@ -5,10 +5,9 @@ using KaynirGames.Movement;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private PlayerSpec currentSpec = null;
-    [SerializeField] private PlayerRuntimeSet activePlayerRS = null; // Набор, содержащий активного игрока.
+    [SerializeField] private PlayerSpec _currentSpec = null;
 
-    private CharacterStats playerStats; // Статы персонажа.
+    private CharacterStats _playerStats; // Статы персонажа.
 
     private Vector2 _moveDirection = Vector2.zero;
     private CharacterMoveBase _characterMoveBase;
@@ -16,15 +15,15 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        activePlayerRS.Add(this);
-        playerStats = GetComponent<CharacterStats>();
+        _playerStats = GetComponent<CharacterStats>();
         _characterMoveBase = GetComponent<CharacterMoveBase>();
         _baseAnimation = GetComponent<BaseAnimation>();
     }
 
     private void Start()
     {
-        playerStats.SetStats(currentSpec);
+        GameMaster.Instance.Player = this;
+        _playerStats.SetStats(_currentSpec);
     }
 
     private void Update()
@@ -45,10 +44,5 @@ public class Player : MonoBehaviour
             _characterMoveBase.SetMoveDirection(_moveDirection);
             _baseAnimation.PlayMoveClip(_moveDirection);
         }
-    }
-
-    private void OnDisable()
-    {
-        activePlayerRS.Remove(this);
     }
 }
