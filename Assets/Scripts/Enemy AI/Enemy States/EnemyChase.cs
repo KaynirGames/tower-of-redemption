@@ -18,16 +18,14 @@ public class EnemyChase : BaseState<EnemyStateKey>
 
     public override void EnterState()
     {
-        _previousTargetPosition = _target.position;
-        _enemyAI.SetDestination(_previousTargetPosition);
+        ChaseTarget();
     }
 
     public override BaseState<EnemyStateKey> UpdateState()
     {
         if (Vector2.Distance(_target.position, _previousTargetPosition) >= 1.5f)
         {
-            _previousTargetPosition = _target.position;
-            _enemyAI.SetDestination(_previousTargetPosition);
+            ChaseTarget();
         }
 
         return null;
@@ -36,5 +34,11 @@ public class EnemyChase : BaseState<EnemyStateKey>
     public override void ExitState()
     {
         Debug.Log("Target is lost!");
+    }
+
+    private void ChaseTarget()
+    {
+        _previousTargetPosition = _target.position;
+        _enemyAI.SetDestination(_previousTargetPosition);
     }
 }

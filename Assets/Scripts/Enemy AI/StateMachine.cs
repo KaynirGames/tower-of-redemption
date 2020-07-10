@@ -33,7 +33,7 @@
         /// </summary>
         private void SwitchState(BaseState<TKey> nextState)
         {
-            if (nextState != null)
+            if (nextState != null && nextState != _currentState)
             {
                 _currentState?.ExitState();
                 _currentState = nextState;

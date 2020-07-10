@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Attack"))
         {
-            _baseAnimation.PlayAttackClip(1f);
+            _baseAnimation.PlayAttackClip(1f, false);
         }
         else
         {

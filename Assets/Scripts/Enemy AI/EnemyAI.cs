@@ -11,8 +11,9 @@ public enum EnemyStateKey
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float _sightRange = 5f;
-    [SerializeField] private BaseMovement _baseMovement = null;
+    [SerializeField] private bool _bypassObstaclesOnPatrol = true;
     [SerializeField] private bool _displayGizmos = true;
+    [SerializeField] private BaseMovement _movementMechanics = null;
 
     private StateMachine<EnemyStateKey> _stateMachine;
     private Transform _target;
@@ -22,7 +23,7 @@ public class EnemyAI : MonoBehaviour
         _target = GameMaster.Instance.Player.transform;
 
         var enemyChase = new EnemyChase(this, _target);
-        var enemyPatrol = new EnemyPatrol(this);
+        var enemyPatrol = new EnemyPatrol(this, _bypassObstaclesOnPatrol);
 
         // Переходы из состояния патрулирования.
         enemyPatrol.AddTransition(EnemyStateKey.PlayerInSight, enemyChase);
@@ -49,7 +50,7 @@ public class EnemyAI : MonoBehaviour
 
     public void SetDestination(Vector2 targetPosition)
     {
-        _baseMovement.SetMovementPosition(targetPosition);
+        _movementMechanics.SetMovementPosition(targetPosition);
     }
 
     private bool TargetInRange(Transform target, float range)
