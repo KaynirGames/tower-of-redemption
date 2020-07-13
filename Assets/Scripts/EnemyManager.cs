@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
 
         if (_currentEnemies.Count == 0)
         {
-            // Сообщаем, что бой в комнате завершился.
+            // Сообщаем, что комната была очищена от врагов.
         }
     }
 }

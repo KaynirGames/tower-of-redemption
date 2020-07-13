@@ -12,6 +12,11 @@ public class GameMaster : MonoBehaviour
 
     public List<Room> LoadedRooms { get; private set; } = new List<Room>();
 
+    /// <summary>
+    /// Для тестирования!
+    /// </summary>
+    public bool IsBattle { get; set; }
+
     #region Singleton
     public static GameMaster Instance { get; private set; }
 

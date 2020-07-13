@@ -132,7 +132,7 @@ public class Room : MonoBehaviour
     {
         if (_pathfinder != null)
         {
-            _pathfinder.CreateGrid();
+            _pathfinder.Initialize();
             _pathfinder.gameObject.SetActive(false);
         }
     }

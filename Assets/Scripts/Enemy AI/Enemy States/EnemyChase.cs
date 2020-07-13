@@ -7,7 +7,7 @@ public class EnemyChase : BaseState<EnemyStateKey>
 {
     private EnemyAI _enemyAI;
     private Transform _target;
- 
+
     private Vector2 _previousTargetPosition;
 
     public EnemyChase(EnemyAI enemyAI, Transform target)
@@ -19,6 +19,7 @@ public class EnemyChase : BaseState<EnemyStateKey>
     public override void EnterState()
     {
         ChaseTarget();
+        Debug.Log("Chasing target!");
     }
 
     public override BaseState<EnemyStateKey> UpdateState()
