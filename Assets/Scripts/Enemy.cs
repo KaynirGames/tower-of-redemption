@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public static event Action<Enemy> OnEnemyDeath = delegate { };
+    public static event Action<Enemy, bool> OnBattleTrigger = delegate { };
 
     [SerializeField] private EnemySpec spec = null; // Спек противника.
 
@@ -48,5 +49,13 @@ public class Enemy : MonoBehaviour
         // Выйти из боевой системы.
         // Заспавнить лут.
         // Уничтожить объект.
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.GetComponent<Player>() != null)
+        {
+            OnBattleTrigger?.Invoke(this, false);
+        }
     }
 }

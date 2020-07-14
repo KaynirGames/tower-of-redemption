@@ -15,6 +15,7 @@ public class EnemyBattle : BaseState<EnemyStateKey>
     public override void EnterState()
     {
         Debug.Log("Battle system is active!");
+        _enemyAI.StopMovement();
     }
 
     public override BaseState<EnemyStateKey> UpdateState()

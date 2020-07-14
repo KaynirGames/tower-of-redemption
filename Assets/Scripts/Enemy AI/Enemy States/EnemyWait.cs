@@ -17,11 +17,14 @@ public class EnemyWait : BaseState<EnemyStateKey>
     public override void EnterState()
     {
         Debug.Log("Waiting for my next action.");
-        _enemyAI.Wait(_waitingTime);
     }
 
     public override BaseState<EnemyStateKey> UpdateState()
     {
+        if (!_enemyAI.IsMoving)
+        {
+            _enemyAI.Wait(_waitingTime);
+        }
         return null;
     }
 

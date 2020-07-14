@@ -24,7 +24,7 @@ public class EnemyPatrol : BaseState<EnemyStateKey>
 
     public override BaseState<EnemyStateKey> UpdateState()
     {
-        if (_enemyAI.DestinationReached)
+        if (!_enemyAI.IsMoving)
         {
             return _nextState;
         }

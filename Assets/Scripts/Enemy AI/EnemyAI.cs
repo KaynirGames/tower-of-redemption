@@ -3,29 +3,32 @@ using KaynirGames.Movement;
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Ключи перехода в состояния.
+/// </summary>
 public enum EnemyStateKey
 {
     PlayerInSight,
     PlayerOffSight,
-    TargetIsLost,
-    TargetIsReached
+    PlayerInBattle,
+    WaitCompleted
 }
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private float _sightRange = 5f;
-    [SerializeField] private float _triggerBattleRange = 1f;
-    [SerializeField] private bool _includeObstaclesOnPatrol = false;
-    [SerializeField] private bool _displayGizmos = true;
-    [SerializeField] private BaseMovement _movementMechanics = null;
+    [SerializeField] private float _sightRange = 5f; // Радиус обзора.
+    [SerializeField] private bool _includeObstaclesOnPatrol = false; // Использовать точки с препятствиями при патрулировании.
+    [SerializeField] private bool _displayGizmos = true; // Отображение гизмо объектов.
+    [SerializeField] private BaseMovement _movementMechanics = null; // Механика перемещения.
 
-    public bool DestinationReached => _movementMechanics.ReachedDestination;
+    /// <summary>
+    /// Противник перемещается в настоящий момент?
+    /// </summary>
+    public bool IsMoving => _movementMechanics.IsMoving;
 
-    private StateMachine<EnemyStateKey> _stateMachine;
-    private Transform _target;
-
-    private bool _isWaitingDone = true;
-    private Coroutine _waitingRoutine;
+    private StateMachine<EnemyStateKey> _stateMachine; // Конечный автомат состояний ИИ противника.
+    private Transform _target; // Цель ИИ противника.
+    private bool _isWaiting; // Нахождение ИИ в состоянии бездействия.
 
     private void Start()
     {
@@ -40,12 +43,12 @@ public class EnemyAI : MonoBehaviour
         enemyPatrol.AddTransition(EnemyStateKey.PlayerInSight, enemyChase);
 
         // Переходы из состояния преследования цели.
-        enemyChase.AddTransition(EnemyStateKey.TargetIsLost, enemyWait);
-        enemyChase.AddTransition(EnemyStateKey.TargetIsReached, enemyBattle);
+        enemyChase.AddTransition(EnemyStateKey.PlayerOffSight, enemyWait);
+        enemyChase.AddTransition(EnemyStateKey.PlayerInBattle, enemyBattle);
 
         // Переходы из состояния ожидания.
         enemyWait.AddTransition(EnemyStateKey.PlayerInSight, enemyChase);
-        enemyWait.AddTransition(EnemyStateKey.PlayerOffSight, enemyPatrol);
+        enemyWait.AddTransition(EnemyStateKey.WaitCompleted, enemyPatrol);
 
         _stateMachine = new StateMachine<EnemyStateKey>(enemyWait);
     }
@@ -56,10 +59,9 @@ public class EnemyAI : MonoBehaviour
 
         if (TargetInRange(_target, _sightRange))
         {
-            if (TargetInRange(_target, _triggerBattleRange))
+            if (BattleSystem.Instance.IsBattleActive)
             {
-                GameMaster.Instance.IsBattle = true;
-                _stateMachine.TransitionNext(EnemyStateKey.TargetIsReached);
+                _stateMachine.TransitionNext(EnemyStateKey.PlayerInBattle);
             }
             else
             {
@@ -68,35 +70,45 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            if (_isWaitingDone)
-            {
-                _stateMachine.TransitionNext(EnemyStateKey.PlayerOffSight);
-            }
-            else
-            {
-                _stateMachine.TransitionNext(EnemyStateKey.TargetIsLost);
-            }
+            _stateMachine.TransitionNext(EnemyStateKey.PlayerOffSight);
         }
     }
-
+    /// <summary>
+    /// Выставить позицию для перемещения.
+    /// </summary>
     public void SetDestination(Vector2 targetPosition)
     {
         _movementMechanics.SetMovementPosition(targetPosition);
     }
-
+    /// <summary>
+    /// Остановить перемещение.
+    /// </summary>
+    public void StopMovement()
+    {
+        _movementMechanics.StopMovement();
+    }
+    /// <summary>
+    /// Бездействовать заданное время.
+    /// </summary>
     public void Wait(float waitingTime)
     {
-        if (_waitingRoutine != null) StopCoroutine(_waitingRoutine);
-        _waitingRoutine = StartCoroutine(WaitForDelay(waitingTime));
-    }
+        if (_isWaiting) return;
 
+        _isWaiting = true;
+        StartCoroutine(WaitForDelay(waitingTime));
+    }
+    /// <summary>
+    /// Корутина бездействия.
+    /// </summary>
     private IEnumerator WaitForDelay(float delay)
     {
-        _isWaitingDone = false;
         yield return new WaitForSeconds(delay);
-        _isWaitingDone = true;
+        _stateMachine.TransitionNext(EnemyStateKey.WaitCompleted);
+        _isWaiting = false;
     }
-
+    /// <summary>
+    /// Проверить, находится ли цель на заданной дистанции.
+    /// </summary>
     private bool TargetInRange(Transform target, float range)
     {
         return Vector2.Distance(transform.position, target.position) <= range;
@@ -108,8 +120,6 @@ public class EnemyAI : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _sightRange);
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, _triggerBattleRange);
         }
     }
 }
