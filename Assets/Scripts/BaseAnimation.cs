@@ -1,26 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using KaynirGames.Movement;
+using System.Collections;
 using UnityEngine;
-using KaynirGames.Movement;
 
-[RequireComponent(typeof(Animator))]
+/// <summary>
+/// Основная анимация персонажа.
+/// </summary>
 public class BaseAnimation : MonoBehaviour
 {
-    [SerializeField] private string _horizontalMoveParam = "Horizontal";
-    [SerializeField] private string _verticalMoveParam = "Vertical";
-    [SerializeField] private string _moveSpeedParam = "Speed";
-    [SerializeField] private string _attackParam = "Attack";
+    [Header("Основные параметры аниматора:")]
+    [SerializeField] private string _horizontalMoveParam = "Horizontal"; // Отвечает за движение по горизонтали.
+    [SerializeField] private string _verticalMoveParam = "Vertical"; // Отвечает за движение по вертикали.
+    [SerializeField] private string _moveSpeedParam = "Speed"; // Отвечает за скорость движения.
+    [SerializeField] private string _attackParam = "Attack"; // Отвечает за триггер атаки.
 
-    private Animator _animator;
-    private CharacterMoveBase _characterMoveBase;
-    private bool _canAttack = true;
+    [Header("Необходимые компоненты:")]
+    [SerializeField] private Animator _animator = null; // Аниматор персонажа.
+    [SerializeField] private CharacterMoveBase _characterMoveMethod = null; // Метод движения персонажа.
 
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-        _characterMoveBase = GetComponent<CharacterMoveBase>();
-    }
+    private bool _canAttack = true; // Доступность атаки в настоящий момент.
 
+    /// <summary>
+    /// Воспроизвести анимацию движения.
+    /// </summary>
     public void PlayMoveClip(Vector2 moveDirection)
     {
         if (moveDirection != Vector2.zero)
@@ -30,7 +31,11 @@ public class BaseAnimation : MonoBehaviour
         }
         _animator.SetFloat(_moveSpeedParam, moveDirection.sqrMagnitude);
     }
-
+    /// <summary>
+    /// Воспроизвести анимацию атаки.
+    /// </summary>
+    /// <param name="attackDelay">Задержка между атаками.</param>
+    /// <param name="canMove">Возможность двигаться во время атаки.</param>
     public void PlayAttackClip(float attackDelay, bool canMove)
     {
         if (_canAttack)
@@ -39,13 +44,15 @@ public class BaseAnimation : MonoBehaviour
             StartCoroutine(AttackRoutine(attackDelay, canMove));
         }
     }
-
+    /// <summary>
+    /// Корутина атаки персонажа.
+    /// </summary>
     private IEnumerator AttackRoutine(float attackDelay, bool canMove)
     {
         _canAttack = false;
-        if (!canMove) _characterMoveBase.Disable();
+        if (!canMove) _characterMoveMethod.Disable();
         yield return new WaitForSeconds(attackDelay);
         _canAttack = true;
-        if (!canMove) _characterMoveBase.Enable();
+        if (!canMove) _characterMoveMethod.Enable();
     }
 }
