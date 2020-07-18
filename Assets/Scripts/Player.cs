@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (GameMaster.Instance.IsPause) return;
+
         HandleInput();
     }
 

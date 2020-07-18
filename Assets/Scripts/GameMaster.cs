@@ -14,6 +14,8 @@ public class GameMaster : MonoBehaviour
 
     public List<Room> LoadedRooms { get; private set; } = new List<Room>();
 
+    public bool IsPause { get; private set; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -24,5 +26,11 @@ public class GameMaster : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void TogglePause()
+    {
+        Time.timeScale = IsPause ? 1f : 0f;
+        IsPause = !IsPause;
     }
 }
