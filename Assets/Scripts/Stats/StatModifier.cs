@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Модификатор стата. 
@@ -8,21 +6,22 @@ using UnityEngine;
 [System.Serializable]
 public class StatModifier
 {
+    [SerializeField] private float _value = 0;
+
     /// <summary>
     /// Значение модификатора.
     /// </summary>
-    public readonly float Value = 0;
+    public float Value => _value;
 
     public StatModifier(float value)
     {
-        Value = value;
+        _value = value;
     }
-
     /// <summary>
     /// Применить модификатор к базовому значению стата.
     /// </summary>
     public float ApplyModifier(float baseValue)
     {
-        return baseValue + Value;
+        return baseValue + _value;
     }
 }

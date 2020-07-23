@@ -32,7 +32,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        _target = GameMaster.Instance.Player.transform;
+        _target = GameMaster.Instance.ActivePlayer.transform;
 
         var enemyWait = new EnemyWait(this, 3f);
         var enemyBattle = new EnemyBattle(this);

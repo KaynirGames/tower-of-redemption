@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class GameMaster : MonoBehaviour
 
     [SerializeField] private GameObjectRuntimeSet _doorPrefabSet = null;
 
-    public Player Player { get; set; }
+    public Player ActivePlayer { get; private set; }
 
     public GameObjectRuntimeSet DoorPrefabSet => _doorPrefabSet;
 
@@ -26,11 +27,16 @@ public class GameMaster : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Player.OnPlayerActive += SetActivePlayer;
     }
+
 
     public void TogglePause()
     {
         Time.timeScale = IsPause ? 1f : 0f;
         IsPause = !IsPause;
     }
+
+    private void SetActivePlayer(Player player) => ActivePlayer = player;
 }

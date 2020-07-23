@@ -1,59 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class Stat
 {
-    /// <summary>
-    /// Базовое значение стата.
-    /// </summary>
-    public float BaseValue = 0;
-    /// <summary>
-    /// Список модификаторов базового значения стата.
-    /// </summary>
-    private readonly List<StatModifier> modifiers;
-    /// <summary>
-    /// Текущее значение стата с модификаторами.
-    /// </summary>
-    private float currentValue;
-    /// <summary>
-    /// Модификаторы стата изменились?
-    /// </summary>
-    private bool modifiersChanged;
+    [SerializeField] public float _baseValue = 0; // Базовое значение стата.
+
+    private List<StatModifier> _modifiers; // Список модификаторов базового значения стата.
+    private float _currentValue; // Текущее значение стата с модификаторами.
+    private bool _modifiersChanged; // Для определения изменений в модификаторах.
 
     public Stat(float baseValue)
     {
-        BaseValue = baseValue;
-        modifiers = new List<StatModifier>();
-        currentValue = baseValue;
-        modifiersChanged = false;
+        _baseValue = baseValue;
+        _modifiers = new List<StatModifier>();
+        _currentValue = baseValue;
+        _modifiersChanged = false;
     }
     /// <summary>
     /// Возвращает значение стата с учетом модификаторов (если они имеются).
     /// </summary>
-    /// <returns></returns>
-    public float Value
+    public float GetValue()
     {
-        get
+        if (_modifiersChanged)
         {
-            if (modifiersChanged)
+            _currentValue = _baseValue;
+
+            if (_modifiers.Count > 0)
             {
-                currentValue = BaseValue;
-
-                if (modifiers.Count > 0)
-                {
-                    modifiers.ForEach(mod => currentValue = mod.ApplyModifier(currentValue));
-                }
-
-                modifiersChanged = false;
-
-                return Mathf.Round(currentValue);
+                _modifiers.ForEach(mod => _currentValue = mod.ApplyModifier(_currentValue));
+                if (_currentValue < 0) _currentValue = Mathf.Max(_currentValue, 0);
             }
-            else
-            {
-                return currentValue;
-            }
+
+            _modifiersChanged = false;
+
+            return Mathf.Round(_currentValue);
+        }
+        else
+        {
+            return _currentValue;
         }
     }
     /// <summary>
@@ -63,8 +48,8 @@ public class Stat
     {
         if (modifier.Value != 0)
         {
-            modifiers.Add(modifier);
-            modifiersChanged = true;
+            _modifiers.Add(modifier);
+            _modifiersChanged = true;
         }
     }
     /// <summary>
@@ -74,8 +59,8 @@ public class Stat
     {
         if (modifier.Value != 0)
         {
-            modifiers.Remove(modifier);
-            modifiersChanged = true;
+            _modifiers.Remove(modifier);
+            _modifiersChanged = true;
         }
     }
 }

@@ -29,7 +29,7 @@ public class BattleSystem : MonoBehaviour
     {
         IsBattleActive = true;
         _currentEnemy = enemy;
-        _player = GameMaster.Instance.Player;
+        _player = GameMaster.Instance.ActivePlayer;
         // Задать начальные параметры.
         // Вызвать интерфейс для боя.
     }
