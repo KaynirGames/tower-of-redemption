@@ -5,9 +5,10 @@
 /// </summary>
 public abstract class Ability : ScriptableObject
 {
+    [Header("Основные параметры:")]
     [SerializeField] protected string _name = "New Ability";
+    [SerializeField, TextArea(10,10)] protected string _description = "New Description";
     [SerializeField] protected Sprite _icon = null;
-    [SerializeField] protected string _description = "New Description";
     [SerializeField] protected int _tier = 0;
     /// <summary>
     /// Название умения.

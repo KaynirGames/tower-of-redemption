@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,11 +16,23 @@ public class CharacterStats : MonoBehaviour
     /// Текущее количество очков энергии.
     /// </summary>
     public float CurrentEnergy { get; private set; }
+    /// <summary>
+    /// Максимальное количество очков здоровья.
+    /// </summary>
+    public Stat MaxHealth { get; private set; }
+    /// <summary>
+    /// Максимальное количество очков энергии.
+    /// </summary>
+    public Stat MaxEnergy { get; private set; }
+    /// <summary>
+    /// Показатель брони.
+    /// </summary>
+    public Stat Armor { get; private set; }
+    /// <summary>
+    /// Показатель магической защиты.
+    /// </summary>
+    public Stat MagicDefence { get; private set; }
 
-    private Stat _maxHealth; // Максимальное количество очков здоровья.
-    private Stat _maxEnergy; // Максимальное количество очков энергии.
-    private Stat _armor; // Показатель брони.
-    private Stat _magicDefence; // Показатель магической защиты.
     private List<ElementEfficacy> _elementEfficacies; // Эффективности воздействия стихий на персонажа.
 
     /// <summary>
@@ -29,10 +40,10 @@ public class CharacterStats : MonoBehaviour
     /// </summary>
     public void SetStats(BaseStats currentSpec)
     {
-        _maxHealth = new Stat(currentSpec.BaseHealth);
-        _maxEnergy = new Stat(currentSpec.BaseAbilityPoints);
-        _armor = new Stat(currentSpec.BaseArmor);
-        _magicDefence = new Stat(currentSpec.BaseMagicDefence);
+        MaxHealth = new Stat(currentSpec.BaseHealth);
+        MaxEnergy = new Stat(currentSpec.BaseAbilityPoints);
+        Armor = new Stat(currentSpec.BaseArmor);
+        MagicDefence = new Stat(currentSpec.BaseMagicDefence);
         _elementEfficacies = new List<ElementEfficacy>()
         {
             new ElementEfficacy(currentSpec.BaseFireEfficacy, MagicElement.Fire),
@@ -40,24 +51,22 @@ public class CharacterStats : MonoBehaviour
             new ElementEfficacy(currentSpec.BaseEarthEfficacy, MagicElement.Earth),
             new ElementEfficacy(currentSpec.BaseWaterEfficacy, MagicElement.Water)
         };
-        CurrentHealth = _maxHealth.GetValue();
-        CurrentEnergy = _maxEnergy.GetValue();
+        CurrentHealth = MaxHealth.GetValue();
+        CurrentEnergy = MaxEnergy.GetValue();
     }
     /// <summary>
-    /// Получить физический урон текущему здоровью.
+    /// Получить урон текущему здоровью.
     /// </summary>
-    public float TakeDamage(float damage)
+    public float TakeDamage(float damageTaken)
     {
-        float damageTaken = CalculateDamageTaken(damage);
         return ApplyDamageTaken(damageTaken);
     }
     /// <summary>
-    /// Получить магический урон текущему здоровью.
+    /// Получить эффективность воздействия магического элемента.
     /// </summary>
-    public float TakeDamage(float damage, MagicElement element)
+    public ElementEfficacy GetElementEfficacy(MagicElement element)
     {
-        float damageTaken = CalculateDamageTaken(damage, element);
-        return ApplyDamageTaken(damageTaken);
+        return _elementEfficacies.Find(efficacy => efficacy.Element == element);
     }
     /// <summary>
     /// Достаточно ли текущих очков энергии для применения способности?
@@ -83,24 +92,5 @@ public class CharacterStats : MonoBehaviour
         }
 
         return damageTaken;
-    }
-    /// <summary>
-    /// Рассчитать полученный физический урон.
-    /// </summary>
-    private float CalculateDamageTaken(float damage)
-    {
-        float damageTaken = damage * (1 - _armor.GetValue() / 100);
-
-        return Mathf.Round(damageTaken);
-    }
-    /// <summary>
-    /// Рассчитать полученный магический урон.
-    /// </summary>
-    private float CalculateDamageTaken(float damage, MagicElement element)
-    {
-        ElementEfficacy currentEfficacy = _elementEfficacies.Find(efficacy => efficacy.Element == element);
-        float damageTaken = damage * (1 - _magicDefence.GetValue() / 100) * (currentEfficacy.EfficacyRate.GetValue() / 100);
-
-        return Mathf.Round(damageTaken);
     }
 }
