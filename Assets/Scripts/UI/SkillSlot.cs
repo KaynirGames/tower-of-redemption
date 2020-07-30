@@ -28,7 +28,7 @@ public class SkillSlot : MonoBehaviour
     {
         if (_skill != null)
         {
-            OnDescriptionCall?.Invoke(_skill.Name, _skill.GetDescription());
+            OnDescriptionCall?.Invoke(_skill.Name, _skill.GetDisplayInfo());
         }
         else Debug.Log(name + " clicked");
     }

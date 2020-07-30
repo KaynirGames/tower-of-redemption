@@ -3,7 +3,7 @@
 /// <summary>
 /// Обычный физический урон.
 /// </summary>
-[CreateAssetMenu(fileName = "NewPhysicalDamage", menuName = "Scriptable Objects/Damage Types/Physical Damage")]
+[CreateAssetMenu(fileName = "NewPhysicalDamage", menuName = "Scriptable Objects/Battle/Damage Types/Physical Damage")]
 public class PhysicalDamage : DamageType
 {
     public override float CalculateDamage(float damage, CharacterStats target)

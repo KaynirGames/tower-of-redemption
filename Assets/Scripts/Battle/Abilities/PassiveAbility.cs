@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Ability", menuName = "Scriptable Objects/Abilities/Passive Ability")]
+[CreateAssetMenu(fileName = "New Ability", menuName = "Scriptable Objects/Battle/Abilities/Passive Ability")]
 public class PassiveAbility : Ability
 {
     public override void Activate(CharacterStats target)
@@ -10,7 +10,7 @@ public class PassiveAbility : Ability
         
     }
 
-    public override string GetDescription()
+    public override string GetDisplayInfo()
     {
         return "";
     }

@@ -3,7 +3,7 @@
 /// <summary>
 /// Чистый магический урон, игнорирует магическую защиту.
 /// </summary>
-[CreateAssetMenu(fileName = "NewPureMagicDamage", menuName = "Scriptable Objects/Damage Types/Pure Magic Damage")]
+[CreateAssetMenu(fileName = "NewPureMagicDamage", menuName = "Scriptable Objects/Battle/Damage Types/Pure Magic Damage")]
 public class PureMagicDamage : DamageType
 {
     [SerializeField] private MagicElement _magicElement = MagicElement.Fire; // Стихийный элемент урона.

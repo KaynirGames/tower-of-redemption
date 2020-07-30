@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Специализация противника.
 /// </summary>
-[CreateAssetMenu(fileName = "NewEnemySpec", menuName = "Scriptable Objects/Stats System/Enemy Spec")]
+[CreateAssetMenu(fileName = "NewEnemySpec", menuName = "Scriptable Objects/Battle/Specs/Enemy Spec")]
 public class EnemySpec : BaseStats
 {
     [Header("Информация о спеке противника:")]

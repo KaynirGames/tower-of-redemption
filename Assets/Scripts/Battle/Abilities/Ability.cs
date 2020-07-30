@@ -7,7 +7,7 @@ public abstract class Ability : ScriptableObject
 {
     [Header("Основные параметры:")]
     [SerializeField] protected string _name = "New Ability";
-    [SerializeField, TextArea(10,10)] protected string _description = "New Description";
+    [SerializeField, TextArea(6,6)] protected string _description = "New Description";
     [SerializeField] protected Sprite _icon = null;
     [SerializeField] protected int _tier = 0;
     /// <summary>
@@ -23,9 +23,9 @@ public abstract class Ability : ScriptableObject
     /// </summary>
     public int Tier => _tier;
     /// <summary>
-    /// Получить описание умения.
+    /// Получить информацию об умении для отображения.
     /// </summary>
-    public abstract string GetDescription();
+    public abstract string GetDisplayInfo();
     /// <summary>
     /// Применить умение к цели.
     /// </summary>

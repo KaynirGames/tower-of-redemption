@@ -41,7 +41,7 @@ public class CharacterStats : MonoBehaviour
     public void SetStats(BaseStats currentSpec)
     {
         MaxHealth = new Stat(currentSpec.BaseHealth);
-        MaxEnergy = new Stat(currentSpec.BaseAbilityPoints);
+        MaxEnergy = new Stat(currentSpec.BaseEnergy);
         Armor = new Stat(currentSpec.BaseArmor);
         MagicDefence = new Stat(currentSpec.BaseMagicDefence);
         _elementEfficacies = new List<ElementEfficacy>()

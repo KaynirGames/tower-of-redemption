@@ -5,15 +5,16 @@ using UnityEngine;
 /// <summary>
 /// Специализация персонажа.
 /// </summary>
-[CreateAssetMenu(fileName = "NewPlayerSpec", menuName = "Scriptable Objects/Stats System/Player Spec")]
+[CreateAssetMenu(fileName = "NewPlayerSpec", menuName = "Scriptable Objects/Battle/Specs/Player Spec")]
 public class PlayerSpec : BaseStats
 {
     [Header("Информация о спеке игрока:")]
+    [TextArea(10, 10)]
+    [SerializeField] private string _description = "New Spec Description";
     /// <summary>
     /// Краткое описание специализации игрока.
     /// </summary>
-    [TextArea(10,10)]
-    public string Description;
+    public string Description => _description;
 
     // Базовый набор абилок
 }

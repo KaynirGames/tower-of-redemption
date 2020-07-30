@@ -3,7 +3,7 @@
 /// <summary>
 /// Обычный магический урон.
 /// </summary>
-[CreateAssetMenu(fileName = "NewMagicDamage", menuName = "Scriptable Objects/Damage Types/Magic Damage")]
+[CreateAssetMenu(fileName = "NewMagicDamage", menuName = "Scriptable Objects/Battle/Damage Types/Magic Damage")]
 public class MagicDamage : DamageType
 {
     [SerializeField] private MagicElement _magicElement = MagicElement.Fire; // Стихийный элемент урона.
