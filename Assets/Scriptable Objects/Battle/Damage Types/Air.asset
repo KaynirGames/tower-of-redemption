@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2de2e292d7054f43ad16b4592a9191a, type: 3}
-  m_Name: PhysicalDamage
+  m_Script: {fileID: 11500000, guid: f5d37f8d4f71d624cbddd89028323f4f, type: 3}
+  m_Name: Air
   m_EditorClassIdentifier: 
-  _name: "\u0424\u0438\u0437\u0438\u0447\u0435\u0441\u043A\u0438\u0439"
+  _displayName: "\u0412\u043E\u0437\u0434\u0443\u0448\u043D\u044B\u0439"
+  _magicElement: 1

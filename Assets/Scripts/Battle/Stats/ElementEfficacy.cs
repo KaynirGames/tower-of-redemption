@@ -6,20 +6,20 @@
 [System.Serializable]
 public class ElementEfficacy
 {
-    [SerializeField] private Stat _efficacyRate = null;
-    [SerializeField] private MagicElement _element = MagicElement.Fire;
+    [SerializeField] private float _efficacyRate = 100;
+    [SerializeField] private ElementType _element = ElementType.Fire;
     /// <summary>
     /// Коэффициент эффективности (0 - нет эффекта, 100 - нормальный урон, 200 - урон х2 и т.п.).
     /// </summary>
-    public Stat EfficacyRate => _efficacyRate;
+    public float EfficacyRate => _efficacyRate;
     /// <summary>
     /// Стихийный элемент.
     /// </summary>
-    public MagicElement Element => _element;
+    public ElementType Element => _element;
 
-    public ElementEfficacy(float rateValue, MagicElement element)
+    public ElementEfficacy(float efficacyRate, ElementType element)
     {
-        _efficacyRate = new Stat(rateValue);
+        _efficacyRate = efficacyRate;
         _element = element;
     }
 }

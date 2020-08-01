@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,10 +47,10 @@ public class CharacterStats : MonoBehaviour
         MagicDefence = new Stat(currentSpec.BaseMagicDefence);
         _elementEfficacies = new List<ElementEfficacy>()
         {
-            new ElementEfficacy(currentSpec.BaseFireEfficacy, MagicElement.Fire),
-            new ElementEfficacy(currentSpec.BaseAirEfficacy, MagicElement.Air),
-            new ElementEfficacy(currentSpec.BaseEarthEfficacy, MagicElement.Earth),
-            new ElementEfficacy(currentSpec.BaseWaterEfficacy, MagicElement.Water)
+            new ElementEfficacy(currentSpec.BaseFireEfficacy, ElementType.Fire),
+            new ElementEfficacy(currentSpec.BaseAirEfficacy, ElementType.Air),
+            new ElementEfficacy(currentSpec.BaseEarthEfficacy, ElementType.Earth),
+            new ElementEfficacy(currentSpec.BaseWaterEfficacy, ElementType.Water)
         };
         CurrentHealth = MaxHealth.GetValue();
         CurrentEnergy = MaxEnergy.GetValue();
@@ -64,9 +65,32 @@ public class CharacterStats : MonoBehaviour
     /// <summary>
     /// Получить эффективность воздействия магического элемента.
     /// </summary>
-    public ElementEfficacy GetElementEfficacy(MagicElement element)
+    public ElementEfficacy GetElementEfficacy(ElementType element)
     {
         return _elementEfficacies.Find(efficacy => efficacy.Element == element);
+    }
+    /// <summary>
+    /// Получить стат персонажа.
+    /// </summary>
+    public Stat GetStat(StatType statType)
+    {
+        Stat stat = null;
+        switch (statType)
+        {
+            case StatType.Armor:
+                stat = Armor;
+                break;
+            case StatType.MagicDefence:
+                stat = MagicDefence;
+                break;
+            case StatType.MaxEnergy:
+                stat = MaxEnergy;
+                break;
+            case StatType.MaxHealth:
+                stat = MaxHealth;
+                break;
+        }
+        return stat;
     }
     /// <summary>
     /// Достаточно ли текущих очков энергии для применения способности?

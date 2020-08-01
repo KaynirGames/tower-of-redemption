@@ -4,19 +4,24 @@ using UnityEngine;
 [System.Serializable]
 public class Stat
 {
-    [SerializeField] public float _baseValue = 0; // Базовое значение стата.
+    [SerializeField] private float _baseValue = 0; // Базовое значение стата.
 
-    private List<StatModifier> _modifiers; // Список модификаторов базового значения стата.
+    private readonly List<StatModifier> _modifiers; // Список модификаторов базового значения стата.
     private float _currentValue; // Текущее значение стата с модификаторами.
     private bool _modifiersChanged; // Для определения изменений в модификаторах.
 
-    public Stat(float baseValue)
+    public Stat(float baseValue) : this()
     {
         _baseValue = baseValue;
+    }
+
+    public Stat()
+    {
         _modifiers = new List<StatModifier>();
-        _currentValue = baseValue;
+        _currentValue = _baseValue;
         _modifiersChanged = false;
     }
+
     /// <summary>
     /// Возвращает значение стата с учетом модификаторов (если они имеются).
     /// </summary>
@@ -28,13 +33,14 @@ public class Stat
 
             if (_modifiers.Count > 0)
             {
-                _modifiers.ForEach(mod => _currentValue = mod.ApplyModifier(_currentValue));
+                _modifiers.ForEach(mod => _currentValue = mod.Apply(_currentValue));
                 if (_currentValue < 0) _currentValue = Mathf.Max(_currentValue, 0);
             }
 
             _modifiersChanged = false;
+            _currentValue = Mathf.Round(_currentValue);
 
-            return Mathf.Round(_currentValue);
+            return _currentValue;
         }
         else
         {

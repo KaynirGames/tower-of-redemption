@@ -10,11 +10,11 @@ public class Player : MonoBehaviour
 
     [SerializeField] private PlayerSpec _currentSpec = null;
     [SerializeField] private Inventory _inventory = null;
-    [SerializeField] private AbilityBook _skillBook = null;
+    [SerializeField] private AbilityBook _abilityBook = null;
 
     public PlayerSpec PlayerSpec => _currentSpec;
     public Inventory Inventory => _inventory;
-    public AbilityBook SkillBook => _skillBook;
+    public AbilityBook AbilityBook => _abilityBook;
 
     private CharacterStats _playerStats; // Статы персонажа.
     private Vector2 _moveDirection = Vector2.zero;

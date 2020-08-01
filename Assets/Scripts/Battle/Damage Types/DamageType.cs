@@ -5,13 +5,11 @@
 /// </summary>
 public abstract class DamageType : ScriptableObject
 {
-    [SerializeField] private string _name = "Undefined";
-    // Список накладываемых эффектов (под вопросом).
-
+    [SerializeField] private string _displayName = "Type";
     /// <summary>
-    /// Наименование типа урона.
+    /// Отображаемый подзаголовок.
     /// </summary>
-    public string Name => _name;
+    public string DisplayName => _displayName;
     /// <summary>
     /// Рассчитать урон по цели.
     /// </summary>

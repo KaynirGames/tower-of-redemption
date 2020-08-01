@@ -8,7 +8,7 @@ public class DescriptionUI : MonoBehaviour
 
     private void Awake()
     {
-        SkillSlot.OnDescriptionCall += Display;
+        AbilitySlotUI.OnDescriptionCall += Display;
     }
 
     private void Display(string name, string description)

@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Стихийные элементы (огонь, воздух, земля, вода).
 /// </summary>
-public enum MagicElement 
+public enum ElementType 
 { 
     Fire,
     Air,

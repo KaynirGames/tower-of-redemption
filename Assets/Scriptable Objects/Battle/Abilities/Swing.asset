@@ -16,9 +16,8 @@ MonoBehaviour:
   _description: "\u041F\u0440\u043E\u0441\u0442\u0430\u044F \u0430\u0442\u0430\u043A\u0430
     \u043C\u0435\u0447\u043E\u043C."
   _icon: {fileID: 21300000, guid: d0b7841d436f01e4f8d4dd7403186c3c, type: 3}
-  _tier: 1
-  _minDamage: 3
-  _maxDamage: 5
+  _targetType: 1
   _energyCost: 5
   _cooldown: 2
-  _damageType: {fileID: 11400000, guid: 393df72ee7707ee4aa6a91572228ffad, type: 2}
+  _effects:
+  - {fileID: 11400000, guid: 76c53b774a8e572479c633418b36bc7e, type: 2}

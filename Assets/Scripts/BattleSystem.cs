@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
     public static BattleSystem Instance { get; private set; }
+
+    public event Action OnBattleEnd = delegate { };
 
     public bool IsBattleActive { get; private set; }
     
@@ -37,6 +40,7 @@ public class BattleSystem : MonoBehaviour
     private void EndBattle()
     {
         IsBattleActive = false;
+        OnBattleEnd?.Invoke();
         // Действия для завершения боя.
     }
 }

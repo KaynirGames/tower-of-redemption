@@ -18,10 +18,10 @@ public class StatModifier
         _value = value;
     }
     /// <summary>
-    /// Применить модификатор к базовому значению стата.
+    /// Применить модификатор к текущему значению стата.
     /// </summary>
-    public float ApplyModifier(float baseValue)
+    public float Apply(float currentValue)
     {
-        return baseValue + _value;
+        return currentValue + _value;
     }
 }

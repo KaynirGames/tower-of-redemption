@@ -2,33 +2,33 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillSlot : MonoBehaviour
+public class AbilitySlotUI : MonoBehaviour
 {
     public static event Action<string, string> OnDescriptionCall = delegate { };
 
     [SerializeField] private Image _icon = null;
 
-    private Ability _skill;
+    private Ability _ability;
 
-    public void AddSkill(Ability skill)
+    public void AddAbility(Ability ability)
     {
-        _skill = skill;
-        _icon.sprite = _skill.Icon;
+        _ability = ability;
+        _icon.sprite = ability.Icon;
         _icon.enabled = true;
     }
 
-    public void RemoveSkill()
+    public void RemoveAbility()
     {
-        _skill = null;
+        _ability = null;
         _icon.sprite = null;
         _icon.enabled = false;
     }
 
     public void CallDescription()
     {
-        if (_skill != null)
+        if (_ability != null)
         {
-            OnDescriptionCall?.Invoke(_skill.Name, _skill.GetDisplayInfo());
+            OnDescriptionCall?.Invoke(_ability.Name, _ability.GetDisplayInfo());
         }
         else Debug.Log(name + " clicked");
     }

@@ -7,21 +7,28 @@ using UnityEngine.UI;
 public class AbilityBookUI : MonoBehaviour
 {
     [SerializeField] private Image _playerSpecIcon = null;
-    [SerializeField] private GameObject _activeSkillsParent = null;
-    [SerializeField] private GameObject _extraSkillsParent = null;
-    [SerializeField] private GameObject _passiveSkillsParent = null;
+    [SerializeField] private GameObject _activeSlotsParent = null;
+    [SerializeField] private GameObject _passiveSlotsParent = null;
+    [SerializeField] private GameObject _specialSlotsParent = null;
 
-    private AbilityBook _skillBook;
+    private AbilityBook _abilityBook;
     private PlayerSpec _playerSpec;
+
+    private AbilitySlotUI[] _activeSlots;
+    private AbilitySlotUI[] _passiveSlots;
+    private AbilitySlotUI[] _specialSlots;
 
     private void Awake()
     {
-        Player.OnPlayerActive += SetSkillBook;
+        Player.OnPlayerActive += SetAbilityBook;
+        _activeSlots = _activeSlotsParent.GetComponentsInChildren<AbilitySlotUI>();
+        _passiveSlots = _passiveSlotsParent.GetComponentsInChildren<AbilitySlotUI>();
+        _specialSlots = _specialSlotsParent.GetComponentsInChildren<AbilitySlotUI>();
     }
 
-    private void SetSkillBook(Player player)
+    private void SetAbilityBook(Player player)
     {
-        _skillBook = player.SkillBook;
+        _abilityBook = player.AbilityBook;
         _playerSpec = player.PlayerSpec;
     }
 }

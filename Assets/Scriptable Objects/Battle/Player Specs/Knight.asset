@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391a4de9ea6faed459cbf08bdc8bf010, type: 3}
   m_Name: Knight
   m_EditorClassIdentifier: 
-  BaseHealth: 120
-  BaseAbilityPoints: 80
-  BaseArmor: 25
-  BaseMagicDefence: 5
-  BaseFireEfficacy: 100
-  BaseAirEfficacy: 100
-  BaseEarthEfficacy: 100
-  BaseWaterEfficacy: 100
-  Description: 
+  _baseHealth: 110
+  _baseEnergy: 100
+  _baseArmor: 0
+  _baseMagicDefence: 0
+  _baseFireEfficacy: 100
+  _baseAirEfficacy: 100
+  _baseEarthEfficacy: 100
+  _baseWaterEfficacy: 100
+  _description: New Spec Description
