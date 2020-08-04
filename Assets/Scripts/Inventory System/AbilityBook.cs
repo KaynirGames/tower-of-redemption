@@ -38,21 +38,21 @@ public class AbilityBook : MonoBehaviour
     {
         int slot = -1;
 
-        switch (ability.AbilityType)
+        switch (ability.BookSlot)
         {
-            case AbilityType.Active:
+            case BookSlot.Active:
                 {
                     slot = CheckSlotAvaliable(ActiveAbilities, _activeMaxCount);
                     if (slot >= 0) ActiveAbilities[slot] = ability;
                 }
                 break;
-            case AbilityType.Passive:
+            case BookSlot.Passive:
                 {
                     slot = CheckSlotAvaliable(PassiveAbilities, _passiveMaxCount);
                     if (slot >= 0) PassiveAbilities[slot] = ability;
                 }
                 break;
-            case AbilityType.Special:
+            case BookSlot.Special:
                 {
                     slot = CheckSlotAvaliable(SpecialAbilities, _specialMaxCount);
                     if (slot >= 0) SpecialAbilities[slot] = ability;
@@ -76,21 +76,21 @@ public class AbilityBook : MonoBehaviour
     {
         Ability oldAbility = null;
 
-        switch (ability.AbilityType)
+        switch (ability.BookSlot)
         {
-            case AbilityType.Active:
+            case BookSlot.Active:
                 {
                     oldAbility = ActiveAbilities[slot];
                     ActiveAbilities[slot] = ability;
                 }
                 break;
-            case AbilityType.Passive:
+            case BookSlot.Passive:
                 {
                     oldAbility = ActiveAbilities[slot];
                     PassiveAbilities[slot] = ability;
                 }
                 break;
-            case AbilityType.Special:
+            case BookSlot.Special:
                 {
                     oldAbility = ActiveAbilities[slot];
                     SpecialAbilities[slot] = ability;

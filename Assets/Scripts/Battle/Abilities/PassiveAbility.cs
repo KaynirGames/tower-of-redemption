@@ -10,7 +10,7 @@ public class PassiveAbility : Ability
         
     }
 
-    public override string GetDisplayInfo()
+    public override string GetDescription()
     {
         return "";
     }

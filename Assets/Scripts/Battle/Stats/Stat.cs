@@ -69,4 +69,18 @@ public class Stat
             _modifiersChanged = true;
         }
     }
+    /// <summary>
+    /// Убирает все модификаторы, полученные от источника.
+    /// </summary>
+    public void RemoveSourceModifiers(Object source)
+    {
+        for (int i = _modifiers.Count - 1; i >= 0; i--)
+        {
+            if (_modifiers[i].Source == source)
+            {
+                _modifiers.RemoveAt(i);
+                _modifiersChanged = true;
+            }
+        }
+    }
 }

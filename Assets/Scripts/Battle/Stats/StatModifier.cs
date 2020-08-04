@@ -12,11 +12,19 @@ public class StatModifier
     /// Значение модификатора.
     /// </summary>
     public float Value => _value;
+    /// <summary>
+    /// Источник модификатора.
+    /// </summary>
+    public Object Source { get; private set; }
 
-    public StatModifier(float value)
+    public StatModifier(float value, Object source)
     {
         _value = value;
+        Source = source;
     }
+
+    public StatModifier(float value) : this(value, null) { }
+
     /// <summary>
     /// Применить модификатор к текущему значению стата.
     /// </summary>

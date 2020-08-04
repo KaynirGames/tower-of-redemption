@@ -28,7 +28,7 @@ public class AbilitySlotUI : MonoBehaviour
     {
         if (_ability != null)
         {
-            OnDescriptionCall?.Invoke(_ability.Name, _ability.GetDisplayInfo());
+            OnDescriptionCall?.Invoke(_ability.Name, _ability.GetDescription());
         }
         else Debug.Log(name + " clicked");
     }

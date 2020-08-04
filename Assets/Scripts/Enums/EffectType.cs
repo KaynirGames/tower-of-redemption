@@ -1,9 +1,8 @@
 ﻿/// <summary>
-/// Тип эффекта (урон, исцеление, модификация стата).
+/// Тип эффекта (положительный, отрицательный).
 /// </summary>
 public enum EffectType
 {
-    StatModify = 100,
-    Damage = 200,
-    Heal = 300
+    Positive,
+    Negative
 }

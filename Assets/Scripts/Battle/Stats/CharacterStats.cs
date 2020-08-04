@@ -26,15 +26,16 @@ public class CharacterStats : MonoBehaviour
     /// </summary>
     public Stat MaxEnergy { get; private set; }
     /// <summary>
-    /// Показатель брони.
+    /// Показатель физической защиты.
     /// </summary>
-    public Stat Armor { get; private set; }
+    public Stat Defence { get; private set; }
     /// <summary>
     /// Показатель магической защиты.
     /// </summary>
     public Stat MagicDefence { get; private set; }
 
     private List<ElementEfficacy> _elementEfficacies; // Эффективности воздействия стихий на персонажа.
+    private readonly List<Effect> _currentEffects = new List<Effect>(); // Текущие эффекты, наложенные на персонажа.
 
     /// <summary>
     /// Задать статы для текущей специализации персонажа.
@@ -43,7 +44,7 @@ public class CharacterStats : MonoBehaviour
     {
         MaxHealth = new Stat(currentSpec.BaseHealth);
         MaxEnergy = new Stat(currentSpec.BaseEnergy);
-        Armor = new Stat(currentSpec.BaseArmor);
+        Defence = new Stat(currentSpec.BaseDefence);
         MagicDefence = new Stat(currentSpec.BaseMagicDefence);
         _elementEfficacies = new List<ElementEfficacy>()
         {
@@ -70,29 +71,6 @@ public class CharacterStats : MonoBehaviour
         return _elementEfficacies.Find(efficacy => efficacy.Element == element);
     }
     /// <summary>
-    /// Получить стат персонажа.
-    /// </summary>
-    public Stat GetStat(StatType statType)
-    {
-        Stat stat = null;
-        switch (statType)
-        {
-            case StatType.Armor:
-                stat = Armor;
-                break;
-            case StatType.MagicDefence:
-                stat = MagicDefence;
-                break;
-            case StatType.MaxEnergy:
-                stat = MaxEnergy;
-                break;
-            case StatType.MaxHealth:
-                stat = MaxHealth;
-                break;
-        }
-        return stat;
-    }
-    /// <summary>
     /// Достаточно ли текущих очков энергии для применения способности?
     /// </summary>
     public bool IsEnoughEnergy(int energyCost)
@@ -100,6 +78,24 @@ public class CharacterStats : MonoBehaviour
         CurrentEnergy -= energyCost;
 
         return (CurrentEnergy < 0) ? false : true;
+    }
+    /// <summary>
+    /// Наложить эффект на персонажа.
+    /// </summary>
+    public void AddEffect(Effect effect)
+    {
+        effect.Apply(this);
+        _currentEffects.Add(effect);
+        // Сообщить UI.
+    }
+    /// <summary>
+    /// Убрать наложенный эффект.
+    /// </summary>
+    public void RemoveEffect(Effect effect)
+    {
+        effect.Remove(this);
+        _currentEffects.Remove(effect);
+        // Сообщить UI.
     }
     /// <summary>
     /// Применить рассчитанный урон к текущему здоровью.
