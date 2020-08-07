@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Специализация персонажа.
@@ -9,12 +7,10 @@ using UnityEngine;
 public class PlayerSpec : BaseStats
 {
     [Header("Информация о спеке игрока:")]
-    [TextArea(10, 10)]
-    [SerializeField] private string _description = "New Spec Description";
+    [TextArea(5, 5)]
+    [SerializeField] private string _description = string.Empty;
     /// <summary>
     /// Краткое описание специализации игрока.
     /// </summary>
     public string Description => _description;
-
-    // Базовый набор абилок
 }

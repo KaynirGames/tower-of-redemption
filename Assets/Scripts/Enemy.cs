@@ -1,27 +1,28 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public static event Action<Enemy> OnEnemyDeath = delegate { };
-    public static event Action<Enemy, bool> OnBattleTrigger = delegate { };
+    public static BattleManager.OnBattleTrigger OnBattleTrigger = delegate { };
 
-    [SerializeField] private EnemySpec spec = null; // Спек противника.
+    [SerializeField] private EnemySpec _enemySpec = null; // Спек противника.
 
     private bool FacingRight = true; // Направление взгляда противника.
-    private CharacterStats enemyStats; // Статы противника.
+    private CharacterStats _enemyStats; // Статы противника.
+    private EnemyAI _enemyAI = null; // Основной ИИ противника.
+    private EnemyBattleAI _enemyBattleAI = null; // Боевой ИИ противника.
 
     private void Awake()
     {
-        enemyStats = GetComponent<CharacterStats>();
+        _enemyStats = GetComponent<CharacterStats>();
+        _enemyAI = GetComponent<EnemyAI>();
+        _enemyBattleAI = GetComponent<EnemyBattleAI>();
     }
 
     private void Start()
     {
-        enemyStats.SetStats(spec);
-        enemyStats.OnCharacterDeath += Die;
+        _enemyStats.SetBaseStats(_enemySpec);
+        _enemyStats.OnCharacterDeath += Die;
         EnemyManager.Instance.RegisterEnemy(this);
     }
 
@@ -45,7 +46,6 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        OnEnemyDeath.Invoke(this);
         // Выйти из боевой системы.
         // Заспавнить лут.
         // Уничтожить объект.
@@ -56,6 +56,8 @@ public class Enemy : MonoBehaviour
         if (other.GetComponent<Player>() != null)
         {
             OnBattleTrigger?.Invoke(this, false);
+            _enemyAI.enabled = false;
+            _enemyBattleAI.enabled = true;
         }
     }
 }

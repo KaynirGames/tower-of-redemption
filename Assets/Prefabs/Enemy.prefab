@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4577616968161644828}
   - component: {fileID: 4577616968161644827}
   - component: {fileID: 4577616968161644824}
+  - component: {fileID: -6886865580493011481}
   - component: {fileID: 4577616968161644825}
   - component: {fileID: 4577616968161644830}
   - component: {fileID: 4577616968161644831}
@@ -89,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25be2bc158912034eaae2a9604d94422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spec: {fileID: 11400000, guid: 4b5cdad240422d3468ab05bc4d667d5e, type: 2}
+  _enemySpec: {fileID: 11400000, guid: 4b5cdad240422d3468ab05bc4d667d5e, type: 2}
 --- !u!114 &4577616968161644827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,10 +116,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sightRange: 3.5
-  _triggerBattleRange: 0.75
+  _waitTimeOnTargetLost: 3
   _includeObstaclesOnPatrol: 0
   _displayGizmos: 1
   _movementMechanics: {fileID: 4577616968161644830}
+--- !u!114 &-6886865580493011481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577616968161644898}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ed50a8035bf9a46a4451583118237c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4577616968161644825
 MonoBehaviour:
   m_ObjectHideFlags: 0

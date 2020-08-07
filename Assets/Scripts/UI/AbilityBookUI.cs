@@ -11,7 +11,7 @@ public class AbilityBookUI : MonoBehaviour
     [SerializeField] private GameObject _passiveSlotsParent = null;
     [SerializeField] private GameObject _specialSlotsParent = null;
 
-    private AbilityBook _abilityBook;
+    private SkillBook _abilityBook;
     private PlayerSpec _playerSpec;
 
     private AbilitySlotUI[] _activeSlots;
@@ -28,7 +28,7 @@ public class AbilityBookUI : MonoBehaviour
 
     private void SetAbilityBook(Player player)
     {
-        _abilityBook = player.AbilityBook;
+        _abilityBook = player.SkillBook;
         _playerSpec = player.PlayerSpec;
     }
 }

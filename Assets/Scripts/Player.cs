@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using KaynirGames.Movement;
+using System;
 using UnityEngine;
-using KaynirGames.Movement;
 
 public class Player : MonoBehaviour
 {
@@ -10,11 +8,19 @@ public class Player : MonoBehaviour
 
     [SerializeField] private PlayerSpec _currentSpec = null;
     [SerializeField] private Inventory _inventory = null;
-    [SerializeField] private AbilityBook _abilityBook = null;
-
+    [SerializeField] private SkillBook _skillBook = null;
+    /// <summary>
+    /// Специализация игрока.
+    /// </summary>
     public PlayerSpec PlayerSpec => _currentSpec;
+    /// <summary>
+    /// Инвентарь игрока.
+    /// </summary>
     public Inventory Inventory => _inventory;
-    public AbilityBook AbilityBook => _abilityBook;
+    /// <summary>
+    /// Книга умений игрока.
+    /// </summary>
+    public SkillBook SkillBook => _skillBook;
 
     private CharacterStats _playerStats; // Статы персонажа.
     private Vector2 _moveDirection = Vector2.zero;
@@ -30,7 +36,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        _playerStats.SetStats(_currentSpec);
+        _playerStats.SetBaseStats(_currentSpec);
+        _skillBook.SetBaseSkills(_currentSpec);
+
         OnPlayerActive?.Invoke(this);
     }
 

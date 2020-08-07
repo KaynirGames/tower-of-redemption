@@ -8,28 +8,28 @@ public class AbilitySlotUI : MonoBehaviour
 
     [SerializeField] private Image _icon = null;
 
-    private Ability _ability;
+    //private Ability _ability;
 
-    public void AddAbility(Ability ability)
-    {
-        _ability = ability;
-        _icon.sprite = ability.Icon;
-        _icon.enabled = true;
-    }
+    //public void AddAbility(Ability ability)
+    //{
+    //    _ability = ability;
+    //    _icon.sprite = ability.Icon;
+    //    _icon.enabled = true;
+    //}
 
-    public void RemoveAbility()
-    {
-        _ability = null;
-        _icon.sprite = null;
-        _icon.enabled = false;
-    }
+    //public void RemoveAbility()
+    //{
+    //    _ability = null;
+    //    _icon.sprite = null;
+    //    _icon.enabled = false;
+    //}
 
-    public void CallDescription()
-    {
-        if (_ability != null)
-        {
-            OnDescriptionCall?.Invoke(_ability.Name, _ability.GetDescription());
-        }
-        else Debug.Log(name + " clicked");
-    }
+    //public void CallDescription()
+    //{
+    //    if (_ability != null)
+    //    {
+    //        OnDescriptionCall?.Invoke(_ability.Name, _ability.GetDescription());
+    //    }
+    //    else Debug.Log(name + " clicked");
+    //}
 }

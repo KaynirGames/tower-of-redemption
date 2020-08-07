@@ -8,13 +8,13 @@ public class CharacterStats : MonoBehaviour
     /// <summary>
     /// Событие, информирующее подписчиков о гибели персонажа.
     /// </summary>
-    public event Action OnCharacterDeath;
+    public event Action OnCharacterDeath = delegate { };
     /// <summary>
     /// Текущее количество очков здоровья.
     /// </summary>
     public float CurrentHealth { get; private set; }
     /// <summary>
-    /// Текущее количество очков энергии.
+    /// Текущее количество духовной энергии.
     /// </summary>
     public float CurrentEnergy { get; private set; }
     /// <summary>
@@ -22,9 +22,17 @@ public class CharacterStats : MonoBehaviour
     /// </summary>
     public Stat MaxHealth { get; private set; }
     /// <summary>
-    /// Максимальное количество очков энергии.
+    /// Максимальное количество духовной энергии.
     /// </summary>
     public Stat MaxEnergy { get; private set; }
+    /// <summary>
+    /// Показатель силы.
+    /// </summary>
+    public Stat Strength { get; private set; }
+    /// <summary>
+    /// Показатель воли.
+    /// </summary>
+    public Stat Will { get; private set; }
     /// <summary>
     /// Показатель физической защиты.
     /// </summary>
@@ -35,15 +43,17 @@ public class CharacterStats : MonoBehaviour
     public Stat MagicDefence { get; private set; }
 
     private List<ElementEfficacy> _elementEfficacies; // Эффективности воздействия стихий на персонажа.
-    private readonly List<Effect> _currentEffects = new List<Effect>(); // Текущие эффекты, наложенные на персонажа.
+    private readonly List<SkillEffect> _characterEffects = new List<SkillEffect>(); // Эффекты, действующие на персонажа.
 
     /// <summary>
-    /// Задать статы для текущей специализации персонажа.
+    /// Задать базовые статы для текущей специализации персонажа.
     /// </summary>
-    public void SetStats(BaseStats currentSpec)
+    public void SetBaseStats(BaseStats currentSpec)
     {
         MaxHealth = new Stat(currentSpec.BaseHealth);
         MaxEnergy = new Stat(currentSpec.BaseEnergy);
+        Strength = new Stat(currentSpec.BaseStrength);
+        Will = new Stat(currentSpec.BaseWill);
         Defence = new Stat(currentSpec.BaseDefence);
         MagicDefence = new Stat(currentSpec.BaseMagicDefence);
         _elementEfficacies = new List<ElementEfficacy>()
@@ -71,7 +81,7 @@ public class CharacterStats : MonoBehaviour
         return _elementEfficacies.Find(efficacy => efficacy.Element == element);
     }
     /// <summary>
-    /// Достаточно ли текущих очков энергии для применения способности?
+    /// Наличие духовной энергии для применения умения.
     /// </summary>
     public bool IsEnoughEnergy(int energyCost)
     {
@@ -80,22 +90,11 @@ public class CharacterStats : MonoBehaviour
         return (CurrentEnergy < 0) ? false : true;
     }
     /// <summary>
-    /// Наложить эффект на персонажа.
+    /// Проверить наличие эффекта на персонаже.
     /// </summary>
-    public void AddEffect(Effect effect)
+    public bool IsEffectExist(SkillEffect effect)
     {
-        effect.Apply(this);
-        _currentEffects.Add(effect);
-        // Сообщить UI.
-    }
-    /// <summary>
-    /// Убрать наложенный эффект.
-    /// </summary>
-    public void RemoveEffect(Effect effect)
-    {
-        effect.Remove(this);
-        _currentEffects.Remove(effect);
-        // Сообщить UI.
+        return _characterEffects.Contains(effect);
     }
     /// <summary>
     /// Применить рассчитанный урон к текущему здоровью.

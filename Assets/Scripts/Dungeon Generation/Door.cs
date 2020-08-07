@@ -63,7 +63,7 @@ public class Door : MonoBehaviour
     /// </summary>
     public Door Swap(DoorType otherType)
     {
-        Door newDoor = GameMaster.Instance.DoorPrefabSet.Find(door => door.DoorType == otherType);
+        Door newDoor = DatabaseManager.Instance.Doors.Find(door => door.DoorType == otherType);
         newDoor._direction = _direction;
         newDoor = Instantiate(newDoor, transform.position, transform.rotation, transform.parent);
         return newDoor;

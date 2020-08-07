@@ -1,6 +1,5 @@
 ﻿using KaynirGames.AI;
 using KaynirGames.Movement;
-using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -11,16 +10,16 @@ public enum EnemyStateKey
     PlayerInSight,
     PlayerOffSight,
     PlayerInBattle,
-    WaitCompleted
+    WaitComplete
 }
 
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float _sightRange = 5f; // Радиус обзора.
+    [SerializeField] private float _waitTimeOnTargetLost = 3f; // Время ожидания при потере цели преследования.
     [SerializeField] private bool _includeObstaclesOnPatrol = false; // Использовать точки с препятствиями при патрулировании.
     [SerializeField] private bool _displayGizmos = true; // Отображение гизмо объектов.
     [SerializeField] private BaseMovement _movementMechanics = null; // Механика перемещения.
-
     /// <summary>
     /// Противник перемещается в настоящий момент?
     /// </summary>
@@ -28,27 +27,26 @@ public class EnemyAI : MonoBehaviour
 
     private StateMachine<EnemyStateKey> _stateMachine; // Конечный автомат состояний ИИ противника.
     private Transform _target; // Цель ИИ противника.
-    private bool _isWaiting; // Нахождение ИИ в состоянии бездействия.
 
     private void Start()
     {
         _target = GameMaster.Instance.ActivePlayer.transform;
 
-        var enemyWait = new EnemyWait(this, 3f);
-        var enemyBattle = new EnemyBattle(this);
-        var enemyChase = new EnemyChase(this, _target);
-        var enemyPatrol = new EnemyPatrol(this, _includeObstaclesOnPatrol, enemyWait);
+        EnemyWait enemyWait = new EnemyWait(this, _waitTimeOnTargetLost);
+        //EnemyBattle enemyBattle = new EnemyBattle(this);
+        EnemyChase enemyChase = new EnemyChase(this, _target);
+        EnemyPatrol enemyPatrol = new EnemyPatrol(this, _includeObstaclesOnPatrol, enemyWait);
 
         // Переходы из состояния патрулирования.
         enemyPatrol.AddTransition(EnemyStateKey.PlayerInSight, enemyChase);
 
         // Переходы из состояния преследования цели.
         enemyChase.AddTransition(EnemyStateKey.PlayerOffSight, enemyWait);
-        enemyChase.AddTransition(EnemyStateKey.PlayerInBattle, enemyBattle);
+        //enemyChase.AddTransition(EnemyStateKey.PlayerInBattle, enemyBattle);
 
         // Переходы из состояния ожидания.
         enemyWait.AddTransition(EnemyStateKey.PlayerInSight, enemyChase);
-        enemyWait.AddTransition(EnemyStateKey.WaitCompleted, enemyPatrol);
+        enemyWait.AddTransition(EnemyStateKey.WaitComplete, enemyPatrol);
 
         _stateMachine = new StateMachine<EnemyStateKey>(enemyWait);
     }
@@ -59,14 +57,7 @@ public class EnemyAI : MonoBehaviour
 
         if (TargetInRange(_target, _sightRange))
         {
-            if (BattleSystem.Instance.IsBattleActive)
-            {
-                _stateMachine.TransitionNext(EnemyStateKey.PlayerInBattle);
-            }
-            else
-            {
-                _stateMachine.TransitionNext(EnemyStateKey.PlayerInSight);
-            }
+            _stateMachine.TransitionNext(EnemyStateKey.PlayerInSight);
         }
         else
         {
@@ -88,23 +79,11 @@ public class EnemyAI : MonoBehaviour
         _movementMechanics.StopMovement();
     }
     /// <summary>
-    /// Бездействовать заданное время.
+    /// Выставить ключ перехода в другое состояние.
     /// </summary>
-    public void Wait(float waitingTime)
+    public void SetTransition(EnemyStateKey transitionKey)
     {
-        if (_isWaiting) return;
-
-        _isWaiting = true;
-        StartCoroutine(WaitForDelay(waitingTime));
-    }
-    /// <summary>
-    /// Корутина бездействия.
-    /// </summary>
-    private IEnumerator WaitForDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        _stateMachine.TransitionNext(EnemyStateKey.WaitCompleted);
-        _isWaiting = false;
+        _stateMachine.TransitionNext(transitionKey);
     }
     /// <summary>
     /// Проверить, находится ли цель на заданной дистанции.

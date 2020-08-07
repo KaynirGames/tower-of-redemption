@@ -6,7 +6,7 @@ public class Stat
 {
     [SerializeField] private float _baseValue = 0; // Базовое значение стата.
 
-    private readonly List<StatModifier> _modifiers; // Список модификаторов базового значения стата.
+    private List<StatModifier> _modifiers; // Список модификаторов базового значения стата.
     private float _currentValue; // Текущее значение стата с модификаторами.
     private bool _modifiersChanged; // Для определения изменений в модификаторах.
 
@@ -21,9 +21,8 @@ public class Stat
         _currentValue = _baseValue;
         _modifiersChanged = false;
     }
-
     /// <summary>
-    /// Возвращает значение стата с учетом модификаторов (если они имеются).
+    /// Получить значение стата с учетом модификаторов (если они имеются).
     /// </summary>
     public float GetValue()
     {
@@ -33,7 +32,29 @@ public class Stat
 
             if (_modifiers.Count > 0)
             {
-                _modifiers.ForEach(mod => _currentValue = mod.Apply(_currentValue));
+                _modifiers.Sort(CompareByPriority);
+                float percentAddSum = 0;
+
+                for (int i = 0; i < _modifiers.Count; i++)
+                {
+                    StatModifier mod = _modifiers[i];
+
+                    if (mod.Type == ModifierType.PercentAdditive)
+                    {
+                        percentAddSum += mod.Value;
+                        // Если дошли до конца, либо следующий модификатор другого типа.
+                        if (i + 1 >= _modifiers.Count || _modifiers[i + 1].Type != ModifierType.PercentAdditive)
+                        {
+                            // Применяем суммарный процент к стату.
+                            _currentValue = mod.Apply(_currentValue, percentAddSum, mod.Type);
+                        }
+                    }
+                    else
+                    {
+                        _currentValue = mod.Apply(_currentValue, mod.Value, mod.Type);
+                    }
+                }
+
                 if (_currentValue < 0) _currentValue = Mathf.Max(_currentValue, 0);
             }
 
@@ -82,5 +103,14 @@ public class Stat
                 _modifiersChanged = true;
             }
         }
+    }
+    /// <summary>
+    /// Сравнить приоритет применения модификаторов.
+    /// </summary>
+    private int CompareByPriority(StatModifier modA, StatModifier modB)
+    {
+        if (modA.Priority < modB.Priority) return 1;
+        else if (modA.Priority > modB.Priority) return -1;
+        return 0; // Если приоритет применения совпадает.
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 /// <summary>
@@ -10,6 +11,8 @@ public abstract class BaseStats : ScriptableObject
     [Header("Базовые статы персонажа:")]
     [SerializeField] private float _baseHealth = 100;
     [SerializeField] private float _baseEnergy = 100;
+    [SerializeField] private float _baseStrength = 0;
+    [SerializeField] private float _baseWill = 0;
     [SerializeField] private float _baseDefence = 0;
     [SerializeField] private float _baseMagicDefence = 0;
 
@@ -19,14 +22,24 @@ public abstract class BaseStats : ScriptableObject
     [SerializeField] private int _baseEarthEfficacy = 100;
     [SerializeField] private int _baseWaterEfficacy = 100;
 
+    [Header("Базовые умения персонажа:")]
+    [SerializeField] private List<Skill> _baseSkills = new List<Skill>();
     /// <summary>
     /// Базовое количество здоровья.
     /// </summary>
     public float BaseHealth => _baseHealth;
     /// <summary>
-    /// Базовое количество очков энергии.
+    /// Базовое количество духовной энергии.
     /// </summary>
     public float BaseEnergy => _baseEnergy;
+    /// <summary>
+    /// Базовая сила.
+    /// </summary>
+    public float BaseStrength => _baseStrength;
+    /// <summary>
+    /// Базовая воля.
+    /// </summary>
+    public float BaseWill => _baseWill;
     /// <summary>
     /// Базовая физическая защита.
     /// </summary>
@@ -51,4 +64,8 @@ public abstract class BaseStats : ScriptableObject
     /// Базовая эффективность стихии воды.
     /// </summary>
     public int BaseWaterEfficacy => _baseWaterEfficacy;
+    /// <summary>
+    /// Базовый набор умений.
+    /// </summary>
+    public ReadOnlyCollection<Skill> BaseSkills => _baseSkills.AsReadOnly();
 }
