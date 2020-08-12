@@ -5,6 +5,10 @@ public class GameMaster : MonoBehaviour
 {
     public static GameMaster Instance { get; private set; }
 
+    [SerializeField] private SystemLanguage _gameLanguage = SystemLanguage.Russian;
+
+    public SystemLanguage GameLanguage => _gameLanguage;
+
     public Player ActivePlayer { get; private set; }
 
     public List<Room> LoadedRooms { get; private set; } = new List<Room>();
@@ -33,4 +37,10 @@ public class GameMaster : MonoBehaviour
     }
 
     private void SetActivePlayer(Player player) => ActivePlayer = player;
+
+    //private void OnValidate()
+    //{
+    //    Translator.SetTranslation(_gameLanguage);
+    //    Debug.Log("Current language is set to " + _gameLanguage.ToString());
+    //}
 }

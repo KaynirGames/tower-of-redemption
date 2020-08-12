@@ -7,17 +7,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewSpawnTable", menuName = "Scriptable Objects/Spawn Table")]
 public class SpawnTable : ScriptableObject
 {
+    [SerializeField] private List<SpawnableObject> _spawnableObjects = new List<SpawnableObject>();
     /// <summary>
-    /// Список элементов таблицы вероятностей появления объектов.
+    /// Создаваемые объекты в таблице вероятностей появления.
     /// </summary>
-    public List<SpawnTableObject> SpawnTableObjects = new List<SpawnTableObject>();
+    public SpawnableObject[] SpawnableObjects => _spawnableObjects.ToArray();
     /// <summary>
     /// Выбрать случайный объект на основе вероятности его появления.
     /// </summary>
-    /// <returns></returns>
     public Object ChooseRandom()
     {
-        if (SpawnTableObjects.Count == 0)
+        if (_spawnableObjects.Count == 0)
         {
             Debug.LogWarning($"Таблица вероятностей {name} пуста!");
             return null;
@@ -35,17 +35,31 @@ public class SpawnTable : ScriptableObject
 
         int cumulativeWeight = 0;
 
-        for (int i = 0; i < SpawnTableObjects.Count; i++)
+        for (int i = 0; i < _spawnableObjects.Count; i++)
         {
-            cumulativeWeight += SpawnTableObjects[i].Weight;
+            cumulativeWeight += _spawnableObjects[i].Weight;
 
             if (randomWeight <= cumulativeWeight)
             {
-                return SpawnTableObjects[i].ObjectToSpawn;
+                return _spawnableObjects[i].Object;
             }
         }
 
         return null;
+    }
+    /// <summary>
+    /// Добавить создаваемый объект в таблицу вероятностей появления.
+    /// </summary>
+    public void Add(Object objectToSpawn, int weight)
+    {
+        _spawnableObjects.Add(new SpawnableObject(objectToSpawn, weight));
+    }
+    /// <summary>
+    /// Убрать создаваемый объект из таблицы верояностей появления.
+    /// </summary>
+    public void Remove(SpawnableObject spawnableObject)
+    {
+        _spawnableObjects.Remove(spawnableObject);
     }
     /// <summary>
     /// Посчитать общую вероятность появления объектов.
@@ -55,9 +69,9 @@ public class SpawnTable : ScriptableObject
     {
         int totalWeight = 0;
 
-        for (int i = 0; i < SpawnTableObjects.Count; i++)
+        for (int i = 0; i < _spawnableObjects.Count; i++)
         {
-            totalWeight += SpawnTableObjects[i].Weight;
+            totalWeight += _spawnableObjects[i].Weight;
         }
 
         return totalWeight;

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110a07c0a7811174f872ff9777f86f8e, type: 3}
   m_Name: OptionalRoomSpawnTable
   m_EditorClassIdentifier: 
-  SpawnTableObjects:
-  - ObjectToSpawn: {fileID: 11400000, guid: 437c404e92968c04792f5df2f7cbc8fc, type: 2}
-    Weight: 85
-  - ObjectToSpawn: {fileID: 11400000, guid: cc2097befdd616644be132f4cc741e24, type: 2}
-    Weight: 10
-  - ObjectToSpawn: {fileID: 11400000, guid: 1641c23548ef8da47a5c6602e0c155c2, type: 2}
-    Weight: 5
+  _spawnableObjects:
+  - _object: {fileID: 11400000, guid: 437c404e92968c04792f5df2f7cbc8fc, type: 2}
+    _weight: 75
+  - _object: {fileID: 11400000, guid: cc2097befdd616644be132f4cc741e24, type: 2}
+    _weight: 10
+  - _object: {fileID: 11400000, guid: 1641c23548ef8da47a5c6602e0c155c2, type: 2}
+    _weight: 5

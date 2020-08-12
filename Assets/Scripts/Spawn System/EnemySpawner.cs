@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        Room.OnActiveRoomChanged += SpawnEnemies;
+        Room.OnActiveRoomChange += SpawnEnemies;
     }
     /// <summary>
     /// Инициировать появление врагов при первом заходе в комнату.
@@ -27,6 +27,6 @@ public class EnemySpawner : MonoBehaviour
                 point.Spawn(room.transform);
             }
         }
-        Room.OnActiveRoomChanged -= SpawnEnemies;
+        Room.OnActiveRoomChange -= SpawnEnemies;
     }
 }

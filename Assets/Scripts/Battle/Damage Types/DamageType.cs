@@ -5,11 +5,11 @@
 /// </summary>
 public abstract class DamageType : ScriptableObject
 {
-    [SerializeField] protected string _name = string.Empty;
+    [SerializeField] protected TranslatedText _nameKey = null; // Содержит ключ перевода для названия.
     /// <summary>
     /// Наименование типа урона.
     /// </summary>
-    public string Name => _name;
+    public string Name => _nameKey.Value;
     /// <summary>
     /// Рассчитать урон по цели.
     /// </summary>

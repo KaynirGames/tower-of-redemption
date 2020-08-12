@@ -4,28 +4,43 @@ using UnityEditor;
 [CustomEditor(typeof(SpawnTable))]
 public class SpawnTableEditor : Editor
 {
-    private SpawnTable spawnTable;
+    private SpawnTable _spawnTable;
 
     private void OnEnable()
     {
-        spawnTable = (SpawnTable)target;
+        _spawnTable = (SpawnTable)target;
     }
 
     public override void OnInspectorGUI()
     {
-        if (spawnTable.SpawnTableObjects.Count > 0)
+        if (_spawnTable.SpawnableObjects.Length > 0)
         {
-            foreach (SpawnTableObject tableObject in spawnTable.SpawnTableObjects)
+            for (int i = 0; i < _spawnTable.SpawnableObjects.Length; i++)
             {
                 EditorGUILayout.BeginVertical("box");
 
                 if (GUILayout.Button("X", GUILayout.Height(20), GUILayout.Width(20)))
                 {
-                    spawnTable.SpawnTableObjects.Remove(tableObject);
+                    _spawnTable.Remove(_spawnTable.SpawnableObjects[i]);
                     break;
                 }
-                tableObject.ObjectToSpawn = EditorGUILayout.ObjectField("Объект:", tableObject.ObjectToSpawn, typeof(Object), true);
-                tableObject.Weight = EditorGUILayout.IntField("Вероятность появления:", tableObject.Weight);
+
+                SerializedObject serializedObject = new SerializedObject(target);
+                serializedObject.Update();
+
+                SerializedProperty serializedProperty = serializedObject
+                    .FindProperty("_spawnableObjects")
+                    .GetArrayElementAtIndex(i);
+
+                SerializedProperty spawnObject = serializedProperty.FindPropertyRelative("_object");
+                SerializedProperty weight = serializedProperty.FindPropertyRelative("_weight");
+
+                spawnObject.objectReferenceValue = EditorGUILayout.ObjectField("Объект:",
+                                                                               spawnObject.objectReferenceValue,
+                                                                               typeof(Object), true);
+                weight.intValue = EditorGUILayout.IntField("Вероятность появления:", weight.intValue);
+
+                serializedObject.ApplyModifiedProperties();
 
                 EditorGUILayout.EndVertical();
             }
@@ -37,12 +52,7 @@ public class SpawnTableEditor : Editor
 
         if (GUILayout.Button("Добавить новый объект", GUILayout.Height(30)))
         {
-            spawnTable.SpawnTableObjects.Add(new SpawnTableObject());
-        }
-
-        if (GUI.changed)
-        {
-            EditorUtility.SetDirty(spawnTable);
+            _spawnTable.Add(null, 0);
         }
     }
 }

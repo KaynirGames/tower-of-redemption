@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110a07c0a7811174f872ff9777f86f8e, type: 3}
   m_Name: TestEnemySpawnTable
   m_EditorClassIdentifier: 
-  SpawnTableObjects:
-  - ObjectToSpawn: {fileID: 4577616968161644898, guid: e9ad8151611580f41a028d7eab9f2364,
+  _spawnableObjects:
+  - _object: {fileID: 4577616968161644898, guid: e9ad8151611580f41a028d7eab9f2364,
       type: 3}
-    Weight: 100
+    _weight: 100

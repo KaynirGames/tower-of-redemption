@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cef1af6d1a1f746b78a3cca089daee, type: 3}
   m_Name: AirDamage
   m_EditorClassIdentifier: 
-  _name: "\u0412\u043E\u0437\u0434\u0443\u0445"
+  _nameKey:
+    _key: DamageType.Air
   _elementType: 1

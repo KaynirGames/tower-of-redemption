@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 /// <summary>
@@ -8,7 +9,7 @@ using UnityEngine;
 public abstract class Skill : ScriptableObject
 {
     [Header("Информация для отображения:")]
-    [SerializeField] protected string _name = string.Empty;
+    [SerializeField] protected string _skillName = string.Empty;
     [SerializeField, TextArea(5,5)] protected string _description = string.Empty;
     [SerializeField] protected Sprite _icon = null;
     [Header("Общие параметры умения:")]
@@ -19,10 +20,12 @@ public abstract class Skill : ScriptableObject
     [SerializeField] protected SkillSlotType _skillSlotType = SkillSlotType.ActiveSlot;
     [SerializeField] protected List<SkillEffect> _userEffects = new List<SkillEffect>();
     [SerializeField] protected List<SkillEffect> _enemyEffects = new List<SkillEffect>();
+
+    protected StringBuilder _stringBuilder = new StringBuilder(128, 128); // Для описания.
     /// <summary>
     /// Название умения.
     /// </summary>
-    public string Name => _name;
+    public string SkillName => _skillName;
     /// <summary>
     /// Иконка умения.
     /// </summary>

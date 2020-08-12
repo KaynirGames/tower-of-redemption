@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-        Room.OnActiveRoomChanged += MoveCamera;
+        Room.OnActiveRoomChange += MoveCamera;
     }
     /// <summary>
     /// Переместить камеру в активную комнату.

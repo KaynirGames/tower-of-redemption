@@ -6,7 +6,7 @@
 [System.Serializable]
 public class StatModifier
 {
-    [SerializeField] private float _value = 0;
+    [SerializeField] private float _value = 0f;
     [SerializeField] private ModifierType _type = ModifierType.Flat;
     /// <summary>
     /// Значение модификатора.
@@ -35,8 +35,6 @@ public class StatModifier
 
     public StatModifier(float value, ModifierType type, Object source) : this(value, type, (int)type, source) { }
 
-    public StatModifier(float value, ModifierType type, int priority) : this(value, type, priority, null) { }
-
     public StatModifier(float value, ModifierType type) : this(value, type, (int)type, null) { }
 
     public StatModifier()
@@ -44,7 +42,6 @@ public class StatModifier
         Priority = (int)_type;
         Source = null;
     }
-
     /// <summary>
     /// Применить модификатор к текущему значению стата.
     /// </summary>

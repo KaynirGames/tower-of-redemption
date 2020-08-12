@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Text;
 using UnityEngine;
 
 /// <summary>
@@ -7,7 +6,14 @@ using UnityEngine;
 /// </summary>
 public abstract class SkillEffect : ScriptableObject
 {
-    [SerializeField] protected ApplyType _applyType = ApplyType.Update;
+    [SerializeField] protected ApplyMethod _applyMethod = null;
+
+    /// <summary>
+    /// Способ наложения эффекта.
+    /// </summary>
+    public ApplyMethod ApplyMethod => _applyMethod;
+
+    protected StringBuilder _stringBuilder = new StringBuilder(64, 64); // Для описания.
     /// <summary>
     /// Применить эффект к цели.
     /// </summary>

@@ -6,13 +6,13 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     /// <summary>
-    /// Событие на загрузку комнаты.
+    /// Событие на завершение загрузки комнаты.
     /// </summary>
-    public static event Action<Room> OnRoomLoaded = delegate { };
+    public static event Action<Room> OnRoomLoadComplete = delegate { };
     /// <summary>
     /// Событие на смену активной комнаты.
     /// </summary>
-    public static event Action<Room> OnActiveRoomChanged = delegate { };
+    public static event Action<Room> OnActiveRoomChange = delegate { };
 
     [SerializeField] private int _width = 20; // Ширина комнаты.
     [SerializeField] private int _height = 12; // Высота комнаты.
@@ -33,12 +33,12 @@ public class Room : MonoBehaviour
     private void Start()
     {
         GameMaster.Instance.LoadedRooms.Add(this);
-        OnRoomLoaded?.Invoke(this);
+        OnRoomLoadComplete?.Invoke(this);
 
         // Заполняем список дверей в комнате.
         _roomDoors.AddRange(_roomEnvironment.GetComponentsInChildren<Door>());
 
-        DungeonStageManager.OnStageLoaded += PrepareRoom;
+        DungeonStageManager.OnStageLoadComplete += PrepareRoom;
     }
     /// <summary>
     /// Установить глобальную позицию комнаты на основной сцене.
@@ -51,16 +51,13 @@ public class Room : MonoBehaviour
         if (_pathfinder != null) _pathfinder.transform.position = worldPos;
     }
     /// <summary>
-    /// Открывает двери в комнате, не требующие ключа.
+    /// Открывает двери в комнате.
     /// </summary>
-    public void OpenKeylessDoors()
+    public void OpenDoors()
     {
         foreach (Door door in _roomDoors)
         {
-            if (!door.DoorType.NeedKey)
-            {
-                door.Open();
-            }
+            door.Open();
         }
     }
     /// <summary>
@@ -69,7 +66,7 @@ public class Room : MonoBehaviour
     private void PrepareRoom()
     {
         SetupCorrectDoors();
-        OpenKeylessDoors();
+        OpenDoors();
         CreatePathfindingGrid();
     }
     /// <summary>
@@ -142,7 +139,7 @@ public class Room : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _pathfinder?.gameObject.SetActive(true);
-            OnActiveRoomChanged?.Invoke(this);
+            OnActiveRoomChange?.Invoke(this);
         }
     }
 

@@ -9,7 +9,7 @@ public class ItemSpawner : MonoBehaviour
 
     private void Awake()
     {
-        DungeonStageManager.OnStageLoaded += SpawnItems;
+        DungeonStageManager.OnStageLoadComplete += SpawnItems;
     }
     /// <summary>
     /// Инициировать появление предметов после загрузки этажа.

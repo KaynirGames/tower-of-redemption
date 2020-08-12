@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +10,7 @@ public class DungeonStageManager : MonoBehaviour
     /// <summary>
     /// Событие на загрузку этажа подземелья.
     /// </summary>
-    public static event Action OnStageLoaded = delegate { };
+    public static event Action OnStageLoadComplete = delegate { };
     /// <summary>
     /// Точка на сетке подземелья для будущей комнаты.
     /// </summary>
@@ -42,21 +42,13 @@ public class DungeonStageManager : MonoBehaviour
     /// </summary>
     private Queue<GridPoint> _gridPointQueue;
     /// <summary>
-    /// Точка на сетке координат подземелья, куда в настоящий момент загружается комната.
+    /// Точка на сетке координат подземелья, куда загружается комната в настоящий момент.
     /// </summary>
     private GridPoint _currentGridPoint;
-    /// <summary>
-    /// Происходит ли загрузка комнаты в настоящий момент?
-    /// </summary>
-    private bool _isLoadingRoom;
     /// <summary>
     /// Выбранные позиции на сетке подземелья.
     /// </summary>
     private List<Vector2Int> _selectedRoute;
-    /// <summary>
-    /// Загрузились ли все комнаты на этаже?
-    /// </summary>
-    private bool _stageLoadComplete = false;
 
     private void Awake()
     {
@@ -66,20 +58,16 @@ public class DungeonStageManager : MonoBehaviour
 
     private void Start()
     {
-        Room.OnRoomLoaded += RegisterRoom;
+        Room.OnRoomLoadComplete += RegisterRoom;
         CreateDungeonStage(currentStage);
     }
 
-    private void Update()
-    {
-        TryLoadNext();
-    }
     /// <summary>
     /// Сформировать все комнаты на этаже подземелья.
     /// </summary>
     /// <param name="dungeonStage">Информация об этаже подземелья.</param>
     public void CreateDungeonStage(DungeonStage dungeonStage)
-    {      
+    {
         _selectedRoute = _routeController.RequestRoute(dungeonStage);
 
         SpawnSpecificRoom(currentStage.StartRoom, _selectedRoute[0]);
@@ -90,6 +78,8 @@ public class DungeonStageManager : MonoBehaviour
             RoomType randomType = (RoomType)dungeonStage.OptionalRooms.ChooseRandom();
             CreateGridPoint(randomType, _selectedRoute[i]);
         }
+
+        TryLoadNext();
     }
     /// <summary>
     /// Создать новую точку на сетке подземелья.
@@ -115,19 +105,14 @@ public class DungeonStageManager : MonoBehaviour
     /// </summary>
     private void TryLoadNext()
     {
-        if (_stageLoadComplete)
-            return;
-
-        if (!_isLoadingRoom && _gridPointQueue.Count != 0)
+        if (_gridPointQueue.Count > 0)
         {
             _currentGridPoint = _gridPointQueue.Dequeue();
-            _isLoadingRoom = true;
             StartCoroutine(LoadRoomScene(_currentGridPoint.RoomScene));
         }
-        else if (!_isLoadingRoom && _gridPointQueue.Count == 0)
+        else
         {
-            _stageLoadComplete = true;
-            OnStageLoaded?.Invoke();
+            OnStageLoadComplete?.Invoke();
         }
     }
     /// <summary>
@@ -149,6 +134,7 @@ public class DungeonStageManager : MonoBehaviour
     {
         room.DungeonGridPosition = _currentGridPoint.GridPosition;
         room.SetWorldPosition();
-        _isLoadingRoom = false;
+
+        TryLoadNext();
     }
 }
