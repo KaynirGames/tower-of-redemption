@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,9 +40,12 @@ public class CharacterStats : MonoBehaviour
     /// Показатель магической защиты.
     /// </summary>
     public Stat MagicDefence { get; private set; }
+    /// <summary>
+    /// Эффекты, действующие на персонажа.
+    /// </summary>
+    public List<SkillEffect> CharacterEffects /*{ get; }*/ = new List<SkillEffect>();
 
     private List<ElementEfficacy> _elementEfficacies; // Эффективности воздействия стихий на персонажа.
-    private readonly List<SkillEffect> _characterEffects = new List<SkillEffect>(); // Эффекты, действующие на персонажа.
 
     /// <summary>
     /// Задать базовые статы для текущей специализации персонажа.
@@ -64,14 +66,21 @@ public class CharacterStats : MonoBehaviour
             new ElementEfficacy(currentSpec.BaseWaterEfficacy, ElementType.Water)
         };
         CurrentHealth = MaxHealth.GetValue();
-        CurrentEnergy = MaxEnergy.GetValue();
+        CurrentEnergy = 0;
     }
     /// <summary>
     /// Получить урон текущему здоровью.
     /// </summary>
-    public float TakeDamage(float damageTaken)
+    public void TakeDamage(float damageTaken)
     {
-        return ApplyDamageTaken(damageTaken);
+        if (damageTaken < 0) damageTaken = Mathf.Max(damageTaken, 0);
+
+        CurrentHealth = Mathf.Clamp(CurrentHealth - damageTaken, 0, MaxHealth.GetValue());
+
+        if (CurrentHealth <= 0)
+        {
+            OnCharacterDeath?.Invoke();
+        }
     }
     /// <summary>
     /// Получить эффективность воздействия магического элемента.
@@ -85,31 +94,13 @@ public class CharacterStats : MonoBehaviour
     /// </summary>
     public bool IsEnoughEnergy(int energyCost)
     {
-        CurrentEnergy -= energyCost;
-
-        return (CurrentEnergy < 0) ? false : true;
+        return (CurrentEnergy - energyCost < 0) ? false : true;
     }
     /// <summary>
     /// Проверить наличие эффекта на персонаже.
     /// </summary>
     public bool IsEffectExist(SkillEffect effect)
     {
-        return _characterEffects.Contains(effect);
-    }
-    /// <summary>
-    /// Применить рассчитанный урон к текущему здоровью.
-    /// </summary>
-    private float ApplyDamageTaken(float damageTaken)
-    {
-        if (damageTaken < 0) damageTaken = Mathf.Max(damageTaken, 0);
-
-        CurrentHealth -= damageTaken;
-
-        if (CurrentHealth <= 0)
-        {
-            OnCharacterDeath?.Invoke();
-        }
-
-        return damageTaken;
+        return CharacterEffects.Contains(effect);
     }
 }

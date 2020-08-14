@@ -3,7 +3,8 @@
 [CreateAssetMenu(fileName = "NewDungeonStage", menuName = "Scriptable Objects/Dungeon Generation/Dungeon Stage")]
 public class DungeonStage : ScriptableObject
 {
-    [SerializeField] private string _name = "Undefined";
+    [SerializeField] private string _stageSceneName = "Undefined";
+    [SerializeField] private TranslatedText _displayNameKey = null;
     [SerializeField] private int _minRouteLength = 0;
     [SerializeField] private int _maxRouteLength = 0;
     [SerializeField] private int _routeSpawnerCount = 0;
@@ -11,9 +12,13 @@ public class DungeonStage : ScriptableObject
     [SerializeField] private RoomType _bossRoom = null;
     [SerializeField] private SpawnTable _optionalRooms = null;
     /// <summary>
-    /// Название этажа подземелья.
+    /// Название этажа для загрузки сцены с комнатой.
     /// </summary>
-    public string Name => _name;
+    public string StageSceneName => _stageSceneName;
+    /// <summary>
+    /// Отображаемое название этажа подземелья.
+    /// </summary>
+    public string DisplayName => _displayNameKey.Value;
     /// <summary>
     /// Минимальная длина коридора (количество комнат) на этаже.
     /// </summary>

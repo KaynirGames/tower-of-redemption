@@ -10,17 +10,16 @@ public class Stat
     private float _currentValue; // Текущее значение стата с модификаторами.
     private bool _modifiersChanged; // Для определения изменений в модификаторах.
 
-    public Stat(float baseValue) : this()
+    public Stat(float baseValue)
     {
         _baseValue = baseValue;
-    }
-
-    public Stat()
-    {
         _modifiers = new List<StatModifier>();
         _currentValue = _baseValue;
         _modifiersChanged = false;
     }
+
+    public Stat() : this(0f) { }
+
     /// <summary>
     /// Получить значение стата с учетом модификаторов (если они имеются).
     /// </summary>

@@ -9,7 +9,6 @@ public enum EnemyStateKey
 {
     PlayerInSight,
     PlayerOffSight,
-    PlayerInBattle,
     WaitComplete
 }
 
@@ -33,7 +32,6 @@ public class EnemyAI : MonoBehaviour
         _target = GameMaster.Instance.ActivePlayer.transform;
 
         EnemyWait enemyWait = new EnemyWait(this, _waitTimeOnTargetLost);
-        //EnemyBattle enemyBattle = new EnemyBattle(this);
         EnemyChase enemyChase = new EnemyChase(this, _target);
         EnemyPatrol enemyPatrol = new EnemyPatrol(this, _includeObstaclesOnPatrol, enemyWait);
 
@@ -42,7 +40,6 @@ public class EnemyAI : MonoBehaviour
 
         // Переходы из состояния преследования цели.
         enemyChase.AddTransition(EnemyStateKey.PlayerOffSight, enemyWait);
-        //enemyChase.AddTransition(EnemyStateKey.PlayerInBattle, enemyBattle);
 
         // Переходы из состояния ожидания.
         enemyWait.AddTransition(EnemyStateKey.PlayerInSight, enemyChase);
@@ -91,6 +88,11 @@ public class EnemyAI : MonoBehaviour
     private bool TargetInRange(Transform target, float range)
     {
         return Vector2.Distance(transform.position, target.position) <= range;
+    }
+
+    private void OnDisable()
+    {
+        StopMovement();
     }
 
     private void OnDrawGizmos()

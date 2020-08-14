@@ -1,63 +1,55 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Text;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewAttackSkill", menuName = "Scriptable Objects/Battle/Skills/Attack Skill")]
 public class AttackSkill : Skill
 {
     [Header("Параметры атакующего умения:")]
-    [SerializeField] private DamageType[] _damageTypes = null;
+    [SerializeField] private DamageType[] _damageTypes = null; // Типы наносимого урона.
 
     public override void Activate(CharacterStats user, CharacterStats target)
     {
+        List<float> damageList = new List<float>();
+
+        // Записываем получаемый целью урон.
         foreach (DamageType damageType in _damageTypes)
         {
-            float damage = damageType.CalculateDamage(user, target, _powerTier);
-            target.TakeDamage(damage);
+            damageList.Add(damageType.CalculateDamage(user, target, _powerTier));
         }
 
-        foreach (SkillEffect effect in _userEffects)
-        {
-            effect.Apply(user);
-        }
+        // Накладываем эффекты.
+        _userEffects.ForEach(effect => effect.Apply(user));
+        _enemyEffects.ForEach(effect => effect.Apply(target));
 
-        foreach (SkillEffect effect in _enemyEffects)
-        {
-            effect.Apply(target);
-        }
+        // Наносим рассчитанный урон.
+        damageList.ForEach(damage => target.TakeDamage(damage));
     }
 
     public override void Deactivate(CharacterStats user, CharacterStats target) { }
 
-    public override string GetDescription()
+    public override StringBuilder GetDescription()
     {
-        string descriptionFull = string.Empty;
+        _stringBuilder.Clear();
+        _stringBuilder.Append(GameTexts.Instance.DamageTypeLabel);
+        _stringBuilder.Append(": ");
+        _stringBuilder.Append(_damageTypes[0].Name);
 
-        if (_damageTypes.Length > 0)
+        for (int i = 1; i < _damageTypes.Length; i++)
         {
-            descriptionFull = string.Format("Урон: {0}", _damageTypes[0].Name);
-
-            for (int i = 1; i < _damageTypes.Length; i++)
-            {
-                descriptionFull += string.Format(" / {0}", _damageTypes[i].Name);
-            }
+            _stringBuilder.Append(" / ");
+            _stringBuilder.Append(_damageTypes[i].Name);
         }
 
-        descriptionFull += string.Format("\nСтоимость: {0} ДЭ", _cost);
-        descriptionFull += string.Format("\nПерезарядка: {0} сек", _cooldown);
+        _stringBuilder.AppendLine();
+        _stringBuilder.Append(GameTexts.Instance.UserEffectsLabel);
+        _stringBuilder.AppendLine(":");
+        _userEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription()));
 
-        //foreach (SkillEffect effect in _userEffects)
-        //{
-        //    descriptionFull += string.Format("\n{0} / {1})",
-        //        effect.GetDescription(), GameDictionary.TargetTypeNames[TargetType.Self]);
-        //}
+        _stringBuilder.Append(GameTexts.Instance.EnemyEffectsLabel);
+        _stringBuilder.AppendLine(":");
+        _enemyEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription()));
 
-        //foreach (SkillEffect effect in _enemyEffects)
-        //{
-        //    descriptionFull += string.Format("\n{0} / {1})",
-        //        effect.GetDescription(), GameDictionary.TargetTypeNames[TargetType.Enemy]);
-        //}
-
-        descriptionFull += "\n" + _description;
-
-        return descriptionFull;
+        return _stringBuilder;
     }
 }

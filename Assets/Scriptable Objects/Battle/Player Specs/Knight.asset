@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseHealth: 110
   _baseEnergy: 100
-  _baseStrength: 0
-  _baseWill: 0
-  _baseDefence: 0
-  _baseMagicDefence: 0
+  _baseStrength: 25
+  _baseWill: 5
+  _baseDefence: 40
+  _baseMagicDefence: 10
   _baseFireEfficacy: 100
   _baseAirEfficacy: 100
   _baseEarthEfficacy: 100

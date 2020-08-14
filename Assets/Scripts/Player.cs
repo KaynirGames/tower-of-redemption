@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static event Action<Player> OnPlayerActive = delegate { };
+    public static event BattleManager.OnBattleEnd OnBattleEnd = delegate { };
 
     [SerializeField] private PlayerSpec _currentSpec = null;
     [SerializeField] private Inventory _inventory = null;
@@ -21,22 +22,26 @@ public class Player : MonoBehaviour
     /// Книга умений игрока.
     /// </summary>
     public SkillBook SkillBook => _skillBook;
+    /// <summary>
+    /// Статы персонажа.
+    /// </summary>
+    public CharacterStats PlayerStats { get; private set; }
 
-    private CharacterStats _playerStats; // Статы персонажа.
     private Vector2 _moveDirection = Vector2.zero;
     private CharacterMoveBase _characterMoveBase;
     private BaseAnimation _baseAnimation;
 
     private void Awake()
     {
-        _playerStats = GetComponent<CharacterStats>();
+        PlayerStats = GetComponent<CharacterStats>();
         _characterMoveBase = GetComponent<CharacterMoveBase>();
         _baseAnimation = GetComponent<BaseAnimation>();
     }
 
     private void Start()
     {
-        _playerStats.SetBaseStats(_currentSpec);
+        PlayerStats.SetBaseStats(_currentSpec);
+        PlayerStats.OnCharacterDeath += Die;
         _skillBook.SetBaseSkills(_currentSpec);
 
         OnPlayerActive?.Invoke(this);
@@ -62,5 +67,10 @@ public class Player : MonoBehaviour
             _characterMoveBase.SetMoveDirection(_moveDirection);
             _baseAnimation.PlayMoveClip(_moveDirection);
         }
+    }
+
+    private void Die()
+    {
+        OnBattleEnd.Invoke(true);
     }
 }

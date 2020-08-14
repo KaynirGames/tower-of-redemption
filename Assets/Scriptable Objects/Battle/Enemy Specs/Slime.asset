@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c70923fe7c8a3644a59cb893db8e93c, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
-  BaseHealth: 20
-  BaseAbilityPoints: 5
-  BaseArmor: 0
-  BaseMagicDefence: 0
-  BaseFireEfficacy: 200
-  BaseAirEfficacy: 100
-  BaseEarthEfficacy: 100
-  BaseWaterEfficacy: 100
+  _baseHealth: 50
+  _baseEnergy: 10
+  _baseStrength: 5
+  _baseWill: 5
+  _baseDefence: 50
+  _baseMagicDefence: 10
+  _baseFireEfficacy: 100
+  _baseAirEfficacy: 100
+  _baseEarthEfficacy: 100
+  _baseWaterEfficacy: 100
+  _baseSkills: []
   DisplayName: "\u0421\u043B\u0438\u0437\u044C"
   AbilityPointRegenOverTime: 1
   AbilityPointRegenTime: 0.5

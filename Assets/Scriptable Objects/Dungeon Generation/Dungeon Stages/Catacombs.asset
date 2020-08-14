@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2988be5c55ebb7d478a69d8a0429f6bf, type: 3}
   m_Name: Catacombs
   m_EditorClassIdentifier: 
-  _name: Catacombs
+  _stageSceneName: Catacombs
+  _displayNameKey:
+    _key: Stage.Catacombs
   _minRouteLength: 3
   _maxRouteLength: 5
   _routeSpawnerCount: 3

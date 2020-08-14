@@ -12,8 +12,8 @@ public class MagicDamage : DamageType
     {
         float userPower = user.Will.GetValue() * tier.PowerModifier;
         float targetDefence = 1 - (target.Defence.GetValue() / 100);
-        float efficacyModifier = 1 - target.GetElementEfficacy(_elementType).EfficacyRate / 100;
+        float efficacyModifier = target.GetElementEfficacy(_elementType).EfficacyRate / 100;
 
-        return Mathf.Round((userPower - targetDefence) * efficacyModifier);
+        return Mathf.Round(userPower * targetDefence * efficacyModifier);
     }
 }

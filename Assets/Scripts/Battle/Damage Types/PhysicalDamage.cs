@@ -11,6 +11,6 @@ public class PhysicalDamage : DamageType
         float userPower = user.Strength.GetValue() * tier.PowerModifier;
         float targetDefence = 1 - (target.Defence.GetValue() / 100);
 
-        return Mathf.Round(userPower - targetDefence);
+        return Mathf.Round(userPower * targetDefence);
     }
 }

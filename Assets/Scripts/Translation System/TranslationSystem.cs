@@ -22,6 +22,10 @@ public static class TranslationSystem
         { SystemLanguage.English, "translation_EN" }
     };
     /// <summary>
+    /// Язык перевода по умолчанию.
+    /// </summary>
+    private static readonly SystemLanguage _defaultLanguage = SystemLanguage.English;
+    /// <summary>
     /// Получить путь к файлу с переводом.
     /// </summary>
     public static string GetFilePath(SystemLanguage language)
@@ -155,7 +159,7 @@ public static class TranslationSystem
         }
 
         AssetDatabase.Refresh();
-        Translator.SetTranslation(SystemLanguage.Russian);
+        Translator.SetTranslation(_defaultLanguage);
     }
     /// <summary>
     /// Получить значение переведенного текста.

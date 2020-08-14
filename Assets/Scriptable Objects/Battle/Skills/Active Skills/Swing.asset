@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a38ba9cf98e16f4baed4ca742c78221, type: 3}
   m_Name: Swing
   m_EditorClassIdentifier: 
-  _name: "\u0412\u0437\u043C\u0430\u0445"
+  _skillName: "\u0412\u0437\u043C\u0430\u0445"
   _description: "\u041F\u0440\u043E\u0441\u0442\u043E\u0439 \u0432\u0437\u043C\u0430\u0445
     \u043C\u0435\u0447\u043E\u043C."
   _icon: {fileID: 21300000, guid: d0b7841d436f01e4f8d4dd7403186c3c, type: 3}
@@ -21,7 +21,8 @@ MonoBehaviour:
   _powerTier: {fileID: 11400000, guid: 3db7a66af4379364294e32de14dc1afd, type: 2}
   _targetType: 1
   _skillSlotType: 0
-  _userEffects: []
+  _userEffects:
+  - {fileID: 11400000, guid: 83a91e34caefac44988e45d09021d470, type: 2}
   _enemyEffects: []
   _damageTypes:
   - {fileID: 11400000, guid: 5c8a5d3b7b464c14882c006366947081, type: 2}

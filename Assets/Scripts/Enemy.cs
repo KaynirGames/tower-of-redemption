@@ -3,26 +3,34 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public static BattleManager.OnBattleTrigger OnBattleTrigger = delegate { };
+    public static event BattleManager.OnBattleTrigger OnBattleTrigger = delegate { return false; };
+    public static event BattleManager.OnBattleEnd OnBattleEnd = delegate { };
 
-    [SerializeField] private EnemySpec _enemySpec = null; // Спек противника.
+    [SerializeField] private EnemySpec _enemySpec = null;
+    /// <summary>
+    /// Специализация противника.
+    /// </summary>
+    public EnemySpec EnemySpec => _enemySpec;
+    /// <summary>
+    /// Статы противника.
+    /// </summary>
+    public CharacterStats EnemyStats { get; private set; }
 
     private bool FacingRight = true; // Направление взгляда противника.
-    private CharacterStats _enemyStats; // Статы противника.
     private EnemyAI _enemyAI = null; // Основной ИИ противника.
     private EnemyBattleAI _enemyBattleAI = null; // Боевой ИИ противника.
 
     private void Awake()
     {
-        _enemyStats = GetComponent<CharacterStats>();
+        EnemyStats = GetComponent<CharacterStats>();
         _enemyAI = GetComponent<EnemyAI>();
         _enemyBattleAI = GetComponent<EnemyBattleAI>();
     }
 
     private void Start()
     {
-        _enemyStats.SetBaseStats(_enemySpec);
-        _enemyStats.OnCharacterDeath += Die;
+        EnemyStats.SetBaseStats(_enemySpec);
+        EnemyStats.OnCharacterDeath += Die;
         EnemyManager.Instance.RegisterEnemy(this);
     }
 
@@ -46,6 +54,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        OnBattleEnd.Invoke(false);
+        Destroy(gameObject);
         // Выйти из боевой системы.
         // Заспавнить лут.
         // Уничтожить объект.
@@ -55,9 +65,13 @@ public class Enemy : MonoBehaviour
     {
         if (other.GetComponent<Player>() != null)
         {
-            OnBattleTrigger?.Invoke(this, false);
-            _enemyAI.enabled = false;
-            _enemyBattleAI.enabled = true;
+            bool inBattle = OnBattleTrigger.Invoke(this, false);
+
+            if (inBattle)
+            {
+                _enemyAI.enabled = false;
+                _enemyBattleAI.enabled = true;
+            }
         }
     }
 }

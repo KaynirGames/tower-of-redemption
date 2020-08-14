@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96b5b2cce4cfbb4da7d8dd94f3023e4, type: 3}
   m_Name: UpdateEffectAM
   m_EditorClassIdentifier: 
-  _name: "\u041E\u0431\u043D\u043E\u0432"
+  _nameKey:
+    _key: ApplyMethod.Update

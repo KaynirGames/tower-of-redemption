@@ -88,7 +88,7 @@ public class DungeonStageManager : MonoBehaviour
     /// <param name="gridPosition">Позиция на сетке координат подземелья.</param>
     private void CreateGridPoint(RoomType roomType, Vector2Int gridPosition)
     {
-        string roomSceneName = string.Concat(currentStage.Name, "_", roomType.Name);
+        string roomSceneName = string.Concat(currentStage.StageSceneName, "_", roomType.RoomSceneName);
         GridPoint newGridPoint = new GridPoint(roomSceneName, gridPosition);
         _gridPointQueue.Enqueue(newGridPoint);
     }

@@ -7,11 +7,15 @@ using UnityEngine;
 public abstract class SkillEffect : ScriptableObject
 {
     [SerializeField] protected ApplyMethod _applyMethod = null;
-
+    [SerializeField] protected DurationType _durationType = null;
     /// <summary>
     /// Способ наложения эффекта.
     /// </summary>
     public ApplyMethod ApplyMethod => _applyMethod;
+    /// <summary>
+    /// Тип продолжительности эффекта.
+    /// </summary>
+    public DurationType DurationType => _durationType;
 
     protected StringBuilder _stringBuilder = new StringBuilder(64, 64); // Для описания.
     /// <summary>

@@ -7,8 +7,8 @@ public class TranslationSearchWindow : EditorWindow
     private Dictionary<string, string> _translationRU;
     private Dictionary<string, string> _translationEN;
 
-    private string _searchValue;
-    private Vector2 _scroll;
+    private string _searchValue = string.Empty;
+    private Vector2 _scroll = Vector2.zero;
 
     public static void Open()
     {
@@ -69,7 +69,7 @@ public class TranslationSearchWindow : EditorWindow
                     }
                 }
 
-                EditorGUILayout.LabelField(line.Key);
+                EditorGUILayout.TextField(line.Key);
 
                 EditorGUILayout.BeginVertical();
 

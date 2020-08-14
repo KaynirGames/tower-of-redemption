@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adce6a689371916469d10644baf1f47e, type: 3}
   m_Name: StartRoom
   m_EditorClassIdentifier: 
-  _name: StartRoom
+  _roomSceneName: StartRoom
   _doorType: {fileID: 11400000, guid: 72c70f045dbf8024bb2a7b0b6aebd805, type: 2}
   _isStartPoint: 1

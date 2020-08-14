@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -9,8 +8,9 @@ using UnityEngine;
 public abstract class Skill : ScriptableObject
 {
     [Header("Информация для отображения:")]
-    [SerializeField] protected string _skillName = string.Empty;
-    [SerializeField, TextArea(5,5)] protected string _description = string.Empty;
+    [SerializeField] protected TranslatedText _skillNameKey = null;
+    [SerializeField] protected SkillType _skillType = null;
+    [SerializeField, TextArea(5, 5)] protected string _description = string.Empty;
     [SerializeField] protected Sprite _icon = null;
     [Header("Общие параметры умения:")]
     [SerializeField] protected float _cost = 0;
@@ -25,7 +25,11 @@ public abstract class Skill : ScriptableObject
     /// <summary>
     /// Название умения.
     /// </summary>
-    public string SkillName => _skillName;
+    public string SkillName => _skillNameKey.Value;
+    /// <summary>
+    /// Тип умения.
+    /// </summary>
+    public SkillType SkillType => _skillType;
     /// <summary>
     /// Иконка умения.
     /// </summary>
@@ -53,7 +57,7 @@ public abstract class Skill : ScriptableObject
     /// <summary>
     /// Получить описание умения.
     /// </summary>
-    public abstract string GetDescription();
+    public abstract StringBuilder GetDescription();
     /// <summary>
     /// Активировать умение.
     /// </summary>

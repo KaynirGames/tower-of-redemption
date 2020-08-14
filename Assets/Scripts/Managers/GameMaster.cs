@@ -38,9 +38,9 @@ public class GameMaster : MonoBehaviour
 
     private void SetActivePlayer(Player player) => ActivePlayer = player;
 
-    //private void OnValidate()
-    //{
-    //    Translator.SetTranslation(_gameLanguage);
-    //    Debug.Log("Current language is set to " + _gameLanguage.ToString());
-    //}
+    private void OnValidate()
+    {
+        Translator.SetTranslation(_gameLanguage);
+        Debug.Log("Current language is set to " + _gameLanguage.ToString());
+    }
 }
