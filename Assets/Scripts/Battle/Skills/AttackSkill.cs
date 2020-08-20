@@ -28,9 +28,10 @@ public class AttackSkill : Skill
 
     public override void Deactivate(CharacterStats user, CharacterStats target) { }
 
-    public override StringBuilder GetDescription()
+    public override StringBuilder GetParamsDescription()
     {
         _stringBuilder.Clear();
+
         _stringBuilder.Append(GameTexts.Instance.DamageTypeLabel);
         _stringBuilder.Append(": ");
         _stringBuilder.Append(_damageTypes[0].Name);
@@ -41,14 +42,17 @@ public class AttackSkill : Skill
             _stringBuilder.Append(_damageTypes[i].Name);
         }
 
-        _stringBuilder.AppendLine();
-        _stringBuilder.Append(GameTexts.Instance.UserEffectsLabel);
-        _stringBuilder.AppendLine(":");
-        _userEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription()));
+        _stringBuilder.AppendLine().AppendLine();
 
-        _stringBuilder.Append(GameTexts.Instance.EnemyEffectsLabel);
-        _stringBuilder.AppendLine(":");
-        _enemyEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription()));
+        if (_userEffects.Count > 0)
+        {
+            _userEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Self)));
+        }
+
+        if (_enemyEffects.Count > 0)
+        {
+            _enemyEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Enemy)));
+        }
 
         return _stringBuilder;
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 
@@ -15,6 +16,13 @@ public class BattleTester : MonoBehaviour
     private Player _player;
     private Enemy _currentEnemy;
 
+    public SkillDescriptionUI descriptionUI;
+
+    private void Start()
+    {
+        //descriptionUI.ShowDescription(_testSkill);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
@@ -23,7 +31,7 @@ public class BattleTester : MonoBehaviour
             {
                 _currentEnemy = Instantiate(_testEnemyPrefab, _testSpawn.position, Quaternion.identity);
                 OnBattleTrigger.Invoke(_currentEnemy, _isPlayerAdvantage);
-                if (_player == null) _player = GameMaster.Instance.ActivePlayer;
+                if (_player == null) _player = PlayerManager.Instance.Player;
             }
         }
 
@@ -41,6 +49,18 @@ public class BattleTester : MonoBehaviour
         {
             Destroy(_currentEnemy.gameObject);
             _currentEnemy = null;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            _player.PlayerStats.MaxHealth.AddModifier(new StatModifier(10, ModifierType.Flat, this));
+            _player.PlayerStats.UpdateResourcesDisplay();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            _player.PlayerStats.MaxHealth.RemoveSourceModifiers(this);
+            _player.PlayerStats.UpdateResourcesDisplay();
         }
     }
 }

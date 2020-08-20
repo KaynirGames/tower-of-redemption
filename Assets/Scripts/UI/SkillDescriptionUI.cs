@@ -1,50 +1,38 @@
-﻿using UnityEngine;
-using TMPro;
-using System.Text;
+﻿using TMPro;
+using UnityEngine;
 
 public class SkillDescriptionUI : MonoBehaviour
 {
-    [Header("Переведенные заголовки:")]
-    [SerializeField] private TranslatedText _tierLabelKey = null;
-    [SerializeField] private TranslatedText _costLabelKey = null;
-    [SerializeField] private TranslatedText _cooldownLabelKey = null;
-    [Header("Текстовые поля для отображения:")]
-    [SerializeField] private TextMeshProUGUI _nameTextField = null; // Текстовое поле для названия умения.
-    [SerializeField] private TextMeshProUGUI _typeTextField = null; // Текстовое поле для типа умения.
-    [SerializeField] private TextMeshProUGUI _descriptionText = null; // Текстовое поле для описания умения.
+    [Header("Взаимоотключаемые объекты:")]
+    [SerializeField] private GameObject _skillDescriptionPanel = null;
+    [SerializeField] private GameObject _specDescriptionPanel = null;
+    [Header("Отображение данных об умении:")]
+    [SerializeField] private TextMeshProUGUI _nameField = null; // Текстовое поле для названия умения.
+    [SerializeField] private TextMeshProUGUI _typeField = null; // Текстовое поле для типа умения.
+    [SerializeField] private TextMeshProUGUI _tierField = null; // Текстовое поле для ранга умения.
+    [SerializeField] private TextMeshProUGUI _costField = null; // Текстовое поля для стоимости умения.
+    [SerializeField] private TextMeshProUGUI _cooldownField = null; // Текстовое поле для перезарядки умения.
+    [SerializeField] private TextMeshProUGUI _paramsField = null; // Текстовое поля для параметров умения.
+    [SerializeField] private TextMeshProUGUI _descriptionField = null; // Текстовое поле для описания умения.
 
-    private StringBuilder _stringBuilder = new StringBuilder(64, 64);
-
+    private void Awake()
+    {
+        SkillSlotUI.OnDescriptionCall += ShowDescription;
+    }
+    /// <summary>
+    /// Показать описание объекта.
+    /// </summary>
     public void ShowDescription(Skill skill)
     {
-        _nameTextField.SetText(skill.SkillName);
+        _nameField.SetText(skill.SkillName);
+        _typeField.SetText(skill.SkillType.TypeName);
+        _tierField.SetText(skill.PowerTier.TierName);
+        _costField.SetText(skill.Cost.ToString());
+        _cooldownField.SetText(skill.Cooldown.ToString());
+        _paramsField.SetText(skill.GetParamsDescription());
+        _descriptionField.SetText(skill.Description);
 
-        _typeTextField.SetText(BuildTypeText(skill));
-
-        _descriptionText.SetText(skill.GetDescription());
-
-        gameObject.SetActive(true);
-    }
-
-    private StringBuilder BuildTypeText(Skill skill)
-    {
-        _stringBuilder.Clear();
-        _stringBuilder.Append(skill.SkillType.TypeName);
-        _stringBuilder.Append(" (");
-        _stringBuilder.Append(_tierLabelKey.Value);
-        _stringBuilder.Append(": ");
-        _stringBuilder.Append(skill.PowerTier.TierName);
-        _stringBuilder.Append(")");
-
-        return _stringBuilder;
-    }
-
-    public void HideDescription()
-    {
-        _nameTextField.ClearMesh();
-        _typeTextField.ClearMesh();
-        _descriptionText.ClearMesh();
-
-        gameObject.SetActive(false);
+        _specDescriptionPanel.SetActive(false);
+        _skillDescriptionPanel.SetActive(true);
     }
 }

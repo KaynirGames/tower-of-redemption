@@ -43,7 +43,7 @@ public class TranslationSearchWindow : EditorWindow
         if (_searchValue == null || _searchValue == string.Empty) { return; }
 
         EditorGUILayout.BeginVertical();
-        EditorGUILayout.BeginScrollView(_scroll);
+        _scroll = EditorGUILayout.BeginScrollView(_scroll);
 
         foreach (var line in _translationEN)
         {

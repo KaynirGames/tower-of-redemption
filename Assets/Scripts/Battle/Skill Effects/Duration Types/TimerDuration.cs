@@ -9,17 +9,17 @@ public class TimerDuration : DurationType
 {
     [SerializeField] private float _timer = 0f; // Таймер продолжительности эффекта.
 
-    public override string TypeName => string.Format("{0} {1}", _timer, _typeNameKey.Value);
+    public override string TypeName => string.Format("{0} {1}", _timer, _typeNameText.Value);
 
     public override void Execute(SkillEffect effect, CharacterStats target)
     {
-        target.CharacterEffects.Add(effect);
+        target.InflictedEffects.Add(effect);
         target.StartCoroutine(TimerRoutine(effect, target, _timer));
     }
 
     public override void Terminate(SkillEffect effect, CharacterStats target)
     {
-        target.CharacterEffects.Remove(effect);
+        target.InflictedEffects.Remove(effect);
     }
     /// <summary>
     /// Корутина таймера до снятия эффекта.

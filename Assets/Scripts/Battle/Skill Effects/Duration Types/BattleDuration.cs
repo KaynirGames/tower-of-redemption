@@ -15,13 +15,13 @@ public class BattleDuration : DurationType
 
     public override void Execute(SkillEffect effect, CharacterStats target)
     {
-        target.CharacterEffects.Add(effect);
+        target.InflictedEffects.Add(effect);
         BattleManager.Instance.OnBattleDurationExpire += effect.Remove;
     }
 
     public override void Terminate(SkillEffect effect, CharacterStats target)
     {
-        target.CharacterEffects.Remove(effect);
+        target.InflictedEffects.Remove(effect);
         BattleManager.Instance.OnBattleDurationExpire -= effect.Remove;
     }
 }

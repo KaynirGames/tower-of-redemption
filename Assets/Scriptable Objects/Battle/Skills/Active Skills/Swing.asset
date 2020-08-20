@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a38ba9cf98e16f4baed4ca742c78221, type: 3}
   m_Name: Swing
   m_EditorClassIdentifier: 
-  _skillName: "\u0412\u0437\u043C\u0430\u0445"
-  _description: "\u041F\u0440\u043E\u0441\u0442\u043E\u0439 \u0432\u0437\u043C\u0430\u0445
-    \u043C\u0435\u0447\u043E\u043C."
+  _skillNameText:
+    _key: Skill.Swing.Name
+  _skillType: {fileID: 11400000, guid: 548835beff8d12e46b34e1b82d544701, type: 2}
+  _descriptionText:
+    _key: Skill.Swing.Description
   _icon: {fileID: 21300000, guid: d0b7841d436f01e4f8d4dd7403186c3c, type: 3}
   _cost: 5
   _cooldown: 2

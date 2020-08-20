@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f3048eb3cc88b4ab66a177f2e0cd81, type: 3}
   m_Name: 15_TimerDuration
   m_EditorClassIdentifier: 
-  _typeNameKey:
-    _key: Unit.Seconds
+  _typeNameText:
+    _key: DurationType.Timer
   _timer: 15

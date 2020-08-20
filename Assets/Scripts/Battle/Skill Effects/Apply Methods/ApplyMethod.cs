@@ -5,11 +5,11 @@
 /// </summary>
 public abstract class ApplyMethod : ScriptableObject
 {
-    [SerializeField] protected TranslatedText _nameKey = null;
+    [SerializeField] protected TranslatedText _methodNameText = null;
     /// <summary>
     /// Наименование способа наложения эффекта.
     /// </summary>
-    public string Name => _nameKey.Value;
+    public string MethodName => _methodNameText.Value;
     /// <summary>
     /// Обработать способ наложения эффекта.
     /// </summary>

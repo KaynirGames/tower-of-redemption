@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - Wall
   - Obstacle
-  - 
-  - 
+  - PlayerUI
+  - InventoryUI
+  - BattleUI
   - 
   - 
   - 

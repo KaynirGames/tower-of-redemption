@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: STR_+5_Battle_Stack
   m_EditorClassIdentifier: 
   _applyMethod: {fileID: 11400000, guid: 0e763919a6bcf93498d594b06ca78662, type: 2}
-  _durationType: {fileID: 11400000, guid: 4adc4b55fbf9b714a885d71ecc31fec5, type: 2}
+  _durationType: {fileID: 11400000, guid: a01206fd5eb5b2a4a9b6a85b8294ae40, type: 2}
   _modifierValue: 5
   _modifierType: 300
   _statShrinkName:

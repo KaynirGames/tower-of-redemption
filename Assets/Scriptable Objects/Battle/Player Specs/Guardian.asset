@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 391a4de9ea6faed459cbf08bdc8bf010, type: 3}
-  m_Name: Knight
+  m_Name: Guardian
   m_EditorClassIdentifier: 
-  _baseHealth: 110
-  _baseEnergy: 100
+  _baseHealth: 120
+  _baseEnergy: 80
   _baseStrength: 25
   _baseWill: 5
   _baseDefence: 40
@@ -22,5 +22,10 @@ MonoBehaviour:
   _baseAirEfficacy: 100
   _baseEarthEfficacy: 100
   _baseWaterEfficacy: 100
-  _baseSkills: []
-  _description: New Spec Description
+  _baseSkills:
+  - {fileID: 11400000, guid: bbf13af2daf87dc4fbb21968f24b3975, type: 2}
+  _icon: {fileID: 21300000, guid: f85412783b178be44b19e6a1b23539b2, type: 3}
+  _specName:
+    _key: PlayerSpec.Guardian.Name
+  _descriptionText:
+    _key: PlayerSpec.Guardian.Description

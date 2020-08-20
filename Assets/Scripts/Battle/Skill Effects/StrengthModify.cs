@@ -23,7 +23,7 @@ public class StrengthModify : SkillEffect
         _durationType.Terminate(this, target);
     }
 
-    public override string GetDescription()
+    public override string GetDescription(TargetType targetType)
     {
         _stringBuilder.Clear();
 
@@ -31,10 +31,25 @@ public class StrengthModify : SkillEffect
 
         _stringBuilder.Append(_modifierValue);
 
-        if (_modifierType != ModifierType.Flat) _stringBuilder.Append("% ");
+        if (_modifierType == ModifierType.Flat)
+        { 
+            _stringBuilder.Append(" ");
+        }
+        else { _stringBuilder.Append("% "); }
 
         _stringBuilder.Append(_statShrinkName.Value);
-        _stringBuilder.Append(" ");
+        _stringBuilder.Append(" (");
+
+        if (targetType == TargetType.Self)
+        {
+            _stringBuilder.Append(GameTexts.Instance.TargetSelfLabel);
+        }
+        else { _stringBuilder.Append(GameTexts.Instance.TargetEnemyLabel); }
+        _stringBuilder.Append(" / ");
+        _stringBuilder.Append(_durationType.TypeName);
+        _stringBuilder.Append(" / ");
+        _stringBuilder.Append(_applyMethod.MethodName);
+        _stringBuilder.Append(")");
 
         return _stringBuilder.ToString();
     }

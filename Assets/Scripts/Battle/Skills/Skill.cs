@@ -8,9 +8,9 @@ using UnityEngine;
 public abstract class Skill : ScriptableObject
 {
     [Header("Информация для отображения:")]
-    [SerializeField] protected TranslatedText _skillNameKey = null;
+    [SerializeField] protected TranslatedText _skillNameText = null;
     [SerializeField] protected SkillType _skillType = null;
-    [SerializeField, TextArea(5, 5)] protected string _description = string.Empty;
+    [SerializeField] protected TranslatedText _descriptionText = null;
     [SerializeField] protected Sprite _icon = null;
     [Header("Общие параметры умения:")]
     [SerializeField] protected float _cost = 0;
@@ -25,11 +25,15 @@ public abstract class Skill : ScriptableObject
     /// <summary>
     /// Название умения.
     /// </summary>
-    public string SkillName => _skillNameKey.Value;
+    public string SkillName => _skillNameText.Value;
     /// <summary>
     /// Тип умения.
     /// </summary>
     public SkillType SkillType => _skillType;
+    /// <summary>
+    /// Краткое описание умения.
+    /// </summary>
+    public string Description => _descriptionText.Value;
     /// <summary>
     /// Иконка умения.
     /// </summary>
@@ -55,9 +59,9 @@ public abstract class Skill : ScriptableObject
     /// </summary>
     public SkillSlotType SkillSlotType => _skillSlotType;
     /// <summary>
-    /// Получить описание умения.
+    /// Получить описание параметров умения.
     /// </summary>
-    public abstract StringBuilder GetDescription();
+    public abstract StringBuilder GetParamsDescription();
     /// <summary>
     /// Активировать умение.
     /// </summary>

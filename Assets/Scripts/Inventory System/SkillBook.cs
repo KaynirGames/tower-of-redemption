@@ -6,6 +6,15 @@ using UnityEngine;
 /// </summary>
 public class SkillBook : MonoBehaviour
 {
+    /// <summary>
+    /// Делегат для отслеживания изменений в книге умений.
+    /// </summary>
+    public delegate void OnSkillBookChange(Skill skill, int slotID);
+    /// <summary>
+    /// Событие при любом изменении доступных умений.
+    /// </summary>
+    public event OnSkillBookChange OnSkillChange = delegate { };
+
     [SerializeField] private int _activeSlotsCount = 4; // Число слотов активных умений.
     [SerializeField] private int _passiveSlotsCount = 3; // Число слотов пассивных умений.
     [SerializeField] private int _specialSlotsCount = 1; // Число слотов особых умений.
@@ -43,13 +52,11 @@ public class SkillBook : MonoBehaviour
     /// </summary>
     public void AddSkill(Skill skill)
     {
-        Skill[] slots = GetSkills(skill.SkillSlotType);
         int slotID = FindSlotAvaliable(skill.SkillSlotType);
 
         if (slotID >= 0)
         {
-            slots[slotID] = skill;
-            // Сообщаем UI.
+            InsertSkill(skill, slotID);
         }
         else
         {
@@ -62,10 +69,21 @@ public class SkillBook : MonoBehaviour
     public Skill RemoveSkill(int slotID, SkillSlotType slotType)
     {
         Skill[] slots = GetSkills(slotType);
+
         Skill removedSkill = slots[slotID];
         slots[slotID] = null;
 
-        // Сообщаем UI.
+        OnSkillChange.Invoke(null, slotID);
+
+        return removedSkill;
+    }
+    /// <summary>
+    /// Заменить умение в книге.
+    /// </summary>
+    public Skill ChangeSkill(int slotID, Skill newSkill)
+    {
+        Skill removedSkill = RemoveSkill(slotID, newSkill.SkillSlotType);
+        InsertSkill(newSkill, slotID);
 
         return removedSkill;
     }
@@ -75,6 +93,15 @@ public class SkillBook : MonoBehaviour
     public Skill[] GetSkills(SkillSlotType slotType)
     {
         return _slotsDictionary[slotType];
+    }
+    /// <summary>
+    /// Вставить умение в слот книги.
+    /// </summary>
+    private void InsertSkill(Skill skill, int slotID)
+    {
+        Skill[] slots = GetSkills(skill.SkillSlotType);
+        slots[slotID] = skill;
+        OnSkillChange.Invoke(skill, slotID);
     }
     /// <summary>
     /// Найти первый свободный слот.

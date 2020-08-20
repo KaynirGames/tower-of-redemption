@@ -7,21 +7,19 @@ public class Player : MonoBehaviour
     public static event Action<Player> OnPlayerActive = delegate { };
     public static event BattleManager.OnBattleEnd OnBattleEnd = delegate { };
 
-    [SerializeField] private PlayerSpec _currentSpec = null;
-    [SerializeField] private Inventory _inventory = null;
-    [SerializeField] private SkillBook _skillBook = null;
+    [SerializeField] private PlayerSpec _playerSpec = null;
     /// <summary>
     /// Специализация игрока.
     /// </summary>
-    public PlayerSpec PlayerSpec => _currentSpec;
+    public PlayerSpec PlayerSpec => _playerSpec;
     /// <summary>
     /// Инвентарь игрока.
     /// </summary>
-    public Inventory Inventory => _inventory;
+    public Inventory Inventory { get; private set; }
     /// <summary>
     /// Книга умений игрока.
     /// </summary>
-    public SkillBook SkillBook => _skillBook;
+    public SkillBook SkillBook { get; private set; }
     /// <summary>
     /// Статы персонажа.
     /// </summary>
@@ -34,17 +32,21 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         PlayerStats = GetComponent<CharacterStats>();
+        Inventory = GetComponent<Inventory>();
+        SkillBook = GetComponent<SkillBook>();
+
         _characterMoveBase = GetComponent<CharacterMoveBase>();
         _baseAnimation = GetComponent<BaseAnimation>();
+
+        PlayerStats.OnCharacterDeath += Die;
     }
 
     private void Start()
     {
-        PlayerStats.SetBaseStats(_currentSpec);
-        PlayerStats.OnCharacterDeath += Die;
-        _skillBook.SetBaseSkills(_currentSpec);
+        PlayerStats.SetBaseStats(_playerSpec);
+        SkillBook.SetBaseSkills(_playerSpec);
 
-        OnPlayerActive?.Invoke(this);
+        OnPlayerActive.Invoke(this);
     }
 
     private void Update()

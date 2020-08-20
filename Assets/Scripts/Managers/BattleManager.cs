@@ -45,7 +45,7 @@ public class BattleManager : MonoBehaviour
         if (_enemy == null)
         {
             _enemy = enemy;
-            if (_player == null) { _player = GameMaster.Instance.ActivePlayer; }
+            if (_player == null) { _player = PlayerManager.Instance.Player; }
 
             Debug.Log(_player.PlayerSpec.name + " is now fighting " + _enemy.EnemySpec.name);
 

@@ -29,5 +29,5 @@ public abstract class SkillEffect : ScriptableObject
     /// <summary>
     /// Получить описание эффекта.
     /// </summary>
-    public abstract string GetDescription();
+    public abstract string GetDescription(TargetType targetType);
 }

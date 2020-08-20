@@ -1,34 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Переведенные игровые тексты, которые не удалось поместить на удобный объект.
+/// </summary>
 public class GameTexts : MonoBehaviour
 {
     public static GameTexts Instance { get; private set; }
-    [Header("Текстовые заголовки:")]
-    [SerializeField] private TranslatedText _damageTypeLabel = null;
-    [SerializeField] private TranslatedText _userEffectsLabel = null;
-    [SerializeField] private TranslatedText _enemyEffectsLabel = null;
+    [Header("Заголовки в описании:")]
+    [SerializeField] private TranslatedText _damageTypeLabel = null; // Тип урона.
+    [Header("Тексты в описании:")]
+    [SerializeField] private TranslatedText _targetSelfText = null; // На себя.
+    [SerializeField] private TranslatedText _targetEnemyText = null; // Враг.
     [Header("Единицы измерения:")]
-    [SerializeField] private TranslatedText _secondsText = null;
+    [SerializeField] private TranslatedText _secondsText = null; // сек.
+    [SerializeField] private TranslatedText _spiritEnergyText = null; // ДЭ.
     /// <summary>
-    /// Текстовый заголовок для типа урона.
+    /// Заголовок типа урона.
     /// </summary>
     public string DamageTypeLabel => _damageTypeLabel.Value;
     /// <summary>
-    /// Текстовый заголовок для эффектов на заклинателя.
+    /// Текст типа цели: на себя.
     /// </summary>
-    public string UserEffectsLabel => _userEffectsLabel.Value;
+    public string TargetSelfLabel => _targetSelfText.Value;
     /// <summary>
-    /// Текстовый заголовок для эффектов на врага.
+    /// Текст типа цели: враг.
     /// </summary>
-    public string EnemyEffectsLabel => _enemyEffectsLabel.Value;
+    public string TargetEnemyLabel => _targetEnemyText.Value;
     /// <summary>
     /// Текстовое отображение секунд.
     /// </summary>
     public string SecondsText => _secondsText.Value;
-    
-
+    /// <summary>
+    /// Текстовое отображение духовной энергии.
+    /// </summary>
+    public string EnergyText => _spiritEnergyText.Value;
 
     private void Awake()
     {

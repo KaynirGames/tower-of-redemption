@@ -9,8 +9,6 @@ public class GameMaster : MonoBehaviour
 
     public SystemLanguage GameLanguage => _gameLanguage;
 
-    public Player ActivePlayer { get; private set; }
-
     public List<Room> LoadedRooms { get; private set; } = new List<Room>();
 
     public bool IsPause { get; private set; }
@@ -25,18 +23,15 @@ public class GameMaster : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        Player.OnPlayerActive += SetActivePlayer;
     }
-
-
-    public void TogglePause()
+    /// <summary>
+    /// Переключить паузу в игре.
+    /// </summary>
+    public void TogglePause(bool isPause)
     {
-        Time.timeScale = IsPause ? 1f : 0f;
-        IsPause = !IsPause;
+        IsPause = isPause;
+        Time.timeScale = isPause ? 0f : 1f;
     }
-
-    private void SetActivePlayer(Player player) => ActivePlayer = player;
 
     private void OnValidate()
     {

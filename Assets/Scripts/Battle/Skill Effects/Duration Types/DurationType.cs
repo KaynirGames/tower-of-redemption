@@ -5,11 +5,11 @@
 /// </summary>
 public abstract class DurationType : ScriptableObject
 {
-    [SerializeField] protected TranslatedText _typeNameKey = null;
+    [SerializeField] protected TranslatedText _typeNameText = null;
     /// <summary>
     /// Наименование типа продолжительности эффекта.
     /// </summary>
-    public virtual string TypeName => _typeNameKey.Value;
+    public virtual string TypeName => _typeNameText.Value;
     /// <summary>
     /// Запустить время действия эффекта на цель.
     /// </summary>

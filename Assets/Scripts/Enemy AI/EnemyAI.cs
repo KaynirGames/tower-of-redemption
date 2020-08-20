@@ -29,7 +29,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        _target = GameMaster.Instance.ActivePlayer.transform;
+        _target = PlayerManager.Instance.Player.transform;
 
         EnemyWait enemyWait = new EnemyWait(this, _waitTimeOnTargetLost);
         EnemyChase enemyChase = new EnemyChase(this, _target);

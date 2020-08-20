@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Специализация противника.
@@ -9,37 +7,35 @@ using UnityEngine;
 public class EnemySpec : BaseStats
 {
     [Header("Информация о спеке противника:")]
+    [SerializeField] private TranslatedText _nameText = null;
+    [SerializeField] private float _energyRegen = 1f;
+    [SerializeField] private float _energyRegenDelay = 1f;
+    [SerializeField] private SpawnTable _lootTable = null;
+    [Header("Основные настройки ИИ:")]
+    [SerializeField] private float _moveSpeed = 2f;
+    [SerializeField] private float _viewDistance = 4f;
     /// <summary>
     /// Имя противника, отображаемое в бою.
-    /// </summary>
-    public string DisplayName = "Unknown";
+    /// </summary
+    public string Name => _nameText.Value;
     /// <summary>
-    /// Количество очков навыков, которые регенерируются каждый отрезок времени.
+    /// Энергия, восстанавливаемая каждый отрезок времени.
     /// </summary>
-    public float AbilityPointRegenOverTime = 1f;
+    public float EnergyRegen => _energyRegen;
     /// <summary>
-    /// Отрезок времени, спустя который регенерируются очки навыков.
+    /// Задержка между восстановлениями энергии.
     /// </summary>
-    public float AbilityPointRegenTime = 1f;
+    public float EnergyRegenDelay => _energyRegen;
     /// <summary>
     /// Таблица вероятностей выпадения лута.
     /// </summary>
-    public SpawnTable LootTable;
-    [Header("Основные настройки ИИ:")]
+    public SpawnTable LootTable => _lootTable;
     /// <summary>
     /// Скорость перемещения.
     /// </summary>
-    public float MoveSpeed = 2f;
+    public float MoveSpeed => _moveSpeed;
     /// <summary>
     /// Дальность обзора.
     /// </summary>
-    public float ViewDistance = 4f;
-    /// <summary>
-    /// Расстояние атаки.
-    /// </summary>
-    public float AttackDistance = 2f;
-    /// <summary>
-    /// Задержка между атаками.
-    /// </summary>
-    public float AttackCooldown = 1f;
+    public float ViewDistance => _viewDistance;
 }

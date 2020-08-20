@@ -7,10 +7,19 @@
 public class PlayerSpec : BaseStats
 {
     [Header("Информация о спеке игрока:")]
-    [TextArea(5, 5)]
-    [SerializeField] private string _description = string.Empty;
+    [SerializeField] private Sprite _icon = null;
+    [SerializeField] private TranslatedText _specName = null;
+    [SerializeField] private TranslatedText _descriptionText = null;
     /// <summary>
-    /// Краткое описание специализации игрока.
+    /// Название спека игрока.
     /// </summary>
-    public string Description => _description;
+    public string SpecName => _specName.Value;
+    /// <summary>
+    /// Описание специализации игрока.
+    /// </summary>
+    public string Description => _descriptionText.Value;
+    /// <summary>
+    /// Иконка специализации игрока.
+    /// </summary>
+    public Sprite Icon => _icon;
 }

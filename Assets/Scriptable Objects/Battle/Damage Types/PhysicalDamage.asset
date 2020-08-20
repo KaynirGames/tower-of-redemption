@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0185f2eb5be6d5342ba327e285db3ee6, type: 3}
   m_Name: PhysicalDamage
   m_EditorClassIdentifier: 
-  _nameKey:
+  _nameText:
     _key: DamageType.Physical

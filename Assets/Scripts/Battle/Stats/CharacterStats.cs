@@ -5,6 +5,22 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour
 {
     /// <summary>
+    /// Делегат для сообщений об изменении значений ресурса.
+    /// </summary>
+    public delegate void OnResourceChange(float currentValue);
+    /// <summary>
+    /// Событие при изменениях здоровья.
+    /// </summary>
+    public event OnResourceChange OnHealthChange = delegate { };
+    /// <summary>
+    /// Событие при изменениях энергии.
+    /// </summary>
+    public event OnResourceChange OnEnergyChange = delegate { };
+    /// <summary>
+    /// Событие при изменении стата.
+    /// </summary>
+    public event Action OnStatChange = delegate { };
+    /// <summary>
     /// Событие, информирующее подписчиков о гибели персонажа.
     /// </summary>
     public event Action OnCharacterDeath = delegate { };
@@ -43,10 +59,13 @@ public class CharacterStats : MonoBehaviour
     /// <summary>
     /// Эффекты, действующие на персонажа.
     /// </summary>
-    public List<SkillEffect> CharacterEffects /*{ get; }*/ = new List<SkillEffect>();
+    public List<SkillEffect> InflictedEffects { get; } = new List<SkillEffect>();
+    /// <summary>
+    /// Постоянные эффекты, действующие на персонажа.
+    /// </summary>
+    public List<SkillEffect> PermanentEffects { get; } = new List<SkillEffect>();
 
     private List<ElementEfficacy> _elementEfficacies; // Эффективности воздействия стихий на персонажа.
-
     /// <summary>
     /// Задать базовые статы для текущей специализации персонажа.
     /// </summary>
@@ -77,10 +96,27 @@ public class CharacterStats : MonoBehaviour
 
         CurrentHealth = Mathf.Clamp(CurrentHealth - damageTaken, 0, MaxHealth.GetValue());
 
+        OnHealthChange.Invoke(CurrentHealth);
+
         if (CurrentHealth <= 0)
         {
             OnCharacterDeath?.Invoke();
         }
+    }
+    /// <summary>
+    /// Обновить отображение ресурсов персонажа.
+    /// </summary>
+    public void UpdateResourcesDisplay()
+    {
+        OnHealthChange.Invoke(CurrentHealth);
+        OnEnergyChange.Invoke(CurrentEnergy);
+    }
+    /// <summary>
+    /// Обновить отображение статов персонажа.
+    /// </summary>
+    public void UpdateStatsDisplay()
+    {
+        OnStatChange.Invoke();
     }
     /// <summary>
     /// Получить эффективность воздействия магического элемента.
@@ -101,6 +137,6 @@ public class CharacterStats : MonoBehaviour
     /// </summary>
     public bool IsEffectExist(SkillEffect effect)
     {
-        return CharacterEffects.Contains(effect);
+        return InflictedEffects.Contains(effect);
     }
 }
