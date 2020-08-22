@@ -30,7 +30,7 @@ public class BattleTester : MonoBehaviour
             if (_currentEnemy == null)
             {
                 _currentEnemy = Instantiate(_testEnemyPrefab, _testSpawn.position, Quaternion.identity);
-                OnBattleTrigger.Invoke(_currentEnemy, _isPlayerAdvantage);
+                StartCoroutine(BattleStartRoutine());
                 if (_player == null) _player = PlayerManager.Instance.Player;
             }
         }
@@ -62,5 +62,11 @@ public class BattleTester : MonoBehaviour
             _player.PlayerStats.MaxHealth.RemoveSourceModifiers(this);
             _player.PlayerStats.UpdateResourcesDisplay();
         }
+    }
+
+    private IEnumerator BattleStartRoutine()
+    {
+        yield return new WaitForEndOfFrame();
+        OnBattleTrigger.Invoke(_currentEnemy, _isPlayerAdvantage);
     }
 }

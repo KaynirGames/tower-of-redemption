@@ -6,35 +6,33 @@ using UnityEngine;
 /// </summary>
 public class SkillBook : MonoBehaviour
 {
+    public delegate void OnSkillBookChange(int slotID, SkillSlotType slotType);
     /// <summary>
-    /// Делегат для отслеживания изменений в книге умений.
+    /// Событие при любом изменении доступных слотов умений.
     /// </summary>
-    public delegate void OnSkillBookChange(Skill skill, int slotID);
-    /// <summary>
-    /// Событие при любом изменении доступных умений.
-    /// </summary>
-    public event OnSkillBookChange OnSkillChange = delegate { };
+    public event OnSkillBookChange OnSkillSlotChange = delegate { };
 
     [SerializeField] private int _activeSlotsCount = 4; // Число слотов активных умений.
     [SerializeField] private int _passiveSlotsCount = 3; // Число слотов пассивных умений.
     [SerializeField] private int _specialSlotsCount = 1; // Число слотов особых умений.
 
-    private Skill[] _activeSkills; // Активные умения.
-    private Skill[] _passiveSkills; // Пассивные умения.
-    private Skill[] _specialSkills; // Особые умения.
-    private Dictionary<SkillSlotType, Skill[]> _slotsDictionary; // Словарь слотов книги с набором умений.
+    private SkillSlot[] _activeSlots; // Слоты активных умений.
+    private SkillSlot[] _passiveSlots; // Слоты пассивных умений.
+    private SkillSlot[] _specialSlots; // Слоты особых умений.
+
+    private Dictionary<SkillSlotType, SkillSlot[]> _bookSlots; // Слоты книги.
 
     private void Awake()
     {
-        _activeSkills = new Skill[_activeSlotsCount];
-        _passiveSkills = new Skill[_passiveSlotsCount];
-        _specialSkills = new Skill[_specialSlotsCount];
+        _activeSlots = CreateSlots(_activeSlotsCount, SkillSlotType.ActiveSlot);
+        _passiveSlots = CreateSlots(_passiveSlotsCount, SkillSlotType.PassiveSlot);
+        _specialSlots = CreateSlots(_specialSlotsCount, SkillSlotType.SpecialSlot);
 
-        _slotsDictionary = new Dictionary<SkillSlotType, Skill[]>
+        _bookSlots = new Dictionary<SkillSlotType, SkillSlot[]>
         { 
-            { SkillSlotType.ActiveSlot, _activeSkills },
-            { SkillSlotType.PassiveSlot, _passiveSkills },
-            { SkillSlotType.SpecialSlot, _specialSkills }
+            { SkillSlotType.ActiveSlot, _activeSlots },
+            { SkillSlotType.PassiveSlot, _passiveSlots },
+            { SkillSlotType.SpecialSlot, _specialSlots }
         };
     }
     /// <summary>
@@ -68,12 +66,12 @@ public class SkillBook : MonoBehaviour
     /// </summary>
     public Skill RemoveSkill(int slotID, SkillSlotType slotType)
     {
-        Skill[] slots = GetSkills(slotType);
+        SkillSlot[] slots = GetSlots(slotType);
 
-        Skill removedSkill = slots[slotID];
-        slots[slotID] = null;
+        Skill removedSkill = slots[slotID].Skill;
+        slots[slotID].RemoveSkill();
 
-        OnSkillChange.Invoke(null, slotID);
+        OnSkillSlotChange.Invoke(slotID, slotType);
 
         return removedSkill;
     }
@@ -88,31 +86,46 @@ public class SkillBook : MonoBehaviour
         return removedSkill;
     }
     /// <summary>
-    /// Получить набор умений из слота книги.
+    /// Получить набор слотов книги.
     /// </summary>
-    public Skill[] GetSkills(SkillSlotType slotType)
+    public SkillSlot[] GetSlots(SkillSlotType slotType)
     {
-        return _slotsDictionary[slotType];
+        return _bookSlots[slotType];
+    }
+    /// <summary>
+    /// Создать слоты книги.
+    /// </summary>
+    private SkillSlot[] CreateSlots(int slotAmount, SkillSlotType slotType)
+    {
+        SkillSlot[] slots = new SkillSlot[slotAmount];
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i] = new SkillSlot(slotType, i);
+        }
+
+        return slots;
     }
     /// <summary>
     /// Вставить умение в слот книги.
     /// </summary>
     private void InsertSkill(Skill skill, int slotID)
     {
-        Skill[] slots = GetSkills(skill.SkillSlotType);
-        slots[slotID] = skill;
-        OnSkillChange.Invoke(skill, slotID);
+        SkillSlot[] slots = GetSlots(skill.SkillSlotType);
+        slots[slotID].InsertSkill(skill);
+
+        OnSkillSlotChange.Invoke(slotID, skill.SkillSlotType);
     }
     /// <summary>
     /// Найти первый свободный слот.
     /// </summary>
     private int FindSlotAvaliable(SkillSlotType slotType)
     {
-        Skill[] slots = GetSkills(slotType);
+        SkillSlot[] slots = GetSlots(slotType);
 
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i] == null)
+            if (slots[i].IsEmpty)
             {
                 return i;
             }

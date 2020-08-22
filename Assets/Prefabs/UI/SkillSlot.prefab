@@ -195,7 +195,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6825898612771126611}
-        m_MethodName: CallDescription
+        m_MethodName: CallDescriptionInventory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -219,3 +219,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slotType: 0
   _icon: {fileID: 4799444593623937847}
+  _useButton: {fileID: 5474907266550068297}

@@ -4,26 +4,12 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    /// <summary>
-    /// Делегат для сообщений об изменении значений ресурса.
-    /// </summary>
-    public delegate void OnResourceChange(float currentValue);
-    /// <summary>
-    /// Событие при изменениях здоровья.
-    /// </summary>
-    public event OnResourceChange OnHealthChange = delegate { };
-    /// <summary>
-    /// Событие при изменениях энергии.
-    /// </summary>
-    public event OnResourceChange OnEnergyChange = delegate { };
-    /// <summary>
-    /// Событие при изменении стата.
-    /// </summary>
-    public event Action OnStatChange = delegate { };
-    /// <summary>
-    /// Событие, информирующее подписчиков о гибели персонажа.
-    /// </summary>
-    public event Action OnCharacterDeath = delegate { };
+    public delegate void OnResourceChange(float currentValue); // Делегат для сообщений об изменении значений ресурса.
+
+    public event OnResourceChange OnHealthChange = delegate { }; // Событие при изменении здоровья.
+    public event OnResourceChange OnEnergyChange = delegate { }; // Событие при изменении энергии.
+    public event Action OnStatChange = delegate { }; // Событие при изменении стата.
+    public event Action OnCharacterDeath = delegate { }; // Событие, информирующее подписчиков о гибели персонажа.
     /// <summary>
     /// Текущее количество очков здоровья.
     /// </summary>
@@ -92,7 +78,7 @@ public class CharacterStats : MonoBehaviour
     /// </summary>
     public void TakeDamage(float damageTaken)
     {
-        if (damageTaken < 0) damageTaken = Mathf.Max(damageTaken, 0);
+        if (damageTaken < 0) { return; }
 
         CurrentHealth = Mathf.Clamp(CurrentHealth - damageTaken, 0, MaxHealth.GetValue());
 
@@ -104,7 +90,31 @@ public class CharacterStats : MonoBehaviour
         }
     }
     /// <summary>
-    /// Обновить отображение ресурсов персонажа.
+    /// Восстановить текущее здоровье.
+    /// </summary>
+    public void RecoverHealth(float amount)
+    {
+        if (amount < 0) { return; }
+
+        CurrentHealth = Mathf.Round(CurrentHealth + amount);
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth.GetValue());
+
+        OnHealthChange.Invoke(CurrentHealth);
+    }
+    /// <summary>
+    /// Восстановить текущую духовную энергию.
+    /// </summary>
+    public void RecoverEnergy(float amount)
+    {
+        if (amount < 0) { return; }
+
+        CurrentEnergy = Mathf.Round(CurrentEnergy + amount);
+        CurrentEnergy = Mathf.Clamp(CurrentEnergy, 0, MaxEnergy.GetValue());
+
+        OnEnergyChange.Invoke(CurrentEnergy);
+    }
+    /// <summary>
+    /// Обновить отображение здоровья персонажа.
     /// </summary>
     public void UpdateResourcesDisplay()
     {
@@ -130,13 +140,13 @@ public class CharacterStats : MonoBehaviour
     /// </summary>
     public bool IsEnoughEnergy(int energyCost)
     {
-        return (CurrentEnergy - energyCost < 0) ? false : true;
+        return CurrentEnergy - energyCost >= 0;
     }
     /// <summary>
     /// Проверить наличие эффекта на персонаже.
     /// </summary>
     public bool IsEffectExist(SkillEffect effect)
     {
-        return InflictedEffects.Contains(effect);
+        return InflictedEffects.Contains(effect) || PermanentEffects.Contains(effect);
     }
 }

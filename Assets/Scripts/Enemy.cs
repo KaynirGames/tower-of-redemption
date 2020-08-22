@@ -15,41 +15,30 @@ public class Enemy : MonoBehaviour
     /// Статы противника.
     /// </summary>
     public CharacterStats EnemyStats { get; private set; }
+    /// <summary>
+    /// Книга умений противника.
+    /// </summary>
+    public SkillBook SkillBook { get; private set; }
 
-    private bool FacingRight = true; // Направление взгляда противника.
     private EnemyAI _enemyAI = null; // Основной ИИ противника.
     private EnemyBattleAI _enemyBattleAI = null; // Боевой ИИ противника.
 
     private void Awake()
     {
         EnemyStats = GetComponent<CharacterStats>();
+        SkillBook = GetComponent<SkillBook>();
         _enemyAI = GetComponent<EnemyAI>();
         _enemyBattleAI = GetComponent<EnemyBattleAI>();
+
+        EnemyStats.OnCharacterDeath += Die;
     }
 
     private void Start()
     {
         EnemyStats.SetBaseStats(_enemySpec);
-        EnemyStats.OnCharacterDeath += Die;
+        SkillBook.SetBaseSkills(_enemySpec);
+
         EnemyManager.Instance.RegisterEnemy(this);
-    }
-
-    /// <summary>
-    /// Повернуть спрайт противника в сторону цели.
-    /// </summary>
-    /// <param name="targetPos">Позиция цели.</param>
-    public void FaceTarget(Vector2 targetPos)
-    {
-        float relativePosX = targetPos.x - transform.position.x;
-
-        if (relativePosX < 0 && FacingRight || relativePosX > 0 && !FacingRight)
-        {
-            FacingRight = !FacingRight;
-
-            Vector3 flipLocalScale = transform.localScale;
-            flipLocalScale.x *= -1;
-            transform.localScale = flipLocalScale;
-        }
     }
 
     private void Die()

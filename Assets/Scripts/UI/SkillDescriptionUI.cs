@@ -1,11 +1,12 @@
 ﻿using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Описание умения персонажа.
+/// </summary>
 public class SkillDescriptionUI : MonoBehaviour
 {
-    [Header("Взаимоотключаемые объекты:")]
-    [SerializeField] private GameObject _skillDescriptionPanel = null;
-    [SerializeField] private GameObject _specDescriptionPanel = null;
+    [SerializeField] private GameObject _skillDescriptionParent = null;
     [Header("Отображение данных об умении:")]
     [SerializeField] private TextMeshProUGUI _nameField = null; // Текстовое поле для названия умения.
     [SerializeField] private TextMeshProUGUI _typeField = null; // Текстовое поле для типа умения.
@@ -14,13 +15,8 @@ public class SkillDescriptionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _cooldownField = null; // Текстовое поле для перезарядки умения.
     [SerializeField] private TextMeshProUGUI _paramsField = null; // Текстовое поля для параметров умения.
     [SerializeField] private TextMeshProUGUI _descriptionField = null; // Текстовое поле для описания умения.
-
-    private void Awake()
-    {
-        SkillSlotUI.OnDescriptionCall += ShowDescription;
-    }
     /// <summary>
-    /// Показать описание объекта.
+    /// Показать описание умения.
     /// </summary>
     public void ShowDescription(Skill skill)
     {
@@ -32,7 +28,13 @@ public class SkillDescriptionUI : MonoBehaviour
         _paramsField.SetText(skill.GetParamsDescription());
         _descriptionField.SetText(skill.Description);
 
-        _specDescriptionPanel.SetActive(false);
-        _skillDescriptionPanel.SetActive(true);
+        _skillDescriptionParent.SetActive(true);
+    }
+    /// <summary>
+    /// Скрыть описание умения.
+    /// </summary>
+    public void HideDescription()
+    {
+        _skillDescriptionParent.SetActive(false);
     }
 }

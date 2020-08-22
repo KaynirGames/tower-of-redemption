@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
@@ -18,7 +17,12 @@ public class BattleManager : MonoBehaviour
     /// Событие для снятия эффектов с цели, действующих до конца боя.
     /// </summary>
     public event BattleDuration.OnBattleDurationExpire OnBattleDurationExpire = delegate { };
-    
+
+    [SerializeField] private BattleUI _battleUI = null;
+    [Header("Бонусная энергия при боевом преимуществе:")]
+    [SerializeField] private float _playerEnergyBonus = 0.25f;
+    [SerializeField] private float _enemyEnergyBonus = 1f;
+
     private Player _player;
     private Enemy _enemy;
 
@@ -36,31 +40,71 @@ public class BattleManager : MonoBehaviour
         Enemy.OnBattleTrigger += StartBattle;
         Enemy.OnBattleEnd += EndBattle;
 
+        SkillSlotUI.OnPlayerActivationCall += ActivateSkill;
+
         BattleTester.OnBattleTrigger += StartBattle;
     }
-
+    /// <summary>
+    /// Начать бой.
+    /// </summary>
     private bool StartBattle(Enemy enemy, bool isPlayerAdvantage)
     {
-        //GameMaster.Instance.TogglePause();
+        GameMaster.Instance.TogglePause(true);
+
         if (_enemy == null)
         {
             _enemy = enemy;
             if (_player == null) { _player = PlayerManager.Instance.Player; }
 
-            Debug.Log(_player.PlayerSpec.name + " is now fighting " + _enemy.EnemySpec.name);
+            if (isPlayerAdvantage)
+            {
+                ApplyEnergyBonus(_player.PlayerStats, _playerEnergyBonus); 
+            }
+            else
+            {
+                ApplyEnergyBonus(enemy.EnemyStats, _enemyEnergyBonus);
+            }
 
-            // Задать начальные параметры.
-            // Вызвать интерфейс для боя.
+            // Корутина перехода на экран боя с анимацией.
+
+            _battleUI.ShowBattleWindow(_player, enemy);
+
             return true;
         }
         else { return false; }
     }
-
+    /// <summary>
+    /// Завершить бой.
+    /// </summary>
     private void EndBattle(bool isPlayerDeath)
     {
-        //GameMaster.Instance.TogglePause();
-        Debug.Log("Battle is over.");
+        GameMaster.Instance.TogglePause(false);
+
         OnBattleDurationExpire?.Invoke(_player.PlayerStats);
-        // Действия для завершения боя.
+        // Корутина закрытия экрана боя с анимацией.
+        _battleUI.CloseBattleWindow();
+    }
+    /// <summary>
+    /// Применить бонус к энергии персонажа.
+    /// </summary>
+    private void ApplyEnergyBonus(CharacterStats stats, float bonusRate)
+    {
+        float energyBonus = Mathf.Round(stats.MaxEnergy.GetValue() * bonusRate);
+        stats.RecoverEnergy(energyBonus);
+    }
+    /// <summary>
+    /// Активировать умение.
+    /// </summary>
+    private void ActivateSkill(Skill skill)
+    {
+        switch (skill.TargetType)
+        {
+            case TargetType.Enemy:
+                skill.Activate(_player.PlayerStats, _enemy.EnemyStats);
+                break;
+            case TargetType.Self:
+                skill.Activate(_player.PlayerStats, _player.PlayerStats);
+                break;
+        }
     }
 }

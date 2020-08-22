@@ -22,12 +22,12 @@ MonoBehaviour:
   _baseAirEfficacy: 100
   _baseEarthEfficacy: 100
   _baseWaterEfficacy: 100
-  _baseSkills: []
-  DisplayName: "\u0421\u043B\u0438\u0437\u044C"
-  AbilityPointRegenOverTime: 1
-  AbilityPointRegenTime: 0.5
-  LootTable: {fileID: 0}
-  MoveSpeed: 1
-  ViewDistance: 6
-  AttackDistance: 1.25
-  AttackCooldown: 1.5
+  _baseSkills:
+  - {fileID: 11400000, guid: bbf13af2daf87dc4fbb21968f24b3975, type: 2}
+  _nameText:
+    _key: EnemySpec.Slime
+  _energyRegen: 1
+  _energyRegenDelay: 1
+  _lootTable: {fileID: 0}
+  _moveSpeed: 2
+  _viewDistance: 4

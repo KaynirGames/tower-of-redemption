@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3023025225543744174}
   - component: {fileID: 3023025225543744172}
   - component: {fileID: 428791687849108916}
+  - component: {fileID: 1156619166001182473}
   m_Layer: 9
   m_Name: EnergyBar
   m_TagString: Untagged
@@ -63,6 +64,21 @@ MonoBehaviour:
   _valueTextField: {fileID: 3023025225965371359}
   _valueMaskFiller: {fileID: 3023025226806641772}
   _isVertical: 0
+--- !u!114 &1156619166001182473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3023025225543744175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7697f21ba22f83c4b95423091febb7be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textField: {fileID: 3023025227196707417}
+  _translatedText:
+    _key: Label.SE
 --- !u!1 &3023025225965371345
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +408,6 @@ GameObject:
   - component: {fileID: 3023025227196707418}
   - component: {fileID: 3023025227196707416}
   - component: {fileID: 3023025227196707417}
-  - component: {fileID: 3023025227196707431}
   m_Layer: 9
   m_Name: EnergyLabel
   m_TagString: Untagged
@@ -538,21 +553,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &3023025227196707431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3023025227196707419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7697f21ba22f83c4b95423091febb7be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textField: {fileID: 3023025227196707417}
-  _translatedText:
-    _key: Label.HP
 --- !u!1 &6560615950446978833
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +726,6 @@ GameObject:
   - component: {fileID: 6560615951399063845}
   - component: {fileID: 6560615951399063847}
   - component: {fileID: 6560615951399063846}
-  - component: {fileID: 6560615951399063832}
   m_Layer: 9
   m_Name: HealthLabel
   m_TagString: Untagged
@@ -872,21 +871,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6560615951399063832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6560615951399063844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7697f21ba22f83c4b95423091febb7be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textField: {fileID: 6560615951399063846}
-  _translatedText:
-    _key: Label.HP
 --- !u!1 &6560615952011614672
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,6 +882,7 @@ GameObject:
   - component: {fileID: 6560615952011614673}
   - component: {fileID: 6560615952011614675}
   - component: {fileID: 2411346789414648601}
+  - component: {fileID: 9015534908991835147}
   m_Layer: 9
   m_Name: HealthBar
   m_TagString: Untagged
@@ -950,6 +935,21 @@ MonoBehaviour:
   _valueTextField: {fileID: 6560615952294632608}
   _valueMaskFiller: {fileID: 6560615950446978835}
   _isVertical: 0
+--- !u!114 &9015534908991835147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560615952011614672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7697f21ba22f83c4b95423091febb7be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textField: {fileID: 6560615951399063846}
+  _translatedText:
+    _key: Label.HP
 --- !u!1 &6560615952294632622
 GameObject:
   m_ObjectHideFlags: 0

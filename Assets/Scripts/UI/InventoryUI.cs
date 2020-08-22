@@ -9,9 +9,12 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GameObject _nextTabButton = null; // Кнопка перехода к следующей вкладке.
     [SerializeField] private GameObject _previousTabButton = null; // Кнопка перехода к предыдущей вкладке.
     [SerializeField] private InventoryTabUI[] _inventoryTabs = null; // Вкладки инвентаря.
-    [Header("Компоненты для отображения спека игрока:")]
-    [SerializeField] private SkillDisplayUI _playerSkillDisplay = null;
+    [Header("Отображение спека игрока:")]
+    [SerializeField] private SpecDescriptionUI _playerSpecDescription = null;
     [SerializeField] private Image _playerSpecIcon = null;
+    [Header("Отображение умений игрока:")]
+    [SerializeField] private SkillDescriptionUI _playerSkillDescription = null;
+    [SerializeField] private SkillDisplayUI _playerSkillDisplay = null;
 
     private TextMeshProUGUI _nextTabNameField = null; // Поле с названием следующей вкладки.
     private TextMeshProUGUI _previousTabNameField = null; // Поле с названием предыдущей вкладки.
@@ -24,6 +27,7 @@ public class InventoryUI : MonoBehaviour
         _previousTabNameField = _previousTabButton.GetComponentInChildren<TextMeshProUGUI>();
 
         Player.OnPlayerActive += Init;
+        SkillSlotUI.OnInventoryDescriptionCall += ShowPlayerSkillDescription;
     }
     /// <summary>
     /// Открыть инвентарь.
@@ -31,7 +35,7 @@ public class InventoryUI : MonoBehaviour
     public void OpenInventory()
     {
         _inventoryWindow.SetActive(true);
-        ChangeTabStatus(_currentTabIndex, true);
+        _inventoryTabs[_currentTabIndex].Activate();
         GameMaster.Instance.TogglePause(true);
     }
     /// <summary>
@@ -43,40 +47,48 @@ public class InventoryUI : MonoBehaviour
         GameMaster.Instance.TogglePause(false);
     }
     /// <summary>
-    /// Перейти к следующей вкладке инвентаря.
+    /// Сменить вкладку инвентаря.
     /// </summary>
-    public void MoveNextTab()
+    public void SwitchTab(int indexStep)
     {
-        ChangeTabStatus(_currentTabIndex, false);
-        _currentTabIndex++;
-        SetTab(_currentTabIndex);
+        _inventoryTabs[_currentTabIndex].Deactivate();
+        _currentTabIndex += indexStep;
+        ActivateTab(_currentTabIndex);
     }
     /// <summary>
-    /// Перейти к предыдущей вкладке инвентаря.
+    /// Показать описание спека игрока.
     /// </summary>
-    public void MovePreviousTab()
+    public void ShowPlayerSpecDescription()
     {
-        ChangeTabStatus(_currentTabIndex, false);
-        _currentTabIndex--;
-        SetTab(_currentTabIndex);
+        _playerSkillDescription.HideDescription();
+        _playerSpecDescription.ShowDescription();
+    }
+    /// <summary>
+    /// Показать описание умения игрока.
+    /// </summary>
+    private void ShowPlayerSkillDescription(Skill skill)
+    {
+        _playerSpecDescription.HideDescription();
+        _playerSkillDescription.ShowDescription(skill);
     }
     /// <summary>
     /// Инициализировать UI инвентаря.
     /// </summary>
     private void Init(Player player)
     {
+        _playerSpecDescription.Init(player.PlayerStats, player.PlayerSpec);
         _playerSkillDisplay.Init(player.SkillBook);
         _playerSpecIcon.sprite = player.PlayerSpec.Icon;
         _playerSpecIcon.enabled = true;
 
-        SetTab(_currentTabIndex);
+        ActivateTab(_currentTabIndex);
     }
     /// <summary>
     /// Активирует вкладку инвентаря с выбранным индексом.
     /// </summary>
-    private void SetTab(int tabIndex)
+    private void ActivateTab(int tabIndex)
     {
-        ChangeTabStatus(tabIndex, true);
+        _inventoryTabs[tabIndex].Activate();
 
         if (tabIndex - 1 >= 0)
         {
@@ -91,19 +103,5 @@ public class InventoryUI : MonoBehaviour
             _nextTabNameField.SetText(_inventoryTabs[tabIndex + 1].Title);
         }
         else { _nextTabButton.SetActive(false); }
-    }
-    /// <summary>
-    /// Включить/выключить вкладку инвентаря.
-    /// </summary>
-    private void ChangeTabStatus(int tabIndex, bool isActive)
-    {
-        if (isActive)
-        {
-            _inventoryTabs[tabIndex].Activate();
-        }
-        else
-        {
-            _inventoryTabs[tabIndex].Deactivate();
-        }
     }
 }

@@ -54,7 +54,7 @@ public class Stat
                     }
                 }
 
-                if (_currentValue < 0) _currentValue = Mathf.Max(_currentValue, 0);
+                if (_currentValue < 0) { _currentValue = 0; }
             }
 
             _modifiersChanged = false;
