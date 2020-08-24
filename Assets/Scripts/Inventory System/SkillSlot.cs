@@ -27,7 +27,7 @@ public class SkillSlot
     /// </summary>
     public bool IsEmpty => _skill == null;
 
-    private bool _isCooldown = false; // Отслеживание перезарядки умения.
+    private bool _isCooldown = false;
 
     public SkillSlot(SkillSlotType slotType, int slotID)
     {
