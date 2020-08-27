@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -7,92 +6,72 @@ using UnityEngine.UI;
 /// </summary>
 public class SkillSlotUI : MonoBehaviour
 {
-    public delegate void OnSkillDescriptionCall(Skill skill); // Делегат для вызова описания умения.
-    public delegate void OnSkillActivationCall(Skill skill); // Делегат для вызова активации умения.
-    /// <summary>
-    /// Событие при вызове описания умения в инвентаре игрока.
-    /// </summary>
-    public static event OnSkillDescriptionCall OnInventoryDescriptionCall = delegate { };
-    /// <summary>
-    /// Событие при вызове описания умения во всплывающем окне.
-    /// </summary>
-    public static event OnSkillDescriptionCall OnTooltipDescriptionCall = delegate { };
-    /// <summary>
-    /// Событие при активации умения.
-    /// </summary>
-    public static event OnSkillActivationCall OnPlayerActivationCall = delegate { };
+    public delegate void OnSkillDescriptionRequest(Skill skill);
 
-    [SerializeField] private SkillSlotType _slotType = SkillSlotType.ActiveSlot; // Тип слота умения.
-    [SerializeField] private Image _icon = null; // Для отображения иконки умения.
-    [SerializeField] private Button _useButton = null; // Кнопка для использования слота.
+    public static event OnSkillDescriptionRequest OnDescriptionPanelRequest = delegate { };
+    public static event OnSkillDescriptionRequest OnTooltipRequest = delegate { };
 
-    private SkillSlot _skillSlot; // Соответствующий слот в книге умений.
-    /// <summary>
-    /// Инициализировать слот умения на UI.
-    /// </summary>
+    [SerializeField] private SkillSlotType _slotType = SkillSlotType.ActiveSlot;
+    [SerializeField] private Image _skillIcon = null;
+    [SerializeField] private Button _useButton = null;
+
+    private SkillSlot _skillSlot;
+
     public void InitSlot(SkillSlot skillSlot)
     {
         if (skillSlot.SlotType == _slotType)
         {
             _skillSlot = skillSlot;
-            UpdateSlotUI();
+            _skillSlot.OnSkillCooldownToggle += ToggleSkillCooldownDisplay;
+            // Подписка на нехватку энергии => вызов предупреждения в бою.
+            UpdateSlotDisplayUI();
         }
     }
-    /// <summary>
-    /// Обновить отображение слота на UI.
-    /// </summary>
-    public void UpdateSlotUI()
+
+    public void UpdateSlotDisplayUI()
     {
-        if (!_skillSlot.IsEmpty)
+        if (_skillSlot.IsEmpty)
         {
-            _icon.sprite = _skillSlot.Skill.Icon;
-            _icon.enabled = true;
-            _useButton.interactable = true;
+            ClearSlotUI();
         }
         else
         {
-            ResetSlotUI();
+            FillSlotUI();
         }
     }
-    /// <summary>
-    /// Вызвать описание умения в инвентаре игрока.
-    /// </summary>
-    public void CallDescriptionInventory()
+
+    public void ShowSkillDescription()
     {
-        OnInventoryDescriptionCall.Invoke(_skillSlot.Skill);
+        OnDescriptionPanelRequest.Invoke(_skillSlot.Skill);
     }
-    /// <summary>
-    /// Вызвать описание умения во всплывающем окне.
-    /// </summary>
-    public void CallDescriptionTooltip()
+
+    public void ShowSkillTooltip()
     {
-        OnTooltipDescriptionCall.Invoke(_skillSlot.Skill);
+        OnTooltipRequest.Invoke(_skillSlot.Skill);
     }
-    /// <summary>
-    /// Вызвать активацию умения.
-    /// </summary>
-    public void CallSkillActivation()
+
+    public void ActivateSkill()
     {
-        StartCoroutine(SkillCooldownRoutine(_skillSlot.Skill.Cooldown));
-        OnPlayerActivationCall.Invoke(_skillSlot.Skill);
+        _skillSlot.TryActivateSkill();
     }
-    /// <summary>
-    /// Сбросить отображение слота на UI.
-    /// </summary>
-    private void ResetSlotUI()
+
+    private void FillSlotUI()
     {
-        _icon.sprite = null;
-        _icon.enabled = false;
-        _useButton.interactable = false;
-    }
-    /// <summary>
-    /// Корутина перезарядки умения.
-    /// </summary>
-    private IEnumerator SkillCooldownRoutine(float cooldown)
-    {
-        _useButton.interactable = false;
-        // Анимация перезарядки?
-        yield return new WaitForSecondsRealtime(cooldown);
+        _skillIcon.sprite = _skillSlot.Skill.Icon;
+        _skillIcon.enabled = true;
         _useButton.interactable = true;
+    }
+
+    private void ClearSlotUI()
+    {
+        _skillIcon.sprite = null;
+        _skillIcon.enabled = false;
+        _useButton.interactable = false;
+    }
+
+    private void ToggleSkillCooldownDisplay(bool isCooldown)
+    {
+        _useButton.interactable = !isCooldown;
+        // Анимация перезарядки?
     }
 }

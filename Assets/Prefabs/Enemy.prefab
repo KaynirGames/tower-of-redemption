@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4577616968161644829}
   - component: {fileID: 640419097062634793}
   - component: {fileID: 6902338967119019578}
-  - component: {fileID: 4577616968161644828}
+  - component: {fileID: 6019955237486239111}
   - component: {fileID: 4577616968161644827}
   - component: {fileID: 4577616968161644824}
   - component: {fileID: -6886865580493011481}
@@ -79,7 +79,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.38
---- !u!114 &4577616968161644828
+--- !u!114 &6019955237486239111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4577616968161644898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25be2bc158912034eaae2a9604d94422, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f52408cc83d99149807a429b4e9ccc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySpec: {fileID: 11400000, guid: 4b5cdad240422d3468ab05bc4d667d5e, type: 2}
@@ -252,6 +252,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

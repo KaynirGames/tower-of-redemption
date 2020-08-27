@@ -26,8 +26,8 @@ public class InventoryUI : MonoBehaviour
         _nextTabNameField = _nextTabButton.GetComponentInChildren<TextMeshProUGUI>();
         _previousTabNameField = _previousTabButton.GetComponentInChildren<TextMeshProUGUI>();
 
-        Player.OnPlayerActive += Init;
-        SkillSlotUI.OnInventoryDescriptionCall += ShowPlayerSkillDescription;
+        PlayerCharacter.OnPlayerActive += Init;
+        SkillSlotUI.OnDescriptionPanelRequest += ShowPlayerSkillDescription;
     }
     /// <summary>
     /// Открыть инвентарь.
@@ -74,11 +74,11 @@ public class InventoryUI : MonoBehaviour
     /// <summary>
     /// Инициализировать UI инвентаря.
     /// </summary>
-    private void Init(Player player)
+    private void Init(PlayerCharacter player)
     {
-        _playerSpecDescription.Init(player.PlayerStats, player.PlayerSpec);
+        _playerSpecDescription.Init(player.Stats, player.PlayerSpec);
         _playerSkillDisplay.Init(player.SkillBook);
-        _playerSpecIcon.sprite = player.PlayerSpec.Icon;
+        _playerSpecIcon.sprite = player.PlayerSpec.PlayerSpecIcon;
         _playerSpecIcon.enabled = true;
 
         ActivateTab(_currentTabIndex);

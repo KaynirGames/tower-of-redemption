@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    private List<Enemy> _currentEnemies = new List<Enemy>();
+    private List<EnemyCharacter> _currentEnemies = new List<EnemyCharacter>();
 
     public static EnemyManager Instance { get; private set; }
 
@@ -19,12 +19,12 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void RegisterEnemy(Enemy enemy)
+    public void RegisterEnemy(EnemyCharacter enemy)
     {
         _currentEnemies.Add(enemy);
     }
 
-    private void UnregisterEnemy(Enemy enemy)
+    private void UnregisterEnemy(EnemyCharacter enemy)
     {
         _currentEnemies.Remove(enemy);
 

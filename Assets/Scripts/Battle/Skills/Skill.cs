@@ -16,12 +16,12 @@ public abstract class Skill : ScriptableObject
     [SerializeField] protected float _cost = 0;
     [SerializeField] protected float _cooldown = 0;
     [SerializeField] protected PowerTier _powerTier = null;
-    [SerializeField] protected TargetType _targetType = TargetType.Enemy;
+    [SerializeField] protected TargetType _targetType = TargetType.Opponent;
     [SerializeField] protected SkillSlotType _skillSlotType = SkillSlotType.ActiveSlot;
-    [SerializeField] protected List<SkillEffect> _userEffects = new List<SkillEffect>();
-    [SerializeField] protected List<SkillEffect> _enemyEffects = new List<SkillEffect>();
+    [SerializeField] protected List<SkillEffect> _ownerEffects = new List<SkillEffect>();
+    [SerializeField] protected List<SkillEffect> _opponentEffects = new List<SkillEffect>();
 
-    protected StringBuilder _stringBuilder = new StringBuilder(128, 128); // Для описания.
+    protected StringBuilder _stringBuilder = new StringBuilder(128, 128);
     /// <summary>
     /// Название умения.
     /// </summary>
@@ -65,9 +65,9 @@ public abstract class Skill : ScriptableObject
     /// <summary>
     /// Активировать умение.
     /// </summary>
-    public abstract void Activate(CharacterStats user, CharacterStats target);
+    public abstract void Activate(Character owner, Character opponent);
     /// <summary>
     /// Деактивировать умение.
     /// </summary>
-    public abstract void Deactivate(CharacterStats user, CharacterStats target);
+    public abstract void Deactivate(Character owner, Character opponent);
 }

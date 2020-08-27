@@ -14,26 +14,20 @@ public class GameTexts : MonoBehaviour
     [Header("Единицы измерения:")]
     [SerializeField] private TranslatedText _secondsText = null; // сек.
     [SerializeField] private TranslatedText _spiritEnergyText = null; // ДЭ.
-    /// <summary>
-    /// Заголовок типа урона.
-    /// </summary>
+    [Header("Текстовые форматы:")]
+    [SerializeField] private TranslatedText _healthRecoveryFlat = null;
+    [SerializeField] private TranslatedText _energyRecoveryFlat = null;
+
     public string DamageTypeLabel => _damageTypeLabel.Value;
-    /// <summary>
-    /// Текст типа цели: на себя.
-    /// </summary>
+
     public string TargetSelfLabel => _targetSelfText.Value;
-    /// <summary>
-    /// Текст типа цели: враг.
-    /// </summary>
     public string TargetEnemyLabel => _targetEnemyText.Value;
-    /// <summary>
-    /// Текстовое отображение секунд.
-    /// </summary>
+
     public string SecondsText => _secondsText.Value;
-    /// <summary>
-    /// Текстовое отображение духовной энергии.
-    /// </summary>
     public string EnergyText => _spiritEnergyText.Value;
+
+    public string HealthRecoveryFlatFormat => _healthRecoveryFlat.Value;
+    public string EnergyRecoveryFlatFormat => _energyRecoveryFlat.Value;
 
     private void Awake()
     {

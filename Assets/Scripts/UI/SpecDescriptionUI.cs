@@ -35,7 +35,7 @@ public class SpecDescriptionUI : MonoBehaviour
         InitStats(characterStats);
 
         _nameField.SetText(playerSpec.SpecName);
-        _descriptionField.SetText(playerSpec.Description);
+        _descriptionField.SetText(playerSpec.SpecDescription);
     }
     /// <summary>
     /// Инициализировать описание спека противника.
@@ -44,7 +44,7 @@ public class SpecDescriptionUI : MonoBehaviour
     {
         InitStats(characterStats);
 
-        _nameField.SetText(enemySpec.Name);
+        _nameField.SetText(enemySpec.SpecName);
     }
     /// <summary>
     /// Инициализировать описание статов персонажа.

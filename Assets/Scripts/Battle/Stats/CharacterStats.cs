@@ -55,7 +55,7 @@ public class CharacterStats : MonoBehaviour
     /// <summary>
     /// Задать базовые статы для текущей специализации персонажа.
     /// </summary>
-    public void SetBaseStats(BaseStats currentSpec)
+    public void SetBaseStats(SpecBase currentSpec)
     {
         MaxHealth = new Stat(currentSpec.BaseHealth);
         MaxEnergy = new Stat(currentSpec.BaseEnergy);
@@ -138,7 +138,7 @@ public class CharacterStats : MonoBehaviour
     /// <summary>
     /// Наличие духовной энергии для применения умения.
     /// </summary>
-    public bool IsEnoughEnergy(int energyCost)
+    public bool IsEnoughEnergy(float energyCost)
     {
         return CurrentEnergy - energyCost >= 0;
     }

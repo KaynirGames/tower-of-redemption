@@ -18,11 +18,11 @@ public class BattleUI : MonoBehaviour
     [SerializeField] private EfficacyDisplayUI _enemyEfficacyDisplay = null;
     [SerializeField] private SkillDisplayUI _enemySkillDisplay = null;
 
-    private Player _player;
+    private PlayerCharacter _player;
     /// <summary>
     /// Вызвать окно боевой системы.
     /// </summary>
-    public void ShowBattleWindow(Player player, Enemy enemy)
+    public void ShowBattleWindow(PlayerCharacter player, EnemyCharacter enemy)
     {
         _battleWindow.SetActive(true);
         if (_player == null) { InitPlayer(player); }
@@ -36,23 +36,23 @@ public class BattleUI : MonoBehaviour
         _battleWindow.SetActive(false);
     }
 
-    private void InitPlayer(Player player)
+    private void InitPlayer(PlayerCharacter player)
     {
         _player = player;
 
         _playerNameDisplay.SetText(player.PlayerSpec.SpecName);
         // Графика
-        _playerResourceDisplay.Init(player.PlayerStats);
+        _playerResourceDisplay.Init(player.Stats);
         _playerSkillDisplay.Init(player.SkillBook);
     }
 
-    private void InitEnemy(Enemy enemy)
+    private void InitEnemy(EnemyCharacter enemy)
     {
-        _enemyNameDisplay.SetText(enemy.EnemySpec.Name);
+        _enemyNameDisplay.SetText(enemy.EnemySpec.SpecName);
         // Графика
-        _enemyResourceDisplay.Init(enemy.EnemyStats);
-        _enemyStatsDisplay.Init(enemy.EnemyStats);
-        _enemyEfficacyDisplay.Init(enemy.EnemyStats);
+        _enemyResourceDisplay.Init(enemy.Stats);
+        _enemyStatsDisplay.Init(enemy.Stats);
+        _enemyEfficacyDisplay.Init(enemy.Stats);
         _enemySkillDisplay.Init(enemy.SkillBook);
     }
 }

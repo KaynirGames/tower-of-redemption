@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -7,45 +8,76 @@ using UnityEngine;
 [Serializable]
 public class SkillSlot
 {
-    [SerializeField] private Skill _skill = null;
-    [SerializeField] private SkillSlotType _slotType = SkillSlotType.ActiveSlot;
-    [SerializeField] private int _slotID = 0;
-    /// <summary>
-    /// Умение в слоте книги.
-    /// </summary>
-    public Skill Skill => _skill;
-    /// <summary>
-    /// Тип слота умения в книге.
-    /// </summary>
-    public SkillSlotType SlotType => _slotType;
-    /// <summary>
-    /// Номер слота умения в книге.
-    /// </summary>
-    public int SlotID => _slotID;
-    /// <summary>
-    /// Для определения пустого слота.
-    /// </summary>
-    public bool IsEmpty => _skill == null;
+    public Action<bool> OnSkillCooldownToggle = delegate { };
+    public Action OnRequiredEnergyShortage = delegate { };
 
-    private bool _isCooldown = false;
+    public int SlotID { get; private set; }
+    public SkillSlotType SlotType { get; private set; }
+    public Skill Skill { get; private set; }
 
-    public SkillSlot(SkillSlotType slotType, int slotID)
+    public bool IsCooldown { get; private set; }
+
+    public bool IsEmpty => Skill == null;
+
+    private Character _skillOwner = null;
+
+    public SkillSlot(SkillSlotType slotType, int slotID, Character skillOwner)
     {
-        _slotID = slotID;
-        _slotType = slotType;
+        SlotID = slotID;
+        SlotType = slotType;
+
+        _skillOwner = skillOwner;
     }
-    /// <summary>
-    /// Вставить умение в слот.
-    /// </summary>
+
     public void InsertSkill(Skill skill)
     {
-        _skill = skill;
+        Skill = skill;
     }
-    /// <summary>
-    /// Убрать умение из слота.
-    /// </summary>
+
     public void RemoveSkill()
     {
-        _skill = null;
+        Skill = null;
+    }
+
+    public void TryActivateSkill()
+    {
+        if (IsCooldown) { return; }
+
+        if (!_skillOwner.Stats.IsEnoughEnergy(Skill.Cost))
+        {
+            OnRequiredEnergyShortage.Invoke();
+            return;
+        }
+
+        ActivateSkillForTarget();
+
+        _skillOwner.StartCoroutine(SkillCooldownRoutine());
+    }
+
+    private void ActivateSkillForTarget()
+    {
+        switch (Skill.TargetType)
+        {
+            case TargetType.Self:
+                {
+                    Skill.Activate(_skillOwner, _skillOwner);
+                    break;
+                }
+            case TargetType.Opponent:
+                {
+                    Character opponent = BattleManager.Instance.FindTargetForSkillOwner(_skillOwner);
+                    Skill.Activate(_skillOwner, opponent);
+                    break;
+                }
+        }
+    }
+
+    private IEnumerator SkillCooldownRoutine()
+    {
+        IsCooldown = true;
+        OnSkillCooldownToggle.Invoke(true);
+        yield return new WaitForSecondsRealtime(Skill.Cooldown);
+        IsCooldown = false;
+        OnSkillCooldownToggle.Invoke(false);
     }
 }

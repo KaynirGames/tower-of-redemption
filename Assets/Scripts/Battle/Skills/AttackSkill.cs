@@ -6,27 +6,27 @@ using UnityEngine;
 public class AttackSkill : Skill
 {
     [Header("Параметры атакующего умения:")]
-    [SerializeField] private DamageType[] _damageTypes = null; // Типы наносимого урона.
+    [SerializeField] private DamageType[] _damageTypes = null;
 
-    public override void Activate(CharacterStats user, CharacterStats target)
+    public override void Activate(Character owner, Character opponent)
     {
         List<float> damageList = new List<float>();
 
         // Записываем получаемый целью урон.
         foreach (DamageType damageType in _damageTypes)
         {
-            damageList.Add(damageType.CalculateDamage(user, target, _powerTier));
+            damageList.Add(damageType.CalculateDamage(owner.Stats, opponent.Stats, _powerTier));
         }
 
         // Накладываем эффекты.
-        _userEffects.ForEach(effect => effect.Apply(user));
-        _enemyEffects.ForEach(effect => effect.Apply(target));
+        _ownerEffects.ForEach(effect => effect.Apply(owner.Stats));
+        _opponentEffects.ForEach(effect => effect.Apply(opponent.Stats));
 
         // Наносим рассчитанный урон.
-        damageList.ForEach(damage => target.TakeDamage(damage));
+        damageList.ForEach(damage => opponent.Stats.TakeDamage(damage));
     }
 
-    public override void Deactivate(CharacterStats user, CharacterStats target) { }
+    public override void Deactivate(Character owner, Character opponent) { }
 
     public override StringBuilder GetParamsDescription()
     {
@@ -44,15 +44,8 @@ public class AttackSkill : Skill
 
         _stringBuilder.AppendLine().AppendLine();
 
-        if (_userEffects.Count > 0)
-        {
-            _userEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Self)));
-        }
-
-        if (_enemyEffects.Count > 0)
-        {
-            _enemyEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Enemy)));
-        }
+        _ownerEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Self)));
+        _opponentEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Opponent)));
 
         return _stringBuilder;
     }

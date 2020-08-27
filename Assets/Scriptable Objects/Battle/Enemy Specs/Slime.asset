@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c70923fe7c8a3644a59cb893db8e93c, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
+  _specNameText:
+    _key: EnemySpec.Slime.Name
+  _specDescriptionText:
+    _key: EnemySpec.Slime.Description
   _baseHealth: 50
   _baseEnergy: 10
   _baseStrength: 5
@@ -24,8 +28,7 @@ MonoBehaviour:
   _baseWaterEfficacy: 100
   _baseSkills:
   - {fileID: 11400000, guid: bbf13af2daf87dc4fbb21968f24b3975, type: 2}
-  _nameText:
-    _key: EnemySpec.Slime
+  - {fileID: 11400000, guid: a80d71cc1d6bee34dbced565ee3ac51b, type: 2}
   _energyRegen: 1
   _energyRegenDelay: 1
   _lootTable: {fileID: 0}

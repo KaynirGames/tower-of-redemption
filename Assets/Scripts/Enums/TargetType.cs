@@ -1,8 +1,5 @@
-﻿/// <summary>
-/// Тип цели (на себя, противник).
-/// </summary>
-public enum TargetType
+﻿public enum TargetType
 {
     Self,
-    Enemy
+    Opponent
 }

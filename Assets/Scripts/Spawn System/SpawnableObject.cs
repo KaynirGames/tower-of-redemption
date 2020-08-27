@@ -6,20 +6,20 @@
 [System.Serializable]
 public class SpawnableObject
 {
-    [SerializeField] private Object _object = null;
+    [SerializeField] private Object _objectToSpawn = null;
     [SerializeField] private int _weight = 0;
-    /// <summary>
-    /// Создаваемый объект.
-    /// </summary>
-    public Object Object => _object;
-    /// <summary>
-    /// Вес объекта в таблице вероятностей.
-    /// </summary>
+    [SerializeField] private int _index = 0;
+
+    public Object ObjectToSpawn => _objectToSpawn;
+
     public int Weight => _weight;
 
-    public SpawnableObject(Object objectToSpawn, int weight)
+    public int Index => _index;
+
+    public SpawnableObject(Object objectToSpawn, int weight, int index)
     {
-        _object = objectToSpawn;
+        _objectToSpawn = objectToSpawn;
         _weight = weight;
+        _index = index;
     }
 }

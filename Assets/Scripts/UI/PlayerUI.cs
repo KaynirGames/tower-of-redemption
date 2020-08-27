@@ -6,13 +6,13 @@ public class PlayerUI : MonoBehaviour
 
     private void Awake()
     {
-        Player.OnPlayerActive += Init;
+        PlayerCharacter.OnPlayerActive += Init;
     }
     /// <summary>
     /// Инициализировать UI игрока. 
     /// </summary>
-    private void Init(Player player)
+    private void Init(PlayerCharacter player)
     {
-        _resourceDisplay.Init(player.PlayerStats);
+        _resourceDisplay.Init(player.Stats);
     }
 }

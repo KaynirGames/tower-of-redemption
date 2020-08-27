@@ -1,39 +1,54 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 /// <summary>
 /// Пассивное умение.
 /// </summary>
-[CreateAssetMenu(fileName = "NewPassiveSkill", menuName = "Scriptable Objects/Battle/Skill/Passive Skill")]
+[CreateAssetMenu(fileName = "NewPassiveSkill", menuName = "Scriptable Objects/Battle/Skills/Passive Skill")]
 public class PassiveSkill : Skill
 {
-    public override void Activate(CharacterStats user, CharacterStats target)
+    public override void Activate(Character owner, Character opponent)
     {
-        _userEffects.ForEach(effect => effect.Apply(user));
-        _enemyEffects.ForEach(effect => effect.Apply(target));
+        ApplyPassiveEffects(owner, _ownerEffects);
+        ApplyPassiveEffects(opponent, _opponentEffects);
     }
 
-    public override void Deactivate(CharacterStats user, CharacterStats target)
+    public override void Deactivate(Character owner, Character opponent)
     {
-        foreach (SkillEffect effect in _userEffects)
-        {
-            if (effect.DurationType.GetType() != typeof(PermanentDuration))
-            {
-                effect.Remove(target);
-            }
-        }
-
-        foreach (SkillEffect effect in _enemyEffects)
-        {
-            if (effect.DurationType.GetType() != typeof(PermanentDuration))
-            {
-                effect.Remove(target);
-            }
-        }
+        RemovePassiveEffects(owner, _ownerEffects);
+        RemovePassiveEffects(opponent, _opponentEffects);
     }
 
     public override StringBuilder GetParamsDescription()
     {
-        throw new System.NotImplementedException();
+        _stringBuilder.Clear();
+
+        _ownerEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Self)));
+        _opponentEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Opponent)));
+
+        return _stringBuilder;
+    }
+
+    private void ApplyPassiveEffects(Character character, List<SkillEffect> effects)
+    {
+        if (character != null)
+        {
+            effects.ForEach(effect => effect.Apply(character.Stats));
+        }
+    }
+
+    private void RemovePassiveEffects(Character character, List<SkillEffect> effects)
+    {
+        if (character != null)
+        {
+            foreach (SkillEffect effect in effects)
+            {
+                if (effect.DurationType.GetType() != typeof(PermanentDuration))
+                {
+                    effect.Remove(character.Stats);
+                }
+            }
+        }
     }
 }

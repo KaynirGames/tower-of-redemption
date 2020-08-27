@@ -8,13 +8,13 @@ public class BattleTester : MonoBehaviour
 {
     public static event BattleManager.OnBattleTrigger OnBattleTrigger = delegate { return false; };
 
-    [SerializeField] private Enemy _testEnemyPrefab = null;
+    [SerializeField] private EnemyCharacter _testEnemyPrefab = null;
     [SerializeField] private Transform _testSpawn = null;
     [SerializeField] private bool _isPlayerAdvantage = true;
     [SerializeField] private Skill _testSkill = null;
 
-    private Player _player;
-    private Enemy _currentEnemy;
+    private PlayerCharacter _player;
+    private EnemyCharacter _currentEnemy;
 
     public SkillDescriptionUI descriptionUI;
 
@@ -37,11 +37,11 @@ public class BattleTester : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-            if (_testSkill.TargetType == TargetType.Enemy)
+            if (_testSkill.TargetType == TargetType.Opponent)
             {
-                _testSkill.Activate(_player.PlayerStats, _currentEnemy.EnemyStats);
+                _testSkill.Activate(_player, _currentEnemy);
                 Debug.Log($"Enemy {_currentEnemy.EnemySpec.name} took damage from {_testSkill.SkillName}");
-                Debug.Log(_currentEnemy.EnemyStats.CurrentHealth);
+                Debug.Log(_currentEnemy.Stats.CurrentHealth);
             }
         }
 
@@ -53,14 +53,14 @@ public class BattleTester : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            _player.PlayerStats.MaxHealth.AddModifier(new StatModifier(10, ModifierType.Flat, this));
-            _player.PlayerStats.UpdateResourcesDisplay();
+            _player.Stats.MaxHealth.AddModifier(new StatModifier(10, ModifierType.Flat, this));
+            _player.Stats.UpdateResourcesDisplay();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            _player.PlayerStats.MaxHealth.RemoveSourceModifiers(this);
-            _player.PlayerStats.UpdateResourcesDisplay();
+            _player.Stats.MaxHealth.RemoveSourceModifiers(this);
+            _player.Stats.UpdateResourcesDisplay();
         }
     }
 

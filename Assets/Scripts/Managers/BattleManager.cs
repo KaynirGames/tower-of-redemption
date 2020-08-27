@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance { get; private set; }
-    /// <summary>
-    /// Делегат для сообщения о начале боя.
-    /// </summary>
-    public delegate bool OnBattleTrigger(Enemy enemy, bool isPlayerAdvantage);
-    /// <summary>
-    /// Делегат для сообщения об окончании боя.
-    /// </summary>
+
+    public delegate bool OnBattleTrigger(EnemyCharacter enemy, bool isPlayerAdvantage);
+
     public delegate void OnBattleEnd(bool isPlayerDeath);
-    /// <summary>
-    /// Событие для снятия эффектов с цели, действующих до конца боя.
-    /// </summary>
+
     public event BattleDuration.OnBattleDurationExpire OnBattleDurationExpire = delegate { };
 
     [SerializeField] private BattleUI _battleUI = null;
@@ -23,8 +16,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private float _playerEnergyBonus = 0.25f;
     [SerializeField] private float _enemyEnergyBonus = 1f;
 
-    private Player _player;
-    private Enemy _enemy;
+    private PlayerCharacter _player;
+    private EnemyCharacter _enemy;
 
     private void Awake()
     {
@@ -37,17 +30,20 @@ public class BattleManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Enemy.OnBattleTrigger += StartBattle;
-        Enemy.OnBattleEnd += EndBattle;
-
-        SkillSlotUI.OnPlayerActivationCall += ActivateSkill;
+        EnemyCharacter.OnBattleTrigger += StartBattle;
+        EnemyCharacter.OnBattleEnd += EndBattle;
 
         BattleTester.OnBattleTrigger += StartBattle;
     }
-    /// <summary>
-    /// Начать бой.
-    /// </summary>
-    private bool StartBattle(Enemy enemy, bool isPlayerAdvantage)
+
+    public Character FindTargetForSkillOwner(Character owner)
+    {
+        return owner == _player
+            ? _enemy
+            : _player as Character;
+    }
+
+    private bool StartBattle(EnemyCharacter enemy, bool isPlayerAdvantage)
     {
         GameMaster.Instance.TogglePause(true);
 
@@ -58,11 +54,11 @@ public class BattleManager : MonoBehaviour
 
             if (isPlayerAdvantage)
             {
-                ApplyEnergyBonus(_player.PlayerStats, _playerEnergyBonus); 
+                ApplyAdvantageEnergyBonus(_player.Stats, _playerEnergyBonus);
             }
             else
             {
-                ApplyEnergyBonus(enemy.EnemyStats, _enemyEnergyBonus);
+                ApplyAdvantageEnergyBonus(enemy.Stats, _enemyEnergyBonus);
             }
 
             // Корутина перехода на экран боя с анимацией.
@@ -73,38 +69,36 @@ public class BattleManager : MonoBehaviour
         }
         else { return false; }
     }
-    /// <summary>
-    /// Завершить бой.
-    /// </summary>
+
     private void EndBattle(bool isPlayerDeath)
     {
         GameMaster.Instance.TogglePause(false);
 
-        OnBattleDurationExpire?.Invoke(_player.PlayerStats);
-        // Корутина закрытия экрана боя с анимацией.
-        _battleUI.CloseBattleWindow();
+        if (isPlayerDeath)
+        {
+            // Сцена гибели.
+            // Вывод меню с кнопками выхода.
+        }
+        else
+        {
+            _enemy = null;
+
+            OnBattleDurationExpire?.Invoke(_player.Stats);
+
+            StartCoroutine(CloseBattleRoutine());
+        }
     }
-    /// <summary>
-    /// Применить бонус к энергии персонажа.
-    /// </summary>
-    private void ApplyEnergyBonus(CharacterStats stats, float bonusRate)
+
+    private void ApplyAdvantageEnergyBonus(CharacterStats stats, float bonusRate)
     {
         float energyBonus = Mathf.Round(stats.MaxEnergy.GetValue() * bonusRate);
         stats.RecoverEnergy(energyBonus);
     }
-    /// <summary>
-    /// Активировать умение.
-    /// </summary>
-    private void ActivateSkill(Skill skill)
+
+    private IEnumerator CloseBattleRoutine()
     {
-        switch (skill.TargetType)
-        {
-            case TargetType.Enemy:
-                skill.Activate(_player.PlayerStats, _enemy.EnemyStats);
-                break;
-            case TargetType.Self:
-                skill.Activate(_player.PlayerStats, _player.PlayerStats);
-                break;
-        }
+        // Анимация выхода из боя.
+        yield return null;
+        _battleUI.CloseBattleWindow();
     }
 }

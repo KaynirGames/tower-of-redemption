@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -7,26 +8,28 @@ using UnityEngine;
 public class SkillBook : MonoBehaviour
 {
     public delegate void OnSkillBookChange(int slotID, SkillSlotType slotType);
-    /// <summary>
-    /// Событие при любом изменении доступных слотов умений.
-    /// </summary>
+
     public event OnSkillBookChange OnSkillSlotChange = delegate { };
 
-    [SerializeField] private int _activeSlotsCount = 4; // Число слотов активных умений.
-    [SerializeField] private int _passiveSlotsCount = 3; // Число слотов пассивных умений.
-    [SerializeField] private int _specialSlotsCount = 1; // Число слотов особых умений.
+    [SerializeField] private int _activeSlotsCount = 4;
+    [SerializeField] private int _passiveSlotsCount = 3;
+    [SerializeField] private int _specialSlotsCount = 1;
 
-    private SkillSlot[] _activeSlots; // Слоты активных умений.
-    private SkillSlot[] _passiveSlots; // Слоты пассивных умений.
-    private SkillSlot[] _specialSlots; // Слоты особых умений.
+    private SkillSlot[] _activeSlots;
+    private SkillSlot[] _passiveSlots;
+    private SkillSlot[] _specialSlots;
 
-    private Dictionary<SkillSlotType, SkillSlot[]> _bookSlots; // Слоты книги.
+    private Dictionary<SkillSlotType, SkillSlot[]> _bookSlots;
+
+    private Character _skillBookOwner;
 
     private void Awake()
     {
-        _activeSlots = CreateSlots(_activeSlotsCount, SkillSlotType.ActiveSlot);
-        _passiveSlots = CreateSlots(_passiveSlotsCount, SkillSlotType.PassiveSlot);
-        _specialSlots = CreateSlots(_specialSlotsCount, SkillSlotType.SpecialSlot);
+        _skillBookOwner = GetComponent<Character>();
+
+        _activeSlots = CreateBookSlots(_activeSlotsCount, SkillSlotType.ActiveSlot);
+        _passiveSlots = CreateBookSlots(_passiveSlotsCount, SkillSlotType.PassiveSlot);
+        _specialSlots = CreateBookSlots(_specialSlotsCount, SkillSlotType.SpecialSlot);
 
         _bookSlots = new Dictionary<SkillSlotType, SkillSlot[]>
         { 
@@ -35,22 +38,18 @@ public class SkillBook : MonoBehaviour
             { SkillSlotType.SpecialSlot, _specialSlots }
         };
     }
-    /// <summary>
-    /// Задать базовые умения для текущей специализации персонажа.
-    /// </summary>
-    public void SetBaseSkills(BaseStats currentSpec)
+
+    public void SetBaseSpecSkills(SpecBase currentSpec)
     {
         foreach (Skill skill in currentSpec.BaseSkills)
         {
             AddSkill(skill);
         }
     }
-    /// <summary>
-    /// Добавить умение в книгу.
-    /// </summary>
+
     public void AddSkill(Skill skill)
     {
-        int slotID = FindSlotAvaliable(skill.SkillSlotType);
+        int slotID = FindFirstEmptySlot(skill.SkillSlotType);
 
         if (slotID >= 0)
         {
@@ -58,73 +57,71 @@ public class SkillBook : MonoBehaviour
         }
         else
         {
-            // Сообщаем, что все слоты заняты.
+            // Вызвать меню для замены умения в слоте.
         }
     }
-    /// <summary>
-    /// Убрать умение из книги.
-    /// </summary>
+
     public Skill RemoveSkill(int slotID, SkillSlotType slotType)
     {
-        SkillSlot[] slots = GetSlots(slotType);
+        SkillSlot[] slots = GetBookSlots(slotType);
 
         Skill removedSkill = slots[slotID].Skill;
+
+        if (slotType == SkillSlotType.PassiveSlot)
+        {
+            TogglePassiveSkillForOwner(removedSkill, false);
+        }
+
         slots[slotID].RemoveSkill();
 
         OnSkillSlotChange.Invoke(slotID, slotType);
 
         return removedSkill;
     }
-    /// <summary>
-    /// Заменить умение в книге.
-    /// </summary>
-    public Skill ChangeSkill(int slotID, Skill newSkill)
+
+    public Skill ReplaceSkill(int slotID, Skill newSkill)
     {
         Skill removedSkill = RemoveSkill(slotID, newSkill.SkillSlotType);
         InsertSkill(newSkill, slotID);
 
         return removedSkill;
     }
-    /// <summary>
-    /// Получить набор слотов книги.
-    /// </summary>
-    public SkillSlot[] GetSlots(SkillSlotType slotType)
+
+    public SkillSlot[] GetBookSlots(SkillSlotType slotType)
     {
         return _bookSlots[slotType];
     }
-    /// <summary>
-    /// Создать слоты книги.
-    /// </summary>
-    private SkillSlot[] CreateSlots(int slotAmount, SkillSlotType slotType)
+
+    private SkillSlot[] CreateBookSlots(int slotAmount, SkillSlotType slotType)
     {
         SkillSlot[] slots = new SkillSlot[slotAmount];
 
         for (int i = 0; i < slots.Length; i++)
         {
-            slots[i] = new SkillSlot(slotType, i);
+            slots[i] = new SkillSlot(slotType, i, _skillBookOwner);
         }
 
         return slots;
     }
-    /// <summary>
-    /// Вставить умение в слот книги.
-    /// </summary>
+
     private void InsertSkill(Skill skill, int slotID)
     {
-        SkillSlot[] slots = GetSlots(skill.SkillSlotType);
+        SkillSlot[] slots = GetBookSlots(skill.SkillSlotType);
         slots[slotID].InsertSkill(skill);
+
+        if (skill.SkillSlotType == SkillSlotType.PassiveSlot)
+        {
+            TogglePassiveSkillForOwner(skill, true);
+        }
 
         OnSkillSlotChange.Invoke(slotID, skill.SkillSlotType);
     }
-    /// <summary>
-    /// Найти первый свободный слот.
-    /// </summary>
-    private int FindSlotAvaliable(SkillSlotType slotType)
-    {
-        SkillSlot[] slots = GetSlots(slotType);
 
-        for (int i = 0; i < slots.Length; i++)
-        {
+    private int FindFirstEmptySlot(SkillSlotType slotType)
+    {
+        SkillSlot[] slots = GetBookSlots(slotType);
+
+        for (int i = 0; i < slots.Length; i++) {
             if (slots[i].IsEmpty)
             {
                 return i;
@@ -132,5 +129,17 @@ public class SkillBook : MonoBehaviour
         }
 
         return -1;
+    }
+
+    private void TogglePassiveSkillForOwner(Skill passiveSkill, bool enable)
+    {
+        if (enable)
+        {
+            passiveSkill.Activate(_skillBookOwner, null);
+        }
+        else
+        {
+            passiveSkill.Deactivate(_skillBookOwner, null);
+        }
     }
 }

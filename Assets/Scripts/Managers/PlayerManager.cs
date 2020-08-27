@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
     /// <summary>
     /// Активный игрок.
     /// </summary>
-    public Player Player { get; private set; }
+    public PlayerCharacter Player { get; private set; }
 
     private void Awake()
     {
@@ -19,12 +19,12 @@ public class PlayerManager : MonoBehaviour
         }
         else { Destroy(gameObject); }
 
-        Player.OnPlayerActive += RegisterPlayer;
+        PlayerCharacter.OnPlayerActive += RegisterPlayer;
     }
     /// <summary>
     /// Зарегистрировать активного игрока.
     /// </summary>
-    private void RegisterPlayer(Player player)
+    private void RegisterPlayer(PlayerCharacter player)
     {
         Player = player;
     }

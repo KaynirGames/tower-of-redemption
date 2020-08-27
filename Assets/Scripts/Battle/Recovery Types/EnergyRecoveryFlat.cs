@@ -1,0 +1,15 @@
+﻿using UnityEngine;
+
+[CreateAssetMenu(fileName = "EnergyRecovery_Amount", menuName = "Scriptable Objects/Battle/Recovery Types/Energy Recovery Flat")]
+public class EnergyRecoveryFlat : RecoveryType
+{
+    public override void RecoverResource(CharacterStats target)
+    {
+        target.RecoverEnergy(_recoveryAmount);
+    }
+
+    public override string GetDescription()
+    {
+        return string.Format(GameTexts.Instance.EnergyRecoveryFlatFormat, _recoveryAmount);
+    }
+}

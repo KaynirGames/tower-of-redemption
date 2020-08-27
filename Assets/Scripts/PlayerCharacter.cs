@@ -2,28 +2,16 @@
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerCharacter : Character
 {
-    public static event Action<Player> OnPlayerActive = delegate { };
+    public static event Action<PlayerCharacter> OnPlayerActive = delegate { };
     public static event BattleManager.OnBattleEnd OnBattleEnd = delegate { };
 
     [SerializeField] private PlayerSpec _playerSpec = null;
-    /// <summary>
-    /// Специализация игрока.
-    /// </summary>
+
     public PlayerSpec PlayerSpec => _playerSpec;
-    /// <summary>
-    /// Инвентарь игрока.
-    /// </summary>
+
     public Inventory Inventory { get; private set; }
-    /// <summary>
-    /// Книга умений игрока.
-    /// </summary>
-    public SkillBook SkillBook { get; private set; }
-    /// <summary>
-    /// Статы персонажа.
-    /// </summary>
-    public CharacterStats PlayerStats { get; private set; }
 
     private Vector2 _moveDirection = Vector2.zero;
     private CharacterMoveBase _characterMoveBase;
@@ -31,20 +19,20 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        PlayerStats = GetComponent<CharacterStats>();
+        Stats = GetComponent<CharacterStats>();
         Inventory = GetComponent<Inventory>();
         SkillBook = GetComponent<SkillBook>();
 
         _characterMoveBase = GetComponent<CharacterMoveBase>();
         _baseAnimation = GetComponent<BaseAnimation>();
 
-        PlayerStats.OnCharacterDeath += Die;
+        Stats.OnCharacterDeath += Die;
     }
 
     private void Start()
     {
-        PlayerStats.SetBaseStats(_playerSpec);
-        SkillBook.SetBaseSkills(_playerSpec);
+        Stats.SetBaseStats(_playerSpec);
+        SkillBook.SetBaseSpecSkills(_playerSpec);
 
         OnPlayerActive.Invoke(this);
     }
@@ -71,7 +59,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Die()
+    protected override void Die()
     {
         OnBattleEnd.Invoke(true);
     }

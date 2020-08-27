@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3597064783027234847}
   - component: {fileID: 3597064783027234837}
   - component: {fileID: 3597064783027234836}
-  - component: {fileID: 3597064783027234843}
+  - component: {fileID: 7233533201263309741}
   - component: {fileID: 3597064783027234842}
   - component: {fileID: 3597064783027234841}
   - component: {fileID: 3597064783027234840}
@@ -76,7 +76,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.012876749, y: 0.073572755}
   m_Size: {x: 0.6196666, y: 1.2306583}
   m_Direction: 0
---- !u!114 &3597064783027234843
+--- !u!114 &7233533201263309741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,12 +85,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3597064783027234846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d062dbe8d48c14e969e301300443ae, type: 3}
+  m_Script: {fileID: 11500000, guid: ae53869604b0822468b3d6940c784499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentSpec: {fileID: 11400000, guid: 57db7f12630d5a44b81264d6bb185e8d, type: 2}
-  _inventory: {fileID: 665066989}
-  _skillBook: {fileID: 665066990}
+  _playerSpec: {fileID: 11400000, guid: 57db7f12630d5a44b81264d6bb185e8d, type: 2}
 --- !u!114 &3597064783027234842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +208,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

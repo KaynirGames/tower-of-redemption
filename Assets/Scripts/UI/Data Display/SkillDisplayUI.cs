@@ -62,14 +62,14 @@ public class SkillDisplayUI : MonoBehaviour
     /// </summary>
     private void UpdateSkillSlot(int slotID, SkillSlotType slotType)
     {
-        _slotsDictionary[slotType][slotID].UpdateSlotUI();
+        _slotsDictionary[slotType][slotID].UpdateSlotDisplayUI();
     }
     /// <summary>
     /// Обновить все отображаемые слоты умений.
     /// </summary>
     private void UpdateAllSlots(SkillSlotType slotType)
     {
-        SkillSlot[] slots = _skillBook.GetSlots(slotType);
+        SkillSlot[] slots = _skillBook.GetBookSlots(slotType);
         SkillSlotUI[] slotsUI = _slotsDictionary[slotType];
 
         for (int i = 0; i < slots.Length; i++)
