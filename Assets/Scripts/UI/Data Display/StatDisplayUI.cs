@@ -1,8 +1,9 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// Класс для отображения статов персонажа.
+/// Класс для отображения статов персонажа на UI.
 /// </summary>
 public class StatDisplayUI : MonoBehaviour
 {
@@ -12,45 +13,52 @@ public class StatDisplayUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _willField = null;
     [SerializeField] private TextMeshProUGUI _magicDefenceField = null;
 
-    private CharacterStats _characterStats; // Текущие статы персонажа.
-    /// <summary>
-    /// Инициализация отображения статов персонажа.
-    /// </summary>
-    public void Init(CharacterStats characterStats)
+    private Dictionary<StatType, TextMeshProUGUI> _statTextFields;
+
+    private CharacterStats _stats;
+
+    public void RegisterStats(CharacterStats stats)
     {
-        _characterStats = characterStats;
+        _stats = stats;
 
-        DisplayStats(characterStats);
+        _statTextFields = CreateStatTextFieldDictionary();
 
-        characterStats.OnStatChange += UpdateStatsDisplay;
+        DisplayCharacterStats();
+
+        stats.OnStatChange += UpdateStatDisplay;
     }
-    /// <summary>
-    /// Обновить отображение статов.
-    /// </summary>
-    public void UpdateStatsDisplay()
+
+    private void UpdateStatDisplay(StatType statType)
     {
-        DisplayStats(_characterStats);
+        if (_statTextFields.ContainsKey(statType))
+        {
+            _statTextFields[statType].SetText(_stats.GetStat(statType)
+                                                    .GetFinalValue()
+                                                    .ToString());
+        }
     }
-    /// <summary>
-    /// Выставить текст со статами.
-    /// </summary>
-    private void DisplayStats(CharacterStats characterStats)
+
+    private Dictionary<StatType, TextMeshProUGUI> CreateStatTextFieldDictionary()
     {
-        _strengthField.SetText(characterStats.Strength
-            .GetValue().ToString());
+        return new Dictionary<StatType, TextMeshProUGUI>()
+        {
+            { StatType.Strength, _strengthField },
+            { StatType.Defence, _defenceField },
+            { StatType.Will, _willField },
+            { StatType.MagicDefence, _magicDefenceField }
+        };
+    }
 
-        _defenceField.SetText(characterStats.Defence
-            .GetValue().ToString());
-
-        _willField.SetText(characterStats.Will
-            .GetValue().ToString());
-
-        _magicDefenceField.SetText(characterStats.MagicDefence
-            .GetValue().ToString());
+    private void DisplayCharacterStats()
+    {
+        UpdateStatDisplay(StatType.Strength);
+        UpdateStatDisplay(StatType.Defence);
+        UpdateStatDisplay(StatType.Will);
+        UpdateStatDisplay(StatType.MagicDefence);
     }
 
     private void OnDestroy()
     {
-        _characterStats.OnStatChange -= UpdateStatsDisplay;
+        _stats.OnStatChange -= UpdateStatDisplay;
     }
 }

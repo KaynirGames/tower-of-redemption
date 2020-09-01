@@ -8,9 +8,9 @@ public class PhysicalDamage : DamageType
 {
     public override float CalculateDamage(CharacterStats user, CharacterStats target, PowerTier tier)
     {
-        float userPower = user.Strength.GetValue() * tier.PowerModifier;
-        float targetDefence = 1 - (target.Defence.GetValue() / 100);
+        float userPower = user.GetStat(StatType.Strength).GetFinalValue() * tier.PowerModifier;
+        float targetDefence = 1 - (target.GetStat(StatType.Defence).GetFinalValue() / 100);
 
-        return Mathf.Round(userPower * targetDefence);
+        return -Mathf.Round(userPower * targetDefence);
     }
 }

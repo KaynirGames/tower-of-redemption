@@ -76,7 +76,7 @@ public class InventoryUI : MonoBehaviour
     /// </summary>
     private void Init(PlayerCharacter player)
     {
-        _playerSpecDescription.Init(player.Stats, player.PlayerSpec);
+        _playerSpecDescription.InitDescription(player.Stats, player.PlayerSpec);
         _playerSkillDisplay.Init(player.SkillBook);
         _playerSpecIcon.sprite = player.PlayerSpec.PlayerSpecIcon;
         _playerSpecIcon.enabled = true;

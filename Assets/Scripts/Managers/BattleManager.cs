@@ -9,8 +9,6 @@ public class BattleManager : MonoBehaviour
 
     public delegate void OnBattleEnd(bool isPlayerDeath);
 
-    public event BattleDuration.OnBattleDurationExpire OnBattleDurationExpire = delegate { };
-
     [SerializeField] private BattleUI _battleUI = null;
     [Header("Бонусная энергия при боевом преимуществе:")]
     [SerializeField] private float _playerEnergyBonus = 0.25f;
@@ -50,6 +48,7 @@ public class BattleManager : MonoBehaviour
         if (_enemy == null)
         {
             _enemy = enemy;
+
             if (_player == null) { _player = PlayerManager.Instance.Player; }
 
             if (isPlayerAdvantage)
@@ -58,10 +57,13 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                ApplyAdvantageEnergyBonus(enemy.Stats, _enemyEnergyBonus);
+                ApplyAdvantageEnergyBonus(_enemy.Stats, _enemyEnergyBonus);
             }
 
             // Корутина перехода на экран боя с анимацией.
+
+            TogglePassiveSkillsForOpponent(_player, _enemy, true);
+            TogglePassiveSkillsForOpponent(_enemy, _player, true);
 
             _battleUI.ShowBattleWindow(_player, enemy);
 
@@ -81,18 +83,40 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
+            TogglePassiveSkillsForOpponent(_player, _enemy, false);
+            TogglePassiveSkillsForOpponent(_enemy, _player, false);
+
             _enemy = null;
-
-            OnBattleDurationExpire?.Invoke(_player.Stats);
-
             StartCoroutine(CloseBattleRoutine());
         }
     }
 
     private void ApplyAdvantageEnergyBonus(CharacterStats stats, float bonusRate)
     {
-        float energyBonus = Mathf.Round(stats.MaxEnergy.GetValue() * bonusRate);
-        stats.RecoverEnergy(energyBonus);
+        float energyBonus = stats.Energy.MaxValue.GetFinalValue()
+                            * bonusRate;
+
+        stats.ChangeEnergy(energyBonus);
+    }
+
+    private void TogglePassiveSkillsForOpponent(Character owner, Character opponent, bool enable)
+    {
+        SkillSlot[] passiveSlots = owner.SkillBook.GetBookSlots(SkillSlotType.PassiveSlot);
+
+        foreach (SkillSlot slot in passiveSlots)
+        {
+            if (!slot.IsEmpty)
+            {
+                if (enable)
+                {
+                    slot.Skill.Activate(null, opponent);
+                }
+                else
+                {
+                    slot.Skill.Deactivate(null, opponent);
+                }
+            }
+        }
     }
 
     private IEnumerator CloseBattleRoutine()

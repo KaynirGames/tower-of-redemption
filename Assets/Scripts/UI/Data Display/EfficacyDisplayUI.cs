@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EfficacyDisplayUI : MonoBehaviour
@@ -9,31 +10,44 @@ public class EfficacyDisplayUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _airEfficacyField = null;
     [SerializeField] private TextMeshProUGUI _waterEfficacyField = null;
 
-    private CharacterStats _characterStats; // Текущие статы персонажа.
-    /// <summary>
-    /// Инициализация отображения эффективности элементов.
-    /// </summary>
-    public void Init(CharacterStats characterStats)
-    {
-        _characterStats = characterStats;
+    private Dictionary<ElementType, TextMeshProUGUI> _efficacyTextFields;
 
-        DisplayEfficacy(characterStats);
+    private CharacterStats _stats;
+
+    public void RegisterElementEfficacies(CharacterStats stats)
+    {
+        _stats = stats;
+
+        _efficacyTextFields = CreateEfficacyTextFieldDictionary();
+
+        DisplayElementEfficacies();
     }
-    /// <summary>
-    /// Отобразить эффективность элементов.
-    /// </summary>
-    private void DisplayEfficacy(CharacterStats characterStats)
+
+    private void UpdateEfficacyDisplay(ElementType elementType)
     {
-        _fireEfficacyField.SetText(characterStats.GetElementEfficacy(ElementType.Fire)
-            .EfficacyRate.ToString());
+        if (_efficacyTextFields.ContainsKey(elementType))
+        {
+            _efficacyTextFields[elementType].SetText(_stats.GetElementEfficacy(elementType)
+                                                           .ToString());
+        }
+    }
 
-        _earthEfficacyField.SetText(characterStats.GetElementEfficacy(ElementType.Earth)
-            .EfficacyRate.ToString());
+    private Dictionary<ElementType, TextMeshProUGUI> CreateEfficacyTextFieldDictionary()
+    {
+        return new Dictionary<ElementType, TextMeshProUGUI>()
+        {
+            { ElementType.Fire, _fireEfficacyField },
+            { ElementType.Earth, _earthEfficacyField },
+            { ElementType.Air, _airEfficacyField },
+            { ElementType.Water, _waterEfficacyField }
+        };
+    }
 
-        _airEfficacyField.SetText(characterStats.GetElementEfficacy(ElementType.Air)
-            .EfficacyRate.ToString());
-
-        _waterEfficacyField.SetText(characterStats.GetElementEfficacy(ElementType.Water)
-            .EfficacyRate.ToString());
+    private void DisplayElementEfficacies()
+    {
+        UpdateEfficacyDisplay(ElementType.Fire);
+        UpdateEfficacyDisplay(ElementType.Earth);
+        UpdateEfficacyDisplay(ElementType.Air);
+        UpdateEfficacyDisplay(ElementType.Water);
     }
 }

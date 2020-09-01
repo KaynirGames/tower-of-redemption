@@ -5,7 +5,7 @@ public class HealthRecoveryFlat : RecoveryType
 {
     public override void RecoverResource(CharacterStats target)
     {
-        target.RecoverHealth(_recoveryAmount);
+        target.ChangeHealth(_recoveryAmount);
     }
 
     public override string GetDescription()

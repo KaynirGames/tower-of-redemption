@@ -3,8 +3,8 @@
 /// </summary>
 public enum ElementType 
 { 
-    Fire,
-    Air,
-    Earth,
-    Water
+    Fire = 100,
+    Air = 200,
+    Earth = 300,
+    Water = 400
 }

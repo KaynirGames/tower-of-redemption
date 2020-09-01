@@ -5,7 +5,7 @@ public class EnergyRecoveryFlat : RecoveryType
 {
     public override void RecoverResource(CharacterStats target)
     {
-        target.RecoverEnergy(_recoveryAmount);
+        target.ChangeEnergy(_recoveryAmount);
     }
 
     public override string GetDescription()

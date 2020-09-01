@@ -31,7 +31,7 @@ public class PlayerCharacter : Character
 
     private void Start()
     {
-        Stats.SetBaseStats(_playerSpec);
+        Stats.SetCharacterStats(_playerSpec);
         SkillBook.SetBaseSpecSkills(_playerSpec);
 
         OnPlayerActive.Invoke(this);

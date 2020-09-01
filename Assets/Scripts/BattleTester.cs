@@ -35,16 +35,6 @@ public class BattleTester : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            if (_testSkill.TargetType == TargetType.Opponent)
-            {
-                _testSkill.Activate(_player, _currentEnemy);
-                Debug.Log($"Enemy {_currentEnemy.EnemySpec.name} took damage from {_testSkill.SkillName}");
-                Debug.Log(_currentEnemy.Stats.CurrentHealth);
-            }
-        }
-
         if (Input.GetKeyDown(KeyCode.N))
         {
             Destroy(_currentEnemy.gameObject);
@@ -53,14 +43,14 @@ public class BattleTester : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            _player.Stats.MaxHealth.AddModifier(new StatModifier(10, ModifierType.Flat, this));
-            _player.Stats.UpdateResourcesDisplay();
+
+
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            _player.Stats.MaxHealth.RemoveSourceModifiers(this);
-            _player.Stats.UpdateResourcesDisplay();
+
+
         }
     }
 

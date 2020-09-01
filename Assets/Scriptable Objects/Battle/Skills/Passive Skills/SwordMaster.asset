@@ -14,15 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skillNameText:
     _key: Skill.SwordMaster.Name
-  _skillType: {fileID: 11400000, guid: e5d5f3b28bf8224449756907628e456d, type: 2}
   _descriptionText:
     _key: Skill.SwordMaster.Description
+  _skillType: {fileID: 11400000, guid: e5d5f3b28bf8224449756907628e456d, type: 2}
   _icon: {fileID: 21300000, guid: ebe1771afe0e57948965de57fc2f1dac, type: 3}
   _cost: 0
   _cooldown: 0
-  _powerTier: {fileID: 11400000, guid: 3db7a66af4379364294e32de14dc1afd, type: 2}
   _targetType: 0
   _skillSlotType: 1
-  _ownerEffects:
-  - {fileID: 11400000, guid: ce1aa0414470620428fc82d1879cfc95, type: 2}
+  _ownerEffects: []
   _opponentEffects: []
+  _ownerStatBonuses:
+  - {fileID: 11400000, guid: 253b78df2b28a514e8198c1256b29a1e, type: 2}
+  _opponentStatBonuses:
+  - {fileID: 11400000, guid: 253b78df2b28a514e8198c1256b29a1e, type: 2}

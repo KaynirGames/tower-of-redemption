@@ -8,24 +8,24 @@ public class ResourceDisplayUI : MonoBehaviour
     [SerializeField] private ResourceBarUI _healthBar = null; // Полоса здоровья персонажа.
     [SerializeField] private ResourceBarUI _energyBar = null; // Полоса энергии персонажа.
 
-    private CharacterStats _characterStats; // Статы персонажа.
-    /// <summary>
-    /// Инициализировать отображение ресурсов персонажа.
-    /// </summary>
-    public void Init(CharacterStats characterStats)
+    private CharacterResource _health;
+    private CharacterResource _energy;
+
+    public void RegisterResources(CharacterStats stats)
     {
-        _characterStats = characterStats;
+        _health = stats.Health;
+        _energy = stats.Energy;
 
-        _healthBar.Init(characterStats.MaxHealth, characterStats.CurrentHealth);
-        _energyBar.Init(characterStats.MaxEnergy, characterStats.CurrentEnergy);
+        _healthBar.RegisterResource(_health);
+        _energyBar.RegisterResource(_energy);
 
-        characterStats.OnHealthChange += _healthBar.UpdateBar;
-        characterStats.OnEnergyChange += _energyBar.UpdateBar;
+        _health.OnChange += _healthBar.UpdateBar;
+        _energy.OnChange += _energyBar.UpdateBar;
     }
 
     private void OnDestroy()
     {
-        _characterStats.OnHealthChange -= _healthBar.UpdateBar;
-        _characterStats.OnEnergyChange -= _energyBar.UpdateBar;
+        _health.OnChange -= _healthBar.UpdateBar;
+        _energy.OnChange -= _energyBar.UpdateBar;
     }
 }

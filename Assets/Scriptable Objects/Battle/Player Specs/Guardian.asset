@@ -20,7 +20,7 @@ MonoBehaviour:
   _baseEnergy: 80
   _baseStrength: 25
   _baseWill: 5
-  _baseDefence: 40
+  _baseDefence: 30
   _baseMagicDefence: 10
   _baseFireEfficacy: 100
   _baseAirEfficacy: 100

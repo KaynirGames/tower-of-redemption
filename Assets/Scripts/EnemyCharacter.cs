@@ -28,7 +28,7 @@ public class EnemyCharacter : Character
 
     private void Start()
     {
-        Stats.SetBaseStats(_enemySpec);
+        Stats.SetCharacterStats(_enemySpec);
         SkillBook.SetBaseSpecSkills(_enemySpec);
 
         EnemyManager.Instance.RegisterEnemy(this);

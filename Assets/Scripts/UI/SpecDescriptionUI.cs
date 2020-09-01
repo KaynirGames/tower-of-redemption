@@ -13,46 +13,36 @@ public class SpecDescriptionUI : MonoBehaviour
     [SerializeField] private ResourceDisplayUI _resourceDisplay = null;
     [SerializeField] private StatDisplayUI _statDisplay = null;
     [SerializeField] private EfficacyDisplayUI _efficacyDisplay = null;
-    /// <summary>
-    /// Показать описание спека персонажа.
-    /// </summary>
+
     public void ShowDescription()
     {
         _specDescriptionParent.SetActive(true);
     }
-    /// <summary>
-    /// Скрыть описание спека персонажа.
-    /// </summary>
+
     public void HideDescription()
     {
         _specDescriptionParent.SetActive(false);
     }
-    /// <summary>
-    /// Инициализировать описание спека игрока.
-    /// </summary>
-    public void Init(CharacterStats characterStats, PlayerSpec playerSpec)
+
+    public void InitDescription(CharacterStats characterStats, PlayerSpec playerSpec)
     {
-        InitStats(characterStats);
+        InitStatsDisplay(characterStats);
 
         _nameField.SetText(playerSpec.SpecName);
         _descriptionField.SetText(playerSpec.SpecDescription);
     }
-    /// <summary>
-    /// Инициализировать описание спека противника.
-    /// </summary>
-    public void Init(CharacterStats characterStats, EnemySpec enemySpec)
+
+    public void InitDescription(CharacterStats characterStats, EnemySpec enemySpec)
     {
-        InitStats(characterStats);
+        InitStatsDisplay(characterStats);
 
         _nameField.SetText(enemySpec.SpecName);
     }
-    /// <summary>
-    /// Инициализировать описание статов персонажа.
-    /// </summary>
-    private void InitStats(CharacterStats characterStats)
+
+    private void InitStatsDisplay(CharacterStats characterStats)
     {
-        _resourceDisplay.Init(characterStats);
-        _statDisplay.Init(characterStats);
-        _efficacyDisplay.Init(characterStats);
+        _resourceDisplay.RegisterResources(characterStats);
+        _statDisplay.RegisterStats(characterStats);
+        _efficacyDisplay.RegisterElementEfficacies(characterStats);
     }
 }

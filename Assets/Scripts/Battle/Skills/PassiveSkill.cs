@@ -8,47 +8,38 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPassiveSkill", menuName = "Scriptable Objects/Battle/Skills/Passive Skill")]
 public class PassiveSkill : Skill
 {
-    public override void Activate(Character owner, Character opponent)
+    [Header("Параметры пассивного умения:")]
+    [SerializeField] private List<StatBonus> _ownerStatBonuses = new List<StatBonus>();
+    [SerializeField] private List<StatBonus> _opponentStatBonuses = new List<StatBonus>();
+
+    public void Activate(Character owner, Character opponent)
     {
-        ApplyPassiveEffects(owner, _ownerEffects);
-        ApplyPassiveEffects(opponent, _opponentEffects);
-    }
-
-    public override void Deactivate(Character owner, Character opponent)
-    {
-        RemovePassiveEffects(owner, _ownerEffects);
-        RemovePassiveEffects(opponent, _opponentEffects);
-    }
-
-    public override StringBuilder GetParamsDescription()
-    {
-        _stringBuilder.Clear();
-
-        _ownerEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Self)));
-        _opponentEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Opponent)));
-
-        return _stringBuilder;
-    }
-
-    private void ApplyPassiveEffects(Character character, List<SkillEffect> effects)
-    {
-        if (character != null)
+        if (owner != null)
         {
-            effects.ForEach(effect => effect.Apply(character.Stats));
+            _ownerStatBonuses.ForEach(bonus => bonus.Apply(owner.Stats));
+        }
+
+        if (opponent != null)
+        {
+            _opponentStatBonuses.ForEach(bonus => bonus.Apply(opponent.Stats));
         }
     }
 
-    private void RemovePassiveEffects(Character character, List<SkillEffect> effects)
+    public void Deactivate(Character owner, Character opponent)
     {
-        if (character != null)
+        if (owner != null)
         {
-            foreach (SkillEffect effect in effects)
-            {
-                if (effect.DurationType.GetType() != typeof(PermanentDuration))
-                {
-                    effect.Remove(character.Stats);
-                }
-            }
+            _ownerStatBonuses.ForEach(bonus => bonus.Remove(owner.Stats));
         }
+
+        if (opponent != null)
+        {
+            _opponentStatBonuses.ForEach(bonus => bonus.Remove(opponent.Stats));
+        }
+    }
+
+    public override void BuildParamsDescription(StringBuilder stringBuilder)
+    {
+
     }
 }

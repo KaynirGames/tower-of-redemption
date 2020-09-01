@@ -23,20 +23,8 @@ public class RecoverySkill : Skill
 
     public override void Deactivate(Character owner, Character opponent) { }
 
-    public override StringBuilder GetParamsDescription()
+    public override void BuildParamsDescription(StringBuilder stringBuilder)
     {
-        _stringBuilder.Clear();
-
-        for (int i = 0; i < _recoveryTypes.Length; i++)
-        {
-            _stringBuilder.AppendLine(_recoveryTypes[i].GetDescription());
-        }
-
-        _stringBuilder.AppendLine().AppendLine();
-
-        _ownerEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Self)));
-        _opponentEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Opponent)));
-
-        return _stringBuilder;
+        
     }
 }

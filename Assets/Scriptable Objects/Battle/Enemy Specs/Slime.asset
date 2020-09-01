@@ -16,7 +16,7 @@ MonoBehaviour:
     _key: EnemySpec.Slime.Name
   _specDescriptionText:
     _key: EnemySpec.Slime.Description
-  _baseHealth: 50
+  _baseHealth: 20
   _baseEnergy: 10
   _baseStrength: 5
   _baseWill: 5

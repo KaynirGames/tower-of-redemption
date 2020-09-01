@@ -10,10 +10,10 @@ public class MagicDamage : DamageType
 
     public override float CalculateDamage(CharacterStats user, CharacterStats target, PowerTier tier)
     {
-        float userPower = user.Will.GetValue() * tier.PowerModifier;
-        float targetDefence = 1 - (target.Defence.GetValue() / 100);
-        float efficacyModifier = target.GetElementEfficacy(_elementType).EfficacyRate / 100;
+        float userPower = user.GetStat(StatType.Will).GetFinalValue() * tier.PowerModifier;
+        float targetDefence = 1 - (target.GetStat(StatType.MagicDefence).GetFinalValue() / 100);
+        float efficacyModifier = target.GetElementEfficacy(_elementType) / 100;
 
-        return Mathf.Round(userPower * targetDefence * efficacyModifier);
+        return -Mathf.Round(userPower * targetDefence * efficacyModifier);
     }
 }

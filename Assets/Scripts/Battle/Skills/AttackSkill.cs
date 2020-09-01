@@ -7,6 +7,7 @@ public class AttackSkill : Skill
 {
     [Header("Параметры атакующего умения:")]
     [SerializeField] private DamageType[] _damageTypes = null;
+    [SerializeField] private PowerTier _powerTier = null;
 
     public override void Activate(Character owner, Character opponent)
     {
@@ -23,30 +24,13 @@ public class AttackSkill : Skill
         _opponentEffects.ForEach(effect => effect.Apply(opponent.Stats));
 
         // Наносим рассчитанный урон.
-        damageList.ForEach(damage => opponent.Stats.TakeDamage(damage));
+        damageList.ForEach(damage => opponent.Stats.ChangeHealth(damage));
     }
 
     public override void Deactivate(Character owner, Character opponent) { }
 
-    public override StringBuilder GetParamsDescription()
+    public override void BuildParamsDescription(StringBuilder stringBuilder)
     {
-        _stringBuilder.Clear();
-
-        _stringBuilder.Append(GameTexts.Instance.DamageTypeLabel);
-        _stringBuilder.Append(": ");
-        _stringBuilder.Append(_damageTypes[0].Name);
-
-        for (int i = 1; i < _damageTypes.Length; i++)
-        {
-            _stringBuilder.Append(" / ");
-            _stringBuilder.Append(_damageTypes[i].Name);
-        }
-
-        _stringBuilder.AppendLine().AppendLine();
-
-        _ownerEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Self)));
-        _opponentEffects.ForEach(effect => _stringBuilder.AppendLine(effect.GetDescription(TargetType.Opponent)));
-
-        return _stringBuilder;
+        
     }
 }

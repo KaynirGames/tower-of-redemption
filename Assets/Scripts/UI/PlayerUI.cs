@@ -13,6 +13,6 @@ public class PlayerUI : MonoBehaviour
     /// </summary>
     private void Init(PlayerCharacter player)
     {
-        _resourceDisplay.Init(player.Stats);
+        _resourceDisplay.RegisterResources(player.Stats);
     }
 }

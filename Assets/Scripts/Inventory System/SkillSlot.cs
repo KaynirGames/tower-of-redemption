@@ -41,34 +41,20 @@ public class SkillSlot
 
     public void TryActivateSkill()
     {
-        if (IsCooldown) { return; }
-
-        if (!_skillOwner.Stats.IsEnoughEnergy(Skill.Cost))
+        if (SlotType != SkillSlotType.PassiveSlot)
         {
-            OnRequiredEnergyShortage.Invoke();
-            return;
-        }
+            if (IsCooldown) { return; }
 
-        ActivateSkillForTarget();
+            if (!_skillOwner.Stats.IsEnoughEnergy(Skill.Cost))
+            {
+                OnRequiredEnergyShortage.Invoke();
+                return;
+            }
 
-        _skillOwner.StartCoroutine(SkillCooldownRoutine());
-    }
+            Character opponent = BattleManager.Instance.FindTargetForSkillOwner(_skillOwner);
+            Skill.Activate(_skillOwner, opponent);
 
-    private void ActivateSkillForTarget()
-    {
-        switch (Skill.TargetType)
-        {
-            case TargetType.Self:
-                {
-                    Skill.Activate(_skillOwner, _skillOwner);
-                    break;
-                }
-            case TargetType.Opponent:
-                {
-                    Character opponent = BattleManager.Instance.FindTargetForSkillOwner(_skillOwner);
-                    Skill.Activate(_skillOwner, opponent);
-                    break;
-                }
+            _skillOwner.StartCoroutine(SkillCooldownRoutine());
         }
     }
 

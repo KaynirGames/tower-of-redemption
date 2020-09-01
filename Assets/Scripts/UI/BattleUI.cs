@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class BattleUI : MonoBehaviour
 {
     [SerializeField] GameObject _battleWindow = null; // Окно боевой системы.
+    [SerializeField] GameObject _playerUI = null;
+    [SerializeField] GameObject _inventoryUI = null;
     [Header("Отображаемые данные об игроке:")]
     [SerializeField] private TextMeshProUGUI _playerNameDisplay = null;
     [SerializeField] private Image _playerGFXDisplay = null;
@@ -24,6 +26,8 @@ public class BattleUI : MonoBehaviour
     /// </summary>
     public void ShowBattleWindow(PlayerCharacter player, EnemyCharacter enemy)
     {
+        _playerUI.SetActive(false);
+        _inventoryUI.SetActive(false);
         _battleWindow.SetActive(true);
         if (_player == null) { InitPlayer(player); }
         InitEnemy(enemy);
@@ -34,6 +38,8 @@ public class BattleUI : MonoBehaviour
     public void CloseBattleWindow()
     {
         _battleWindow.SetActive(false);
+        _playerUI.SetActive(true);
+        _inventoryUI.SetActive(true);
     }
 
     private void InitPlayer(PlayerCharacter player)
@@ -42,7 +48,7 @@ public class BattleUI : MonoBehaviour
 
         _playerNameDisplay.SetText(player.PlayerSpec.SpecName);
         // Графика
-        _playerResourceDisplay.Init(player.Stats);
+        _playerResourceDisplay.RegisterResources(player.Stats);
         _playerSkillDisplay.Init(player.SkillBook);
     }
 
@@ -50,9 +56,9 @@ public class BattleUI : MonoBehaviour
     {
         _enemyNameDisplay.SetText(enemy.EnemySpec.SpecName);
         // Графика
-        _enemyResourceDisplay.Init(enemy.Stats);
-        _enemyStatsDisplay.Init(enemy.Stats);
-        _enemyEfficacyDisplay.Init(enemy.Stats);
+        _enemyResourceDisplay.RegisterResources(enemy.Stats);
+        _enemyStatsDisplay.RegisterStats(enemy.Stats);
+        _enemyEfficacyDisplay.RegisterElementEfficacies(enemy.Stats);
         _enemySkillDisplay.Init(enemy.SkillBook);
     }
 }
