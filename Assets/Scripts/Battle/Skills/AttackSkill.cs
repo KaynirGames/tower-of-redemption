@@ -1,36 +1,45 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewAttackSkill", menuName = "Scriptable Objects/Battle/Skills/Attack Skill")]
 public class AttackSkill : Skill
 {
     [Header("Параметры атакующего умения:")]
-    [SerializeField] private DamageType[] _damageTypes = null;
     [SerializeField] private PowerTier _powerTier = null;
+    [SerializeField] private DamageType[] _damageTypes = null;
 
     public override void Activate(Character owner, Character opponent)
     {
-        List<float> damageList = new List<float>();
+        float finalDamage = 0;
 
-        // Записываем получаемый целью урон.
         foreach (DamageType damageType in _damageTypes)
         {
-            damageList.Add(damageType.CalculateDamage(owner.Stats, opponent.Stats, _powerTier));
+            finalDamage += damageType.CalculateDamage(owner.Stats, opponent.Stats, _powerTier);
         }
 
-        // Накладываем эффекты.
-        _ownerEffects.ForEach(effect => effect.Apply(owner.Stats));
-        _opponentEffects.ForEach(effect => effect.Apply(opponent.Stats));
-
-        // Наносим рассчитанный урон.
-        damageList.ForEach(damage => opponent.Stats.ChangeHealth(damage));
+        opponent.Stats.ChangeHealth(finalDamage);
+        owner.Stats.ChangeEnergy(-_cost);
     }
 
     public override void Deactivate(Character owner, Character opponent) { }
 
     public override void BuildParamsDescription(StringBuilder stringBuilder)
     {
-        
+        stringBuilder.Append(GameTexts.Instance.DamageLabel);
+        stringBuilder.Append(": ");
+
+        stringBuilder.Append(_damageTypes[0].Name);
+
+        for (int i = 1; i < _damageTypes.Length; i++)
+        {
+            stringBuilder.Append(" / ");
+            stringBuilder.Append(_damageTypes[i].Name);
+        }
+
+        stringBuilder.Append(" (");
+        stringBuilder.Append(GameTexts.Instance.PowerTierLabel);
+        stringBuilder.Append(": ");
+        stringBuilder.Append(_powerTier.TierName);
+        stringBuilder.AppendLine(")");
     }
 }

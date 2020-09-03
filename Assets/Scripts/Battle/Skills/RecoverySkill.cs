@@ -17,14 +17,12 @@ public class RecoverySkill : Skill
             _recoveryTypes[i].RecoverResource(owner.Stats);
         }
 
-        _ownerEffects.ForEach(effect => effect.Apply(owner.Stats));
-        _opponentEffects.ForEach(effect => effect.Apply(opponent.Stats));
     }
 
     public override void Deactivate(Character owner, Character opponent) { }
 
     public override void BuildParamsDescription(StringBuilder stringBuilder)
     {
-        
+
     }
 }

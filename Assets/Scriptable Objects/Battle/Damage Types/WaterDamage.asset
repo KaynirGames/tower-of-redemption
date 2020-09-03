@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameText:
     _key: DamageType.Water
-  _elementType: 3
+  _elementType: 400

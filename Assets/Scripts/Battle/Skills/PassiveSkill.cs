@@ -9,32 +9,23 @@ using UnityEngine;
 public class PassiveSkill : Skill
 {
     [Header("Параметры пассивного умения:")]
-    [SerializeField] private List<StatBonus> _ownerStatBonuses = new List<StatBonus>();
-    [SerializeField] private List<StatBonus> _opponentStatBonuses = new List<StatBonus>();
+    [SerializeField] private List<StatBonus> _statBonuses = new List<StatBonus>();
 
-    public void Activate(Character owner, Character opponent)
+    public override void Activate(Character owner, Character opponent)
     {
-        if (owner != null)
+        foreach (StatBonus bonus in _statBonuses)
         {
-            _ownerStatBonuses.ForEach(bonus => bonus.Apply(owner.Stats));
-        }
-
-        if (opponent != null)
-        {
-            _opponentStatBonuses.ForEach(bonus => bonus.Apply(opponent.Stats));
+            //StatBonus newBonus = Instantiate(bonus);
+            bonus.Apply(owner);
         }
     }
 
-    public void Deactivate(Character owner, Character opponent)
+    public override void Deactivate(Character owner, Character opponent)
     {
-        if (owner != null)
+        foreach (StatBonus bonus in _statBonuses)
         {
-            _ownerStatBonuses.ForEach(bonus => bonus.Remove(owner.Stats));
-        }
-
-        if (opponent != null)
-        {
-            _opponentStatBonuses.ForEach(bonus => bonus.Remove(opponent.Stats));
+            //StatBonus newBonus = Instantiate(bonus);
+            bonus.Remove(owner);
         }
     }
 

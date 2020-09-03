@@ -49,8 +49,8 @@ public class BattleTester : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-
-
+            _player = PlayerManager.Instance.Player;
+            _player.SkillBook.RemoveSkill(0, BookSlotType.Passive);
         }
     }
 

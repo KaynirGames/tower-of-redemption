@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameText:
     _key: DamageType.Earth
-  _elementType: 2
+  _elementType: 300

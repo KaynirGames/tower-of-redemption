@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -15,10 +15,7 @@ public abstract class Skill : ScriptableObject
     [Header("Общие параметры умения:")]
     [SerializeField] protected float _cost = 0;
     [SerializeField] protected float _cooldown = 0;
-    [SerializeField] protected TargetType _targetType = TargetType.Opponent;
-    [SerializeField] protected SkillSlotType _skillSlotType = SkillSlotType.ActiveSlot;
-    [SerializeField] protected List<Effect> _ownerEffects = new List<Effect>();
-    [SerializeField] protected List<Effect> _opponentEffects = new List<Effect>();
+    [SerializeField] protected BookSlotType _slotType = BookSlotType.Active;
 
     public string SkillName => _skillNameText.Value;
     public SkillType SkillType => _skillType;
@@ -27,9 +24,19 @@ public abstract class Skill : ScriptableObject
 
     public float Cost => _cost;
     public float Cooldown => _cooldown;
+    public BookSlotType SlotType => _slotType;
 
-    public TargetType TargetType => _targetType;
-    public SkillSlotType SkillSlotType => _skillSlotType;
+    public string ID { get; private set; }
 
-    public virtual void BuildParamsDescription(StringBuilder stringBuilder) { }
+    public abstract void Activate(Character owner, Character opponent);
+
+    public abstract void Deactivate(Character owner, Character opponent);
+
+    public abstract void BuildParamsDescription(StringBuilder stringBuilder);
+
+    protected void OnValidate()
+    {
+        string path = AssetDatabase.GetAssetPath(this);
+        ID = AssetDatabase.AssetPathToGUID(path);
+    }
 }

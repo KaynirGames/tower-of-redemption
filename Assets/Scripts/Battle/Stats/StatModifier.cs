@@ -10,15 +10,10 @@ public class StatModifier
 
     public float Value => _value;
 
-    public Object Source { get; private set; }
-
-    public StatModifier(float value, Object source)
+    public StatModifier(float value)
     {
         _value = value;
-        Source = source;
     }
-
-    public StatModifier(float value) : this(value, null) { }
 
     public float Apply(float valueToModify)
     {

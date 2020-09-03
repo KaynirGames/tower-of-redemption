@@ -14,20 +14,30 @@ public class CharacterResource
 
     public float CurrentValue { get; private set; }
 
+    private float _previousMaxValue;
+
     public CharacterResource(float maxValue, float currentValue)
     {
         _maxValue = new Stat(maxValue);
         CurrentValue = currentValue;
+
+        _previousMaxValue = _maxValue.GetFinalValue();
     }
 
     public void ChangeResource(float amount)
     {
         CurrentValue += amount;
-        FixCurrentValue();    
+        FixCurrentValue(false);    
     }
 
-    public void FixCurrentValue()
+    public void FixCurrentValue(bool maxValueChanged)
     {
+        if (maxValueChanged)
+        {
+            CurrentValue += _maxValue.GetFinalValue() - _previousMaxValue;
+            _previousMaxValue = _maxValue.GetFinalValue();
+        }
+
         CurrentValue = Mathf.Round(CurrentValue);
         CurrentValue = Mathf.Clamp(CurrentValue,
                                    0,

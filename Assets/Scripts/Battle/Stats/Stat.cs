@@ -6,7 +6,7 @@ public class Stat
 {
     [SerializeField] private float _baseValue = 0;
 
-    private readonly List<StatModifier> _modifiers = new List<StatModifier>();
+    private List<StatModifier> _modifiers = new List<StatModifier>();
     private float _finalValue = 0;
     private bool _hasChanges = false;
 
@@ -42,18 +42,6 @@ public class Stat
         {
             _modifiers.Remove(modifier);
             _hasChanges = true;
-        }
-    }
-
-    public void RemoveSourceModifiers(Object source)
-    {
-        for (int i = _modifiers.Count - 1; i >= 0; i--)
-        {
-            if (_modifiers[i].Source == source)
-            {
-                _modifiers.RemoveAt(i);
-                _hasChanges = true;
-            }
         }
     }
 

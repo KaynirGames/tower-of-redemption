@@ -18,12 +18,9 @@ MonoBehaviour:
     _key: Skill.Swing.Description
   _skillType: {fileID: 11400000, guid: 548835beff8d12e46b34e1b82d544701, type: 2}
   _icon: {fileID: 21300000, guid: d0b7841d436f01e4f8d4dd7403186c3c, type: 3}
-  _cost: 5
+  _cost: 10
   _cooldown: 2
-  _targetType: 1
-  _skillSlotType: 0
-  _ownerEffects: []
-  _opponentEffects: []
+  _slotType: 0
+  _powerTier: {fileID: 11400000, guid: 3db7a66af4379364294e32de14dc1afd, type: 2}
   _damageTypes:
   - {fileID: 11400000, guid: 5c8a5d3b7b464c14882c006366947081, type: 2}
-  _powerTier: {fileID: 11400000, guid: 3db7a66af4379364294e32de14dc1afd, type: 2}

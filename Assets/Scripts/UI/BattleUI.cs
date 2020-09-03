@@ -11,14 +11,14 @@ public class BattleUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _playerNameDisplay = null;
     [SerializeField] private Image _playerGFXDisplay = null;
     [SerializeField] private ResourceDisplayUI _playerResourceDisplay = null;
-    [SerializeField] private SkillDisplayUI _playerSkillDisplay = null;
+    [SerializeField] private SkillBookUI _playerSkillDisplay = null;
     [Header("Отображаемые данные о враге:")]
     [SerializeField] private TextMeshProUGUI _enemyNameDisplay = null;
     [SerializeField] private Image _enemyGFXDisplay = null;
     [SerializeField] private ResourceDisplayUI _enemyResourceDisplay = null;
     [SerializeField] private StatDisplayUI _enemyStatsDisplay = null;
     [SerializeField] private EfficacyDisplayUI _enemyEfficacyDisplay = null;
-    [SerializeField] private SkillDisplayUI _enemySkillDisplay = null;
+    [SerializeField] private SkillBookUI _enemySkillDisplay = null;
 
     private PlayerCharacter _player;
     /// <summary>

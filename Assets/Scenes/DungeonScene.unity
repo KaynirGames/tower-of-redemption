@@ -2129,7 +2129,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (2)
+      value: BookSlotUI (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -2306,7 +2306,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (3)
+      value: BookSlotUI (3)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -2719,7 +2719,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (2)
+      value: BookSlotUI (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -2988,7 +2988,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (1)
+      value: BookSlotUI (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -3469,7 +3469,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (2)
+      value: BookSlotUI (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -3840,12 +3840,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72296b1c9f85baf4892dfc12ee960405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayActiveSlots: 1
-  _displayPassiveSlots: 1
-  _displaySpecialSlots: 1
-  _activeSlotsParent: {fileID: 1433345502}
-  _passiveSlotsParent: {fileID: 183310026}
-  _specialSlotsParent: {fileID: 875292885}
+  _slotsParents:
+  - {fileID: 1433345502}
+  - {fileID: 875292885}
+  - {fileID: 183310026}
 --- !u!1 &423359746
 GameObject:
   m_ObjectHideFlags: 0
@@ -4364,7 +4362,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot
+      value: BookSlotUI
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -4795,7 +4793,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (2)
+      value: BookSlotUI (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -4960,7 +4958,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (1)
+      value: BookSlotUI (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -6345,12 +6343,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72296b1c9f85baf4892dfc12ee960405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayActiveSlots: 1
-  _displayPassiveSlots: 0
-  _displaySpecialSlots: 1
-  _activeSlotsParent: {fileID: 1403914774}
-  _passiveSlotsParent: {fileID: 0}
-  _specialSlotsParent: {fileID: 970012592}
+  _slotsParents:
+  - {fileID: 1403914774}
+  - {fileID: 970012592}
 --- !u!1001 &735628436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6519,8 +6514,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db9abc00e91fda429941b2c348f5b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageTypeLabel:
-    _key: Label.DamageType
+  _damageLabel:
+    _key: Label.Damage
+  _powerTierLabel:
+    _key: Label.Tier
   _targetSelfText:
     _key: Label.TargetSelf
   _targetEnemyText:
@@ -6783,12 +6780,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72296b1c9f85baf4892dfc12ee960405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayActiveSlots: 1
-  _displayPassiveSlots: 1
-  _displaySpecialSlots: 1
-  _activeSlotsParent: {fileID: 661878362}
-  _passiveSlotsParent: {fileID: 824055132}
-  _specialSlotsParent: {fileID: 754063715}
+  _slotsParents:
+  - {fileID: 661878362}
+  - {fileID: 754063715}
+  - {fileID: 824055132}
 --- !u!114 &743953795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7112,7 +7107,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (1)
+      value: BookSlotUI (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -9883,7 +9878,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (1)
+      value: BookSlotUI (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -11111,7 +11106,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot
+      value: BookSlotUI
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -13051,7 +13046,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot
+      value: BookSlotUI
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -15325,7 +15320,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (3)
+      value: BookSlotUI (3)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -15988,7 +15983,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (3)
+      value: BookSlotUI (3)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -16783,7 +16778,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (1)
+      value: BookSlotUI (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -16933,7 +16928,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot (1)
+      value: BookSlotUI (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -17650,7 +17645,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot
+      value: BookSlotUI
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -18207,7 +18202,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot
+      value: BookSlotUI
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -18626,7 +18621,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot
+      value: BookSlotUI
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -19540,7 +19535,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot
+      value: BookSlotUI
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -20537,7 +20532,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: SkillSlot
+      value: BookSlotUI
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}

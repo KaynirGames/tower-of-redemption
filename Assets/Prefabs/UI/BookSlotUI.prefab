@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 5474907266550068297}
   - component: {fileID: 6825898612771126611}
   m_Layer: 5
-  m_Name: SkillSlot
+  m_Name: BookSlotUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

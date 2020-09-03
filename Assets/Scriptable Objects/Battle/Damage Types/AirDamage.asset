@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameText:
     _key: DamageType.Air
-  _elementType: 1
+  _elementType: 200

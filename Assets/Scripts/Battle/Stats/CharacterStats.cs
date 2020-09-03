@@ -10,7 +10,7 @@ public class CharacterStats : MonoBehaviour
     public CharacterResource Health { get; private set; }
     public CharacterResource Energy { get; private set; }
 
-    public List<StatBonus> StatBonuses { get; } = new List<StatBonus>();
+    public List<StatBonus> StatBonuses = new List<StatBonus>();
     public List<Effect> BuffEffects { get; } = new List<Effect>();
 
     private Dictionary<StatType, Stat> _statDictionary;
@@ -52,17 +52,17 @@ public class CharacterStats : MonoBehaviour
 
     public void UpdateStatDisplay(StatType statType)
     {
-        if (statType == StatType.MaxHealth)
+        switch (statType)
         {
-            Health.FixCurrentValue();
-        } 
-        else if (statType == StatType.MaxEnergy)
-        {
-            Energy.FixCurrentValue();
-        }
-        else
-        {
-            OnStatChange.Invoke(statType);
+            default:
+                OnStatChange.Invoke(statType);
+                break;
+            case StatType.MaxHealth:
+                Health.FixCurrentValue(true);
+                break;
+            case StatType.MaxEnergy:
+                Energy.FixCurrentValue(true);
+                break;
         }
     }
 

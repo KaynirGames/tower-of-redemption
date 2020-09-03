@@ -7,18 +7,20 @@ public class GameTexts : MonoBehaviour
 {
     public static GameTexts Instance { get; private set; }
     [Header("Заголовки в описании:")]
-    [SerializeField] private TranslatedText _damageTypeLabel = null; // Тип урона.
+    [SerializeField] private TranslatedText _damageLabel = null;
+    [SerializeField] private TranslatedText _powerTierLabel = null;
     [Header("Тексты в описании:")]
-    [SerializeField] private TranslatedText _targetSelfText = null; // На себя.
-    [SerializeField] private TranslatedText _targetEnemyText = null; // Враг.
+    [SerializeField] private TranslatedText _targetSelfText = null;
+    [SerializeField] private TranslatedText _targetEnemyText = null;
     [Header("Единицы измерения:")]
-    [SerializeField] private TranslatedText _secondsText = null; // сек.
-    [SerializeField] private TranslatedText _spiritEnergyText = null; // ДЭ.
+    [SerializeField] private TranslatedText _secondsText = null;
+    [SerializeField] private TranslatedText _spiritEnergyText = null;
     [Header("Текстовые форматы:")]
     [SerializeField] private TranslatedText _healthRecoveryFlat = null;
     [SerializeField] private TranslatedText _energyRecoveryFlat = null;
 
-    public string DamageTypeLabel => _damageTypeLabel.Value;
+    public string DamageLabel => _damageLabel.Value;
+    public string PowerTierLabel => _powerTierLabel.Value;
 
     public string TargetSelfLabel => _targetSelfText.Value;
     public string TargetEnemyLabel => _targetEnemyText.Value;

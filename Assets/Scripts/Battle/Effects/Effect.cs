@@ -5,10 +5,10 @@ using UnityEngine;
 /// Эффект, накладываемый на персонажа.
 /// </summary>
 public abstract class Effect : ScriptableObject
-{    
-    public abstract void Apply(CharacterStats target);
+{
+    public abstract void Apply(Character target);
 
-    public abstract void Remove(CharacterStats target);
+    public abstract void Remove(Character target);
 
-    public abstract void BuildDescription(StringBuilder stringBuilder);
+    public abstract void BuildDescription(StringBuilder builder);
 }

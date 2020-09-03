@@ -34,11 +34,11 @@ public class BattleManager : MonoBehaviour
         BattleTester.OnBattleTrigger += StartBattle;
     }
 
-    public Character FindTargetForSkillOwner(Character owner)
+    public Character FindBattleOpponent(Character character)
     {
-        return owner == _player
-            ? _enemy
-            : _player as Character;
+        return character is PlayerCharacter 
+            ? _enemy 
+            : (Character)_player;
     }
 
     private bool StartBattle(EnemyCharacter enemy, bool isPlayerAdvantage)
@@ -101,22 +101,22 @@ public class BattleManager : MonoBehaviour
 
     private void TogglePassiveSkillsForOpponent(Character owner, Character opponent, bool enable)
     {
-        SkillSlot[] passiveSlots = owner.SkillBook.GetBookSlots(SkillSlotType.PassiveSlot);
+        //SkillSlot[] passiveSlots = owner.SkillBook.GetBookSlots(SkillSlotType.PassiveSlot);
 
-        foreach (SkillSlot slot in passiveSlots)
-        {
-            if (!slot.IsEmpty)
-            {
-                if (enable)
-                {
-                    slot.Skill.Activate(null, opponent);
-                }
-                else
-                {
-                    slot.Skill.Deactivate(null, opponent);
-                }
-            }
-        }
+        //foreach (SkillSlot slot in passiveSlots)
+        //{
+        //    if (!slot.IsEmpty)
+        //    {
+        //        if (enable)
+        //        {
+        //            slot.Skill.Activate(null, opponent);
+        //        }
+        //        else
+        //        {
+        //            slot.Skill.Deactivate(null, opponent);
+        //        }
+        //    }
+        //}
     }
 
     private IEnumerator CloseBattleRoutine()

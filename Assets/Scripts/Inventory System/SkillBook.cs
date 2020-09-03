@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -7,36 +6,31 @@ using UnityEngine;
 /// </summary>
 public class SkillBook : MonoBehaviour
 {
-    public delegate void OnSkillBookChange(int slotID, SkillSlotType slotType);
+    public delegate void OnSkillBookSlotChanged(int slotID, BookSlotType slotType);
 
-    public event OnSkillBookChange OnSkillSlotChange = delegate { };
+    public event OnSkillBookSlotChanged OnSkillSlotChanged = delegate { };
 
-    [SerializeField] private int _activeSlotsCount = 4;
-    [SerializeField] private int _passiveSlotsCount = 3;
-    [SerializeField] private int _specialSlotsCount = 1;
+    [SerializeField] private int _activeSlotCount = 4;
+    [SerializeField] private int _passiveSlotCount = 3;
+    [SerializeField] private int _specialSlotCount = 1;
 
-    private SkillSlot[] _activeSlots;
-    private SkillSlot[] _passiveSlots;
-    private SkillSlot[] _specialSlots;
+    private BookSlot[] _activeSlots;
+    private BookSlot[] _passiveSlots;
+    private BookSlot[] _specialSlots;
 
-    private Dictionary<SkillSlotType, SkillSlot[]> _bookSlots;
+    private Dictionary<BookSlotType, BookSlot[]> _bookSlots;
 
-    private Character _skillBookOwner;
+    private Character _bookOwner;
 
     private void Awake()
     {
-        _skillBookOwner = GetComponent<Character>();
+        _bookOwner = GetComponent<Character>();
 
-        _activeSlots = CreateBookSlots(_activeSlotsCount, SkillSlotType.ActiveSlot);
-        _passiveSlots = CreateBookSlots(_passiveSlotsCount, SkillSlotType.PassiveSlot);
-        _specialSlots = CreateBookSlots(_specialSlotsCount, SkillSlotType.SpecialSlot);
+        _activeSlots = CreateBookSlots(_activeSlotCount, BookSlotType.Active);
+        _passiveSlots = CreateBookSlots(_passiveSlotCount, BookSlotType.Passive);
+        _specialSlots = CreateBookSlots(_specialSlotCount, BookSlotType.Special);
 
-        _bookSlots = new Dictionary<SkillSlotType, SkillSlot[]>
-        { 
-            { SkillSlotType.ActiveSlot, _activeSlots },
-            { SkillSlotType.PassiveSlot, _passiveSlots },
-            { SkillSlotType.SpecialSlot, _specialSlots }
-        };
+        _bookSlots = CreateBookSlotDictionary();
     }
 
     public void SetBaseSpecSkills(SpecBase currentSpec)
@@ -49,11 +43,13 @@ public class SkillBook : MonoBehaviour
 
     public void AddSkill(Skill skill)
     {
-        int slotID = FindFirstEmptySlot(skill.SkillSlotType);
+        Skill newSkill = Instantiate(skill);
+
+        int slotID = FindFirstEmptySlot(skill.SlotType);
 
         if (slotID >= 0)
         {
-            InsertSkill(skill, slotID);
+            InsertSkill(newSkill, slotID);
         }
         else
         {
@@ -61,67 +57,76 @@ public class SkillBook : MonoBehaviour
         }
     }
 
-    public Skill RemoveSkill(int slotID, SkillSlotType slotType)
+    public Skill RemoveSkill(int slotID, BookSlotType slotType)
     {
-        SkillSlot[] slots = GetBookSlots(slotType);
+        BookSlot[] slots = GetBookSlots(slotType);
 
-        Skill removedSkill = slots[slotID].Skill;
+        Skill removedSkill = slots[slotID].RemoveSkill();
 
-        if (slotType == SkillSlotType.PassiveSlot)
+        OnSkillSlotChanged.Invoke(slotID, slotType);
+
+        if (slotType == BookSlotType.Passive)
         {
-            TogglePassiveSkillForOwner(removedSkill, false);
+            removedSkill.Deactivate(_bookOwner, null);
         }
-
-        slots[slotID].RemoveSkill();
-
-        OnSkillSlotChange.Invoke(slotID, slotType);
 
         return removedSkill;
     }
 
     public Skill ReplaceSkill(int slotID, Skill newSkill)
     {
-        Skill removedSkill = RemoveSkill(slotID, newSkill.SkillSlotType);
+        Skill replacedSkill = RemoveSkill(slotID, newSkill.SlotType);
+
         InsertSkill(newSkill, slotID);
 
-        return removedSkill;
+        return replacedSkill;
     }
 
-    public SkillSlot[] GetBookSlots(SkillSlotType slotType)
+    public BookSlot[] GetBookSlots(BookSlotType slotType)
     {
         return _bookSlots[slotType];
     }
 
-    private SkillSlot[] CreateBookSlots(int slotAmount, SkillSlotType slotType)
+    private BookSlot[] CreateBookSlots(int slotAmount, BookSlotType slotType)
     {
-        SkillSlot[] slots = new SkillSlot[slotAmount];
+        BookSlot[] slots = new BookSlot[slotAmount];
 
         for (int i = 0; i < slots.Length; i++)
         {
-            slots[i] = new SkillSlot(slotType, i, _skillBookOwner);
+            slots[i] = new BookSlot(_bookOwner, slotType);
         }
 
         return slots;
     }
 
-    private void InsertSkill(Skill skill, int slotID)
+    private Dictionary<BookSlotType, BookSlot[]> CreateBookSlotDictionary()
     {
-        SkillSlot[] slots = GetBookSlots(skill.SkillSlotType);
-        slots[slotID].InsertSkill(skill);
-
-        if (skill.SkillSlotType == SkillSlotType.PassiveSlot)
+        return new Dictionary<BookSlotType, BookSlot[]>()
         {
-            TogglePassiveSkillForOwner(skill, true);
-        }
-
-        OnSkillSlotChange.Invoke(slotID, skill.SkillSlotType);
+            { BookSlotType.Active, _activeSlots },
+            { BookSlotType.Passive, _passiveSlots },
+            { BookSlotType.Special, _specialSlots }
+        };
     }
 
-    private int FindFirstEmptySlot(SkillSlotType slotType)
+    private void InsertSkill(Skill skill, int slotID)
     {
-        SkillSlot[] slots = GetBookSlots(slotType);
+        GetBookSlots(skill.SlotType)[slotID].InsertSkill(skill);
 
-        for (int i = 0; i < slots.Length; i++) {
+        OnSkillSlotChanged.Invoke(slotID, skill.SlotType);
+
+        if (skill.SlotType == BookSlotType.Passive)
+        {
+            skill.Activate(_bookOwner, null);
+        }
+    }
+
+    private int FindFirstEmptySlot(BookSlotType slotType)
+    {
+        BookSlot[] slots = GetBookSlots(slotType);
+
+        for (int i = 0; i < slots.Length; i++)
+        {
             if (slots[i].IsEmpty)
             {
                 return i;
@@ -129,17 +134,5 @@ public class SkillBook : MonoBehaviour
         }
 
         return -1;
-    }
-
-    private void TogglePassiveSkillForOwner(Skill passiveSkill, bool enable)
-    {
-        if (enable)
-        {
-            passiveSkill.Activate(_skillBookOwner, null);
-        }
-        else
-        {
-            passiveSkill.Deactivate(_skillBookOwner, null);
-        }
     }
 }

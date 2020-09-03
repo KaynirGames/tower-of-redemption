@@ -14,7 +14,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Image _playerSpecIcon = null;
     [Header("Отображение умений игрока:")]
     [SerializeField] private SkillDescriptionUI _playerSkillDescription = null;
-    [SerializeField] private SkillDisplayUI _playerSkillDisplay = null;
+    [SerializeField] private SkillBookUI _playerSkillDisplay = null;
 
     private TextMeshProUGUI _nextTabNameField = null; // Поле с названием следующей вкладки.
     private TextMeshProUGUI _previousTabNameField = null; // Поле с названием предыдущей вкладки.
@@ -27,7 +27,7 @@ public class InventoryUI : MonoBehaviour
         _previousTabNameField = _previousTabButton.GetComponentInChildren<TextMeshProUGUI>();
 
         PlayerCharacter.OnPlayerActive += Init;
-        SkillSlotUI.OnDescriptionPanelRequest += ShowPlayerSkillDescription;
+        BookSlotUI.OnDescriptionPanelRequest += ShowPlayerSkillDescription;
     }
     /// <summary>
     /// Открыть инвентарь.

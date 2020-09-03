@@ -2,27 +2,29 @@
 using UnityEngine.UI;
 
 /// <summary>
-/// Слот умения в книге на UI.
+/// Слот книги умений на UI.
 /// </summary>
-public class SkillSlotUI : MonoBehaviour
+public class BookSlotUI : MonoBehaviour
 {
     public delegate void OnSkillDescriptionRequest(Skill skill);
 
     public static event OnSkillDescriptionRequest OnDescriptionPanelRequest = delegate { };
     public static event OnSkillDescriptionRequest OnTooltipRequest = delegate { };
 
-    [SerializeField] private SkillSlotType _slotType = SkillSlotType.ActiveSlot;
+    [SerializeField] private BookSlotType _slotType = BookSlotType.Active;
     [SerializeField] private Image _skillIcon = null;
     [SerializeField] private Button _useButton = null;
 
-    private SkillSlot _skillSlot;
+    public BookSlot BookSlot { get; private set; }
 
-    public void InitSlot(SkillSlot skillSlot)
+    public BookSlotType SlotType => _slotType;
+
+    public void InitSlot(BookSlot bookSlot)
     {
-        if (skillSlot.SlotType == _slotType)
+        if (bookSlot.SlotType == _slotType)
         {
-            _skillSlot = skillSlot;
-            _skillSlot.OnSkillCooldownToggle += ToggleSkillCooldownDisplay;
+            BookSlot = bookSlot;
+            BookSlot.OnSkillCooldownToggle += ToggleSkillCooldownDisplay;
             // Подписка на нехватку энергии => вызов предупреждения в бою.
             UpdateSlotDisplayUI();
         }
@@ -30,7 +32,7 @@ public class SkillSlotUI : MonoBehaviour
 
     public void UpdateSlotDisplayUI()
     {
-        if (_skillSlot.IsEmpty)
+        if (BookSlot.IsEmpty)
         {
             ClearSlotUI();
         }
@@ -42,22 +44,22 @@ public class SkillSlotUI : MonoBehaviour
 
     public void ShowSkillDescription()
     {
-        OnDescriptionPanelRequest.Invoke(_skillSlot.Skill);
+        OnDescriptionPanelRequest.Invoke(BookSlot.Skill);
     }
 
     public void ShowSkillTooltip()
     {
-        OnTooltipRequest.Invoke(_skillSlot.Skill);
+        OnTooltipRequest.Invoke(BookSlot.Skill);
     }
 
     public void ActivateSkill()
     {
-        _skillSlot.TryActivateSkill();
+        BookSlot.TryActivateSkill();
     }
 
     private void FillSlotUI()
     {
-        _skillIcon.sprite = _skillSlot.Skill.Icon;
+        _skillIcon.sprite = BookSlot.Skill.Icon;
         _skillIcon.enabled = true;
         _useButton.interactable = true;
     }
