@@ -41,13 +41,12 @@ public class BattleTester : MonoBehaviour
             _currentEnemy = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.D))
         {
-
-
+            _player.Stats.ChangeHealth(-20);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             _player = PlayerManager.Instance.Player;
             _player.SkillBook.RemoveSkill(0, BookSlotType.Passive);

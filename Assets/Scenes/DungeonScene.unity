@@ -986,8 +986,20 @@ MonoBehaviour:
   _onActiveTab:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 743953797}
+        m_TargetAssemblyTypeName: SkillDescriptionUI, Assembly-CSharp
+        m_MethodName: HideDescription
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 743953796}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: SpecDescriptionUI, Assembly-CSharp
         m_MethodName: ShowDescription
         m_Mode: 1
         m_Arguments:
@@ -17352,7 +17364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1401ea1f99e5c499a59d26369fc579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _testEnemyPrefab: {fileID: 7950025495336162303, guid: 3d26813721bf12046a726e4ede5646fc,
+  _testEnemyPrefab: {fileID: 6019955237486239111, guid: 66ed98e37365ee042be0f29be1c1fcee,
     type: 3}
   _testSpawn: {fileID: 671181260}
   _isPlayerAdvantage: 1

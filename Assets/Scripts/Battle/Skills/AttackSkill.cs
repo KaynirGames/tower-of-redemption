@@ -1,12 +1,13 @@
 ﻿using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewAttackSkill", menuName = "Scriptable Objects/Battle/Skills/Attack Skill")]
+[CreateAssetMenu(fileName = "Name_AS", menuName = "Scriptable Objects/Battle/Skills/Attack Skill")]
 public class AttackSkill : Skill
 {
     [Header("Параметры атакующего умения:")]
     [SerializeField] private PowerTier _powerTier = null;
     [SerializeField] private DamageType[] _damageTypes = null;
+    [SerializeField] private StatBuff[] _buffEffects = null;
 
     public override void Activate(Character owner, Character opponent)
     {
@@ -19,6 +20,12 @@ public class AttackSkill : Skill
 
         opponent.Stats.ChangeHealth(finalDamage);
         owner.Stats.ChangeEnergy(-_cost);
+
+        foreach (StatBuff buff in _buffEffects)
+        {
+            StatBuff newBuff = Instantiate(buff);
+            newBuff.Apply(owner);
+        }
     }
 
     public override void Deactivate(Character owner, Character opponent) { }
@@ -40,6 +47,11 @@ public class AttackSkill : Skill
         stringBuilder.Append(GameTexts.Instance.PowerTierLabel);
         stringBuilder.Append(": ");
         stringBuilder.Append(_powerTier.TierName);
-        stringBuilder.AppendLine(")");
+        stringBuilder.AppendLine(")").AppendLine();
+
+        foreach (StatBuff buff in _buffEffects)
+        {
+            stringBuilder.AppendLine(buff.GetDescription(TargetType.Self));
+        }
     }
 }

@@ -174,7 +174,7 @@ public static class TranslationSystem
         }
         else
         {
-            return "Перевод отсутствует";
+            return "Translation is missing.";
         }
     }
     /// <summary>

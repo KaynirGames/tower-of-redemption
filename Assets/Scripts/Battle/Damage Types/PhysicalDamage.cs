@@ -8,7 +8,7 @@ public class PhysicalDamage : DamageType
 {
     public override float CalculateDamage(CharacterStats user, CharacterStats target, PowerTier tier)
     {
-        float userPower = user.GetStat(StatType.Strength).GetFinalValue() * tier.PowerModifier;
+        float userPower = user.GetStat(StatType.Strength).GetFinalValue() * tier.AttackPower;
         float targetDefence = 1 - (target.GetStat(StatType.Defence).GetFinalValue() / 100);
 
         return -Mathf.Round(userPower * targetDefence);

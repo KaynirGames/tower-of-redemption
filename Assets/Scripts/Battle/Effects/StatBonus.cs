@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Amount_Stat_SB", menuName = "Scriptable Objects/Battle/Effects/Stat Bonus")]
+[CreateAssetMenu(fileName = "STAT Amount", menuName = "Scriptable Objects/Battle/Effects/Stat Bonus")]
 public class StatBonus : Effect
 {
     [SerializeField] private StatModifier _modifier = null;
@@ -10,26 +10,28 @@ public class StatBonus : Effect
 
     public override void Apply(Character target)
     {
-        target.Stats.GetStat(_statType).AddModifier(_modifier);
-        target.Stats.UpdateStatDisplay(_statType);
-
-        target.Stats.StatBonuses.Add(this);
+        target.Stats.AddStatModifier(_statType, _modifier);
+        target.Effects.AddStatBonus(this);
     }
 
     public override void Remove(Character target)
     {
-        target.Stats.GetStat(_statType).RemoveModifier(_modifier);
-        target.Stats.UpdateStatDisplay(_statType);
-
-        target.Stats.StatBonuses.Remove(this);
+        target.Stats.RemoveStatModifier(_statType, _modifier);
+        target.Effects.RemoveStatBonus(this);
     }
 
     public override void BuildDescription(StringBuilder builder)
     {
+        builder.Append(_statNameText.Value);
+
         if (_modifier.Value > 0) { builder.Append("+"); }
 
         builder.Append(_modifier.Value);
-        builder.Append(" ");
-        builder.Append(_statNameText.Value);
+        builder.AppendLine();
+    }
+
+    public override string GetDescription(TargetType targetType)
+    {
+        throw new System.NotImplementedException();
     }
 }

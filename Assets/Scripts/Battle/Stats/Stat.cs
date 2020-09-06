@@ -6,6 +6,8 @@ public class Stat
 {
     [SerializeField] private float _baseValue = 0;
 
+    public float BaseValue => _baseValue;
+
     private List<StatModifier> _modifiers = new List<StatModifier>();
     private float _finalValue = 0;
     private bool _hasChanges = false;

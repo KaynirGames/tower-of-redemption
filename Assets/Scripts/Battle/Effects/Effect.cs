@@ -11,4 +11,6 @@ public abstract class Effect : ScriptableObject
     public abstract void Remove(Character target);
 
     public abstract void BuildDescription(StringBuilder builder);
+
+    public abstract string GetDescription(TargetType targetType);
 }

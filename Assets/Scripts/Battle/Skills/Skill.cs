@@ -32,7 +32,7 @@ public abstract class Skill : ScriptableObject
 
     public abstract void Deactivate(Character owner, Character opponent);
 
-    public abstract void BuildParamsDescription(StringBuilder stringBuilder);
+    public abstract void BuildParamsDescription(StringBuilder builder);
 
     protected void OnValidate()
     {

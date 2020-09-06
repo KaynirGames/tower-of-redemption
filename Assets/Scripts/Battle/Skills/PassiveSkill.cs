@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Пассивное умение.
 /// </summary>
-[CreateAssetMenu(fileName = "NewPassiveSkill", menuName = "Scriptable Objects/Battle/Skills/Passive Skill")]
+[CreateAssetMenu(fileName = "Name_PS", menuName = "Scriptable Objects/Battle/Skills/Passive Skill")]
 public class PassiveSkill : Skill
 {
     [Header("Параметры пассивного умения:")]
@@ -15,7 +15,6 @@ public class PassiveSkill : Skill
     {
         foreach (StatBonus bonus in _statBonuses)
         {
-            //StatBonus newBonus = Instantiate(bonus);
             bonus.Apply(owner);
         }
     }
@@ -24,13 +23,12 @@ public class PassiveSkill : Skill
     {
         foreach (StatBonus bonus in _statBonuses)
         {
-            //StatBonus newBonus = Instantiate(bonus);
             bonus.Remove(owner);
         }
     }
 
-    public override void BuildParamsDescription(StringBuilder stringBuilder)
+    public override void BuildParamsDescription(StringBuilder builder)
     {
-
+        _statBonuses.ForEach(bonus => bonus.BuildDescription(builder));
     }
 }

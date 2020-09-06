@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Восстанавливающее умение.
 /// </summary>
-[CreateAssetMenu(fileName = "NewRecoverySkill", menuName = "Scriptable Objects/Battle/Skills/Recovery Skill")]
+[CreateAssetMenu(fileName = "Name_RS", menuName = "Scriptable Objects/Battle/Skills/Recovery Skill")]
 public class RecoverySkill : Skill
 {
     [Header("Параметры восстанавливающего умения:")]
@@ -17,12 +17,16 @@ public class RecoverySkill : Skill
             _recoveryTypes[i].RecoverResource(owner.Stats);
         }
 
+        owner.Stats.ChangeEnergy(-_cost);
     }
 
     public override void Deactivate(Character owner, Character opponent) { }
 
     public override void BuildParamsDescription(StringBuilder stringBuilder)
     {
-
+        for (int i = 0; i < _recoveryTypes.Length; i++)
+        {
+            stringBuilder.AppendLine(_recoveryTypes[i].GetDescription());
+        }
     }
 }

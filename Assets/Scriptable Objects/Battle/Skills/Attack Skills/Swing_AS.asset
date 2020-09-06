@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a38ba9cf98e16f4baed4ca742c78221, type: 3}
-  m_Name: Swing
+  m_Name: Swing_AS
   m_EditorClassIdentifier: 
   _skillNameText:
     _key: Skill.Swing.Name
@@ -24,3 +24,5 @@ MonoBehaviour:
   _powerTier: {fileID: 11400000, guid: 3db7a66af4379364294e32de14dc1afd, type: 2}
   _damageTypes:
   - {fileID: 11400000, guid: 5c8a5d3b7b464c14882c006366947081, type: 2}
+  _buffEffects:
+  - {fileID: 11400000, guid: ca1d2fdc02a1bef4589e5433f217d7a3, type: 2}

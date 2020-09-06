@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f93f66e559e24444b83e98a623f3b7a9, type: 3}
-  m_Name: Tier_A
+  m_Script: {fileID: 11500000, guid: 6cbea2fee34557d408051e4f55ba6986, type: 3}
+  m_Name: Recovery_ST
   m_EditorClassIdentifier: 
-  _tierName: A
-  _powerModifier: 1.5
+  _typeNameKey:
+    _key: SkillType.Recovery

@@ -17,11 +17,9 @@ public class PlayerCharacter : Character
     private CharacterMoveBase _characterMoveBase;
     private BaseAnimation _baseAnimation;
 
-    private void Awake()
+    protected override void Awake()
     {
-        Stats = GetComponent<CharacterStats>();
-        Inventory = GetComponent<Inventory>();
-        SkillBook = GetComponent<SkillBook>();
+        base.Awake();
 
         _characterMoveBase = GetComponent<CharacterMoveBase>();
         _baseAnimation = GetComponent<BaseAnimation>();

@@ -15,10 +15,9 @@ public class EnemyCharacter : Character
     private EnemyAI _enemyAI = null; // Основной ИИ противника.
     private EnemyBattleAI _enemyBattleAI = null; // Боевой ИИ противника.
 
-    private void Awake()
+    protected override void Awake()
     {
-        Stats = GetComponent<CharacterStats>();
-        SkillBook = GetComponent<SkillBook>();
+        base.Awake();
 
         _enemyAI = GetComponent<EnemyAI>();
         _enemyBattleAI = GetComponent<EnemyBattleAI>();

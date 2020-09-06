@@ -10,16 +10,17 @@ public class CharacterStats : MonoBehaviour
     public CharacterResource Health { get; private set; }
     public CharacterResource Energy { get; private set; }
 
-    public List<StatBonus> StatBonuses = new List<StatBonus>();
-    public List<Effect> BuffEffects { get; } = new List<Effect>();
+    private Stat _strength;
+    private Stat _will;
+    private Stat _defence;
+    private Stat _magicDefence;
 
     private Dictionary<StatType, Stat> _statDictionary;
     private Dictionary<ElementType, float> _elementEfficacyDictionary;
- 
+
     public void SetCharacterStats(SpecBase spec)
     {
-        Health = new CharacterResource(spec.BaseHealth, spec.BaseHealth);
-        Energy = new CharacterResource(spec.BaseEnergy, 0);
+        CreateStats(spec);
 
         _statDictionary = CreateStatDictionary(spec);
         _elementEfficacyDictionary = CreateElementEfficacyDictionary(spec);
@@ -50,7 +51,59 @@ public class CharacterStats : MonoBehaviour
         Energy.ChangeResource(energyAmount);
     }
 
-    public void UpdateStatDisplay(StatType statType)
+    public void AddStatModifier(StatType statType, StatModifier modifier)
+    {
+        GetStat(statType).AddModifier(modifier);
+        UpdateStatDisplay(statType);
+    }
+
+    public void RemoveStatModifier(StatType statType, StatModifier modifier)
+    {
+        GetStat(statType).RemoveModifier(modifier);
+        UpdateStatDisplay(statType);
+    }
+
+    public bool IsEnoughEnergy(float energyCost)
+    {
+        return Energy.CurrentValue - energyCost >= 0;
+    }
+
+    private void CreateStats(SpecBase spec)
+    {
+        Health = new CharacterResource(spec.BaseHealth, spec.BaseHealth);
+        Energy = new CharacterResource(spec.BaseEnergy, 0);
+
+        _strength = new Stat(spec.BaseStrength);
+        _will = new Stat(spec.BaseWill);
+        _defence = new Stat(spec.BaseDefence);
+        _magicDefence = new Stat(spec.BaseMagicDefence);
+    }
+
+    private Dictionary<StatType, Stat> CreateStatDictionary(SpecBase spec)
+    {
+        return new Dictionary<StatType, Stat>()
+        {
+            { StatType.MaxHealth, Health.MaxValue },
+            { StatType.MaxEnergy, Energy.MaxValue },
+            { StatType.Strength, _strength },
+            { StatType.Will, _will },
+            { StatType.Defence, _defence },
+            { StatType.MagicDefence, _magicDefence }
+        };
+    }
+
+    private Dictionary<ElementType, float> CreateElementEfficacyDictionary(SpecBase spec)
+    {
+        return new Dictionary<ElementType, float>()
+        {
+            { ElementType.Fire, spec.BaseFireEfficacy },
+            { ElementType.Air, spec.BaseAirEfficacy },
+            { ElementType.Earth, spec.BaseEarthEfficacy },
+            { ElementType.Water, spec.BaseWaterEfficacy }
+        };
+    }
+
+    private void UpdateStatDisplay(StatType statType)
     {
         switch (statType)
         {
@@ -64,34 +117,5 @@ public class CharacterStats : MonoBehaviour
                 Energy.FixCurrentValue(true);
                 break;
         }
-    }
-
-    public bool IsEnoughEnergy(float energyCost)
-    {
-        return Energy.CurrentValue - energyCost >= 0;
-    }
-
-    private Dictionary<StatType, Stat> CreateStatDictionary(SpecBase spec)
-    {
-        return new Dictionary<StatType, Stat>()
-        {
-            { StatType.MaxHealth, Health.MaxValue },
-            { StatType.MaxEnergy, Energy.MaxValue },
-            { StatType.Strength, new Stat(spec.BaseStrength) },
-            { StatType.Will, new Stat(spec.BaseWill) },
-            { StatType.Defence, new Stat(spec.BaseDefence) },
-            { StatType.MagicDefence, new Stat(spec.BaseMagicDefence) }
-        };
-    }
-
-    private Dictionary<ElementType, float> CreateElementEfficacyDictionary(SpecBase spec)
-    {
-        return new Dictionary<ElementType, float>()
-        {
-            { ElementType.Fire, spec.BaseFireEfficacy },
-            { ElementType.Air, spec.BaseAirEfficacy },
-            { ElementType.Earth, spec.BaseEarthEfficacy },
-            { ElementType.Water, spec.BaseWaterEfficacy }
-        };
     }
 }

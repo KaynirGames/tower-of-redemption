@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6113ceb1394acb04880381a460744951, type: 3}
-  m_Name: EnergyRecovery_5
+  m_Script: {fileID: 11500000, guid: 415d97c5c78c5734ebc864d09f454198, type: 3}
+  m_Name: Strength Up
   m_EditorClassIdentifier: 
-  _recoveryAmount: 5
+  _statType: 300
+  _descriptionTextFormat:
+    _key: Strength.Up.Format
+  _incompatibleBuffTypes:
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: 9bacd9b5778414c4ba6c4ffb83b4bdc8, type: 2}
