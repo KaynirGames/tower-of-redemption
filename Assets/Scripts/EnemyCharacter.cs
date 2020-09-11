@@ -7,9 +7,7 @@ public class EnemyCharacter : Character
     public static event BattleManager.OnBattleEnd OnBattleEnd = delegate { };
 
     [SerializeField] private EnemySpec _enemySpec = null;
-    /// <summary>
-    /// Специализация противника.
-    /// </summary>
+
     public EnemySpec EnemySpec => _enemySpec;
 
     private EnemyAI _enemyAI = null; // Основной ИИ противника.
@@ -33,6 +31,12 @@ public class EnemyCharacter : Character
         EnemyManager.Instance.RegisterEnemy(this);
     }
 
+    public void SwitchToBattleState()
+    {
+        _enemyAI.enabled = false;
+        _enemyBattleAI.enabled = true;
+    }
+
     protected override void Die()
     {
         OnBattleEnd.Invoke(false);
@@ -48,11 +52,7 @@ public class EnemyCharacter : Character
         {
             bool inBattle = OnBattleTrigger.Invoke(this, false);
 
-            if (inBattle)
-            {
-                _enemyAI.enabled = false;
-                _enemyBattleAI.enabled = true;
-            }
+            if (inBattle) { SwitchToBattleState(); }
         }
     }
 }

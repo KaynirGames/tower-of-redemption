@@ -41,7 +41,7 @@ public class BattleTester : MonoBehaviour
             _currentEnemy = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.Y))
         {
             _player.Stats.ChangeHealth(-20);
         }

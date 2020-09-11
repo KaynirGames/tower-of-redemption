@@ -29,6 +29,8 @@ public class BattleManager : MonoBehaviour
         }
 
         EnemyCharacter.OnBattleTrigger += StartBattle;
+        PlayerAttackHit.OnBattleTrigger += StartBattle;
+
         EnemyCharacter.OnBattleEnd += EndBattle;
 
         BattleTester.OnBattleTrigger += StartBattle;

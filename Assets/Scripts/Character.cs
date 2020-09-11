@@ -13,5 +13,7 @@ public abstract class Character : MonoBehaviour
         SkillBook = GetComponent<SkillBook>();
     }
 
+    public virtual void ToggleMovement(bool enable) { }
+
     protected abstract void Die();
 }

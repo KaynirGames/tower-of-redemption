@@ -1,5 +1,6 @@
 ﻿using KaynirGames.Movement;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerCharacter : Character
@@ -8,6 +9,8 @@ public class PlayerCharacter : Character
     public static event BattleManager.OnBattleEnd OnBattleEnd = delegate { };
 
     [SerializeField] private PlayerSpec _playerSpec = null;
+    [SerializeField] private float _attackSpeed = 1f;
+    [SerializeField] private bool _allowMovementOnAttack = false;
 
     public PlayerSpec PlayerSpec => _playerSpec;
 
@@ -17,12 +20,18 @@ public class PlayerCharacter : Character
     private CharacterMoveBase _characterMoveBase;
     private BaseAnimation _baseAnimation;
 
+    private bool _isAttackAvailable;
+    private WaitForSeconds _waitForNextAttack;
+
     protected override void Awake()
     {
         base.Awake();
 
         _characterMoveBase = GetComponent<CharacterMoveBase>();
-        _baseAnimation = GetComponent<BaseAnimation>();
+        _baseAnimation = GetComponentInChildren<BaseAnimation>();
+
+        _isAttackAvailable = true;
+        _waitForNextAttack = new WaitForSeconds(_attackSpeed);
 
         Stats.OnCharacterDeath += Die;
     }
@@ -42,11 +51,26 @@ public class PlayerCharacter : Character
         HandleInput();
     }
 
+    public override void ToggleMovement(bool enable)
+    {
+        if (enable)
+        {
+            _characterMoveBase.Enable();
+        }
+        else
+        {
+            _characterMoveBase.Disable();
+        }
+    }
+
     private void HandleInput()
     {
         if (Input.GetButtonDown("Attack"))
         {
-            _baseAnimation.PlayAttackClip(1f, false);
+            if (_isAttackAvailable)
+            {
+                StartCoroutine(AttackRoutine(_allowMovementOnAttack));
+            }
         }
         else
         {
@@ -60,5 +84,21 @@ public class PlayerCharacter : Character
     protected override void Die()
     {
         OnBattleEnd.Invoke(true);
+    }
+
+    private IEnumerator AttackRoutine(bool allowMovement)
+    {
+        _isAttackAvailable = false;
+
+        _baseAnimation.PlayAttackClip();
+
+        if (!allowMovement)
+        {
+            ToggleMovement(false);
+        }
+
+        yield return _waitForNextAttack;
+
+        _isAttackAvailable = true;
     }
 }

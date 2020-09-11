@@ -6009,7 +6009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &663436919
 Transform:
   m_ObjectHideFlags: 0
@@ -20810,12 +20810,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3597064783027234843, guid: 1fe1ae069cde515428207f79ae9814a4,
+    - target: {fileID: 603057805165385816, guid: 1fe1ae069cde515428207f79ae9814a4,
         type: 3}
-      propertyPath: _playerSpec
-      value: 
-      objectReference: {fileID: 11400000, guid: 57db7f12630d5a44b81264d6bb185e8d,
-        type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3597064783027234846, guid: 1fe1ae069cde515428207f79ae9814a4,
         type: 3}
       propertyPath: m_Name
@@ -20876,8 +20875,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3597064783027234843, guid: 1fe1ae069cde515428207f79ae9814a4, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fe1ae069cde515428207f79ae9814a4, type: 3}
 --- !u!1001 &4964049196134062918
 PrefabInstance:
