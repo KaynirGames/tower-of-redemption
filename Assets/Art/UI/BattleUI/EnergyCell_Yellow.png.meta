@@ -1,34 +1,31 @@
 fileFormatVersion: 2
-guid: f004bd9d59488084786000112c66ba93
+guid: 030f87c1d53d5814da4d3053507d005f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8989163066291655692
-    second: Player Attack R_0
+      213: -5589248525126035241
+    second: EnergyCell_Yellow_0
   - first:
-      213: 8029827228418758951
-    second: Player Attack R_1
+      213: 480019730488821833
+    second: EnergyCell_Yellow_1
   - first:
-      213: -8909054472637860261
-    second: Player Attack R_2
+      213: 9069895876016162153
+    second: EnergyCell_Yellow_2
   - first:
-      213: 3561245323001005827
-    second: Player Attack R_0
+      213: -1239048077151921389
+    second: EnergyCell_Yellow_3
   - first:
-      213: -196179114814004689
-    second: Player Attack R_1
+      213: 7267847094387239269
+    second: EnergyCell_Yellow_4
   - first:
-      213: 4016785269847929819
-    second: Player Attack R_2
+      213: -7419136042673212260
+    second: EnergyCell_Yellow_5
   - first:
-      213: -8512732028961369658
-    second: Player Attack L_0
+      213: 7658874554774325618
+    second: EnergyCell_Yellow_6
   - first:
-      213: -3824780186810016227
-    second: Player Attack L_1
-  - first:
-      213: 5442745590860055678
-    second: Player Attack L_2
+      213: 3392779057164727048
+    second: EnergyCell_Yellow_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -128,127 +125,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player Attack R_0
+      name: EnergyCell_Yellow_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3070f73c0c51c6130800000000000000
-      internalID: 3561245323001005827
+      spriteID: 7d89c7a54100f62b0800000000000000
+      internalID: -5589248525126035241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Attack R_1
+      name: EnergyCell_Yellow_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94807f0d66f59a600800000000000000
+      internalID: 480019730488821833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnergyCell_Yellow_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f22292d6228074df0800000000000000
-      internalID: -196179114814004689
+      spriteID: 96549bfae3ebedd70800000000000000
+      internalID: 9069895876016162153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Attack R_2
+      name: EnergyCell_Yellow_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31b9abda6540ecee0800000000000000
+      internalID: -1239048077151921389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnergyCell_Yellow_4
       rect:
         serializedVersion: 2
         x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd3be4ccbec7eb730800000000000000
-      internalID: 4016785269847929819
+      spriteID: 5696ec6fc649cd460800000000000000
+      internalID: 7267847094387239269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Attack L_0
+      name: EnergyCell_Yellow_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c947a24d31fe90990800000000000000
+      internalID: -7419136042673212260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnergyCell_Yellow_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.55, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c1daa17253bcd980800000000000000
-      internalID: -8512732028961369658
+      spriteID: 2790a9044d9c94a60800000000000000
+      internalID: 7658874554774325618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Attack L_1
+      name: EnergyCell_Yellow_7
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.55, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1e9c354fa6abeac0800000000000000
-      internalID: -3824780186810016227
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Attack L_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.55, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e74890a2744888b40800000000000000
-      internalID: 5442745590860055678
+      spriteID: 80330b7a392951f20800000000000000
+      internalID: 3392779057164727048
       vertices: []
       indices: 
       edges: []
@@ -265,7 +304,7 @@ TextureImporter:
     secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 1
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

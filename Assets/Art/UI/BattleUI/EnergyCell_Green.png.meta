@@ -1,34 +1,31 @@
 fileFormatVersion: 2
-guid: aeb275a047e0f2949bca7eb178a7696e
+guid: 9797560ede334f14da60c0692f94653e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6385394089234657200
-    second: Player Run R_0
+      213: -1349384404702783161
+    second: EnergyCell_Green_Idle_0
   - first:
-      213: 2128584714283509883
-    second: Player Run R_1
+      213: 2036718713617626392
+    second: EnergyCell_Green_Idle_1
   - first:
-      213: -4490348829642752392
-    second: Player Run R_2
+      213: -3374628835601038405
+    second: EnergyCell_Green_Idle_2
   - first:
-      213: 8810041939755343179
-    second: Player Run R_0
+      213: -3719519844890346535
+    second: EnergyCell_Green_Idle_3
   - first:
-      213: -8574335567818500322
-    second: Player Run R_1
+      213: 9208531276657969222
+    second: EnergyCell_Green_Idle_4
   - first:
-      213: -3534871338169529028
-    second: Player Run R_2
+      213: -6963026166850505994
+    second: EnergyCell_Green_Idle_5
   - first:
-      213: -7489079989147879338
-    second: Player Run L_0
+      213: -8685744749256960193
+    second: EnergyCell_Green_Destroy_0
   - first:
-      213: -400593443336818258
-    second: Player Run L_1
-  - first:
-      213: 6949511218332450413
-    second: Player Run L_2
+      213: 5074907752780887886
+    second: EnergyCell_Green_Destroy_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -92,7 +89,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 256
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -104,7 +101,7 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 256
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -116,7 +113,7 @@ TextureImporter:
     buildTarget: Android
     maxTextureSize: 256
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -128,127 +125,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player Run R_0
+      name: EnergyCell_Green_Idle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4d1963777e834a70800000000000000
-      internalID: 8810041939755343179
+      spriteID: 7491d348806064de0800000000000000
+      internalID: -1349384404702783161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Run R_1
+      name: EnergyCell_Green_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 815b19801e0e34c10800000000000000
+      internalID: 2036718713617626392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnergyCell_Green_Idle_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e175e27da37d10980800000000000000
-      internalID: -8574335567818500322
+      spriteID: bb3c53d14f8ea21d0800000000000000
+      internalID: -3374628835601038405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Run R_2
+      name: EnergyCell_Green_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9db7b4e686c916cc0800000000000000
+      internalID: -3719519844890346535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnergyCell_Green_Idle_4
       rect:
         serializedVersion: 2
         x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3d02b91f3d91fec0800000000000000
-      internalID: -3534871338169529028
+      spriteID: 648c54048664bcf70800000000000000
+      internalID: 9208531276657969222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Run L_0
+      name: EnergyCell_Green_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f2302bc79c5e5f90800000000000000
+      internalID: -6963026166850505994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnergyCell_Green_Destroy_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 658ba50cd61711890800000000000000
-      internalID: -7489079989147879338
+      spriteID: f3713da6b29067780800000000000000
+      internalID: -8685744749256960193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Run L_1
+      name: EnergyCell_Green_Destroy_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea1fe8eb26ec07af0800000000000000
-      internalID: -400593443336818258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Run L_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d6e3c4b02af917060800000000000000
-      internalID: 6949511218332450413
+      spriteID: e47716096b1bd6640800000000000000
+      internalID: 5074907752780887886
       vertices: []
       indices: 
       edges: []
@@ -265,7 +304,7 @@ TextureImporter:
     secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 1
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

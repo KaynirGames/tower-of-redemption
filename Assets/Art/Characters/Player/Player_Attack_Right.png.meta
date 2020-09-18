@@ -1,34 +1,22 @@
 fileFormatVersion: 2
-guid: 758aa3b99dce8544fb4b07ca07b5932d
+guid: 3ecf3ed3bf5e352469143ea17f8aaf80
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6137007217024267201
-    second: Player Idle R_0
+      213: 5391821087250167391
+    second: Player_Attack_Right_0
   - first:
-      213: -8416804778740628856
-    second: Player Idle R_1
+      213: 4033702438232501101
+    second: Player_Attack_Right_1
   - first:
-      213: -4269071924193232105
-    second: Player Idle R_2
+      213: 7797580373019887240
+    second: Player_Attack_Right_2
   - first:
-      213: 8193423094639111308
-    second: Player Idle R_0
+      213: 724809502169652825
+    second: Player_Attack_Right_3
   - first:
-      213: 8169969484214804568
-    second: Player Idle R_1
-  - first:
-      213: -8434540114569118809
-    second: Player Idle R_2
-  - first:
-      213: 5078832844186053437
-    second: Player Idle L_0
-  - first:
-      213: -7215349037938101137
-    second: Player Idle L_1
-  - first:
-      213: -2327266042211786159
-    second: Player Idle L_2
+      213: 6479812551691598753
+    second: Player_Attack_Right_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -128,127 +116,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player Idle R_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c8c227ad4e2e4b170800000000000000
-      internalID: 8193423094639111308
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Idle R_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 850a764a5ff816170800000000000000
-      internalID: 8169969484214804568
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Idle R_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7ab3353347e72fa80800000000000000
-      internalID: -8434540114569118809
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Idle L_0
+      name: Player_Attack_Right_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+      pivot: {x: 0.3135, y: 0.45}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3beb4f1093ab7640800000000000000
-      internalID: 5078832844186053437
+      spriteID: f56b10636b893da40800000000000000
+      internalID: 5391821087250167391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Idle L_1
+      name: Player_Attack_Right_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.3135, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6ba9700ff69af730800000000000000
+      internalID: 4033702438232501101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Right_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+      pivot: {x: 0.3135, y: 0.45}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f643e3f474eeddb90800000000000000
-      internalID: -7215349037938101137
+      spriteID: 88688613902963c60800000000000000
+      internalID: 7797580373019887240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Idle L_2
+      name: Player_Attack_Right_3
       rect:
         serializedVersion: 2
-        x: 128
+        x: 96
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+      pivot: {x: 0.3135, y: 0.45}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15223207dd3e3bfd0800000000000000
-      internalID: -2327266042211786159
+      spriteID: 95e56aae66a0f0a00800000000000000
+      internalID: 724809502169652825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Right_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.3135, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1abf1ba2f2bece950800000000000000
+      internalID: 6479812551691598753
       vertices: []
       indices: 
       edges: []
@@ -265,7 +232,7 @@ TextureImporter:
     secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 1
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

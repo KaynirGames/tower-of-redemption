@@ -7,9 +7,9 @@ using UnityEngine.UI;
 /// </summary>
 public class ResourceBarUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _valueTextField = null; // Текстовое поле со значением ресурса.
-    [SerializeField] private Image _valueMaskFiller = null; // Для отображения значения ресурса.
-    [SerializeField] private bool _isVertical = false; // Вид отображения полосы ресурса.
+    [SerializeField] private TextMeshProUGUI _valueTextField = null;
+    [SerializeField] private Image _valueMaskFiller = null;
+    [SerializeField] private Slider _valueSlider = null;
 
     private CharacterResource _resource; // Максимальное значение ресурса.
 
@@ -21,11 +21,10 @@ public class ResourceBarUI : MonoBehaviour
 
     public void UpdateBar(float currentValue)
     {
-        float scale = currentValue / _resource.MaxValue.GetFinalValue();
+        float newValue = currentValue / _resource.MaxValue.GetFinalValue();
 
-        _valueMaskFiller.rectTransform.localScale = _isVertical
-            ? new Vector2(1f, scale)
-            : new Vector2(scale, 1f);
+        //_valueMaskFiller.rectTransform.localScale = new Vector2(scale, 1f);
+        _valueSlider.value = newValue;
 
         _valueTextField.SetText($"{currentValue} / {_resource.MaxValue.GetFinalValue()}");
     }
