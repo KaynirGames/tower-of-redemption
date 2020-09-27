@@ -7,8 +7,8 @@ public class EfficacyDisplayUI : MonoBehaviour
     [Header("Текстовые поля с эффективностью элементов:")]
     [SerializeField] private TextMeshProUGUI _fireEfficacyField = null;
     [SerializeField] private TextMeshProUGUI _earthEfficacyField = null;
-    [SerializeField] private TextMeshProUGUI _airEfficacyField = null;
     [SerializeField] private TextMeshProUGUI _waterEfficacyField = null;
+    [SerializeField] private TextMeshProUGUI _windEfficacyField = null;
 
     private Dictionary<ElementType, TextMeshProUGUI> _efficacyTextFields;
 
@@ -38,7 +38,7 @@ public class EfficacyDisplayUI : MonoBehaviour
         {
             { ElementType.Fire, _fireEfficacyField },
             { ElementType.Earth, _earthEfficacyField },
-            { ElementType.Air, _airEfficacyField },
+            { ElementType.Wind, _windEfficacyField },
             { ElementType.Water, _waterEfficacyField }
         };
     }
@@ -47,7 +47,7 @@ public class EfficacyDisplayUI : MonoBehaviour
     {
         UpdateEfficacyDisplay(ElementType.Fire);
         UpdateEfficacyDisplay(ElementType.Earth);
-        UpdateEfficacyDisplay(ElementType.Air);
+        UpdateEfficacyDisplay(ElementType.Wind);
         UpdateEfficacyDisplay(ElementType.Water);
     }
 }

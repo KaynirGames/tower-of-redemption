@@ -8,10 +8,9 @@ using UnityEngine.UI;
 public class ResourceBarUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _valueTextField = null;
-    [SerializeField] private Image _valueMaskFiller = null;
     [SerializeField] private Slider _valueSlider = null;
 
-    private CharacterResource _resource; // Максимальное значение ресурса.
+    private CharacterResource _resource;
 
     public void RegisterResource(CharacterResource resource)
     {
@@ -23,7 +22,6 @@ public class ResourceBarUI : MonoBehaviour
     {
         float newValue = currentValue / _resource.MaxValue.GetFinalValue();
 
-        //_valueMaskFiller.rectTransform.localScale = new Vector2(scale, 1f);
         _valueSlider.value = newValue;
 
         _valueTextField.SetText($"{currentValue} / {_resource.MaxValue.GetFinalValue()}");

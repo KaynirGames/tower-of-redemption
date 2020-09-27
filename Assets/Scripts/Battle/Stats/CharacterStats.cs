@@ -97,7 +97,7 @@ public class CharacterStats : MonoBehaviour
         return new Dictionary<ElementType, float>()
         {
             { ElementType.Fire, spec.BaseFireEfficacy },
-            { ElementType.Air, spec.BaseAirEfficacy },
+            { ElementType.Wind, spec.BaseAirEfficacy },
             { ElementType.Earth, spec.BaseEarthEfficacy },
             { ElementType.Water, spec.BaseWaterEfficacy }
         };

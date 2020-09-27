@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: 6013d8673d72db34c876cc5cc1a034ba
+guid: d392624438f2a2646a4e6f5c52b81d94
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: 2808229890004914524
-    second: PlayerUI Bars_0
+    second: PlayerUI Bars_Main
   - first:
       213: 2464604224791217688
-    second: PlayerUI Bars_1
+    second: PlayerUI Bars_SE_Filler
   - first:
       213: 7728293714441487648
-    second: PlayerUI Bars_2
+    second: PlayerUI Bars_BG
+  - first:
+      213: -7575286647907012280
+    second: PlayerUI Bars_HP_Filler
+  - first:
+      213: -7786455789858051153
+    second: PlayerUI Bars_Border
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -72,7 +78,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -84,7 +90,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -96,7 +102,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -110,16 +116,16 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerUI Bars_0
+      name: PlayerUI Bars_Main
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 28
         width: 64
-        height: 32
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 25, y: 9, z: 14, w: 9}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -131,13 +137,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerUI Bars_1
+      name: PlayerUI Bars_SE_Filler
       rect:
         serializedVersion: 2
-        x: 27
-        y: 49
-        width: 22
-        height: 3
+        x: 0
+        y: 21
+        width: 24
+        height: 5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,13 +158,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerUI Bars_2
+      name: PlayerUI Bars_BG
       rect:
         serializedVersion: 2
-        x: 27
-        y: 11
-        width: 22
-        height: 3
+        x: 0
+        y: 14
+        width: 24
+        height: 5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,6 +174,48 @@ TextureImporter:
       bones: []
       spriteID: 0254b21ef2a604b60800000000000000
       internalID: 7728293714441487648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerUI Bars_HP_Filler
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7
+        width: 24
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8413eb7edec2fd690800000000000000
+      internalID: -7575286647907012280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerUI Bars_Border
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 24
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fab2a3aa6b3f0f390800000000000000
+      internalID: -7786455789858051153
       vertices: []
       indices: 
       edges: []
