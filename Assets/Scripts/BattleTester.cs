@@ -16,7 +16,7 @@ public class BattleTester : MonoBehaviour
     private PlayerCharacter _player;
     private EnemyCharacter _currentEnemy;
 
-    public SkillDescriptionUI descriptionUI;
+    public DescriptionUI descriptionUI;
 
     private void Start()
     {

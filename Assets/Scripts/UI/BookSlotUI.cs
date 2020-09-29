@@ -6,10 +6,7 @@ using UnityEngine.UI;
 /// </summary>
 public class BookSlotUI : MonoBehaviour
 {
-    public delegate void OnSkillDescriptionRequest(Skill skill);
-
-    public static event OnSkillDescriptionRequest OnDescriptionPanelRequest = delegate { };
-    public static event OnSkillDescriptionRequest OnTooltipRequest = delegate { };
+    public static event DescriptionUI.OnDescriptionCall OnSkillDescriptionCall = delegate { };
 
     [SerializeField] private BookSlotType _slotType = BookSlotType.Active;
     [SerializeField] private Image _skillIcon = null;
@@ -44,12 +41,11 @@ public class BookSlotUI : MonoBehaviour
 
     public void ShowSkillDescription()
     {
-        OnDescriptionPanelRequest.Invoke(BookSlot.Skill);
-    }
+        string name = BookSlot.Skill.SkillName;
+        string type = BookSlot.Skill.SkillType.TypeName;
+        string description = BookSlot.Skill.Description;
 
-    public void ShowSkillTooltip()
-    {
-        OnTooltipRequest.Invoke(BookSlot.Skill);
+        OnSkillDescriptionCall(name, type, description);
     }
 
     public void ActivateSkill()
@@ -62,6 +58,7 @@ public class BookSlotUI : MonoBehaviour
         _skillIcon.sprite = BookSlot.Skill.Icon;
         _skillIcon.enabled = true;
         _useButton.interactable = true;
+        _useButton.targetGraphic.raycastTarget = true;
     }
 
     private void ClearSlotUI()
@@ -69,6 +66,7 @@ public class BookSlotUI : MonoBehaviour
         _skillIcon.sprite = null;
         _skillIcon.enabled = false;
         _useButton.interactable = false;
+        _useButton.targetGraphic.raycastTarget = false;
     }
 
     private void ToggleSkillCooldownDisplay(bool isCooldown)

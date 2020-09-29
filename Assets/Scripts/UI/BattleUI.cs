@@ -39,7 +39,7 @@ public class BattleUI : MonoBehaviour
         _player = player;
 
         _playerResourceDisplay.RegisterResources(player.Stats);
-        _playerSkillDisplay.Init(player.SkillBook);
+        _playerSkillDisplay.RegisterSkillBook(player.SkillBook);
     }
 
     private void InitEnemy(EnemyCharacter enemy)
@@ -48,6 +48,6 @@ public class BattleUI : MonoBehaviour
         _enemyResourceDisplay.RegisterResources(enemy.Stats);
         _enemyStatsDisplay.RegisterStats(enemy.Stats);
         _enemyEfficacyDisplay.RegisterElementEfficacies(enemy.Stats);
-        _enemySkillDisplay.Init(enemy.SkillBook);
+        _enemySkillDisplay.RegisterSkillBook(enemy.SkillBook);
     }
 }

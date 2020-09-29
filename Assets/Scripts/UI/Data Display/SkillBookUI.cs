@@ -9,13 +9,10 @@ public class SkillBookUI : MonoBehaviour
 
     private SkillBook _skillBook;
 
-    private void Awake()
+    public void RegisterSkillBook(SkillBook skillBook)
     {
         _slotsDictionary = CreateSlotsDictionary();
-    }
 
-    public void Init(SkillBook skillBook)
-    {
         _skillBook = skillBook;
 
         UpdateAllSlots(BookSlotType.Active);
