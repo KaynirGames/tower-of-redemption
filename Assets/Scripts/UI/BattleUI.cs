@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class BattleUI : MonoBehaviour
 {
-    [SerializeField] GameObject _battleWindow = null;
-    [SerializeField] GameObject _playerUI = null;
-    [SerializeField] GameObject _inventoryUI = null;
+    [SerializeField] Canvas _playerHUDCanvas = null;
     [Header("Отображаемые данные об игроке:")]
     [SerializeField] private ResourceDisplayUI _playerResourceDisplay = null;
     [SerializeField] private SkillBookUI _playerSkillDisplay = null;
@@ -16,22 +14,29 @@ public class BattleUI : MonoBehaviour
     [SerializeField] private EfficacyDisplayUI _enemyEfficacyDisplay = null;
     [SerializeField] private SkillBookUI _enemySkillDisplay = null;
 
+    private Canvas _battleCanvas;
     private PlayerCharacter _player;
+
+    private void Awake()
+    {
+        _battleCanvas = GetComponent<Canvas>();
+    }
 
     public void ShowBattleWindow(PlayerCharacter player, EnemyCharacter enemy)
     {
-        _playerUI.SetActive(false);
-        _inventoryUI.SetActive(false);
-        _battleWindow.SetActive(true);
         if (_player == null) { InitPlayer(player); }
         InitEnemy(enemy);
+
+        _playerHUDCanvas.enabled = false;
+        _battleCanvas.enabled = true;
     }
 
     public void CloseBattleWindow()
     {
-        _battleWindow.SetActive(false);
-        _playerUI.SetActive(true);
-        _inventoryUI.SetActive(true);
+        _battleCanvas.enabled = false;
+        _playerHUDCanvas.enabled = true;
+
+        ClearEnemy();
     }
 
     private void InitPlayer(PlayerCharacter player)
@@ -49,5 +54,14 @@ public class BattleUI : MonoBehaviour
         _enemyStatsDisplay.RegisterStats(enemy.Stats);
         _enemyEfficacyDisplay.RegisterElementEfficacies(enemy.Stats);
         _enemySkillDisplay.RegisterSkillBook(enemy.SkillBook);
+    }
+
+    private void ClearEnemy()
+    {
+        _enemyNameDisplay.ClearMesh();
+        _enemyResourceDisplay.Clear();
+        _enemyStatsDisplay.Clear();
+        _enemyEfficacyDisplay.Clear();
+        _enemySkillDisplay.Clear();
     }
 }

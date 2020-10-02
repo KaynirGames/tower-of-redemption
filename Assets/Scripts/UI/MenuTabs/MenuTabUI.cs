@@ -2,13 +2,16 @@
 
 public class MenuTabUI : MonoBehaviour
 {
-    [SerializeField] private GameObject _tabPanel = null;
+    [SerializeField] private Canvas _tabCanvas = null;
     [SerializeField] private GameObject _tabSelectionButton = null;
     [SerializeField] private GameObject _tabActiveImageBox = null;
+    [SerializeField] private TranslatedText _tabName = null;
+
+    public string TabName => _tabName.Value;
 
     public virtual void Toggle(bool enable)
     {
-        _tabPanel.SetActive(enable);
+        _tabCanvas.enabled = enable;
     }
 
     public virtual void Open()

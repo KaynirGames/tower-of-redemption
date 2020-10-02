@@ -3,22 +3,30 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private float followSpeed = 100f; // Скорость следования камеры.
+    [SerializeField] private float followSpeed = 100f;
 
     private void Awake()
     {
         Room.OnActiveRoomChange += MoveCamera;
     }
-    /// <summary>
-    /// Переместить камеру в активную комнату.
-    /// </summary>
+
     public void MoveCamera(Room activeRoom)
     {
         StartCoroutine(UpdatePosition(GetNewPosition(activeRoom)));
     }
-    /// <summary>
-    /// Перемещает камеру в новую позицию.
-    /// </summary>
+
+    public void MoveCamera(Vector3 position, bool instant)
+    {
+        if (instant)
+        {
+            transform.position = position;
+        }
+        else
+        {
+            StartCoroutine(UpdatePosition(position));
+        }
+    }
+
     private IEnumerator UpdatePosition(Vector3 newPosition)
     {
         while (transform.position != newPosition)
@@ -27,9 +35,7 @@ public class CameraController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
-    /// <summary>
-    /// Получить новую позицию для камеры.
-    /// </summary>
+
     private Vector3 GetNewPosition(Room activeRoom)
     {
         Vector3 targetPos = activeRoom.transform.position;

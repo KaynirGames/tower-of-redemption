@@ -9,10 +9,13 @@ public class SkillBookUI : MonoBehaviour
 
     private SkillBook _skillBook;
 
-    public void RegisterSkillBook(SkillBook skillBook)
+    private void Awake()
     {
         _slotsDictionary = CreateSlotsDictionary();
+    }
 
+    public void RegisterSkillBook(SkillBook skillBook)
+    {
         _skillBook = skillBook;
 
         UpdateAllSlots(BookSlotType.Active);
@@ -20,6 +23,12 @@ public class SkillBookUI : MonoBehaviour
         UpdateAllSlots(BookSlotType.Special);
 
         _skillBook.OnSkillSlotChanged += UpdateSkillSlot;
+    }
+
+    public void Clear()
+    {
+        _skillBook.OnSkillSlotChanged -= UpdateSkillSlot;
+        _skillBook = null;
     }
 
     private BookSlotUI[] CollectBookSlotsUI(GameObject parent)

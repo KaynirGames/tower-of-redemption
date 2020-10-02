@@ -10,6 +10,8 @@ public class BattleManager : MonoBehaviour
     public delegate void OnBattleEnd(bool isPlayerDeath);
 
     [SerializeField] private BattleUI _battleUI = null;
+    [SerializeField] private Transform _battlefieldPlacement = null;
+    [SerializeField] private CameraController _cameraController = null;
     [Header("Бонусная энергия при боевом преимуществе:")]
     [SerializeField] private float _playerEnergyBonus = 0.25f;
     [SerializeField] private float _enemyEnergyBonus = 1f;
@@ -45,7 +47,7 @@ public class BattleManager : MonoBehaviour
 
     private bool StartBattle(EnemyCharacter enemy, bool isPlayerAdvantage)
     {
-        GameMaster.Instance.TogglePause(true);
+        //GameMaster.Instance.TogglePause(true);
 
         if (_enemy == null)
         {
@@ -74,9 +76,14 @@ public class BattleManager : MonoBehaviour
         else { return false; }
     }
 
+    private void SetBattlefield()
+    {
+
+    }
+
     private void EndBattle(bool isPlayerDeath)
     {
-        GameMaster.Instance.TogglePause(false);
+        //GameMaster.Instance.TogglePause(false);
 
         if (isPlayerDeath)
         {

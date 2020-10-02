@@ -14,8 +14,8 @@ TagManager:
   - 
   - 
   - Obstacle
-  - PlayerUI
-  - InventoryUI
+  - PlayerHUD
+  - MenuUI
   - BattleUI
   - 
   - 

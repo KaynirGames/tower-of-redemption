@@ -23,9 +23,15 @@ public class ResourceDisplayUI : MonoBehaviour
         _energy.OnChange += _energyBar.UpdateBar;
     }
 
-    private void OnDestroy()
+    public void Clear()
     {
         _health.OnChange -= _healthBar.UpdateBar;
         _energy.OnChange -= _energyBar.UpdateBar;
+
+        _health = null;
+        _energy = null;
+
+        _healthBar.Clear();
+        _energyBar.Clear();
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -9,19 +10,29 @@ public class BookSlotUI : MonoBehaviour
     public static event DescriptionUI.OnDescriptionCall OnSkillDescriptionCall = delegate { };
 
     [SerializeField] private BookSlotType _slotType = BookSlotType.Active;
-    [SerializeField] private Image _skillIcon = null;
+    [SerializeField] private Image _skillIconDisplay = null;
     [SerializeField] private Button _useButton = null;
+    [Header("Отображение перезарядки умения:")]
+    [SerializeField] private bool _displayCooldown = false;
+    [SerializeField] private Image _skillCooldownDisplay = null;
 
     public BookSlot BookSlot { get; private set; }
 
     public BookSlotType SlotType => _slotType;
+
+    private float _skillCooldown;
 
     public void InitSlot(BookSlot bookSlot)
     {
         if (bookSlot.SlotType == _slotType)
         {
             BookSlot = bookSlot;
-            BookSlot.OnSkillCooldownToggle += ToggleSkillCooldownDisplay;
+
+            if (_displayCooldown)
+            {
+                BookSlot.OnCooldownToggle += ToggleCooldownDisplay;
+                BookSlot.OnCooldownUpdate += UpdateCooldownDisplay;
+            }
             // Подписка на нехватку энергии => вызов предупреждения в бою.
             UpdateSlotDisplayUI();
         }
@@ -55,23 +66,40 @@ public class BookSlotUI : MonoBehaviour
 
     private void FillSlotUI()
     {
-        _skillIcon.sprite = BookSlot.Skill.Icon;
-        _skillIcon.enabled = true;
+        _skillIconDisplay.sprite = BookSlot.Skill.Icon;
+        _skillIconDisplay.enabled = true;
         _useButton.interactable = true;
         _useButton.targetGraphic.raycastTarget = true;
+
+        if (_displayCooldown)
+        {
+            _skillCooldown = BookSlot.Skill.Cooldown;
+            _skillCooldownDisplay.sprite = BookSlot.Skill.Icon;
+        }
     }
 
     private void ClearSlotUI()
     {
-        _skillIcon.sprite = null;
-        _skillIcon.enabled = false;
+        _skillIconDisplay.sprite = null;
+        _skillIconDisplay.enabled = false;
         _useButton.interactable = false;
         _useButton.targetGraphic.raycastTarget = false;
+
+        if (_displayCooldown) 
+        {
+            _skillCooldownDisplay.sprite = null;
+        }
     }
 
-    private void ToggleSkillCooldownDisplay(bool isCooldown)
+    private void ToggleCooldownDisplay(bool enable)
     {
-        _useButton.interactable = !isCooldown;
-        // Анимация перезарядки?
+        _useButton.interactable = !enable;
+        _skillCooldownDisplay.enabled = enable;
+        _skillCooldownDisplay.fillAmount = enable ? 1 : 0;
+    }
+
+    private void UpdateCooldownDisplay(float timer)
+    {
+        _skillCooldownDisplay.fillAmount = timer / _skillCooldown;
     }
 }

@@ -11,7 +11,6 @@ public class BattleTester : MonoBehaviour
     [SerializeField] private EnemyCharacter _testEnemyPrefab = null;
     [SerializeField] private Transform _testSpawn = null;
     [SerializeField] private bool _isPlayerAdvantage = true;
-    [SerializeField] private Skill _testSkill = null;
 
     private PlayerCharacter _player;
     private EnemyCharacter _currentEnemy;
@@ -30,7 +29,7 @@ public class BattleTester : MonoBehaviour
             if (_currentEnemy == null)
             {
                 _currentEnemy = Instantiate(_testEnemyPrefab, _testSpawn.position, Quaternion.identity);
-                StartCoroutine(BattleStartRoutine());
+                //StartCoroutine(BattleStartRoutine());
                 if (_player == null) _player = PlayerManager.Instance.Player;
             }
         }

@@ -17,15 +17,24 @@ public class StatDisplayUI : MonoBehaviour
 
     private CharacterStats _stats;
 
+    private void Awake()
+    {
+        _statTextFields = CreateStatTextFieldDictionary();
+    }
+
     public void RegisterStats(CharacterStats stats)
     {
         _stats = stats;
 
-        _statTextFields = CreateStatTextFieldDictionary();
-
         DisplayCharacterStats();
 
         stats.OnStatChange += UpdateStatDisplay;
+    }
+
+    public void Clear()
+    {
+        _stats.OnStatChange -= UpdateStatDisplay;
+        _stats = null;
     }
 
     private void UpdateStatDisplay(StatType statType)
@@ -55,10 +64,5 @@ public class StatDisplayUI : MonoBehaviour
         UpdateStatDisplay(StatType.Defence);
         UpdateStatDisplay(StatType.Will);
         UpdateStatDisplay(StatType.MagicDefence);
-    }
-
-    private void OnDestroy()
-    {
-        _stats.OnStatChange -= UpdateStatDisplay;
     }
 }

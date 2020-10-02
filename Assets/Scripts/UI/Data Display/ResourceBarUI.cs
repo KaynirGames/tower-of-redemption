@@ -26,4 +26,9 @@ public class ResourceBarUI : MonoBehaviour
 
         _valueTextField.SetText($"{currentValue} / {_resource.MaxValue.GetFinalValue()}");
     }
+
+    public void Clear()
+    {
+        _resource = null;
+    }
 }

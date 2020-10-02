@@ -14,13 +14,21 @@ public class EfficacyDisplayUI : MonoBehaviour
 
     private CharacterStats _stats;
 
+    private void Awake()
+    {
+        _efficacyTextFields = CreateEfficacyTextFieldDictionary();
+    }
+
     public void RegisterElementEfficacies(CharacterStats stats)
     {
         _stats = stats;
 
-        _efficacyTextFields = CreateEfficacyTextFieldDictionary();
-
         DisplayElementEfficacies();
+    }
+
+    public void Clear()
+    {
+        _stats = null;
     }
 
     private void UpdateEfficacyDisplay(ElementType elementType)

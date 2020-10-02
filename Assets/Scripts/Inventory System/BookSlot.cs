@@ -8,7 +8,12 @@ using UnityEngine;
 [Serializable]
 public class BookSlot
 {
-    public Action<bool> OnSkillCooldownToggle = delegate { };
+    public delegate void OnSkillCooldownToggle(bool enable);
+    public delegate void OnSkillCooldownUpdate(float timer);
+
+    public OnSkillCooldownToggle OnCooldownToggle = delegate { };
+    public OnSkillCooldownUpdate OnCooldownUpdate = delegate { };
+
     public Action OnRequiredEnergyShortage = delegate { };
 
     public BookSlotType SlotType { get; private set; }
@@ -18,8 +23,7 @@ public class BookSlot
     public bool IsEmpty => Skill == null;
 
     private Character _bookOwner;
-
-    private WaitForSecondsRealtime _cooldownWaitForSeconds;
+    private float _cooldownTimer;
 
     public BookSlot(Character bookOwner, BookSlotType slotType)
     {
@@ -31,8 +35,6 @@ public class BookSlot
     public void InsertSkill(Skill skill)
     {
         Skill = skill;
-
-        _cooldownWaitForSeconds = new WaitForSecondsRealtime(skill.Cooldown);
     }
 
     public Skill RemoveSkill()
@@ -65,9 +67,19 @@ public class BookSlot
     private IEnumerator SkillCooldownRoutine()
     {
         IsCooldown = true;
-        OnSkillCooldownToggle.Invoke(true);
-        yield return _cooldownWaitForSeconds;
+        OnCooldownToggle(true);
+
+        _cooldownTimer = Skill.Cooldown;
+
+        while (_cooldownTimer >= 0)
+        {
+            _cooldownTimer -= Time.deltaTime;
+            OnCooldownUpdate(_cooldownTimer);
+
+            yield return null;
+        }
+
         IsCooldown = false;
-        OnSkillCooldownToggle.Invoke(false);
+        OnCooldownToggle(false);
     }
 }

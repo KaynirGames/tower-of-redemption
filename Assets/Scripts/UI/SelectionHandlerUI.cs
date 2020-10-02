@@ -16,6 +16,9 @@ public class SelectionHandlerUI : MonoBehaviour, IPointerClickHandler, IDeselect
 
     public void OnDeselect(BaseEventData eventData)
     {
-        OnSelectionCancel();
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            OnSelectionCancel();
+        }
     }
 }
