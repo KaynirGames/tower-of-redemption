@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using KaynirGames.InputSystem;
 
 public class PlayerCharacter : Character
 {
@@ -11,6 +12,7 @@ public class PlayerCharacter : Character
     [SerializeField] private PlayerSpec _playerSpec = null;
     [SerializeField] private float _attackSpeed = 1f;
     [SerializeField] private bool _allowMovementOnAttack = false;
+    [SerializeField] private InputHandler _inputHandler = null;
 
     public PlayerSpec PlayerSpec => _playerSpec;
 
@@ -65,7 +67,7 @@ public class PlayerCharacter : Character
 
     private void HandleInput()
     {
-        if (Input.GetButtonDown("Attack"))
+        if (_inputHandler.GetAttackInput())
         {
             if (_isAttackAvailable)
             {
@@ -74,8 +76,7 @@ public class PlayerCharacter : Character
         }
         else
         {
-            _moveDirection.x = Input.GetAxisRaw("Horizontal");
-            _moveDirection.y = Input.GetAxisRaw("Vertical");
+            _moveDirection = _inputHandler.GetMovementInput();
             _characterMoveBase.SetMoveDirection(_moveDirection);
             _baseAnimation.PlayMoveClip(_moveDirection);
         }
