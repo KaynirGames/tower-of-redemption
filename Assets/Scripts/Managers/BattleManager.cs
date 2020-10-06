@@ -10,11 +10,14 @@ public class BattleManager : MonoBehaviour
     public delegate void OnBattleEnd(bool isPlayerDeath);
 
     [SerializeField] private BattleUI _battleUI = null;
+    [SerializeField] private EnergyGenerator _energyGenerator = null;
     [SerializeField] private Transform _battlefieldPlacement = null;
     [SerializeField] private CameraController _cameraController = null;
     [Header("Бонусная энергия при боевом преимуществе:")]
     [SerializeField] private float _playerEnergyBonus = 0.25f;
     [SerializeField] private float _enemyEnergyBonus = 1f;
+
+    public EnergyGenerator EnergyGenerator => _energyGenerator;
 
     private PlayerCharacter _player;
     private EnemyCharacter _enemy;

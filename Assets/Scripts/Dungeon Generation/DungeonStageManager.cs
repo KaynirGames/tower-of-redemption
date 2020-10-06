@@ -55,7 +55,7 @@ public class DungeonStageManager : MonoBehaviour
 
         for (int i = 0; i < _selectedRoute.Count; i++)
         {
-            RoomType randomType = (RoomType)dungeonStage.OptionalRooms.ChooseRandomObject();
+            RoomType randomType = (RoomType)dungeonStage.OptionalRooms.ChooseRandom();
             CreateGridPoint(randomType, _selectedRoute[i]);
         }
 

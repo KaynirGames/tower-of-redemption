@@ -19,7 +19,7 @@ public class SpawnPoint : MonoBehaviour
     /// </summary>
     public void Spawn(Transform parent)
     {
-        GameObject gameObject = _spawnTable.ChooseRandomObject() as GameObject;
+        GameObject gameObject = _spawnTable.ChooseRandom() as GameObject;
         Instantiate(gameObject, transform.position, Quaternion.identity, parent);
     }
 }

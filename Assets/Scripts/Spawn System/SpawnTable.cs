@@ -11,7 +11,7 @@ public class SpawnTable : ScriptableObject
 
     public int TableSize => _spawnableObjects.Count;
 
-    public Object ChooseRandomObject()
+    public Object ChooseRandom()
     {
         if (_spawnableObjects.Count == 0)
         {

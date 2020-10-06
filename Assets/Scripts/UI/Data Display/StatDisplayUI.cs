@@ -9,8 +9,8 @@ public class StatDisplayUI : MonoBehaviour
 {
     [Header("Текстовые поля со статами:")]
     [SerializeField] private TextMeshProUGUI _strengthField = null;
-    [SerializeField] private TextMeshProUGUI _defenceField = null;
     [SerializeField] private TextMeshProUGUI _willField = null;
+    [SerializeField] private TextMeshProUGUI _defenceField = null;
     [SerializeField] private TextMeshProUGUI _magicDefenceField = null;
 
     private Dictionary<StatType, TextMeshProUGUI> _statTextFields;
@@ -52,8 +52,8 @@ public class StatDisplayUI : MonoBehaviour
         return new Dictionary<StatType, TextMeshProUGUI>()
         {
             { StatType.Strength, _strengthField },
-            { StatType.Defence, _defenceField },
             { StatType.Will, _willField },
+            { StatType.Defence, _defenceField },
             { StatType.MagicDefence, _magicDefenceField }
         };
     }
@@ -61,8 +61,8 @@ public class StatDisplayUI : MonoBehaviour
     private void DisplayCharacterStats()
     {
         UpdateStatDisplay(StatType.Strength);
-        UpdateStatDisplay(StatType.Defence);
         UpdateStatDisplay(StatType.Will);
+        UpdateStatDisplay(StatType.Defence);
         UpdateStatDisplay(StatType.MagicDefence);
     }
 }
