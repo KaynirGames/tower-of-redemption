@@ -1,42 +1,66 @@
-﻿[System.Serializable]
+﻿using UnityEngine;
+
+[System.Serializable]
 public class GemStoneMatrix
 {
-    public delegate void OnGemStatusUpdate(int posX, int posY, GemStone gemStone);
+    public delegate void OnMatrixSlotUpdate(int posX, int posY, GemStone gemStone);
 
-    public event OnGemStatusUpdate OnGemUpdate = delegate { };
+    public event OnMatrixSlotUpdate OnSlotUpdate = delegate { };
+
+    [SerializeField] private SpawnTable _gemSpawnTable = null;
+    [SerializeField] private GemStonePooler _gemPooler = null;
 
     public int SizeX { get; private set; }
     public int SizeY { get; private set; }
 
+    public GemStonePooler GemPooler => _gemPooler;
+
     private GemStone[,] _matrix;
 
-    public GemStoneMatrix(int sizeX, int sizeY)
+    public void CreateInitialMatrix(int sizeX, int sizeY)
     {
         _matrix = new GemStone[sizeX, sizeY];
+        _gemPooler.CreatePooler();
 
         SizeX = sizeX;
         SizeY = sizeY;
-    }
 
-    public void CreateInitialMatrix(SpawnTable gemSpawnTable)
-    {
-        for (int x = 0; x < SizeX; x++)
+        for (int x = 0; x < sizeX; x++)
         {
-            for (int y = 0; y < SizeY; y++)
+            for (int y = 0; y < sizeY; y++)
             {
-                GemStone newGem = CreateGemStone(gemSpawnTable, x, y);
+                GemStone newGem = CreateGemStone(x, y);
 
                 _matrix[x, y] = newGem;
-                OnGemUpdate.Invoke(x, y, newGem);
             }
         }
     }
 
-    public void UpdateGemStone(int posX, int posY, GemStone gemStone)
+    public GemStone CreateGemStone(int posX, int posY)
+    {
+        GemStoneObject random = (GemStoneObject)_gemSpawnTable.ChooseRandom();
+        GemStone gemStone = _gemPooler.GetFromPooler(random);
+
+        gemStone.SetPosition(posX, posY);
+
+        return gemStone;
+    }
+
+    public void UpdateMatrixSlot(int posX, int posY, GemStone gemStone)
     {
         _matrix[posX, posY] = gemStone;
+    }
 
-        OnGemUpdate.Invoke(posX, posY, gemStone);
+    public void UpdateMatrixSlot(int posX, int posY, GemStone gemStone, bool updateDisplay)
+    {
+        UpdateMatrixSlot(posX, posY, gemStone);
+
+        if (updateDisplay) { UpdateMatrixSlotDisplay(posX, posY); }
+    }
+
+    public bool CheckForEmptySlot(int posX, int posY)
+    {
+        return _matrix[posX, posY] == null;
     }
 
     public void RelocateEmptySlotsInColumn(int column)
@@ -49,7 +73,7 @@ public class GemStoneMatrix
 
             for (int x = currentX; x >= 0; x--)
             {
-                if (_matrix[x, column] == null)
+                if (CheckForEmptySlot(x, column))
                 {
                     if (x == 0) { return; }
                     nullSlots++;
@@ -57,18 +81,23 @@ public class GemStoneMatrix
                 else if (nullSlots > 0)
                 {
                     SwapWithEmptySlot(x + nullSlots, x, column);
-                    currentX = x;
+                    currentX = x + nullSlots - 1;
                     break;
                 }
             }
         }
     }
 
+    public void UpdateMatrixSlotDisplay(int x, int y)
+    {
+        OnSlotUpdate.Invoke(x, y, _matrix[x, y]);
+    }
+
     public void UpdateMatrixColumnDisplay(int column)
     {
         for (int x = 0; x < SizeX; x++)
         {
-            OnGemUpdate.Invoke(x, column, _matrix[x, column]);
+            OnSlotUpdate.Invoke(x, column, _matrix[x, column]);
         }
     }
 
@@ -78,17 +107,9 @@ public class GemStoneMatrix
         {
             for (int y = 0; y < SizeY; y++)
             {
-                OnGemUpdate.Invoke(x, y, _matrix[x, y]);
+                OnSlotUpdate.Invoke(x, y, _matrix[x, y]);
             }
         }
-    }
-
-    private GemStone CreateGemStone(SpawnTable gemSpawnTable, int posX, int posY)
-    {
-        GemStoneObject random = (GemStoneObject)gemSpawnTable.ChooseRandom();
-        GemStone gemStone = new GemStone(random, posX, posY);
-
-        return gemStone;
     }
 
     private void SwapWithEmptySlot(int emptyX, int posX, int posY)

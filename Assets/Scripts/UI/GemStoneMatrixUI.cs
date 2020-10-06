@@ -13,7 +13,7 @@ public class GemStoneMatrixUI : MonoBehaviour
         CreateGemSlotMatrix(matrix.SizeX, matrix.SizeY);
 
         _gemStoneMatrix = matrix;
-        _gemStoneMatrix.OnGemUpdate += UpdateGemSlot;
+        _gemStoneMatrix.OnSlotUpdate += UpdateGemSlot;
     }
 
     private void CreateGemSlotMatrix(int sizeX, int sizeY)

@@ -58,7 +58,7 @@ public class BattleUI : MonoBehaviour
 
     private void ClearEnemy()
     {
-        _enemyNameDisplay.ClearMesh();
+        _enemyNameDisplay.SetText("");
         _enemyResourceDisplay.Clear();
         _enemyStatsDisplay.Clear();
         _enemyEfficacyDisplay.Clear();

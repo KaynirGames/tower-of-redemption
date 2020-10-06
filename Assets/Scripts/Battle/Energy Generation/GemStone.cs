@@ -19,6 +19,14 @@ public class GemStone
         PositionY = posY;
     }
 
+    public GemStone(GemStoneObject gemObject) : this (gemObject, 0, 0) { }
+
+    public void SetPosition(int x, int y)
+    {
+        PositionX = x;
+        PositionY = y;
+    }
+
     public bool TryMatch(GemStone gemStone)
     {
         return GemObject.IsMatching(gemStone.GemObject);

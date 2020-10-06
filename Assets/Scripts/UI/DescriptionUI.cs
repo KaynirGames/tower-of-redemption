@@ -18,8 +18,8 @@ public class DescriptionUI : MonoBehaviour
 
     public void ClearDescriptionPanel()
     {
-        _nameField.ClearMesh();
-        _typeField.ClearMesh();
-        _descriptionField.ClearMesh();
+        _nameField.SetText("");
+        _typeField.SetText("");
+        _descriptionField.SetText("");
     }
 }
