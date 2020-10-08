@@ -1,42 +1,67 @@
-﻿using System.Text;
-using UnityEditor;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
 /// Умение персонажа.
 /// </summary>
-public abstract class Skill : ScriptableObject
+[Serializable]
+public class Skill
 {
-    [Header("Информация для отображения:")]
-    [SerializeField] protected TranslatedText _skillNameText = null;
-    [SerializeField] protected TranslatedText _descriptionText = null;
-    [SerializeField] protected SkillType _skillType = null;
-    [SerializeField] protected Sprite _icon = null;
-    [Header("Общие параметры умения:")]
-    [SerializeField] protected float _cost = 0;
-    [SerializeField] protected float _cooldown = 0;
-    [SerializeField] protected BookSlotType _slotType = BookSlotType.Active;
+    public delegate void OnSkillCooldownTick(float timer);
+    public delegate void OnSkillCooldownToggle(bool enable);
 
-    public string SkillName => _skillNameText.Value;
-    public SkillType SkillType => _skillType;
-    public string Description => _descriptionText.Value;
-    public Sprite Icon => _icon;
+    public event OnSkillCooldownTick OnCooldownTick = delegate { };
+    public event OnSkillCooldownToggle OnCooldownToggle = delegate { };
 
-    public float Cost => _cost;
-    public float Cooldown => _cooldown;
-    public BookSlotType SlotType => _slotType;
+    public event Action OnRequiredEnergyShortage = delegate { };
 
-    public string ID { get; private set; }
+    [SerializeField] private SkillObject _skillObject = null;
 
-    public abstract void Activate(Character owner, Character opponent);
+    public SkillObject SkillObject => _skillObject;
 
-    public abstract void Deactivate(Character owner, Character opponent);
+    private bool _isCooldown;
+    private float _cooldownTimer;
 
-    public abstract void BuildParamsDescription(StringBuilder builder);
-
-    protected void OnValidate()
+    public Skill(SkillObject skillObject)
     {
-        string path = AssetDatabase.GetAssetPath(this);
-        ID = AssetDatabase.AssetPathToGUID(path);
+        _skillObject = skillObject;
+    }
+
+    public bool TryExecute(Character owner)
+    {
+        if (_isCooldown) { return false; }
+
+        if (!owner.Stats.IsEnoughEnergy(_skillObject.Cost))
+        {
+            OnRequiredEnergyShortage.Invoke();
+            Debug.Log("Not enough energy!");
+            return false;
+        }
+
+        _skillObject.Execute(owner, owner.CurrentOpponent);
+
+        owner.StartCoroutine(CooldownRoutine());
+
+        return true;
+    }
+
+    private IEnumerator CooldownRoutine()
+    {
+        OnCooldownToggle.Invoke(true);
+        _isCooldown = true;
+
+        _cooldownTimer = _skillObject.Cooldown;
+
+        while (_cooldownTimer > 0)
+        {
+            _cooldownTimer -= Time.deltaTime;
+            OnCooldownTick.Invoke(_cooldownTimer);
+
+            yield return null;
+        }
+
+        OnCooldownToggle.Invoke(false);
+        _isCooldown = false;
     }
 }

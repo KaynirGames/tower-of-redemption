@@ -11,6 +11,7 @@ public class BattleTester : MonoBehaviour
     [SerializeField] private EnemyCharacter _testEnemyPrefab = null;
     [SerializeField] private Transform _testSpawn = null;
     [SerializeField] private bool _isPlayerAdvantage = true;
+    [SerializeField] Joystick _joystick = null;
 
     private PlayerCharacter _player;
     private EnemyCharacter _currentEnemy;
@@ -36,19 +37,12 @@ public class BattleTester : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.N))
         {
-            Destroy(_currentEnemy.gameObject);
-            _currentEnemy = null;
+            _joystick.enabled = !_joystick.enabled;
         }
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
             _player.Stats.ChangeHealth(-20);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            _player = PlayerManager.Instance.Player;
-            _player.SkillBook.RemoveSkill(0, BookSlotType.Passive);
         }
     }
 

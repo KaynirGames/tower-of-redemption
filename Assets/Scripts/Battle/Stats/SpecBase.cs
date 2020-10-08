@@ -20,7 +20,7 @@ public abstract class SpecBase : ScriptableObject
     [SerializeField] private int _baseEarthEfficacy = 100;
     [SerializeField] private int _baseWaterEfficacy = 100;
     [Header("Базовые умения персонажа:")]
-    [SerializeField] private List<Skill> _baseSkills = new List<Skill>();
+    [SerializeField] private List<SkillObject> _baseSkills = new List<SkillObject>();
 
     public string SpecName => _specNameText.Value;
     public string SpecDescription => _specDescriptionText.Value;
@@ -37,5 +37,5 @@ public abstract class SpecBase : ScriptableObject
     public int BaseEarthEfficacy => _baseEarthEfficacy;
     public int BaseWaterEfficacy => _baseWaterEfficacy;
 
-    public ReadOnlyCollection<Skill> BaseSkills => _baseSkills.AsReadOnly();
+    public ReadOnlyCollection<SkillObject> BaseSkills => _baseSkills.AsReadOnly();
 }

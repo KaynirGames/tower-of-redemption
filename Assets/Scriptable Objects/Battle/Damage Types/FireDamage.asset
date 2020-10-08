@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cef1af6d1a1f746b78a3cca089daee, type: 3}
   m_Name: FireDamage
   m_EditorClassIdentifier: 
-  _nameText:
+  _name:
     _key: DamageType.Fire
   _elementType: 100

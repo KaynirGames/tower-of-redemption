@@ -3,23 +3,24 @@ using UnityEngine;
 
 public class MenuUI : MonoBehaviour
 {
+    [SerializeField] private PlayerUI _playerUI = null;
     [SerializeField] private GameObject _menuTabsParent = null;
     [SerializeField] private GameObject _selectionCursor = null;
     [SerializeField] private DescriptionUI _descriptionUI = null;
     [SerializeField] private TextMeshProUGUI _tabHeaderText = null;
 
-    private Canvas _menuCanvas;
+    private CanvasGroup _menuCanvasGroup;
     private MenuTabUI[] _menuTabs;
     private int _currentTabIndex = 0;
 
     private void Awake()
     {
+        _menuCanvasGroup = GetComponent<CanvasGroup>();
+        _menuTabs = _menuTabsParent.GetComponentsInChildren<MenuTabUI>();
+
         SelectionHandlerUI.OnCursorCall += ShowSelectionCursor;
         SelectionHandlerUI.OnSelectionCancel += CancelSelection;
-        BookSlotUI.OnSkillDescriptionCall += ShowDescription;
-
-        _menuCanvas = GetComponent<Canvas>();
-        _menuTabs = _menuTabsParent.GetComponentsInChildren<MenuTabUI>();
+        SkillSlotUI.OnSkillDescriptionCall += ShowDescription;
     }
 
     public void OpenTab(int tabIndex)
@@ -33,7 +34,9 @@ public class MenuUI : MonoBehaviour
 
     public void OpenMenu()
     {
-        _menuCanvas.enabled = true;
+        _playerUI.TogglePlayerHUD(false);
+        ToggleMenuWindow(true);
+
         _menuTabs[_currentTabIndex].Toggle(true);
         _tabHeaderText.SetText(_menuTabs[_currentTabIndex].TabName);
         GameMaster.Instance.TogglePause(true);
@@ -41,10 +44,18 @@ public class MenuUI : MonoBehaviour
 
     public void CloseMenu()
     {
-        _menuCanvas.enabled = false;
+        ToggleMenuWindow(false);
+        _playerUI.TogglePlayerHUD(true);
+
         _menuTabs[_currentTabIndex].Toggle(false);
         CancelSelection();
         GameMaster.Instance.TogglePause(false);
+    }
+
+    public void ToggleMenuWindow(bool enable)
+    {
+        _menuCanvasGroup.alpha = enable ? 1 : 0;
+        _menuCanvasGroup.blocksRaycasts = enable;
     }
 
     private void CloseTab(int tabIndex)

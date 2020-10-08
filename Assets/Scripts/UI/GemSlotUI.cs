@@ -43,7 +43,6 @@ public class GemSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
     public void OnPointerUp(PointerEventData eventData)
     {
         _energyGenerator.IsSelectingGems = false;
-        Debug.Log("Selection complete.");
         _energyGenerator.ConsumeMatchingGems();
     }
 
@@ -63,13 +62,6 @@ public class GemSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
 
     private void SelectGemStone()
     {
-        if (_energyGenerator.TrySelectGem(_gemStone))
-        {
-            Debug.Log($"Выбран {_gemStone.GemObject.name}.");
-        }
-        else
-        {
-            Debug.Log("Отмена выбора.");
-        }
+        _energyGenerator.TrySelectGem(_gemStone);
     }
 }

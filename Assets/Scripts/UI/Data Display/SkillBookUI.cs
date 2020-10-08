@@ -5,74 +5,73 @@ public class SkillBookUI : MonoBehaviour
 {
     [SerializeField] private GameObject[] _slotsParents = null;
 
-    private Dictionary<BookSlotType, BookSlotUI[]> _slotsDictionary;
+    private Dictionary<SkillSlot, SkillSlotUI[]> _skillSlotsUI;
 
     private SkillBook _skillBook;
 
     private void Awake()
     {
-        _slotsDictionary = CreateSlotsDictionary();
+        _skillSlotsUI = CreateSlotsDictionary();
     }
 
     public void RegisterSkillBook(SkillBook skillBook)
     {
         _skillBook = skillBook;
 
-        UpdateAllSlots(BookSlotType.Active);
-        UpdateAllSlots(BookSlotType.Passive);
-        UpdateAllSlots(BookSlotType.Special);
+        UpdateAllSlotsDisplay();
 
-        _skillBook.OnSkillSlotChanged += UpdateSkillSlot;
+        _skillBook.OnSlotChange += UpdateSkillSlotDisplay;
     }
 
     public void Clear()
     {
-        _skillBook.OnSkillSlotChanged -= UpdateSkillSlot;
+        _skillBook.OnSlotChange -= UpdateSkillSlotDisplay;
         _skillBook = null;
     }
 
-    private BookSlotUI[] CollectBookSlotsUI(GameObject parent)
+    private SkillSlotUI[] CollectSkillSlotsUI(GameObject parent)
     {
         return parent != null
-            ? parent.GetComponentsInChildren<BookSlotUI>()
-            : new BookSlotUI[0];
+            ? parent.GetComponentsInChildren<SkillSlotUI>()
+            : new SkillSlotUI[0];
     }
 
-    private Dictionary<BookSlotType, BookSlotUI[]> CreateSlotsDictionary()
+    private Dictionary<SkillSlot, SkillSlotUI[]> CreateSlotsDictionary()
     {
-        var slotsDictionary = new Dictionary<BookSlotType, BookSlotUI[]>();
+        var slotsDictionary = new Dictionary<SkillSlot, SkillSlotUI[]>();
 
         foreach (GameObject parent in _slotsParents)
         {
-            BookSlotUI[] slots = CollectBookSlotsUI(parent);
+            SkillSlotUI[] slots = CollectSkillSlotsUI(parent);
 
             if (slots.Length > 0)
             {
-                slotsDictionary.Add(slots[0].SlotType, slots);
+                slotsDictionary.Add(slots[0].Slot, slots);
             }
         }
 
         return slotsDictionary;
     }
 
-    private void UpdateSkillSlot(int slotID, BookSlotType slotType)
+    private void UpdateSkillSlotDisplay(int slotID, SkillSlot slot, Skill skill)
     {
-        if (_slotsDictionary.ContainsKey(slotType))
+        if (_skillSlotsUI.ContainsKey(slot))
         {
-            _slotsDictionary[slotType][slotID].UpdateSlotDisplayUI();
+            _skillSlotsUI[slot][slotID].UpdateSlotUI(skill);
         }
     }
 
-    private void UpdateAllSlots(BookSlotType slotType)
+    private void UpdateAllSlotsDisplay()
     {
-        if (_slotsDictionary.ContainsKey(slotType))
+        foreach (SkillSlot key in _skillSlotsUI.Keys)
         {
-            BookSlot[] slots = _skillBook.GetBookSlots(slotType);
-            BookSlotUI[] slotsUI = _slotsDictionary[slotType];
+            Skill[] slots = _skillBook.GetSkillSlots(key);
+            SkillSlotUI[] slotsUI = _skillSlotsUI[key];
 
             for (int i = 0; i < slots.Length; i++)
             {
-                slotsUI[i].InitSlot(slots[i]);
+                slotsUI[i].RegisterSlotUI(_skillBook.Owner);
+                slotsUI[i].UpdateSlotUI(slots[i]);
             }
         }
     }

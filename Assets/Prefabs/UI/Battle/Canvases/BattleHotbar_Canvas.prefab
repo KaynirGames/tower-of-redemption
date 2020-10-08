@@ -196,7 +196,7 @@ PrefabInstance:
     - target: {fileID: 6730174096114230184, guid: 4878dad9e753d7e43a1b7ace06e6468d,
         type: 3}
       propertyPath: m_Name
-      value: BattleBookSlot
+      value: BattleSkillSlot
       objectReference: {fileID: 0}
     - target: {fileID: 7945039083134190979, guid: 4878dad9e753d7e43a1b7ace06e6468d,
         type: 3}
@@ -318,10 +318,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2584406689487600904}
     m_Modifications:
+    - target: {fileID: 6458994075644275399, guid: 4878dad9e753d7e43a1b7ace06e6468d,
+        type: 3}
+      propertyPath: _slot
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6730174096114230184, guid: 4878dad9e753d7e43a1b7ace06e6468d,
         type: 3}
       propertyPath: m_Name
-      value: BattleBookSlot
+      value: BattleSkillSlot
       objectReference: {fileID: 0}
     - target: {fileID: 7945039083134190979, guid: 4878dad9e753d7e43a1b7ace06e6468d,
         type: 3}
@@ -451,7 +456,7 @@ PrefabInstance:
     - target: {fileID: 6730174096114230184, guid: 4878dad9e753d7e43a1b7ace06e6468d,
         type: 3}
       propertyPath: m_Name
-      value: BattleBookSlot (1)
+      value: BattleSkillSlot (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7945039083134190979, guid: 4878dad9e753d7e43a1b7ace06e6468d,
         type: 3}
@@ -576,7 +581,7 @@ PrefabInstance:
     - target: {fileID: 6730174096114230184, guid: 4878dad9e753d7e43a1b7ace06e6468d,
         type: 3}
       propertyPath: m_Name
-      value: BattleBookSlot (3)
+      value: BattleSkillSlot (3)
       objectReference: {fileID: 0}
     - target: {fileID: 7945039083134190979, guid: 4878dad9e753d7e43a1b7ace06e6468d,
         type: 3}
@@ -691,7 +696,7 @@ PrefabInstance:
     - target: {fileID: 6730174096114230184, guid: 4878dad9e753d7e43a1b7ace06e6468d,
         type: 3}
       propertyPath: m_Name
-      value: BattleBookSlot (2)
+      value: BattleSkillSlot (2)
       objectReference: {fileID: 0}
     - target: {fileID: 7945039083134190979, guid: 4878dad9e753d7e43a1b7ace06e6468d,
         type: 3}

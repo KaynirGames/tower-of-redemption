@@ -67,12 +67,12 @@ public class BattleManager : MonoBehaviour
                 ApplyAdvantageEnergyBonus(_enemy.Stats, _enemyEnergyBonus);
             }
 
+            _enemy.CurrentOpponent = _player;
+            _player.CurrentOpponent = _enemy;
+
             // Корутина перехода на экран боя с анимацией.
 
-            TogglePassiveSkillsForOpponent(_player, _enemy, true);
-            TogglePassiveSkillsForOpponent(_enemy, _player, true);
-
-            _battleUI.ShowBattleWindow(_player, enemy);
+            _battleUI.ShowBattleUI(_player, enemy);
 
             return true;
         }
@@ -87,6 +87,8 @@ public class BattleManager : MonoBehaviour
     private void EndBattle(bool isPlayerDeath)
     {
         //GameMaster.Instance.TogglePause(false);
+        _player.CurrentOpponent = null;
+        _enemy.CurrentOpponent = null;
 
         if (isPlayerDeath)
         {
@@ -95,9 +97,6 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            TogglePassiveSkillsForOpponent(_player, _enemy, false);
-            TogglePassiveSkillsForOpponent(_enemy, _player, false);
-
             _enemy = null;
             StartCoroutine(CloseBattleRoutine());
         }
@@ -111,30 +110,10 @@ public class BattleManager : MonoBehaviour
         stats.ChangeEnergy(energyBonus);
     }
 
-    private void TogglePassiveSkillsForOpponent(Character owner, Character opponent, bool enable)
-    {
-        //SkillSlot[] passiveSlots = owner.SkillBook.GetBookSlots(SkillSlotType.PassiveSlot);
-
-        //foreach (SkillSlot slot in passiveSlots)
-        //{
-        //    if (!slot.IsEmpty)
-        //    {
-        //        if (enable)
-        //        {
-        //            slot.Skill.Activate(null, opponent);
-        //        }
-        //        else
-        //        {
-        //            slot.Skill.Deactivate(null, opponent);
-        //        }
-        //    }
-        //}
-    }
-
     private IEnumerator CloseBattleRoutine()
     {
         // Анимация выхода из боя.
         yield return null;
-        _battleUI.CloseBattleWindow();
+        _battleUI.CloseBattleUI();
     }
 }

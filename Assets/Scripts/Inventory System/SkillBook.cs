@@ -6,128 +6,104 @@ using UnityEngine;
 /// </summary>
 public class SkillBook : MonoBehaviour
 {
-    public delegate void OnSkillBookSlotChanged(int slotID, BookSlotType slotType);
+    public delegate void OnSkillSlotChange(int slotID, SkillSlot slot, Skill skill);
 
-    public event OnSkillBookSlotChanged OnSkillSlotChanged = delegate { };
+    public event OnSkillSlotChange OnSlotChange = delegate { };
 
-    [SerializeField] private int _activeSlotCount = 4;
-    [SerializeField] private int _passiveSlotCount = 3;
-    [SerializeField] private int _specialSlotCount = 1;
+    [SerializeField] private int _activeSkillsCount = 4;
+    [SerializeField] private int _passiveSkillsCount = 3;
+    [SerializeField] private int _specialSkillsCount = 1;
 
-    private BookSlot[] _activeSlots;
-    private BookSlot[] _passiveSlots;
-    private BookSlot[] _specialSlots;
+    public Character Owner { get; private set; }
 
-    private Dictionary<BookSlotType, BookSlot[]> _bookSlots;
+    private Skill[] _activeSkills;
+    private Skill[] _passiveSkills;
+    private Skill[] _specialSkills;
 
-    private Character _bookOwner;
+    private Dictionary<SkillSlot, Skill[]> _skillSlots;
 
     private void Awake()
     {
-        _bookOwner = GetComponent<Character>();
+        Owner = GetComponent<Character>();
 
-        _activeSlots = CreateBookSlots(_activeSlotCount, BookSlotType.Active);
-        _passiveSlots = CreateBookSlots(_passiveSlotCount, BookSlotType.Passive);
-        _specialSlots = CreateBookSlots(_specialSlotCount, BookSlotType.Special);
+        _activeSkills = new Skill[_activeSkillsCount];
+        _passiveSkills = new Skill[_passiveSkillsCount];
+        _specialSkills = new Skill[_specialSkillsCount];
 
-        _bookSlots = CreateBookSlotDictionary();
+        _skillSlots = CreateSkillSlots();
     }
 
     public void SetBaseSpecSkills(SpecBase currentSpec)
     {
-        foreach (Skill skill in currentSpec.BaseSkills)
+        foreach (SkillObject skill in currentSpec.BaseSkills)
         {
-            AddSkill(skill);
+            TryAddSkill(skill);
         }
     }
 
-    public void AddSkill(Skill skill)
+    public Skill[] GetSkillSlots(SkillSlot slot)
     {
-        Skill newSkill = Instantiate(skill);
+        return _skillSlots[slot];
+    }
 
-        int slotID = FindFirstEmptySlot(skill.SlotType);
+    public bool TryAddSkill(SkillObject skillObject)
+    {
+        int slotID = FindFirstEmptySlot(skillObject.Slot);
 
         if (slotID >= 0)
         {
-            InsertSkill(newSkill, slotID);
+            AddSkill(skillObject, slotID);
+            return true;
         }
-        else
-        {
-            // Вызвать меню для замены умения в слоте.
-        }
+
+        return false;
     }
 
-    public Skill RemoveSkill(int slotID, BookSlotType slotType)
+    public Skill RemoveSkill(int slotID, SkillSlot slot)
     {
-        BookSlot[] slots = GetBookSlots(slotType);
+        Skill[] slots = GetSkillSlots(slot);
 
-        Skill removedSkill = slots[slotID].RemoveSkill();
+        Skill removedSkill = slots[slotID];
+        slots[slotID] = null;
 
-        OnSkillSlotChanged.Invoke(slotID, slotType);
-
-        if (slotType == BookSlotType.Passive)
-        {
-            removedSkill.Deactivate(_bookOwner, null);
-        }
+        OnSlotChange.Invoke(slotID, slot, null);
 
         return removedSkill;
     }
 
-    public Skill ReplaceSkill(int slotID, Skill newSkill)
+    public Skill ReplaceSkill(int slotID, SkillObject newSkillObject)
     {
-        Skill replacedSkill = RemoveSkill(slotID, newSkill.SlotType);
-
-        InsertSkill(newSkill, slotID);
+        Skill replacedSkill = RemoveSkill(slotID, newSkillObject.Slot);
+        AddSkill(newSkillObject, slotID);
 
         return replacedSkill;
     }
 
-    public BookSlot[] GetBookSlots(BookSlotType slotType)
+    private Dictionary<SkillSlot, Skill[]> CreateSkillSlots()
     {
-        return _bookSlots[slotType];
-    }
-
-    private BookSlot[] CreateBookSlots(int slotAmount, BookSlotType slotType)
-    {
-        BookSlot[] slots = new BookSlot[slotAmount];
-
-        for (int i = 0; i < slots.Length; i++)
+        return new Dictionary<SkillSlot, Skill[]>()
         {
-            slots[i] = new BookSlot(_bookOwner, slotType);
-        }
-
-        return slots;
-    }
-
-    private Dictionary<BookSlotType, BookSlot[]> CreateBookSlotDictionary()
-    {
-        return new Dictionary<BookSlotType, BookSlot[]>()
-        {
-            { BookSlotType.Active, _activeSlots },
-            { BookSlotType.Passive, _passiveSlots },
-            { BookSlotType.Special, _specialSlots }
+            { SkillSlot.Active, _activeSkills },
+            { SkillSlot.Passive, _passiveSkills },
+            { SkillSlot.Special, _specialSkills }
         };
     }
 
-    private void InsertSkill(Skill skill, int slotID)
+    private void AddSkill(SkillObject skillObject, int slotID)
     {
-        GetBookSlots(skill.SlotType)[slotID].InsertSkill(skill);
+        Skill skill = new Skill(skillObject);
 
-        OnSkillSlotChanged.Invoke(slotID, skill.SlotType);
-
-        if (skill.SlotType == BookSlotType.Passive)
-        {
-            skill.Activate(_bookOwner, null);
-        }
+        GetSkillSlots(skillObject.Slot)[slotID] = skill;
+        OnSlotChange.Invoke(slotID, skillObject.Slot, skill);
     }
 
-    private int FindFirstEmptySlot(BookSlotType slotType)
+    private int FindFirstEmptySlot(SkillSlot slot)
     {
-        BookSlot[] slots = GetBookSlots(slotType);
+        Skill[] slots = GetSkillSlots(slot);
 
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i].IsEmpty)
+            if (slots[i] == null)
             {
                 return i;
             }

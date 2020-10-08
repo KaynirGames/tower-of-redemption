@@ -6,11 +6,11 @@
 [CreateAssetMenu(fileName = "Tier Name", menuName = "Scriptable Objects/Battle/Power Tier")]
 public class PowerTier : ScriptableObject
 {
-    [SerializeField] private string _tierName = string.Empty;
+    [SerializeField] private TranslatedText _tierName = null;
     [SerializeField] private float _attackPower = 1f;
     [SerializeField] private float _statBuffPower = 0.1f;
 
-    public string TierName => _tierName;
+    public string TierName => _tierName.Value;
     public float AttackPower => _attackPower;
     public float StatBuffPower => _statBuffPower;
 }

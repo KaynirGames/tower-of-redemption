@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -87,9 +87,9 @@ GameObject:
   - component: {fileID: 8373778528465375872}
   - component: {fileID: 7759473561509179013}
   - component: {fileID: 7656357522702894841}
-  - component: {fileID: 9151430043371474915}
+  - component: {fileID: 6458994075644275399}
   m_Layer: 11
-  m_Name: BattleBookSlot
+  m_Name: BattleSkillSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9151430043371474915}
+      - m_Target: {fileID: 6458994075644275399}
         m_TargetAssemblyTypeName: SkillSlotUI, Assembly-CSharp
         m_MethodName: ActivateSkill
         m_Mode: 1
@@ -209,7 +209,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &9151430043371474915
+--- !u!114 &6458994075644275399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,14 +218,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6730174096114230184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 651d879888081a24bad5587de9e9c26d, type: 3}
+  m_Script: {fileID: 11500000, guid: 81bc515f8c975d64bb2733604b45704b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slotType: 0
-  _skillIconDisplay: {fileID: 7143011173731713415}
+  _slot: 0
+  _skillIcon: {fileID: 7143011173731713415}
   _useButton: {fileID: 7656357522702894841}
   _displayCooldown: 1
-  _skillCooldownDisplay: {fileID: 7244374227129055900}
+  _skillCooldownMask: {fileID: 7244374227129055900}
 --- !u!1 &8093416064658386689
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 6645148692845128742}
   - component: {fileID: 7244374227129055900}
   m_Layer: 11
-  m_Name: CooldownIcon
+  m_Name: CooldownMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,14 +278,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8093416064658386689}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

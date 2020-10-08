@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93f66e559e24444b83e98a623f3b7a9, type: 3}
   m_Name: Tier C
   m_EditorClassIdentifier: 
-  _tierName: C
+  _tierName:
+    _key: PowerTier.C
   _attackPower: 1
   _statBuffPower: 0.2

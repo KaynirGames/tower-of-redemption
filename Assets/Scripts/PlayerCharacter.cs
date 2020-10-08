@@ -55,14 +55,8 @@ public class PlayerCharacter : Character
 
     public override void ToggleMovement(bool enable)
     {
-        if (enable)
-        {
-            _characterMoveBase.Enable();
-        }
-        else
-        {
-            _characterMoveBase.Disable();
-        }
+        _characterMoveBase.Toggle(enable);
+        _inputHandler.enabled = enable;
     }
 
     private void HandleInput()

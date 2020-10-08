@@ -239,6 +239,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 5523788396547989989, guid: a719b0d7557cec24fabfe5955ec6c156,
+        type: 3}
+      propertyPath: _slot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5762475910535870259, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -362,7 +367,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: MenuBookSlot
+      value: MenuSkillSlot
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -497,7 +502,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: MenuBookSlot (1)
+      value: MenuSkillSlot (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a719b0d7557cec24fabfe5955ec6c156, type: 3}
@@ -514,6 +519,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6667814141114662019}
     m_Modifications:
+    - target: {fileID: 5523788396547989989, guid: a719b0d7557cec24fabfe5955ec6c156,
+        type: 3}
+      propertyPath: _slot
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5762475910535870259, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -637,7 +647,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: MenuBookSlot
+      value: MenuSkillSlot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a719b0d7557cec24fabfe5955ec6c156, type: 3}
@@ -762,7 +772,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: MenuBookSlot (2)
+      value: MenuSkillSlot (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a719b0d7557cec24fabfe5955ec6c156, type: 3}
@@ -793,6 +803,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523788396547989989, guid: a719b0d7557cec24fabfe5955ec6c156,
+        type: 3}
+      propertyPath: _slot
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5762475910535870259, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -917,7 +932,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: MenuBookSlot (2)
+      value: MenuSkillSlot (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -1052,7 +1067,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: MenuBookSlot
+      value: MenuSkillSlot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a719b0d7557cec24fabfe5955ec6c156, type: 3}
@@ -1197,7 +1212,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: MenuBookSlot (3)
+      value: MenuSkillSlot (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a719b0d7557cec24fabfe5955ec6c156, type: 3}
@@ -1228,6 +1243,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523788396547989989, guid: a719b0d7557cec24fabfe5955ec6c156,
+        type: 3}
+      propertyPath: _slot
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5762475910535870259, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
@@ -1352,7 +1372,7 @@ PrefabInstance:
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}
       propertyPath: m_Name
-      value: MenuBookSlot (1)
+      value: MenuSkillSlot (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8997204773193109784, guid: a719b0d7557cec24fabfe5955ec6c156,
         type: 3}

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[System.Serializable]
+﻿[System.Serializable]
 public class GemStone
 {
     public GemStoneObject GemObject { get; private set; }
@@ -19,7 +14,7 @@ public class GemStone
         PositionY = posY;
     }
 
-    public GemStone(GemStoneObject gemObject) : this (gemObject, 0, 0) { }
+    public GemStone(GemStoneObject gemObject) : this(gemObject, 0, 0) { }
 
     public void SetPosition(int x, int y)
     {

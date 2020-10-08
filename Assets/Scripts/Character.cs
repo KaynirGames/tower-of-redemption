@@ -6,6 +6,8 @@ public abstract class Character : MonoBehaviour
     public CharacterEffects Effects { get; protected set; }
     public SkillBook SkillBook { get; protected set; }
 
+    public Character CurrentOpponent { get; set; }
+
     protected virtual void Awake()
     {
         Stats = GetComponent<CharacterStats>();

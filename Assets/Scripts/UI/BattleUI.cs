@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BattleUI : MonoBehaviour
 {
-    [SerializeField] Canvas _playerHUDCanvas = null;
+    [SerializeField] PlayerUI _playerUI = null;
     [Header("Отображаемые данные об игроке:")]
     [SerializeField] private ResourceDisplayUI _playerResourceDisplay = null;
     [SerializeField] private SkillBookUI _playerSkillDisplay = null;
@@ -14,29 +14,36 @@ public class BattleUI : MonoBehaviour
     [SerializeField] private EfficacyDisplayUI _enemyEfficacyDisplay = null;
     [SerializeField] private SkillBookUI _enemySkillDisplay = null;
 
-    private Canvas _battleCanvas;
     private PlayerCharacter _player;
+
+    private CanvasGroup _battleCanvasGroup;
 
     private void Awake()
     {
-        _battleCanvas = GetComponent<Canvas>();
+        _battleCanvasGroup = GetComponent<CanvasGroup>();
     }
 
-    public void ShowBattleWindow(PlayerCharacter player, EnemyCharacter enemy)
+    public void ShowBattleUI(PlayerCharacter player, EnemyCharacter enemy)
     {
         if (_player == null) { InitPlayer(player); }
         InitEnemy(enemy);
 
-        _playerHUDCanvas.enabled = false;
-        _battleCanvas.enabled = true;
+        _playerUI.TogglePlayerHUD(false);
+        ToggleBattleWindow(true);
     }
 
-    public void CloseBattleWindow()
+    public void CloseBattleUI()
     {
-        _battleCanvas.enabled = false;
-        _playerHUDCanvas.enabled = true;
+        ToggleBattleWindow(false);
+        _playerUI.TogglePlayerHUD(true);
 
         ClearEnemy();
+    }
+
+    public void ToggleBattleWindow(bool enable)
+    {
+        _battleCanvasGroup.alpha = enable ? 1 : 0;
+        _battleCanvasGroup.blocksRaycasts = enable;
     }
 
     private void InitPlayer(PlayerCharacter player)
