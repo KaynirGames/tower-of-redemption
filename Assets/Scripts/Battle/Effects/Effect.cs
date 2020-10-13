@@ -1,16 +1,23 @@
-﻿using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
-/// <summary>
-/// Эффект, накладываемый на персонажа.
-/// </summary>
 public abstract class Effect : ScriptableObject
 {
-    public abstract void Apply(Character target);
+    [Header("Общие параметры эффекта:")]
+    [SerializeField] protected int _stacksAmount = 1;
+    [SerializeField] protected int _duration = 0;
+    [SerializeField] protected int _secondsAmountOverTick = 1;
+    [SerializeField] protected int _order = 0;
 
-    public abstract void Remove(Character target);
+    public int StacksAmount => _stacksAmount;
+    public int Duration => _duration;
+    public int SecondsAmountOverTick => _secondsAmountOverTick;
+    public int Order => _order;
 
-    public abstract void BuildDescription(StringBuilder builder);
+    public abstract void Apply(Character target, object effectSource);
 
-    public abstract string GetDescription(TargetType targetType);
+    public abstract void Tick(Character target);
+
+    public abstract void Remove(Character target, object effectSource);
+
+    public abstract string GetDescription(string targetType);
 }

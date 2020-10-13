@@ -7,14 +7,14 @@ public class GemSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
     [SerializeField] private Image _gemStoneIcon = null;
 
     private EnergyGenerator _energyGenerator;
-    private GemStone _gemStone;
+    private GemStoneInstance _gemStone;
 
     private void Start()
     {
         _energyGenerator = BattleManager.Instance.EnergyGenerator;
     }
 
-    public void UpdateGemSlot(GemStone gemStone)
+    public void UpdateGemSlot(GemStoneInstance gemStone)
     {
         if (gemStone == null)
         {
@@ -46,10 +46,10 @@ public class GemSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandle
         _energyGenerator.ConsumeMatchingGems();
     }
 
-    private void SetGemSlot(GemStone gemStone)
+    private void SetGemSlot(GemStoneInstance gemStone)
     {
         _gemStone = gemStone;
-        _gemStoneIcon.sprite = gemStone.GemObject.GemSprite;
+        _gemStoneIcon.sprite = gemStone.GetStone.GemSprite;
         _gemStoneIcon.enabled = true;
     }
 

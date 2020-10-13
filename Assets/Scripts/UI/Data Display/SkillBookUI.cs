@@ -53,7 +53,7 @@ public class SkillBookUI : MonoBehaviour
         return slotsDictionary;
     }
 
-    private void UpdateSkillSlotDisplay(int slotID, SkillSlot slot, Skill skill)
+    private void UpdateSkillSlotDisplay(int slotID, SkillSlot slot, SkillInstance skill)
     {
         if (_skillSlotsUI.ContainsKey(slot))
         {
@@ -65,7 +65,7 @@ public class SkillBookUI : MonoBehaviour
     {
         foreach (SkillSlot key in _skillSlotsUI.Keys)
         {
-            Skill[] slots = _skillBook.GetSkillSlots(key);
+            SkillInstance[] slots = _skillBook.GetSkillSlots(key);
             SkillSlotUI[] slotsUI = _skillSlotsUI[key];
 
             for (int i = 0; i < slots.Length; i++)

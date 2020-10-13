@@ -7,11 +7,10 @@ using UnityEngine;
 [Serializable]
 public class TranslatedText
 {
-    [SerializeField] private string _key = string.Empty; // Ключ переведенного текста.
-    /// <summary>
-    /// Значение строки перевода.
-    /// </summary>
+    [SerializeField] private string _key = string.Empty;
+
     public string Value => Translator.GetTranslationLine(_key);
+    public string Key => _key;
     
     public TranslatedText(string key)
     {

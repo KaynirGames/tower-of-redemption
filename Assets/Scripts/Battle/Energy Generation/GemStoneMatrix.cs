@@ -3,7 +3,7 @@
 [System.Serializable]
 public class GemStoneMatrix
 {
-    public delegate void OnMatrixSlotUpdate(int posX, int posY, GemStone gemStone);
+    public delegate void OnMatrixSlotUpdate(int posX, int posY, GemStoneInstance gemStone);
 
     public event OnMatrixSlotUpdate OnSlotUpdate = delegate { };
 
@@ -15,11 +15,11 @@ public class GemStoneMatrix
 
     public GemStonePooler GemPooler => _gemPooler;
 
-    private GemStone[,] _matrix;
+    private GemStoneInstance[,] _matrix;
 
     public void CreateInitialMatrix(int sizeX, int sizeY)
     {
-        _matrix = new GemStone[sizeX, sizeY];
+        _matrix = new GemStoneInstance[sizeX, sizeY];
         _gemPooler.CreatePooler();
 
         SizeX = sizeX;
@@ -29,31 +29,31 @@ public class GemStoneMatrix
         {
             for (int y = 0; y < sizeY; y++)
             {
-                GemStone newGem = CreateGemStone(x, y);
+                GemStoneInstance newGem = CreateGemStoneInstance(x, y);
 
                 _matrix[x, y] = newGem;
             }
         }
     }
 
-    public GemStone CreateGemStone(int posX, int posY)
+    public GemStoneInstance CreateGemStoneInstance(int posX, int posY)
     {
-        GemStoneObject random = (GemStoneObject)_gemSpawnTable.ChooseRandom();
-        GemStone gemStone = _gemPooler.GetFromPooler(random);
+        GemStone random = (GemStone)_gemSpawnTable.ChooseRandom();
+        GemStoneInstance gemStone = _gemPooler.GetFromPooler(random);
 
         gemStone.SetPosition(posX, posY);
 
         return gemStone;
     }
 
-    public void UpdateMatrixSlot(int posX, int posY, GemStone gemStone)
+    public void UpdateMatrixSlot(int posX, int posY, GemStoneInstance instance)
     {
-        _matrix[posX, posY] = gemStone;
+        _matrix[posX, posY] = instance;
     }
 
-    public void UpdateMatrixSlot(int posX, int posY, GemStone gemStone, bool updateDisplay)
+    public void UpdateMatrixSlot(int posX, int posY, GemStoneInstance instance, bool updateDisplay)
     {
-        UpdateMatrixSlot(posX, posY, gemStone);
+        UpdateMatrixSlot(posX, posY, instance);
 
         if (updateDisplay) { UpdateMatrixSlotDisplay(posX, posY); }
     }

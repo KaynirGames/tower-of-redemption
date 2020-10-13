@@ -1,37 +1,35 @@
-﻿using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "STAT Amount", menuName = "Scriptable Objects/Battle/Effects/Stat Bonus")]
+[CreateAssetMenu(fileName = "STAT+# Bonus", menuName = "Scriptable Objects/Battle/Effects/Stat Bonus")]
 public class StatBonus : Effect
 {
-    [SerializeField] private StatModifier _modifier = null;
-    [SerializeField] private StatType _statType = StatType.Strength;
-    [SerializeField] private TranslatedText _statNameText = null;
+    [Header("Параметры бонуса к статам:")]
+    [SerializeField] private int _bonusValue = 0;
+    [SerializeField] private StatData _statData = null;
 
-    public override void Apply(Character target)
+    public override void Apply(Character target, object effectSource)
     {
-        target.Stats.AddStatModifier(_statType, _modifier);
-        target.Effects.AddStatBonus(this);
+        EffectInstance newInstance = new EffectInstance(this, target, effectSource);
+        StatModifier modifier = new StatModifier(_bonusValue, newInstance);
+
+        target.Stats.AddStatModifier(_statData.StatType, modifier);
+        target.Effects.StatBonuses.Add(newInstance);
     }
 
-    public override void Remove(Character target)
+    public override void Tick(Character target) { }
+
+    public override void Remove(Character target, object effectSource)
     {
-        target.Stats.RemoveStatModifier(_statType, _modifier);
-        target.Effects.RemoveStatBonus(this);
+        EffectInstance current = target.Effects.StatBonuses.Find(x => x.EffectSource == effectSource);
+
+        target.Stats.RemoveStatModifier(_statData.StatType, current);
+        target.Effects.StatBonuses.Remove(current);
     }
 
-    public override void BuildDescription(StringBuilder builder)
+    public override string GetDescription(string targetType)
     {
-        builder.Append(_statNameText.Value);
-
-        if (_modifier.Value > 0) { builder.Append("+"); }
-
-        builder.Append(_modifier.Value);
-        builder.AppendLine();
-    }
-
-    public override string GetDescription(TargetType targetType)
-    {
-        throw new System.NotImplementedException();
+        return string.Format("{0:+0;-#} {1}",
+                             _bonusValue,
+                             _statData.StatName);
     }
 }

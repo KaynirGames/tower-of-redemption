@@ -18,7 +18,7 @@ MonoBehaviour:
     _key: EnemySpec.Slime.Description
   _baseHealth: 20
   _baseEnergy: 10
-  _baseStrength: 5
+  _baseStrength: 15
   _baseWill: 5
   _baseDefence: 75
   _baseMagicDefence: 0

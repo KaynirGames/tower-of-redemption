@@ -1,29 +1,18 @@
-﻿[System.Serializable]
-public class GemStone
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "NewGemStone", menuName = "Scriptable Objects/Battle/Gem Stone")]
+public class GemStone : ScriptableObject
 {
-    public GemStoneObject GemObject { get; private set; }
+    [SerializeField] private float _energyGainValue = 2f;
+    [SerializeField] private Sprite _gemSprite = null;
+    [SerializeField] private List<GemStone> _matchingGemStones = new List<GemStone>();
 
-    public int PositionX { get; set; }
-    public int PositionY { get; set; }
+    public float EnergyGainValue => _energyGainValue;
+    public Sprite GemSprite => _gemSprite;
 
-    public GemStone(GemStoneObject gemObject, int posX, int posY)
+    public bool IsMatching(GemStone gemStone)
     {
-        GemObject = gemObject;
-
-        PositionX = posX;
-        PositionY = posY;
-    }
-
-    public GemStone(GemStoneObject gemObject) : this(gemObject, 0, 0) { }
-
-    public void SetPosition(int x, int y)
-    {
-        PositionX = x;
-        PositionY = y;
-    }
-
-    public bool TryMatch(GemStone gemStone)
-    {
-        return GemObject.IsMatching(gemStone.GemObject);
+        return _matchingGemStones.Contains(gemStone);
     }
 }

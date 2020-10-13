@@ -13,7 +13,7 @@ public class EnergyGenerator : MonoBehaviour
 
     public bool IsSelectingGems { get; set; }
 
-    private List<GemStone> _matchingGems = new List<GemStone>();
+    private List<GemStoneInstance> _matchingGems = new List<GemStoneInstance>();
     private List<int> _changedColumns = new List<int>();
 
     private WaitForSeconds _matrixUpdateWaitForSeconds;
@@ -31,18 +31,18 @@ public class EnergyGenerator : MonoBehaviour
         _gemMatrix.UpdateMatrixDisplay();
     }
 
-    public bool TrySelectGem(GemStone gemStone)
+    public bool TrySelectGem(GemStoneInstance instance)
     {
         if (_matchingGems.Count > 0)
         {
-            if (_matchingGems.Contains(gemStone) || !_matchingGems[0].TryMatch(gemStone))
+            if (_matchingGems.Contains(instance) || !_matchingGems[0].TryMatch(instance))
             {
                 ClearGemSelection();
                 return false;
             }
         }
 
-        _matchingGems.Add(gemStone);
+        _matchingGems.Add(instance);
 
         return true;
     }
@@ -54,9 +54,9 @@ public class EnergyGenerator : MonoBehaviour
             float energyGain = 0f;
             _changedColumns.Clear();
 
-            foreach (GemStone gem in _matchingGems)
+            foreach (GemStoneInstance gem in _matchingGems)
             {
-                energyGain += gem.GemObject.EnergyGainValue;
+                energyGain += gem.GetStone.EnergyGainValue;
 
                 HandleGemStoneDisposal(gem);
             }
@@ -75,16 +75,16 @@ public class EnergyGenerator : MonoBehaviour
         IsSelectingGems = false;
     }
 
-    private void HandleGemStoneDisposal(GemStone gem)
+    private void HandleGemStoneDisposal(GemStoneInstance instance)
     {
-        _gemMatrix.UpdateMatrixSlot(gem.PositionX, gem.PositionY, null, true);
+        _gemMatrix.UpdateMatrixSlot(instance.PositionX, instance.PositionY, null, true);
 
-        if (!_changedColumns.Contains(gem.PositionY))
+        if (!_changedColumns.Contains(instance.PositionY))
         {
-            _changedColumns.Add(gem.PositionY);
+            _changedColumns.Add(instance.PositionY);
         }
 
-        _gemMatrix.GemPooler.ReturnToPooler(gem);
+        _gemMatrix.GemPooler.ReturnToPooler(instance);
     }
 
     private void UpdateEmptySlotsInColumns()
@@ -103,9 +103,9 @@ public class EnergyGenerator : MonoBehaviour
         {
             if (_gemMatrix.CheckForEmptySlot(x, column))
             {
-                GemStone gemStone = _gemMatrix.CreateGemStone(x, column);
+                GemStoneInstance instance = _gemMatrix.CreateGemStoneInstance(x, column);
 
-                _gemMatrix.UpdateMatrixSlot(x, column, gemStone);
+                _gemMatrix.UpdateMatrixSlot(x, column, instance);
             }
         }
 

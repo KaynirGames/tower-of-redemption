@@ -6,26 +6,26 @@ public class GemStonePooler
 {
     [SerializeField] private List<GemStonePool> _gemStonePools = new List<GemStonePool>();
 
-    private Dictionary<GemStoneObject, GemStonePool> _poolerDictionary;
+    private Dictionary<GemStone, GemStonePool> _poolerDictionary;
 
     public void CreatePooler()
     {
-        _poolerDictionary = new Dictionary<GemStoneObject, GemStonePool>();
+        _poolerDictionary = new Dictionary<GemStone, GemStonePool>();
 
         foreach (GemStonePool pool in _gemStonePools)
         {
             pool.CreatePool();
-            _poolerDictionary.Add(pool.GemStoneObject, pool);
+            _poolerDictionary.Add(pool.GemStone, pool);
         }
     }
 
-    public GemStone GetFromPooler(GemStoneObject gemObject)
+    public GemStoneInstance GetFromPooler(GemStone gemStone)
     {
-        return _poolerDictionary[gemObject].GetFromPool();
+        return _poolerDictionary[gemStone].GetFromPool();
     }
 
-    public void ReturnToPooler(GemStone gemStone)
+    public void ReturnToPooler(GemStoneInstance instance)
     {
-        _poolerDictionary[gemStone.GemObject].ReturnToPool(gemStone);
+        _poolerDictionary[instance.GetStone].ReturnToPool(instance);
     }
 }

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BattleTester : MonoBehaviour
 {
@@ -10,18 +6,10 @@ public class BattleTester : MonoBehaviour
 
     [SerializeField] private EnemyCharacter _testEnemyPrefab = null;
     [SerializeField] private Transform _testSpawn = null;
-    [SerializeField] private bool _isPlayerAdvantage = true;
     [SerializeField] Joystick _joystick = null;
 
     private PlayerCharacter _player;
     private EnemyCharacter _currentEnemy;
-
-    public DescriptionUI descriptionUI;
-
-    private void Start()
-    {
-        //descriptionUI.ShowDescription(_testSkill);
-    }
 
     private void Update()
     {
@@ -30,7 +18,6 @@ public class BattleTester : MonoBehaviour
             if (_currentEnemy == null)
             {
                 _currentEnemy = Instantiate(_testEnemyPrefab, _testSpawn.position, Quaternion.identity);
-                //StartCoroutine(BattleStartRoutine());
                 if (_player == null) _player = PlayerManager.Instance.Player;
             }
         }
@@ -44,11 +31,5 @@ public class BattleTester : MonoBehaviour
         {
             _player.Stats.ChangeHealth(-20);
         }
-    }
-
-    private IEnumerator BattleStartRoutine()
-    {
-        yield return new WaitForEndOfFrame();
-        OnBattleTrigger.Invoke(_currentEnemy, _isPlayerAdvantage);
     }
 }

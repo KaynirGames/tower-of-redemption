@@ -47,13 +47,19 @@ public class Stat
         }
     }
 
+    public void RemoveModifiers(object modifierSource)
+    {
+        _modifiers.RemoveAll(mod => mod.Source == modifierSource);
+        _hasChanges = true;
+    }
+
     private void UpdateFinalValue()
     {
         _finalValue = _baseValue;
 
         if (_modifiers.Count > 0)
         {
-            _modifiers.ForEach(mod => _finalValue = mod.Apply(_finalValue));
+            _modifiers.ForEach(mod => _finalValue += mod.Value);
 
             if (_finalValue < 0) { _finalValue = 0; }
         }

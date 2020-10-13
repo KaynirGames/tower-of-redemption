@@ -57,9 +57,9 @@ public class CharacterStats : MonoBehaviour
         UpdateStatDisplay(statType);
     }
 
-    public void RemoveStatModifier(StatType statType, StatModifier modifier)
+    public void RemoveStatModifier(StatType statType, object modifierSource)
     {
-        GetStat(statType).RemoveModifier(modifier);
+        GetStat(statType).RemoveModifiers(modifierSource);
         UpdateStatDisplay(statType);
     }
 

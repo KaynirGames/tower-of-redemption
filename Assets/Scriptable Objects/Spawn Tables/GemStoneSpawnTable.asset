@@ -16,12 +16,12 @@ MonoBehaviour:
   - _objectToSpawn: {fileID: 11400000, guid: d33ea111ec9624842ae2e5b089f26dff, type: 2}
     _weight: 25
     _index: 0
-  - _objectToSpawn: {fileID: 11400000, guid: 6f3bbe124a00b524eab4dada398b88fd, type: 2}
+  - _objectToSpawn: {fileID: 11400000, guid: 94b9b7087786033409c48c16cc5a45e3, type: 2}
     _weight: 25
     _index: 1
-  - _objectToSpawn: {fileID: 11400000, guid: bb217aa25ac899245804883440ddfd1a, type: 2}
+  - _objectToSpawn: {fileID: 11400000, guid: 6f3bbe124a00b524eab4dada398b88fd, type: 2}
     _weight: 25
     _index: 2
-  - _objectToSpawn: {fileID: 11400000, guid: 94b9b7087786033409c48c16cc5a45e3, type: 2}
+  - _objectToSpawn: {fileID: 11400000, guid: bb217aa25ac899245804883440ddfd1a, type: 2}
     _weight: 25
     _index: 3

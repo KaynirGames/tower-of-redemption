@@ -1,56 +1,75 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stat Up/Down Tier X sec", menuName = "Scriptable Objects/Battle/Effects/Stat Buff")]
-public class StatBuff : Effect, ITickable
+[CreateAssetMenu(fileName = "Stat BuffGrade # sec", menuName = "Scriptable Objects/Battle/Effects/Stat Buff")]
+public class StatBuff : Effect
 {
-    [SerializeField] private PowerTier _powerTier = null;
-    [SerializeField] private StatBuffType _statBuffType = null;
-    [SerializeField] private float _duration = 0f;
+    [Header("Настройки измененного стата:")]
+    [SerializeField] private StatBuffGrade _buffGrade = null;
+    [SerializeField] private StatData _statData = null;
 
-    public StatBuffType StatBuffType => _statBuffType;
+    public StatType StatType => _statData.StatType;
+    public StatBuffGrade BuffGrade => _buffGrade;
 
-    private Character _target;
-    private StatModifier _statModifier;
-    private float _timer;
-
-    public override void Apply(Character target)
+    public override void Apply(Character target, object effectSource)
     {
-        _target = target;
-        _timer = _duration;
+        var statBuffs = target.Effects.GetStatBuffs(_buffGrade.IsPositive);
+        bool isBuffRestarted = false;
 
-        _statModifier = _statBuffType.CreateStatModifier(_powerTier.StatBuffPower,
-                                                         target.Stats);
-
-        target.Stats.AddStatModifier(_statBuffType.StatType, _statModifier);
-        target.Effects.AddBuffEffect(this);
-    }
-
-    public override void Remove(Character target)
-    {
-        target.Stats.RemoveStatModifier(_statBuffType.StatType, _statModifier);
-        target.Effects.RemoveBuffEffect(this);
-    }
-
-    public override void BuildDescription(StringBuilder builder)
-    {
-        
-    }
-
-    public override string GetDescription(TargetType targetType)
-    {
-        return _statBuffType.GetDescription(_powerTier.TierName,
-                                            _duration,
-                                            targetType);
-    }
-
-    public void Tick(float delta)
-    {
-        _timer -= delta;
-
-        if (_timer <= 0)
+        if (statBuffs.ContainsKey(StatType))
         {
-            Remove(_target);
+            isBuffRestarted = TryRestartBuff(this, statBuffs);
+        }
+
+        if (!isBuffRestarted)
+        {
+            EffectInstance newInstance = new EffectInstance(this, target, effectSource);
+
+            Stat stat = target.Stats.GetStat(StatType);
+            float buffValue = _buffGrade.CalculateBuffValue(stat.BaseValue);
+
+            StatModifier statModifier = new StatModifier(buffValue, newInstance);
+            target.Stats.AddStatModifier(StatType, statModifier);
+
+            statBuffs.Add(StatType, newInstance);
+
+            newInstance.StartDuration();
+        }
+    }
+
+    public override void Remove(Character target, object effectSource)
+    {
+        var statBuffs = target.Effects.GetStatBuffs(_buffGrade.IsPositive);
+
+        target.Stats.RemoveStatModifier(StatType, statBuffs[StatType]);
+
+        statBuffs.Remove(StatType);
+    }
+
+    public override void Tick(Character target) { }
+
+    public override string GetDescription(string targetType)
+    {
+        return _buffGrade.GetDescription(_statData.StatName,
+                                         targetType,
+                                         _duration);
+    }
+
+    private bool TryRestartBuff(StatBuff buff, Dictionary<StatType, EffectInstance> statBuffs)
+    {
+        EffectInstance currentInstance = statBuffs[buff.StatType];
+        StatBuff currentBuff = (StatBuff)currentInstance.Effect;
+
+        if (buff.BuffGrade.Priority > currentBuff.BuffGrade.Priority)
+        {
+            currentInstance.RemoveEffect();
+            statBuffs.Remove(currentBuff.StatType);
+            return false;
+        }
+        else
+        {
+            currentInstance.ResetDuration();
+            return true;
         }
     }
 }

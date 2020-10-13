@@ -32,7 +32,7 @@ public class GemStoneMatrixUI : MonoBehaviour
         }
     }
 
-    private void UpdateGemSlot(int posX, int posY, GemStone gemStone)
+    private void UpdateGemSlot(int posX, int posY, GemStoneInstance gemStone)
     {
         _gemSlotMatrix[posX, posY].UpdateGemSlot(gemStone);
     }

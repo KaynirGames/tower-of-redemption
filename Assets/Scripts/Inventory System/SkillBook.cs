@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class SkillBook : MonoBehaviour
 {
-    public delegate void OnSkillSlotChange(int slotID, SkillSlot slot, Skill skill);
+    public delegate void OnSkillSlotChange(int slotID, SkillSlot slot, SkillInstance skill);
 
     public event OnSkillSlotChange OnSlotChange = delegate { };
 
@@ -16,72 +16,73 @@ public class SkillBook : MonoBehaviour
 
     public Character Owner { get; private set; }
 
-    private Skill[] _activeSkills;
-    private Skill[] _passiveSkills;
-    private Skill[] _specialSkills;
+    private SkillInstance[] _activeSkills;
+    private SkillInstance[] _passiveSkills;
+    private SkillInstance[] _specialSkills;
 
-    private Dictionary<SkillSlot, Skill[]> _skillSlots;
+    private Dictionary<SkillSlot, SkillInstance[]> _skillSlots;
 
     private void Awake()
     {
         Owner = GetComponent<Character>();
 
-        _activeSkills = new Skill[_activeSkillsCount];
-        _passiveSkills = new Skill[_passiveSkillsCount];
-        _specialSkills = new Skill[_specialSkillsCount];
+        _activeSkills = new SkillInstance[_activeSkillsCount];
+        _passiveSkills = new SkillInstance[_passiveSkillsCount];
+        _specialSkills = new SkillInstance[_specialSkillsCount];
 
         _skillSlots = CreateSkillSlots();
     }
 
     public void SetBaseSpecSkills(SpecBase currentSpec)
     {
-        foreach (SkillObject skill in currentSpec.BaseSkills)
+        foreach (Skill skill in currentSpec.BaseSkills)
         {
             TryAddSkill(skill);
         }
     }
 
-    public Skill[] GetSkillSlots(SkillSlot slot)
+    public SkillInstance[] GetSkillSlots(SkillSlot slot)
     {
         return _skillSlots[slot];
     }
 
-    public bool TryAddSkill(SkillObject skillObject)
+    public bool TryAddSkill(Skill skill)
     {
-        int slotID = FindFirstEmptySlot(skillObject.Slot);
+        int slotID = FindFirstEmptySlot(skill.Slot);
 
         if (slotID >= 0)
         {
-            AddSkill(skillObject, slotID);
+            AddSkill(skill, slotID);
             return true;
         }
 
         return false;
     }
 
-    public Skill RemoveSkill(int slotID, SkillSlot slot)
+    public SkillInstance RemoveSkill(int slotID, SkillSlot slot)
     {
-        Skill[] slots = GetSkillSlots(slot);
+        SkillInstance[] slots = GetSkillSlots(slot);
 
-        Skill removedSkill = slots[slotID];
+        SkillInstance removedSkill = slots[slotID];
         slots[slotID] = null;
 
         OnSlotChange.Invoke(slotID, slot, null);
+        removedSkill.Terminate(Owner);
 
         return removedSkill;
     }
 
-    public Skill ReplaceSkill(int slotID, SkillObject newSkillObject)
+    public SkillInstance ReplaceSkill(int slotID, Skill newSkill)
     {
-        Skill replacedSkill = RemoveSkill(slotID, newSkillObject.Slot);
-        AddSkill(newSkillObject, slotID);
+        SkillInstance replacedSkill = RemoveSkill(slotID, newSkill.Slot);
+        AddSkill(newSkill, slotID);
 
         return replacedSkill;
     }
 
-    private Dictionary<SkillSlot, Skill[]> CreateSkillSlots()
+    private Dictionary<SkillSlot, SkillInstance[]> CreateSkillSlots()
     {
-        return new Dictionary<SkillSlot, Skill[]>()
+        return new Dictionary<SkillSlot, SkillInstance[]>()
         {
             { SkillSlot.Active, _activeSkills },
             { SkillSlot.Passive, _passiveSkills },
@@ -89,17 +90,22 @@ public class SkillBook : MonoBehaviour
         };
     }
 
-    private void AddSkill(SkillObject skillObject, int slotID)
+    private void AddSkill(Skill skill, int slotID)
     {
-        Skill skill = new Skill(skillObject);
+        SkillInstance instance = new SkillInstance(skill);
 
-        GetSkillSlots(skillObject.Slot)[slotID] = skill;
-        OnSlotChange.Invoke(slotID, skillObject.Slot, skill);
+        if (skill.Slot == SkillSlot.Passive)
+        {
+            instance.TryExecute(Owner);
+        }
+
+        GetSkillSlots(skill.Slot)[slotID] = instance;
+        OnSlotChange.Invoke(slotID, skill.Slot, instance);
     }
 
     private int FindFirstEmptySlot(SkillSlot slot)
     {
-        Skill[] slots = GetSkillSlots(slot);
+        SkillInstance[] slots = GetSkillSlots(slot);
 
         for (int i = 0; i < slots.Length; i++)
         {

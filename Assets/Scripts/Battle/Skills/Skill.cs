@@ -1,67 +1,68 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
-/// <summary>
-/// Умение персонажа.
-/// </summary>
-[Serializable]
-public class Skill
+public abstract class Skill : ScriptableObject
 {
-    public delegate void OnSkillCooldownTick(float timer);
-    public delegate void OnSkillCooldownToggle(bool enable);
+    [Header("Параметры отображения умения:")]
+    [SerializeField] protected TranslatedText _name = new TranslatedText("Skill.TextID.Name");
+    [SerializeField] protected TranslatedText _flavorText = new TranslatedText("Skill.TextID.Flavor");
+    [SerializeField] protected TranslatedText _description = new TranslatedText("Skill.TextID.Description");
+    [SerializeField] protected SkillType _skillType = null;
+    [SerializeField] protected Sprite _icon = null;
+    [SerializeField] protected SkillSlot _slot = SkillSlot.Active;
+    [Header("Общие параметры умения:")]
+    [SerializeField] protected int _cost = 0;
+    [SerializeField] protected int _cooldown = 0;
+    [SerializeField] protected List<Effect> _ownerEffects = new List<Effect>();
+    [SerializeField] protected List<Effect> _opponentEffects = new List<Effect>();
 
-    public event OnSkillCooldownTick OnCooldownTick = delegate { };
-    public event OnSkillCooldownToggle OnCooldownToggle = delegate { };
+    public string Name => _name.Value;
+    public string Description => _description.Value;
+    public string SkillTypeName => _skillType.TypeName;
+    public Sprite Icon => _icon;
+    public SkillSlot Slot => _slot;
 
-    public event Action OnRequiredEnergyShortage = delegate { };
+    public int Cost => _cost;
+    public int Cooldown => _cooldown;
 
-    [SerializeField] private SkillObject _skillObject = null;
+    public abstract void Execute(Character owner, Character opponent, SkillInstance skillInstance);
 
-    public SkillObject SkillObject => _skillObject;
+    public abstract void Terminate(Character owner, Character opponent, SkillInstance skillInstance);
 
-    private bool _isCooldown;
-    private float _cooldownTimer;
+    public abstract string BuildDescription();
 
-    public Skill(SkillObject skillObject)
+    protected int SortEffectsByOrder(Effect effectA, Effect effectB)
     {
-        _skillObject = skillObject;
+        if (effectA.Order > effectB.Order) { return 1; }
+        else if (effectA.Order < effectB.Order) { return -1; }
+        else return 0;
     }
 
-    public bool TryExecute(Character owner)
+    protected virtual void OnValidate()
     {
-        if (_isCooldown) { return false; }
-
-        if (!owner.Stats.IsEnoughEnergy(_skillObject.Cost))
-        {
-            OnRequiredEnergyShortage.Invoke();
-            Debug.Log("Not enough energy!");
-            return false;
-        }
-
-        _skillObject.Execute(owner, owner.CurrentOpponent);
-
-        owner.StartCoroutine(CooldownRoutine());
-
-        return true;
+        _ownerEffects.Sort(SortEffectsByOrder);
+        _opponentEffects.Sort(SortEffectsByOrder);
     }
 
-    private IEnumerator CooldownRoutine()
+    protected string BuildEffectsDescription()
     {
-        OnCooldownToggle.Invoke(true);
-        _isCooldown = true;
+        StringBuilder builder = new StringBuilder();
 
-        _cooldownTimer = _skillObject.Cooldown;
-
-        while (_cooldownTimer > 0)
+        if (_ownerEffects.Count > 0)
         {
-            _cooldownTimer -= Time.deltaTime;
-            OnCooldownTick.Invoke(_cooldownTimer);
-
-            yield return null;
+            string target = _skillType.TargetOwner.ToLower();
+            _ownerEffects.ForEach(eff => builder.AppendLine(eff.GetDescription(target)));
+            builder.AppendLine();
         }
 
-        OnCooldownToggle.Invoke(false);
-        _isCooldown = false;
+        if (_opponentEffects.Count > 0)
+        {
+            string target = _skillType.TargetOpponent.ToLower();
+            _opponentEffects.ForEach(eff => builder.AppendLine(eff.GetDescription(target)));
+            builder.AppendLine();
+        }
+
+        return builder.ToString();
     }
 }

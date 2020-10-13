@@ -28,4 +28,5 @@ MonoBehaviour:
   _baseWaterEfficacy: 100
   _baseSkills:
   - {fileID: 11400000, guid: 33736e5e5424f6149807acb20cc7bd1b, type: 2}
-  _playerSpecIcon: {fileID: 21300000, guid: 47988883f90637d42ad9d82956d4445e, type: 3}
+  - {fileID: 11400000, guid: be24b0eebab65a4429c21467dbd2c37c, type: 2}
+  _playerSpecIcon: {fileID: 21300000, guid: e75ef449051514b41bf19f79e37751b9, type: 3}
