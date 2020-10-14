@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Stat BuffGrade # sec", menuName = "Scriptable Objects/Battle/Effects/Stat Buff")]
 public class StatBuff : Effect
 {
-    [Header("Настройки измененного стата:")]
+    [Header("Параметры бафа стата:")]
     [SerializeField] private StatBuffGrade _buffGrade = null;
     [SerializeField] private StatData _statData = null;
 

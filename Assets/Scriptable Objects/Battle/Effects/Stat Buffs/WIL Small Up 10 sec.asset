@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74572b7c6dc403244916ab8eb505e612, type: 3}
-  m_Name: STR Small Up 10 sec
+  m_Name: WIL Small Up 10 sec
   m_EditorClassIdentifier: 
-  _duration: 10
+  _duration: 30
   _secondsAmountOverTick: 1
-  _effectIcon: {fileID: 21300000, guid: 8cc18893d72f5a54588df6dde1550950, type: 3}
+  _effectIcon: {fileID: 21300000, guid: 822b922cec9862446917081667d0e25d, type: 3}
   _inflictionChance: 0
   _stacksAmount: 1
   _order: 5
   _buffGrade: {fileID: 11400000, guid: 227f02f4f8279894cafbcc4ff4cf9b1b, type: 2}
-  _statData: {fileID: 11400000, guid: 605eacb29bffa5944b14db74a13f2d51, type: 2}
+  _statData: {fileID: 11400000, guid: cd8aaa68ebbd26d47b352337c2a6a8af, type: 2}

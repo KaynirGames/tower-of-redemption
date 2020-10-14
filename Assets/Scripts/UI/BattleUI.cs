@@ -4,17 +4,19 @@ using UnityEngine;
 public class BattleUI : MonoBehaviour
 {
     [SerializeField] PlayerUI _playerUI = null;
-    [Header("Настройка игрока:")]
+    [Header("Параметры игрока:")]
     [SerializeField] private RectTransform _playerPlacement = null;
     [SerializeField] private ResourceDisplayUI _playerResourceDisplay = null;
     [SerializeField] private SkillBookUI _playerSkillDisplay = null;
-    [Header("Настройка противника:")]
+    [SerializeField] private EffectDisplayUI _playerEffectDisplay = null;
+    [Header("Параметры противника:")]
     [SerializeField] private RectTransform _enemyPlacement = null;
     [SerializeField] private TextMeshProUGUI _enemyNameDisplay = null;
     [SerializeField] private ResourceDisplayUI _enemyResourceDisplay = null;
     [SerializeField] private StatDisplayUI _enemyStatsDisplay = null;
     [SerializeField] private EfficacyDisplayUI _enemyEfficacyDisplay = null;
     [SerializeField] private SkillBookUI _enemySkillDisplay = null;
+    [SerializeField] private EffectDisplayUI _enemyEffectDisplay = null;
 
     private PlayerCharacter _player;
 
@@ -42,7 +44,7 @@ public class BattleUI : MonoBehaviour
         ToggleBattleWindow(false);
         _playerUI.TogglePlayerHUD(true);
 
-        ClearEnemy();
+        ClearDisplay();
     }
 
     public void ToggleBattleWindow(bool enable)
@@ -59,6 +61,7 @@ public class BattleUI : MonoBehaviour
 
         _playerResourceDisplay.RegisterResources(player.Stats);
         _playerSkillDisplay.RegisterSkillBook(player.SkillBook);
+        _playerEffectDisplay.RegisterCharacterEffects(player.Effects);
     }
 
     private void InitEnemy(EnemyCharacter enemy)
@@ -70,15 +73,19 @@ public class BattleUI : MonoBehaviour
         _enemyStatsDisplay.RegisterStats(enemy.Stats);
         _enemyEfficacyDisplay.RegisterElementEfficacies(enemy.Stats);
         _enemySkillDisplay.RegisterSkillBook(enemy.SkillBook);
+        _enemyEffectDisplay.RegisterCharacterEffects(enemy.Effects);
     }
 
-    private void ClearEnemy()
+    private void ClearDisplay()
     {
+        _playerEffectDisplay.Clear();
+
         _enemyNameDisplay.SetText("");
         _enemyResourceDisplay.Clear();
         _enemyStatsDisplay.Clear();
         _enemyEfficacyDisplay.Clear();
         _enemySkillDisplay.Clear();
+        _enemyEffectDisplay.Clear();
     }
 
     private void SetCharacterPosition(Character character, RectTransform placement)

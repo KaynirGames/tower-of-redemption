@@ -1,12 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
 /// Экземпляр эффекта, накладываемого на персонажа.
 /// </summary>
-[System.Serializable]
+[Serializable]
 public class EffectInstance
 {
+    public delegate void OnDurationTimerTick(float durationTimer);
+
+    public event OnDurationTimerTick OnDurationTick = delegate { };
+    public event Action OnDurationExpire = delegate { };
+
     public Effect Effect { get; private set; }
     public object EffectSource { get; private set; }
 
@@ -35,12 +41,14 @@ public class EffectInstance
         if (_durationTimer > 0)
         {
             _target.StartCoroutine(DurationRoutine());
+            _target.Effects.DisplayEffect(this);
         }
     }
 
     public void RemoveEffect()
     {
         Effect.Remove(_target, this);
+        OnDurationExpire.Invoke();
     }
 
     public void ResetDuration()
@@ -50,11 +58,12 @@ public class EffectInstance
 
     private IEnumerator DurationRoutine()
     {
-        while (_durationTimer >= 0)
+        while (_durationTimer > 0)
         {
             Effect.Tick(_target);
 
             _durationTimer -= _secondsAmountOverTick;
+            OnDurationTick.Invoke(_durationTimer);
 
             yield return _waitForNextTick;
         }
