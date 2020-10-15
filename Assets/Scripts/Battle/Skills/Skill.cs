@@ -34,8 +34,8 @@ public abstract class Skill : ScriptableObject
 
     protected int SortEffectsByOrder(Effect effectA, Effect effectB)
     {
-        if (effectA.Order > effectB.Order) { return 1; }
-        else if (effectA.Order < effectB.Order) { return -1; }
+        if (effectA.DisplayOrder > effectB.DisplayOrder) { return 1; }
+        else if (effectA.DisplayOrder < effectB.DisplayOrder) { return -1; }
         else return 0;
     }
 

@@ -8,16 +8,26 @@ public class MagicDamage : Damage
 {
     [SerializeField] private ElementType _elementType = ElementType.Fire;
 
-    public override float CalculateDamage(CharacterStats ownerStats, CharacterStats opponentStats, float attackPower)
+    public override float CalculateDamage(Character owner, Character opponent, DamageTier tier)
     {
-        float ownerAttack = ownerStats.GetStat(StatType.Will)
-                                      .GetFinalValue() * attackPower;
+        float ownerAttack = owner.Stats.GetStat(StatType.Will)
+                                       .GetFinalValue() * tier.AttackPower;
 
-        float opponentDefenceRate = 1 - (opponentStats.GetStat(StatType.MagicDefence)
-                                                      .GetFinalValue() / 100);
+        float opponentDefenceRate = 1 - (opponent.Stats.GetStat(StatType.MagicDefence)
+                                                       .GetFinalValue() / 100);
 
-        float efficacyModifier = opponentStats.GetElementEfficacy(_elementType) / 100;
+        float efficacyModifier = opponent.Stats.GetElementEfficacy(_elementType) / 100;
 
         return Mathf.Round(ownerAttack * opponentDefenceRate * efficacyModifier);
+    }
+
+    public override float CalculateDamage(Character target, float baseDamage)
+    {
+        float opponentDefenceRate = 1 - (target.Stats.GetStat(StatType.MagicDefence)
+                                                       .GetFinalValue() / 100);
+
+        float efficacyModifier = target.Stats.GetElementEfficacy(_elementType) / 100;
+
+        return Mathf.Round(baseDamage * opponentDefenceRate * efficacyModifier);
     }
 }

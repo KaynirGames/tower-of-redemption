@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "Stat BuffGrade # sec", menuName = "Scriptable Objects/Battle/Effects/Stat Buff")]
 public class StatBuff : Effect
@@ -7,21 +6,16 @@ public class StatBuff : Effect
     [Header("Параметры бафа стата:")]
     [SerializeField] private StatBuffGrade _buffGrade = null;
     [SerializeField] private StatData _statData = null;
+    [SerializeField] private Sprite _buffIcon = null;
 
     public StatType StatType => _statData.StatType;
     public StatBuffGrade BuffGrade => _buffGrade;
 
+    public override Sprite EffectIcon => _buffIcon;
+
     public override void Apply(Character target, object effectSource)
     {
-        var statBuffs = target.Effects.GetStatBuffs(_buffGrade.IsPositive);
-        bool isBuffRestarted = false;
-
-        if (statBuffs.ContainsKey(StatType))
-        {
-            isBuffRestarted = TryRestartBuff(this, statBuffs);
-        }
-
-        if (!isBuffRestarted)
+        if (!TryRestartBuff(target))
         {
             EffectInstance newInstance = new EffectInstance(this, target, effectSource);
 
@@ -31,7 +25,8 @@ public class StatBuff : Effect
             StatModifier statModifier = new StatModifier(buffValue, newInstance);
             target.Stats.AddStatModifier(StatType, statModifier);
 
-            statBuffs.Add(StatType, newInstance);
+            target.Effects.GetStatBuffs(_buffGrade.IsPositive)
+                          .Add(StatType, newInstance);
 
             newInstance.StartDuration();
         }
@@ -40,7 +35,6 @@ public class StatBuff : Effect
     public override void Remove(Character target, object effectSource)
     {
         var statBuffs = target.Effects.GetStatBuffs(_buffGrade.IsPositive);
-
         target.Stats.RemoveStatModifier(StatType, statBuffs[StatType]);
 
         statBuffs.Remove(StatType);
@@ -55,21 +49,32 @@ public class StatBuff : Effect
                                          _duration);
     }
 
-    private bool TryRestartBuff(StatBuff buff, Dictionary<StatType, EffectInstance> statBuffs)
+    private bool TryRestartBuff(Character target)
     {
-        EffectInstance currentInstance = statBuffs[buff.StatType];
-        StatBuff currentBuff = (StatBuff)currentInstance.Effect;
+        var statBuffs = target.Effects.GetStatBuffs(_buffGrade.IsPositive);
 
-        if (buff.BuffGrade.Priority > currentBuff.BuffGrade.Priority)
+        if (statBuffs.ContainsKey(StatType))
         {
-            currentInstance.RemoveEffect();
-            statBuffs.Remove(currentBuff.StatType);
-            return false;
+            EffectInstance currentInstance = statBuffs[StatType];
+            StatBuff currentBuff = (StatBuff)currentInstance.Effect;
+
+            if (_buffGrade.Priority < currentBuff.BuffGrade.Priority)
+            {
+                currentInstance.ResetDuration();
+                return true;
+            }
+            else
+            {
+                currentInstance.RemoveEffect();
+                return false;
+            }
         }
-        else
-        {
-            currentInstance.ResetDuration();
-            return true;
-        }
+
+        return false;
+    }
+
+    private void OnEnable()
+    {
+        _displayOrder = 1;
     }
 }

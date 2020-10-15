@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -68,7 +67,7 @@ public class EffectDisplayUI : MonoBehaviour
     private EffectSlotUI CreateSlot(EffectInstance instance)
     {
         EffectSlotUI effectSlot = _emptySlotsPool.Count > 0
-            ? GetPoolSlot()
+            ? GetSlotFromPool()
             : Instantiate(_effectSlotPrefab, _effectSlotsParent);
 
         effectSlot.RegisterEffect(instance);
@@ -76,7 +75,7 @@ public class EffectDisplayUI : MonoBehaviour
         return effectSlot;
     }
 
-    private EffectSlotUI GetPoolSlot()
+    private EffectSlotUI GetSlotFromPool()
     {
         EffectSlotUI slot = _emptySlotsPool.Dequeue();
         slot.SetSlotParent(_effectSlotsParent);

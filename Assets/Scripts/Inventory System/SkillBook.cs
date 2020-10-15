@@ -67,7 +67,11 @@ public class SkillBook : MonoBehaviour
         slots[slotID] = null;
 
         OnSlotChange.Invoke(slotID, slot, null);
-        removedSkill.Terminate(Owner);
+        
+        if (slot == SkillSlot.Passive)
+        {
+            TogglePassivePermanentEffects(false, removedSkill);
+        }
 
         return removedSkill;
     }
@@ -78,6 +82,23 @@ public class SkillBook : MonoBehaviour
         AddSkill(newSkill, slotID);
 
         return replacedSkill;
+    }
+
+    public void TogglePassiveBattleEffects(bool enable)
+    {
+        foreach (SkillInstance instance in _passiveSkills)
+        {
+            if (instance == null) { continue; }
+
+            if (enable)
+            {
+                instance.TryExecute(Owner);
+            }
+            else
+            {
+                instance.Terminate(Owner);
+            }
+        }
     }
 
     private Dictionary<SkillSlot, SkillInstance[]> CreateSkillSlots()
@@ -96,7 +117,7 @@ public class SkillBook : MonoBehaviour
 
         if (skill.Slot == SkillSlot.Passive)
         {
-            instance.TryExecute(Owner);
+            TogglePassivePermanentEffects(true, instance);
         }
 
         GetSkillSlots(skill.Slot)[slotID] = instance;
@@ -116,5 +137,19 @@ public class SkillBook : MonoBehaviour
         }
 
         return -1;
+    }
+
+    private void TogglePassivePermanentEffects(bool enable, SkillInstance skillInstance)
+    {
+        PassiveSkill passive = skillInstance.Skill as PassiveSkill;
+
+        if (enable)
+        {
+            passive.ApplyPermanentEffects(Owner, skillInstance);
+        }
+        else
+        {
+            passive.RemovePermanentEffects(Owner, skillInstance);
+        }
     }
 }

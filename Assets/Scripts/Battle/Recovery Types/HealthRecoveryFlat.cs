@@ -10,6 +10,6 @@ public class HealthRecoveryFlat : RecoveryType
 
     public override string GetDescription()
     {
-        return string.Format(GameTexts.Instance.HealthRecoveryFlatFormat, _recoveryAmount);
+        return "";
     }
 }

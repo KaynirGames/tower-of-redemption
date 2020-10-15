@@ -14,9 +14,9 @@ public class AttackSkill : Skill
 
         foreach (Damage damage in _damageTypes)
         {
-            finalDamage += damage.CalculateDamage(owner.Stats,
-                                                  opponent.Stats,
-                                                  _damageTier.AttackPower);
+            finalDamage += damage.CalculateDamage(owner,
+                                                  opponent,
+                                                  _damageTier);
         }
 
         owner.Stats.ChangeEnergy(-_cost);

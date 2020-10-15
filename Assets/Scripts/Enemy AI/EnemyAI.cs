@@ -14,18 +14,16 @@ public enum EnemyStateKey
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private float _sightRange = 5f; // Радиус обзора.
-    [SerializeField] private float _waitTimeOnTargetLost = 3f; // Время ожидания при потере цели преследования.
-    [SerializeField] private bool _includeObstaclesOnPatrol = false; // Использовать точки с препятствиями при патрулировании.
-    [SerializeField] private bool _displayGizmos = true; // Отображение гизмо объектов.
-    [SerializeField] private BaseMovement _movementMechanics = null; // Механика перемещения.
-    /// <summary>
-    /// Противник перемещается в настоящий момент?
-    /// </summary>
+    [SerializeField] private float _sightRange = 5f;
+    [SerializeField] private float _waitTimeOnTargetLost = 3f;
+    [SerializeField] private bool _includeObstaclesOnPatrol = false;
+    [SerializeField] private bool _displayGizmos = true;
+    [SerializeField] private BaseMovement _movementMechanics = null;
+
     public bool IsMoving => _movementMechanics.IsMoving;
 
-    private StateMachine<EnemyStateKey> _stateMachine; // Конечный автомат состояний ИИ противника.
-    private Transform _target; // Цель ИИ противника.
+    private StateMachine<EnemyStateKey> _stateMachine;
+    private Transform _target;
 
     private void Start()
     {
@@ -61,30 +59,22 @@ public class EnemyAI : MonoBehaviour
             _stateMachine.TransitionNext(EnemyStateKey.PlayerOffSight);
         }
     }
-    /// <summary>
-    /// Выставить позицию для перемещения.
-    /// </summary>
+
     public void SetDestination(Vector2 targetPosition)
     {
         _movementMechanics.SetMovementPosition(targetPosition);
     }
-    /// <summary>
-    /// Остановить перемещение.
-    /// </summary>
+
     public void StopMovement()
     {
         _movementMechanics.StopMovement();
     }
-    /// <summary>
-    /// Выставить ключ перехода в другое состояние.
-    /// </summary>
+
     public void SetTransition(EnemyStateKey transitionKey)
     {
         _stateMachine.TransitionNext(transitionKey);
     }
-    /// <summary>
-    /// Проверить, находится ли цель на заданной дистанции.
-    /// </summary>
+
     private bool TargetInRange(Transform target, float range)
     {
         return Vector2.Distance(transform.position, target.position) <= range;

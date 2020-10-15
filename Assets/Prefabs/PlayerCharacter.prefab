@@ -253,6 +253,7 @@ MonoBehaviour:
   _playerSpec: {fileID: 11400000, guid: 57db7f12630d5a44b81264d6bb185e8d, type: 2}
   _attackSpeed: 1
   _allowMovementOnAttack: 0
+  _inputHandler: {fileID: 3006772372958408792}
 --- !u!114 &3597064783027234841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,9 +317,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5031f0f266e399440bd180f8b3ad9be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeSlotCount: 4
-  _passiveSlotCount: 3
-  _specialSlotCount: 1
+  _activeSkillsCount: 4
+  _passiveSkillsCount: 3
+  _specialSkillsCount: 1
 --- !u!114 &4661792844993879684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,8 +466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63395e1d3e8be7548b4129cb19df82aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animatedCharacter: {fileID: 7233533201263309741}
   _horizontalMoveParam: Horizontal
   _verticalMoveParam: Vertical
   _moveSpeedParam: Speed
   _attackParam: Attack
-  _characterForAnimation: {fileID: 7233533201263309741}

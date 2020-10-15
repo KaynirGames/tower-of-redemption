@@ -20,7 +20,7 @@ public class PlayerCharacter : Character
 
     private Vector2 _moveDirection = Vector2.zero;
     private CharacterMoveBase _characterMoveBase;
-    private BaseAnimation _baseAnimation;
+    private CharacterAnimation _baseAnimation;
 
     private bool _isAttackAvailable;
     private WaitForSeconds _waitForNextAttack;
@@ -30,7 +30,7 @@ public class PlayerCharacter : Character
         base.Awake();
 
         _characterMoveBase = GetComponent<CharacterMoveBase>();
-        _baseAnimation = GetComponentInChildren<BaseAnimation>();
+        _baseAnimation = GetComponentInChildren<CharacterAnimation>();
 
         _isAttackAvailable = true;
         _waitForNextAttack = new WaitForSeconds(_attackSpeed);
@@ -57,6 +57,11 @@ public class PlayerCharacter : Character
     {
         _characterMoveBase.Toggle(enable);
         _inputHandler.enabled = enable;
+    }
+
+    public override void PrepareForBattle()
+    {
+        _baseAnimation.PlayMoveClip(Vector2.right);
     }
 
     private void HandleInput()

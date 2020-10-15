@@ -12,7 +12,7 @@ public class PlayerAttackHit : MonoBehaviour
         {
             bool inBattle = OnBattleTrigger.Invoke(enemy, true);
 
-            if (inBattle) { enemy.SwitchToBattleState(); }
+            if (inBattle) { enemy.PrepareForBattle(); }
         }
     }
 }

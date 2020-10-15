@@ -31,7 +31,7 @@ public class EnemyCharacter : Character
         EnemyManager.Instance.RegisterEnemy(this);
     }
 
-    public void SwitchToBattleState()
+    public override void PrepareForBattle()
     {
         _enemyAI.enabled = false;
         _enemyBattleAI.enabled = true;
@@ -39,8 +39,15 @@ public class EnemyCharacter : Character
 
     protected override void Die()
     {
+        SkillBook.TogglePassiveBattleEffects(false);
+        Effects.DisableAllEffects();
+
+        gameObject.SetActive(false);
+
         OnBattleEnd.Invoke(false);
-        Destroy(gameObject);
+
+        //Destroy(gameObject);
+
         // Выйти из боевой системы.
         // Заспавнить лут.
         // Уничтожить объект.
@@ -52,7 +59,7 @@ public class EnemyCharacter : Character
         {
             bool inBattle = OnBattleTrigger.Invoke(this, false);
 
-            if (inBattle) { SwitchToBattleState(); }
+            if (inBattle) { PrepareForBattle(); }
         }
     }
 }

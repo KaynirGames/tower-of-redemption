@@ -17,5 +17,7 @@ public abstract class Character : MonoBehaviour
 
     public virtual void ToggleMovement(bool enable) { }
 
+    public virtual void PrepareForBattle() { }
+
     protected abstract void Die();
 }

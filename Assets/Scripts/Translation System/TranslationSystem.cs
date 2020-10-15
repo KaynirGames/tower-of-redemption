@@ -9,44 +9,32 @@ using UnityEngine;
 /// </summary>
 public static class TranslationSystem
 {
-    /// <summary>
-    /// Путь к папке с файлами переводов.
-    /// </summary>
+
     private static readonly string _folderPath = string.Format("{0}/Resources/Translations", Application.dataPath);
-    /// <summary>
-    /// Названия файлов с переводами.
-    /// </summary>
+
     private static readonly Dictionary<SystemLanguage, string> _fileNames = new Dictionary<SystemLanguage, string>
     {
         { SystemLanguage.Russian, "translation_RU" },
         { SystemLanguage.English, "translation_EN" }
     };
-    /// <summary>
-    /// Язык перевода по умолчанию.
-    /// </summary>
+
     private static readonly SystemLanguage _defaultLanguage = SystemLanguage.English;
-    /// <summary>
-    /// Получить путь к файлу с переводом.
-    /// </summary>
+
     public static string GetFilePath(SystemLanguage language)
     {
         return string.Format("{0}/{1}.json", _folderPath, GetFileName(language));
     }
-    /// <summary>
-    /// Получить путь к файлу.
-    /// </summary>
+
     public static string GetFilePath(string fileName)
     {
         return string.Format("{0}/{1}.json", _folderPath, fileName);
     }
-    /// <summary>
-    /// Загрузить данные перевода в словарь.
-    /// </summary>
+
     public static Dictionary<string, string> LoadTranslationData(SystemLanguage language)
     {
         Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
-        TranslationData data = (TranslationData)JsonLoader.LoadData(
+        TranslationData data = (TranslationData)JsonLoader.LoadDataFromJson(
             GetFilePath(language),
             typeof(TranslationData));
 
@@ -60,9 +48,7 @@ public static class TranslationSystem
 
         return dictionary;
     }
-    /// <summary>
-    /// Получить название файла с переводом.
-    /// </summary>
+
     private static string GetFileName(SystemLanguage language)
     {
         if (_fileNames.ContainsKey(language))
@@ -81,9 +67,7 @@ public static class TranslationSystem
 #if UNITY_EDITOR
     private static Dictionary<string, string> _translationRU;
     private static Dictionary<string, string> _translationEN;
-    /// <summary>
-    /// Инициализировать систему управления переводом.
-    /// </summary>
+
     public static void Init()
     {
         if (!Directory.Exists(_folderPath))
@@ -94,9 +78,7 @@ public static class TranslationSystem
         _translationRU = LoadTranslationData(SystemLanguage.Russian);
         _translationEN = LoadTranslationData(SystemLanguage.English);
     }
-    /// <summary>
-    /// Добавить/обновить строку перевода.
-    /// </summary>
+
     public static void AddLine(string key, string value, SystemLanguage language)
     {
         Dictionary<string, string> translation = GetDictionary(language);
@@ -110,9 +92,7 @@ public static class TranslationSystem
             translation.Add(key, value);
         }
     }
-    /// <summary>
-    /// Удалить строку перевода.
-    /// </summary>
+
     public static void RemoveLine(string key, SystemLanguage language)
     {
         Dictionary<string, string> translation = GetDictionary(language);
@@ -122,9 +102,7 @@ public static class TranslationSystem
             translation.Remove(key);
         }
     }
-    /// <summary>
-    /// Обновить ключ перевода.
-    /// </summary>
+
     public static void UpdateKey(string oldKey, string newKey, SystemLanguage language)
     {
         Dictionary<string, string> translation = GetDictionary(language);
@@ -136,9 +114,7 @@ public static class TranslationSystem
             AddLine(newKey, oldValue, language);
         }
     }
-    /// <summary>
-    /// Сохранить изменения в файл перевода (с опциональной резервной копией).
-    /// </summary>
+
     public static void SaveChanges(SystemLanguage language, string backupFileName)
     {
         Dictionary<string, string> translation = GetDictionary(language);
@@ -151,19 +127,17 @@ public static class TranslationSystem
 
         TranslationData data = new TranslationData(lines.ToArray());
 
-        JsonLoader.SaveData(GetFilePath(language), data);
+        JsonLoader.SaveDataToJson(GetFilePath(language), data);
 
         if (backupFileName != string.Empty)
         {
-            JsonLoader.SaveData(GetFilePath(backupFileName), data);
+            JsonLoader.SaveDataToJson(GetFilePath(backupFileName), data);
         }
 
         AssetDatabase.Refresh();
         Translator.SetTranslation(_defaultLanguage);
     }
-    /// <summary>
-    /// Получить значение переведенного текста.
-    /// </summary>
+
     public static string GetValue(string key, SystemLanguage language)
     {
         Dictionary<string, string> translation = GetDictionary(language);
@@ -177,9 +151,7 @@ public static class TranslationSystem
             return "Translation is missing.";
         }
     }
-    /// <summary>
-    /// Обновить строку перевода.
-    /// </summary>
+
     private static void UpdateLine(string key, string newValue, SystemLanguage language)
     {
         Dictionary<string, string> translation = GetDictionary(language);
@@ -189,9 +161,7 @@ public static class TranslationSystem
             translation[key] = newValue;
         }
     }
-    /// <summary>
-    /// Получить словарь перевода.
-    /// </summary>
+
     private static Dictionary<string, string> GetDictionary(SystemLanguage language)
     {
         if (language == SystemLanguage.Russian)

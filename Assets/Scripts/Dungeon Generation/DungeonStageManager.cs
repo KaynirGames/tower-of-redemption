@@ -22,7 +22,8 @@ public class DungeonStageManager : MonoBehaviour
     }
 
     [SerializeField] private DungeonStage _currentStage = null; // Информация о текущем этаже подземелья.
-    [SerializeField] private Transform _battlefieldPlacement = null;
+
+    public bool spawnTestStage = false;
 
     private RouteSpawnController _routeSpawnController;
 
@@ -41,9 +42,10 @@ public class DungeonStageManager : MonoBehaviour
 
     private void Start()
     {
-        CreateDungeonStage(_currentStage);
-
-        SpawnBattlefield(_currentStage);
+        if (spawnTestStage)
+        {
+            CreateDungeonStage(_currentStage);
+        }
     }
 
     public void CreateDungeonStage(DungeonStage dungeonStage)
@@ -60,8 +62,6 @@ public class DungeonStageManager : MonoBehaviour
         }
 
         TryLoadNextRoom();
-
-        SpawnBattlefield(dungeonStage);
     }
 
     private void CreateGridPoint(RoomType roomType, Vector2Int gridPosition)
@@ -86,7 +86,7 @@ public class DungeonStageManager : MonoBehaviour
         }
         else
         {
-            OnStageLoadComplete?.Invoke();
+            OnStageLoadComplete.Invoke();
         }
     }
 
@@ -106,13 +106,5 @@ public class DungeonStageManager : MonoBehaviour
         room.SetWorldPosition();
 
         TryLoadNextRoom();
-    }
-
-    private void SpawnBattlefield(DungeonStage dungeonStage)
-    {
-        Instantiate(dungeonStage.BattlefieldBackground,
-                    _battlefieldPlacement.position,
-                    _battlefieldPlacement.rotation,
-                    _battlefieldPlacement);
     }
 }

@@ -10,6 +10,6 @@ public class EnergyRecoveryFlat : RecoveryType
 
     public override string GetDescription()
     {
-        return string.Format(GameTexts.Instance.EnergyRecoveryFlatFormat, _recoveryAmount);
+        return "";
     }
 }

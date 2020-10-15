@@ -20,7 +20,9 @@ public class EffectInstance
 
     private int _durationTimer;
     private int _secondsAmountOverTick;
+
     private WaitForSecondsRealtime _waitForNextTick;
+    private Coroutine _lastDurationRoutine;
 
     public EffectInstance(Effect effect, Character target, object effectSource)
     {
@@ -40,13 +42,20 @@ public class EffectInstance
     {
         if (_durationTimer > 0)
         {
-            _target.StartCoroutine(DurationRoutine());
+            if (!_target.gameObject.activeSelf) { return; }
+
+            _lastDurationRoutine = _target.StartCoroutine(DurationRoutine());
             _target.Effects.DisplayEffect(this);
         }
     }
 
     public void RemoveEffect()
     {
+        if (_lastDurationRoutine != null)
+        {
+            _target.StopCoroutine(_lastDurationRoutine);
+        }
+
         Effect.Remove(_target, this);
         OnDurationExpire.Invoke();
     }
@@ -68,6 +77,7 @@ public class EffectInstance
             yield return _waitForNextTick;
         }
 
+        _lastDurationRoutine = null;
         RemoveEffect();
     }
 }

@@ -23,7 +23,7 @@ MonoBehaviour:
   _slot: 1
   _cost: 0
   _cooldown: 0
-  _ownerEffects:
-  - {fileID: 11400000, guid: 8c66d80f0bf3dfb4dacc439bd59b74ec, type: 2}
+  _ownerEffects: []
   _opponentEffects: []
-  _bakeDescription: 0
+  _ownerBonuses:
+  - {fileID: 11400000, guid: 8c66d80f0bf3dfb4dacc439bd59b74ec, type: 2}

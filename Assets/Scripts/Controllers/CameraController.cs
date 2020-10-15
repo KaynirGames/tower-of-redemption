@@ -5,8 +5,12 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private float followSpeed = 100f;
 
+    public Camera CurrentCamera { get; private set; }
+
     private void Awake()
     {
+        CurrentCamera = GetComponent<Camera>();
+
         Room.OnActiveRoomChange += MoveCamera;
     }
 
@@ -31,8 +35,10 @@ public class CameraController : MonoBehaviour
     {
         while (transform.position != newPosition)
         {
-            transform.position = Vector3.MoveTowards(transform.position, newPosition, followSpeed * Time.deltaTime);
-            yield return new WaitForEndOfFrame();
+            transform.position = Vector3.MoveTowards(transform.position,
+                                                     newPosition,
+                                                     followSpeed * Time.deltaTime);
+            yield return null;
         }
     }
 

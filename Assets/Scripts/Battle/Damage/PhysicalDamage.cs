@@ -6,14 +6,22 @@
 [CreateAssetMenu(fileName = "NewPhysDamage", menuName = "Scriptable Objects/Battle/Damage/Types/Physical Damage")]
 public class PhysicalDamage : Damage
 {
-    public override float CalculateDamage(CharacterStats ownerStats, CharacterStats opponentStats, float attackPower)
+    public override float CalculateDamage(Character owner, Character opponent, DamageTier tier)
     {
-        float ownerAttack = ownerStats.GetStat(StatType.Strength)
-                                      .GetFinalValue() * attackPower;
+        float ownerAttack = owner.Stats.GetStat(StatType.Strength)
+                                       .GetFinalValue() * tier.AttackPower;
 
-        float opponentDefenceRate = 1 - (opponentStats.GetStat(StatType.Defence)
-                                                      .GetFinalValue() / 100);
+        float opponentDefenceRate = 1 - (opponent.Stats.GetStat(StatType.Defence)
+                                                       .GetFinalValue() / 100);
 
         return Mathf.Round(ownerAttack * opponentDefenceRate);
+    }
+
+    public override float CalculateDamage(Character target, float baseDamage)
+    {
+        float opponentDefenceRate = 1 - (target.Stats.GetStat(StatType.Defence)
+                                                       .GetFinalValue() / 100);
+
+        return Mathf.Round(baseDamage * opponentDefenceRate);
     }
 }

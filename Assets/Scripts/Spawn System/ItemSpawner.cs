@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
@@ -11,9 +9,7 @@ public class ItemSpawner : MonoBehaviour
     {
         DungeonStageManager.OnStageLoadComplete += SpawnItems;
     }
-    /// <summary>
-    /// Инициировать появление предметов после загрузки этажа.
-    /// </summary>
+
     private void SpawnItems()
     {
         Debug.Log("Предметы созданы.");

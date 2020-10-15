@@ -9,7 +9,10 @@ public abstract class Damage : ScriptableObject
 
     public string Name => _name.Value;
 
-    public abstract float CalculateDamage(CharacterStats ownerStats,
-                                          CharacterStats opponentStats,
-                                          float attackPower);
+    public abstract float CalculateDamage(Character owner,
+                                          Character opponent,
+                                          DamageTier tier);
+
+    public abstract float CalculateDamage(Character target,
+                                          float baseDamage);
 }

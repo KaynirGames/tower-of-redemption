@@ -4,13 +4,14 @@
 /// Основная анимация персонажа.
 /// </summary>
 [RequireComponent(typeof(Animator))]
-public class BaseAnimation : MonoBehaviour
+public class CharacterAnimation : MonoBehaviour
 {
+    [SerializeField] private Character _animatedCharacter = null;
+    [Header("Параметры аниматора:")]
     [SerializeField] private string _horizontalMoveParam = "Horizontal";
     [SerializeField] private string _verticalMoveParam = "Vertical";
     [SerializeField] private string _moveSpeedParam = "Speed";
     [SerializeField] private string _attackParam = "Attack";
-    [SerializeField] private Character _characterForAnimation = null;
 
     private Animator _animator;
 
@@ -36,6 +37,6 @@ public class BaseAnimation : MonoBehaviour
 
     public void EnableMovementAfterAttackAnimation()
     {
-        _characterForAnimation.ToggleMovement(true);
+        _animatedCharacter.ToggleMovement(true);
     }
 }

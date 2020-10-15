@@ -8,9 +8,7 @@ using UnityEngine;
 public class TranslationData
 {
     [SerializeField] private TranslationLine[] _translationLines;
-    /// <summary>
-    /// Строки перевода.
-    /// </summary>
+
     public TranslationLine[] TranslationLines => _translationLines;
 
     public TranslationData(TranslationLine[] translationLines)

@@ -145,7 +145,7 @@ MonoBehaviour:
   _effectSlotPrefab: {fileID: 6936099457476813491, guid: 9c980c3ae498da34c847a5a335088efa,
     type: 3}
   _scrollSpeed: 0.5
-  _minAmountToScroll: 3
+  _minAmountToScroll: 4
   _scrollResetLoopPosition: 0.22
 --- !u!1 &4293887757965225554
 GameObject:

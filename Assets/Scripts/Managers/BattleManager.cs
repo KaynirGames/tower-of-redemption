@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
@@ -11,7 +12,6 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] private BattleUI _battleUI = null;
     [SerializeField] private EnergyGenerator _energyGenerator = null;
-    [SerializeField] private Transform _battlefieldPlacement = null;
     [SerializeField] private CameraController _cameraController = null;
     [Header("Бонусная энергия при боевом преимуществе:")]
     [SerializeField] private float _playerEnergyBonus = 0.25f;
@@ -21,6 +21,9 @@ public class BattleManager : MonoBehaviour
 
     private PlayerCharacter _player;
     private EnemyCharacter _enemy;
+
+    private Vector3 _lastPlayerPosition;
+    private Vector3 _lastEnemyPosition;
 
     private void Awake()
     {
@@ -41,36 +44,19 @@ public class BattleManager : MonoBehaviour
         BattleTester.OnBattleTrigger += StartBattle;
     }
 
-    public Character FindBattleOpponent(Character character)
-    {
-        return character is PlayerCharacter 
-            ? _enemy 
-            : (Character)_player;
-    }
-
     private bool StartBattle(EnemyCharacter enemy, bool isPlayerAdvantage)
     {
-        //GameMaster.Instance.TogglePause(true);
-
         if (_enemy == null)
         {
             _enemy = enemy;
-
-            if (_player == null) { _player = PlayerManager.Instance.Player; }
-
-            if (isPlayerAdvantage)
-            {
-                ApplyAdvantageEnergyBonus(_player.Stats, _playerEnergyBonus);
-            }
-            else
-            {
-                ApplyAdvantageEnergyBonus(_enemy.Stats, _enemyEnergyBonus);
-            }
+            _player = PlayerManager.Instance.Player;
 
             _enemy.CurrentOpponent = _player;
             _player.CurrentOpponent = _enemy;
 
-            // Корутина перехода на экран боя с анимацией.
+            HandleAdvantageBonus(isPlayerAdvantage);
+
+            PrepareBattlefield();
 
             _battleUI.ShowBattleUI(_player, enemy);
 
@@ -79,41 +65,61 @@ public class BattleManager : MonoBehaviour
         else { return false; }
     }
 
-    private void SetBattlefield()
+    private void PrepareBattlefield()
     {
+        _lastPlayerPosition = _player.transform.position;
+        _lastEnemyPosition = _enemy.transform.position;
 
+        _player.transform.position = GetBattlePosition(_battleUI.PlayerPlacement);
+        _enemy.transform.position = GetBattlePosition(_battleUI.EnemyPlacement);
+
+        _player.PrepareForBattle();
     }
 
     private void EndBattle(bool isPlayerDeath)
     {
-        //GameMaster.Instance.TogglePause(false);
         _player.CurrentOpponent = null;
         _enemy.CurrentOpponent = null;
 
         if (isPlayerDeath)
         {
-            // Сцена гибели.
-            // Вывод меню с кнопками выхода.
+            // Переход на Game Over сцену.
         }
         else
         {
-            _enemy = null;
             StartCoroutine(CloseBattleRoutine());
         }
     }
 
-    private void ApplyAdvantageEnergyBonus(CharacterStats stats, float bonusRate)
+    private void HandleAdvantageBonus(bool isPlayerAdvantage)
     {
-        float energyBonus = stats.Energy.MaxValue.GetFinalValue()
-                            * bonusRate;
+        CharacterStats stats = isPlayerAdvantage
+            ? _player.Stats
+            : _enemy.Stats;
 
-        stats.ChangeEnergy(energyBonus);
+        float energyBonus = isPlayerAdvantage
+            ? _playerEnergyBonus
+            : _enemyEnergyBonus;
+
+        stats.ChangeEnergy(stats.Energy.MaxValue.GetFinalValue()
+                           * energyBonus);
+    }
+
+    private Vector3 GetBattlePosition(Transform battleUIPlacement)
+    {
+        Vector3 position = _cameraController.CurrentCamera
+                                            .ScreenToWorldPoint(battleUIPlacement.position);
+        position.z = 0;
+
+        return position;
     }
 
     private IEnumerator CloseBattleRoutine()
     {
         // Анимация выхода из боя.
-        yield return null;
         _battleUI.CloseBattleUI();
+        _enemy = null;
+        yield return null;
+        _player.transform.position = _lastPlayerPosition;
     }
 }
