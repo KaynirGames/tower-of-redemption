@@ -41,22 +41,6 @@ public class EffectDisplayUI : MonoBehaviour
         HandleContentScroll();
     }
 
-    public void Clear()
-    {
-        _enableScrolling = false;
-
-        _characterEffects.OnDisplayEffectCall -= UpdateEffectsDisplay;
-        _characterEffects = null;
-
-        foreach (var slot in _effectSlots)
-        {
-            slot.Clear();
-            _emptySlotsPool.Enqueue(slot);
-        }
-
-        _effectSlots.Clear();
-    }
-
     private void UpdateEffectsDisplay(EffectInstance instance)
     {
         _effectSlots.Add(CreateSlot(instance));

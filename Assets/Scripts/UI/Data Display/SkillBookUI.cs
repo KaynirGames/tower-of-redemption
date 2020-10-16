@@ -20,13 +20,7 @@ public class SkillBookUI : MonoBehaviour
 
         UpdateAllSlotsDisplay();
 
-        _skillBook.OnSlotChange += UpdateSkillSlotDisplay;
-    }
-
-    public void Clear()
-    {
-        _skillBook.OnSlotChange -= UpdateSkillSlotDisplay;
-        _skillBook = null;
+        _skillBook.OnSlotChange = UpdateSkillSlotDisplay;
     }
 
     private SkillSlotUI[] CollectSkillSlotsUI(GameObject parent)

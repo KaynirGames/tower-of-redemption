@@ -22,7 +22,7 @@ public class CharacterStats : MonoBehaviour
     {
         CreateStats(spec);
 
-        _statDictionary = CreateStatDictionary(spec);
+        _statDictionary = CreateStatDictionary();
         _elementEfficacyDictionary = CreateElementEfficacyDictionary(spec);
     }
 
@@ -79,7 +79,7 @@ public class CharacterStats : MonoBehaviour
         _magicDefence = new Stat(spec.BaseMagicDefence);
     }
 
-    private Dictionary<StatType, Stat> CreateStatDictionary(SpecBase spec)
+    private Dictionary<StatType, Stat> CreateStatDictionary()
     {
         return new Dictionary<StatType, Stat>()
         {

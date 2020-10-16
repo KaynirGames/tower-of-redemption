@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3654d009437b0ba42ac6dc9ff37dc7fc, type: 3}
   m_Name: Small Up Grade
   m_EditorClassIdentifier: 
-  _displayFormat:
-    _key: BuffGrade.Small.Up
   _buffRate: 0.15
   _priority: 1
+  _displayFormat:
+    _key: BuffGrade.Small.Up

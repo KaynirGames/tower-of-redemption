@@ -9,14 +9,14 @@ public class DescriptionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _typeField = null;
     [SerializeField] private TextMeshProUGUI _descriptionField = null;
 
-    public void FillDescriptionPanel(string name, string type, string description)
+    public void SetDescriptionText(string name, string type, string description)
     {
         _nameField.SetText(name);
         _typeField.SetText(type);
         _descriptionField.SetText(description);
     }
 
-    public void ClearDescriptionPanel()
+    public void ClearDescriptionText()
     {
         _nameField.SetText("");
         _typeField.SetText("");

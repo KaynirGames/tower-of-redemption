@@ -45,7 +45,6 @@ public class StatBuff : Effect
     public override string GetDescription(string targetType)
     {
         return _buffGrade.GetDescription(_statData.StatName,
-                                         targetType,
                                          _duration);
     }
 

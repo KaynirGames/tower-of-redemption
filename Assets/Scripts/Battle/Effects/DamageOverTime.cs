@@ -53,7 +53,6 @@ public class DamageOverTime : Effect
     {
         return string.Format(_ailmentData.DisplayFormat,
                              _ailmentData.AilmentName,
-                             targetType,
                              _inflictionChance);
     }
 

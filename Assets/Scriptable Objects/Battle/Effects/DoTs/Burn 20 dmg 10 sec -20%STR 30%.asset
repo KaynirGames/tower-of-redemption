@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 10
   _secondsAmountOverTick: 1
-  _inflictionChance: 100
+  _inflictionChance: 30
   _displayOrder: 2
   _fullDamageValue: 20
   _damageType: {fileID: 11400000, guid: cb4bec2b4970517458d9fa74d8544df6, type: 2}

@@ -8,7 +8,7 @@ public class SkillBook : MonoBehaviour
 {
     public delegate void OnSkillSlotChange(int slotID, SkillSlot slot, SkillInstance skill);
 
-    public event OnSkillSlotChange OnSlotChange = delegate { };
+    public OnSkillSlotChange OnSlotChange = delegate { };
 
     [SerializeField] private int _activeSkillsCount = 4;
     [SerializeField] private int _passiveSkillsCount = 3;
