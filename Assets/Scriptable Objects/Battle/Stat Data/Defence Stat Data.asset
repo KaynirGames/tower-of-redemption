@@ -15,3 +15,7 @@ MonoBehaviour:
   _statType: 500
   _statName:
     _key: Stat.Defence.Name
+  _statShrinkName:
+    _key: Stat.Defence.ShrinkName
+  _positiveStatColor: {r: 0.25490198, g: 0.46666667, b: 0.19607843, a: 1}
+  _negativeStatColor: {r: 0.49411765, g: 0.1764706, b: 0.22352941, a: 1}

@@ -29,6 +29,8 @@ public class PassiveSkill : Skill
             builder.AppendLine(bonus.GetDescription(_skillType.TargetOwner));
         }
 
+        builder.AppendLine();
+
         builder.Append(BuildEffectsDescription());
 
         builder.AppendLine(_flavorText.Value);

@@ -23,6 +23,9 @@ public class GameMaster : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Translator.SetTranslation(_gameLanguage);
+        Debug.Log("Current language is set to " + _gameLanguage.ToString());
     }
     /// <summary>
     /// Переключить паузу в игре.
@@ -31,11 +34,5 @@ public class GameMaster : MonoBehaviour
     {
         IsPause = isPause;
         Time.timeScale = isPause ? 0f : 1f;
-    }
-
-    private void OnValidate()
-    {
-        Translator.SetTranslation(_gameLanguage);
-        Debug.Log("Current language is set to " + _gameLanguage.ToString());
     }
 }

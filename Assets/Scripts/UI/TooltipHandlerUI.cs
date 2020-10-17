@@ -5,7 +5,7 @@ using TMPro;
 
 public class TooltipHandlerUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public delegate void OnTooltipPopupCall(Vector3 anchoredPosition, string tooltipTextID);
+    public delegate void OnTooltipPopupCall(Vector3 anchoredPosition, string tooltipKey);
 
     public static event OnTooltipPopupCall OnTooltipCall = delegate { };
     public static event Action OnTooltipCancel = delegate { };
@@ -14,9 +14,16 @@ public class TooltipHandlerUI : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        // Get TMPRo link info, if link is not null, then make tooltip call
+        if (_textMeshPro.text != string.Empty)
+        {
+            int linkIndex = TMP_TextUtilities.FindIntersectingLink(_textMeshPro, Input.mousePosition, null);
 
-        OnTooltipCall.Invoke(Input.mousePosition, "");
+            if (linkIndex >= 0)
+            {
+                TMP_LinkInfo linkInfo = _textMeshPro.textInfo.linkInfo[linkIndex];
+                OnTooltipCall.Invoke(Input.mousePosition, linkInfo.GetLinkID());
+            }
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)

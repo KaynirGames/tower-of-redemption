@@ -9,10 +9,9 @@ using UnityEngine;
 /// </summary>
 public static class TranslationSystem
 {
-
     private static readonly string _folderPath = string.Format("{0}/Resources/Translations", Application.dataPath);
 
-    private static readonly Dictionary<SystemLanguage, string> _fileNames = new Dictionary<SystemLanguage, string>
+    private static readonly Dictionary<SystemLanguage, string> _translationFileNames = new Dictionary<SystemLanguage, string>
     {
         { SystemLanguage.Russian, "translation_RU" },
         { SystemLanguage.English, "translation_EN" }
@@ -34,10 +33,8 @@ public static class TranslationSystem
     {
         Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
-        TranslationData data = (TranslationData)JsonLoader.LoadDataFromJson(
-            GetFilePath(language),
-            typeof(TranslationData));
-
+        TranslationData data = (TranslationData)JsonLoader.LoadDataFromJson(GetFilePath(language),
+                                                                            typeof(TranslationData));
         if (data != null)
         {
             foreach (TranslationLine line in data.TranslationLines)
@@ -51,16 +48,16 @@ public static class TranslationSystem
 
     private static string GetFileName(SystemLanguage language)
     {
-        if (_fileNames.ContainsKey(language))
+        if (_translationFileNames.ContainsKey(language))
         {
-            return _fileNames[language];
+            return _translationFileNames[language];
         }
         else
         {
             Debug.LogWarning(
-                $"{language} translation file is missing. Loading by default: {SystemLanguage.Russian}.");
+                $"{language} translation file is missing. Loading by default: {_defaultLanguage}.");
 
-            return _fileNames[SystemLanguage.Russian];
+            return _translationFileNames[_defaultLanguage];
         }
     }
 
@@ -68,15 +65,22 @@ public static class TranslationSystem
     private static Dictionary<string, string> _translationRU;
     private static Dictionary<string, string> _translationEN;
 
-    public static void Init()
-    {
-        if (!Directory.Exists(_folderPath))
-        {
-            Directory.CreateDirectory(_folderPath);
-        }
+    private static bool _isInitialized = false;
 
-        _translationRU = LoadTranslationData(SystemLanguage.Russian);
-        _translationEN = LoadTranslationData(SystemLanguage.English);
+    public static void Initialize()
+    {
+        if (!_isInitialized)
+        {
+            if (!Directory.Exists(_folderPath))
+            {
+                Directory.CreateDirectory(_folderPath);
+            }
+
+            _translationRU = LoadTranslationData(SystemLanguage.Russian);
+            _translationEN = LoadTranslationData(SystemLanguage.English);
+
+            _isInitialized = true;
+        }
     }
 
     public static void AddLine(string key, string value, SystemLanguage language)

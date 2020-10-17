@@ -23,7 +23,7 @@ public class TranslationSearchWindow : EditorWindow
 
     private void OnEnable()
     {
-        TranslationSystem.Init();
+        TranslationSystem.Initialize();
         _translationRU = TranslationSystem.LoadTranslationData(SystemLanguage.Russian);
         _translationEN = TranslationSystem.LoadTranslationData(SystemLanguage.English);
     }
@@ -63,7 +63,7 @@ public class TranslationSearchWindow : EditorWindow
                         TranslationSystem.SaveChanges(SystemLanguage.Russian, string.Empty);
                         TranslationSystem.SaveChanges(SystemLanguage.English, string.Empty);
                         AssetDatabase.Refresh();
-                        TranslationSystem.Init();
+                        TranslationSystem.Initialize();
                         _translationRU = TranslationSystem.LoadTranslationData(SystemLanguage.Russian);
                         _translationEN = TranslationSystem.LoadTranslationData(SystemLanguage.English);
                     }

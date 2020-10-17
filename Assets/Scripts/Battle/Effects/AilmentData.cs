@@ -4,12 +4,13 @@
 public class AilmentData : ScriptableObject
 {
     [SerializeField] private TranslatedText _ailmentName = new TranslatedText("Ailment.AilmentID.Name");
-    [SerializeField] private TranslatedText _displayFormat = new TranslatedText("Ailment.AilmentID.Format");
+    [SerializeField] private Color _ailmentTextColor = new Color(0, 0, 0, 255);
     [SerializeField] private Sprite _icon = null;
 
     public string AilmentName => _ailmentName.Value;
-    public string DisplayFormat => _displayFormat.Value;
     public Sprite Icon => _icon;
+
+    public string AilmentTextColorHtml { get; private set; }
 
     public bool TryRestartAilment(Character target, Effect ailmentEffect)
     {
@@ -32,5 +33,10 @@ public class AilmentData : ScriptableObject
         }
 
         return false;
+    }
+
+    private void OnValidate()
+    {
+        AilmentTextColorHtml = ColorUtility.ToHtmlStringRGBA(_ailmentTextColor);
     }
 }

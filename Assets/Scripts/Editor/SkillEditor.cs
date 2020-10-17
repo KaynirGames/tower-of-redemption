@@ -9,6 +9,8 @@ public class SkillEditor : Editor
 
     private void OnEnable()
     {
+        TranslationSystem.Initialize();
+
         _targetSkill = (Skill)target;
 
         SerializedProperty description = serializedObject.FindProperty("_description");
@@ -23,9 +25,11 @@ public class SkillEditor : Editor
         labelStyle.wordWrap = true;
         labelStyle.normal.textColor = Color.grey;
 
-        EditorGUILayout.TextArea(_targetSkill.Description, labelStyle);
+        string labelText = TranslationSystem.GetValue(_descriptionKey, Translator.CurrentLanguage);
 
-        if (GUILayout.Button("Сгенерировать описание умения"))
+        EditorGUILayout.LabelField(labelText, labelStyle);
+
+        if (GUILayout.Button("Сгенерировать описание умения."))
         {
             BakeSkillDescription(SystemLanguage.Russian, SystemLanguage.English);
         }
@@ -37,8 +41,8 @@ public class SkillEditor : Editor
 
     private void BakeSkillDescription(params SystemLanguage[] languages)
     {
-        TranslationSystem.Init();
-
+        if (_descriptionKey == string.Empty) { return; }
+        
         foreach (var language in languages)
         {
             Translator.SetTranslation(language);

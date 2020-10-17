@@ -6,10 +6,13 @@ using UnityEngine;
 /// </summary>
 public static class Translator
 {
+    public static SystemLanguage CurrentLanguage { get; private set; } = SystemLanguage.English;
+
     private static Dictionary<string, string> _translation;
 
     public static void SetTranslation(SystemLanguage language)
     {
+        CurrentLanguage = language;
         _translation = TranslationSystem.LoadTranslationData(language);
     }
 

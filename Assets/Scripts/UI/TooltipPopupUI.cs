@@ -4,9 +4,8 @@ using UnityEngine;
 public class TooltipPopupUI : MonoBehaviour
 {
     [SerializeField] private RectTransform _popupRect = null;
-    [SerializeField] private RectTransform _backgroundRect = null;
     [SerializeField] private TextMeshProUGUI _tooltipText = null;
-    [SerializeField] private Vector2 _textPadding = new Vector2(40, 40);
+    [SerializeField] private Vector2 _textPadding = new Vector2(15, 15);
 
     private CanvasGroup _canvasGroup;
     private RectTransform _canvasRect;
@@ -24,7 +23,7 @@ public class TooltipPopupUI : MonoBehaviour
 
         Vector2 textSize = _tooltipText.GetRenderedValues(false);
 
-        _backgroundRect.sizeDelta = textSize + _textPadding;
+        _popupRect.sizeDelta = textSize + _textPadding;
     }
 
     public void ToggleTooltipPopup(bool enable)
@@ -36,14 +35,14 @@ public class TooltipPopupUI : MonoBehaviour
     {
         anchoredPosition /= _canvasRect.localScale.x;
 
-        if (anchoredPosition.x - _backgroundRect.rect.width < 0)
+        if (anchoredPosition.x - _popupRect.rect.width < 0)
         {
-            anchoredPosition.x = _backgroundRect.rect.width;
+            anchoredPosition.x = _popupRect.rect.width;
         }
 
-        if (anchoredPosition.y + _backgroundRect.rect.height > _canvasRect.rect.height)
+        if (anchoredPosition.y + _popupRect.rect.height > _canvasRect.rect.height)
         {
-            anchoredPosition.y = _canvasRect.rect.height - _backgroundRect.rect.height;
+            anchoredPosition.y = _canvasRect.rect.height - _popupRect.rect.height;
         }
 
         _popupRect.anchoredPosition = anchoredPosition;

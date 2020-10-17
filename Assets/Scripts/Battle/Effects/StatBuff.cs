@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stat BuffGrade # sec", menuName = "Scriptable Objects/Battle/Effects/Stat Buff")]
+[CreateAssetMenu(fileName = "Stat.BuffGrade.S#", menuName = "Scriptable Objects/Battle/Effects/Stat Buff")]
 public class StatBuff : Effect
 {
     [Header("Параметры бафа стата:")]
@@ -44,8 +44,10 @@ public class StatBuff : Effect
 
     public override string GetDescription(string targetType)
     {
-        return _buffGrade.GetDescription(_statData.StatName,
-                                         _duration);
+        return string.Format(_descriptionFormat.Value,
+                             _statData.GetRichTextColor(_buffGrade.IsPositive),
+                             _statData.StatShrinkName,
+                             _duration);
     }
 
     private bool TryRestartBuff(Character target)
@@ -74,6 +76,6 @@ public class StatBuff : Effect
 
     private void OnEnable()
     {
-        _displayOrder = 1;
+        _descriptionOrder = 1;
     }
 }

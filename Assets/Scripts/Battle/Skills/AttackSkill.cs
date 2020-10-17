@@ -47,12 +47,12 @@ public class AttackSkill : Skill
 
     private void BuildDamageDescription(StringBuilder builder)
     {
-        builder.Append(_damageTypes[0].Name);
+        builder.Append(_damageTypes[0].GetName());
 
         for (int i = 1; i < _damageTypes.Length; i++)
         {
             builder.Append(" / ")
-                   .Append(_damageTypes[i].Name);
+                   .Append(_damageTypes[i].GetName());
         }
 
         string damageTypes = builder.ToString();

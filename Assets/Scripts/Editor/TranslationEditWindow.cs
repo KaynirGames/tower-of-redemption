@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class TranslationEditWindow : EditorWindow
 {
-    private string _key; // Ключ перевода.
-    private string _valueRU; // Значение для русского языка.
-    private string _valueEN; // Значение для английского языка.
-    private string _oldKey; // Старый ключ перевода.
-    private bool _createBackup; // Создание резервной копии файлов с переводом.
-    private string _backupFileSuffix; // Суффикс в названии резервной копии.
+    private string _key;
+    private string _valueRU;
+    private string _valueEN;
+    private string _oldKey;
+    private bool _createBackup;
+    private string _backupFileSuffix;
 
     public static void Open(string key)
     {
@@ -21,7 +21,7 @@ public class TranslationEditWindow : EditorWindow
         editWindow._key = key;
         editWindow._oldKey = key;
 
-        TranslationSystem.Init();
+        TranslationSystem.Initialize();
         editWindow._valueRU = TranslationSystem.GetValue(key, SystemLanguage.Russian);
         editWindow._valueEN = TranslationSystem.GetValue(key, SystemLanguage.English);
     }

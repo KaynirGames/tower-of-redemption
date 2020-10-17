@@ -136,7 +136,7 @@ PrefabInstance:
     - target: {fileID: 3045462424450301293, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
       propertyPath: _translatedText._key
-      value: Stat.Defence.Name
+      value: Stat.Defence.ShrinkName
       objectReference: {fileID: 0}
     - target: {fileID: 4986454905519655522, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
@@ -323,7 +323,7 @@ PrefabInstance:
     - target: {fileID: 3045462424450301293, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
       propertyPath: _translatedText._key
-      value: Stat.Will.Name
+      value: Stat.Will.ShrinkName
       objectReference: {fileID: 0}
     - target: {fileID: 4986454905519655522, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
@@ -510,7 +510,7 @@ PrefabInstance:
     - target: {fileID: 3045462424450301293, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
       propertyPath: _translatedText._key
-      value: Stat.Strength.Name
+      value: Stat.Strength.ShrinkName
       objectReference: {fileID: 0}
     - target: {fileID: 4986454905519655522, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
@@ -652,7 +652,7 @@ PrefabInstance:
     - target: {fileID: 3045462424450301293, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
       propertyPath: _translatedText._key
-      value: Stat.MagicDefence.Name
+      value: Stat.MagicDefence.ShrinkName
       objectReference: {fileID: 0}
     - target: {fileID: 4986454905519655522, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}

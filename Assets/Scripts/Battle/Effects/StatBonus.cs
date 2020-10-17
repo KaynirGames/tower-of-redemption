@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "STAT+# Bonus", menuName = "Scriptable Objects/Battle/Effects/Stat Bonus")]
+[CreateAssetMenu(fileName = "STAT+#", menuName = "Scriptable Objects/Battle/Effects/Stat Bonus")]
 public class StatBonus : Effect
 {
     [Header("Параметры бонуса к статам:")]
@@ -28,13 +28,17 @@ public class StatBonus : Effect
 
     public override string GetDescription(string targetType)
     {
-        return string.Format("{0:+0;-#} {1}",
-                             _bonusValue,
-                             _statData.StatName);
+        bool isPositive = _bonusValue < 0 ? false : true;
+        string htmlColor = _statData.GetRichTextColor(isPositive);
+
+        return string.Format(_descriptionFormat.Value,
+                             htmlColor,
+                             _statData.StatName,
+                             _bonusValue);
     }
 
     private void OnEnable()
     {
-        _displayOrder = 0;
+        _descriptionOrder = 0;
     }
 }

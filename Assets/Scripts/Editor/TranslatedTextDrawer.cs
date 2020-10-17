@@ -57,7 +57,8 @@ public class TranslatedTextDrawer : PropertyDrawer
 
         if (_displayValue)
         {
-            string value = Translator.GetTranslationLine(key.stringValue);
+            TranslationSystem.Initialize();
+            string value = TranslationSystem.GetValue(key.stringValue, Translator.CurrentLanguage);
             GUIStyle style = GUI.skin.box;
             _propertyHeight = style.CalcHeight(new GUIContent(value), valueRect.width);
 

@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ailmentName:
     _key: Ailment.Burn.Name
-  _displayFormat:
-    _key: Ailment.Burn.Format
+  _ailmentTextColor: {r: 0.49411765, g: 0.1764706, b: 0.22352941, a: 255}
   _icon: {fileID: 21300000, guid: b1dcb1d92c76d3e4ab335f099aa019fc, type: 3}
