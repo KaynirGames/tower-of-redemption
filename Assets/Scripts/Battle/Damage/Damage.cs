@@ -6,9 +6,7 @@
 public abstract class Damage : ScriptableObject
 {
     [SerializeField] protected TranslatedText _name = null;
-    [SerializeField] protected Color _textColor = new Color(0, 0, 0, 255);
-
-    public string TextColorHtml { get; private set; }
+    [SerializeField] protected TextColorData _textColorData = null;
 
     public abstract float CalculateDamage(Character owner,
                                           Character opponent,
@@ -17,15 +15,8 @@ public abstract class Damage : ScriptableObject
     public abstract float CalculateDamage(Character target,
                                           float baseDamage);
 
-    public string GetName()
+    public string GetDamageName()
     {
-        return string.Format("<color=#{0}><b>{1}</b></color>",
-                             TextColorHtml,
-                             _name.Value);
-    }
-
-    protected virtual void OnValidate()
-    {
-        TextColorHtml = ColorUtility.ToHtmlStringRGBA(_textColor);
+        return _textColorData.ColorText(_name.Value);
     }
 }

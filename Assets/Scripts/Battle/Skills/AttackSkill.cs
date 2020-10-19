@@ -10,6 +10,8 @@ public class AttackSkill : Skill
 
     public override void Execute(Character owner, Character opponent, SkillInstance skillInstance)
     {
+        owner.Stats.ChangeEnergy(-_cost);
+
         float finalDamage = 0;
 
         foreach (Damage damage in _damageTypes)
@@ -19,7 +21,6 @@ public class AttackSkill : Skill
                                                   _damageTier);
         }
 
-        owner.Stats.ChangeEnergy(-_cost);
         opponent.Stats.ChangeHealth(-finalDamage);
 
         _ownerEffects.ForEach(effect => effect.Apply(owner, skillInstance));
@@ -38,7 +39,7 @@ public class AttackSkill : Skill
             builder.AppendLine();
         }
 
-        builder.AppendLine().Append(BuildEffectsDescription());
+        builder.Append(BuildEffectsDescription());
 
         builder.AppendLine(_flavorText.Value);
 
@@ -47,20 +48,22 @@ public class AttackSkill : Skill
 
     private void BuildDamageDescription(StringBuilder builder)
     {
-        builder.Append(_damageTypes[0].GetName());
+        builder.Append(_damageTypes[0].GetDamageName());
 
         for (int i = 1; i < _damageTypes.Length; i++)
         {
             builder.Append(" / ")
-                   .Append(_damageTypes[i].GetName());
+                   .Append(_damageTypes[i].GetDamageName());
         }
 
         string damageTypes = builder.ToString();
         builder.Clear();
 
-        builder.AppendFormat(_skillType.DescriptionFormat,
+        builder.AppendFormat(_skillData.DescriptionFormat,
                              damageTypes,
                              _damageTier.TierName);
+
+        builder.AppendLine();
     }
 
     protected override void OnValidate()

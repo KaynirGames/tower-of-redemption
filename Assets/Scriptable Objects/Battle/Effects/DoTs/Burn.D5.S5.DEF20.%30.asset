@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd46d4003909f145aadf92354283ba2, type: 3}
-  m_Name: Burn.D20.S10.DEF20.%30
+  m_Name: Burn.D5.S5.DEF20
   m_EditorClassIdentifier: 
   _duration: 5
   _secondsAmountOverTick: 1
@@ -25,5 +25,6 @@ MonoBehaviour:
   _damageOverTick: 5
   _damageType: {fileID: 11400000, guid: cb4bec2b4970517458d9fa74d8544df6, type: 2}
   _baseStatModifyRate: -20
-  _affectedStatData: {fileID: 11400000, guid: 69ce7fbdb891766469a41f1d3f9185e3, type: 2}
+  _statData: {fileID: 11400000, guid: 69ce7fbdb891766469a41f1d3f9185e3, type: 2}
+  _statTextColorData: {fileID: 11400000, guid: 7feae2d92328b4c4fb0157c9bb870374, type: 2}
   _ailmentData: {fileID: 11400000, guid: 6bb627707f95a974894ade089626134b, type: 2}

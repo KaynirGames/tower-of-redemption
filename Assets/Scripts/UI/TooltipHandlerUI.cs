@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using KaynirGames.Tools;
 
 public class TooltipHandlerUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -21,7 +22,7 @@ public class TooltipHandlerUI : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             if (linkIndex >= 0)
             {
                 TMP_LinkInfo linkInfo = _textMeshPro.textInfo.linkInfo[linkIndex];
-                OnTooltipCall.Invoke(Input.mousePosition, linkInfo.GetLinkID());
+                OnTooltipCall.Invoke(KaynirTools.GetPointerRawPosition(), linkInfo.GetLinkID());
             }
         }
     }

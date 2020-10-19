@@ -6,6 +6,7 @@ public class StatBonus : Effect
     [Header("Параметры бонуса к статам:")]
     [SerializeField] private int _bonusValue = 0;
     [SerializeField] private StatData _statData = null;
+    [SerializeField] private TextColorData _textColorData = null;
 
     public override void Apply(Character target, object effectSource)
     {
@@ -26,13 +27,10 @@ public class StatBonus : Effect
         target.Effects.StatBonuses.Remove(current);
     }
 
-    public override string GetDescription(string targetType)
+    public override string GetDescription()
     {
-        bool isPositive = _bonusValue < 0 ? false : true;
-        string htmlColor = _statData.GetRichTextColor(isPositive);
-
         return string.Format(_descriptionFormat.Value,
-                             htmlColor,
+                             _textColorData.HtmlTextColor,
                              _statData.StatName,
                              _bonusValue);
     }

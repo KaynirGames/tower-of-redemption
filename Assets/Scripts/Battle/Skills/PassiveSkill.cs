@@ -24,12 +24,15 @@ public class PassiveSkill : Skill
     {
         StringBuilder builder = new StringBuilder();
 
-        foreach (StatBonus bonus in _ownerBonuses)
+        if (_ownerBonuses.Count > 0)
         {
-            builder.AppendLine(bonus.GetDescription(_skillType.TargetOwner));
-        }
+            foreach (StatBonus bonus in _ownerBonuses)
+            {
+                builder.AppendLine(bonus.GetDescription());
+            }
 
-        builder.AppendLine();
+            builder.AppendLine();
+        }
 
         builder.Append(BuildEffectsDescription());
 

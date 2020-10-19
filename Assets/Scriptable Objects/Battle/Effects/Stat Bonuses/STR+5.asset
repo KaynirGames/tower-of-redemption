@@ -19,8 +19,9 @@ MonoBehaviour:
   _descriptionFormat:
     _key: Effect.StatBonus.Format
   _tooltipFormat:
-    _key: 
+    _key: Tooltip.EffectType.Format
   _tooltipText:
     _key: Tooltip.8c66d80f0bf3dfb4dacc439bd59b74ec
   _bonusValue: 5
   _statData: {fileID: 11400000, guid: 605eacb29bffa5944b14db74a13f2d51, type: 2}
+  _textColorData: {fileID: 11400000, guid: fe11339ca6e2e72468bcb1fc441b66f6, type: 2}

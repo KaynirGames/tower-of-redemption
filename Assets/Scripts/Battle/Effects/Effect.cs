@@ -10,7 +10,7 @@ public abstract class Effect : ScriptableObject
     [Header("Параметры описания эффекта:")]
     [SerializeField] protected int _descriptionOrder = 0;
     [SerializeField] protected TranslatedText _descriptionFormat = new TranslatedText("Effect.EffectType.Format");
-    [SerializeField] protected TranslatedText _tooltipFormat = null;
+    [SerializeField] protected TranslatedText _tooltipFormat = new TranslatedText("Tooltip.EffectType.Format");
     [SerializeField, HideInInspector] protected TranslatedText _tooltipText = null;
 
     public int Duration => _duration;
@@ -29,16 +29,21 @@ public abstract class Effect : ScriptableObject
 
     public abstract void Remove(Character target, object effectSource);
 
-    public abstract string GetDescription(string targetType);
+    public abstract string GetDescription();
 
     public virtual string BuildTooltipText()
     {
         return string.Empty;
     }
 
+    protected virtual bool TryRestartEffect(Character target)
+    {
+        return false;
+    }
+
     protected bool ThrowInflictionChanceDice()
     {
-        return Random.Range(0, 100) < _inflictionChance
+        return Random.Range(1, 100) <= _inflictionChance
             ? true
             : false;
     }

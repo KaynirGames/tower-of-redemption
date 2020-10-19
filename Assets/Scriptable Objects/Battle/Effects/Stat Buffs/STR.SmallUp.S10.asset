@@ -15,8 +15,14 @@ MonoBehaviour:
   _duration: 10
   _secondsAmountOverTick: 1
   _inflictionChance: 0
-  _displayOrder: 1
-  _id: str.smallup.s10
+  _descriptionOrder: 1
+  _descriptionFormat:
+    _key: Effect.SmallStatUp.Format
+  _tooltipFormat:
+    _key: Tooltip.EffectType.Format
+  _tooltipText:
+    _key: Tooltip.17fc2a82dabe4374793af32d4b44612f
   _buffGrade: {fileID: 11400000, guid: 227f02f4f8279894cafbcc4ff4cf9b1b, type: 2}
   _statData: {fileID: 11400000, guid: 605eacb29bffa5944b14db74a13f2d51, type: 2}
+  _textColorData: {fileID: 11400000, guid: fe11339ca6e2e72468bcb1fc441b66f6, type: 2}
   _buffIcon: {fileID: 21300000, guid: 8cc18893d72f5a54588df6dde1550950, type: 3}

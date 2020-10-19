@@ -6,6 +6,7 @@ public class StatBuff : Effect
     [Header("Параметры бафа стата:")]
     [SerializeField] private StatBuffGrade _buffGrade = null;
     [SerializeField] private StatData _statData = null;
+    [SerializeField] private TextColorData _textColorData = null;
     [SerializeField] private Sprite _buffIcon = null;
 
     public StatType StatType => _statData.StatType;
@@ -15,7 +16,7 @@ public class StatBuff : Effect
 
     public override void Apply(Character target, object effectSource)
     {
-        if (!TryRestartBuff(target))
+        if (!TryRestartEffect(target))
         {
             EffectInstance newInstance = new EffectInstance(this, target, effectSource);
 
@@ -42,15 +43,15 @@ public class StatBuff : Effect
 
     public override void Tick(Character target) { }
 
-    public override string GetDescription(string targetType)
+    public override string GetDescription()
     {
         return string.Format(_descriptionFormat.Value,
-                             _statData.GetRichTextColor(_buffGrade.IsPositive),
+                             _textColorData.HtmlTextColor,
                              _statData.StatShrinkName,
                              _duration);
     }
 
-    private bool TryRestartBuff(Character target)
+    protected override bool TryRestartEffect(Character target)
     {
         var statBuffs = target.Effects.GetStatBuffs(_buffGrade.IsPositive);
 

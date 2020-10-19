@@ -84,7 +84,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 82b81a120385d89409e680b49c5003b3,
+  m_fontColorGradientPreset: {fileID: 11400000, guid: c6dba44e258b8e84cb2db831d935c697,
     type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -247,8 +247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -9201219610501456864, guid: 13cf5d742d29a11438244faea1328520,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34532c12ac6f18b4682f99e5a502a528, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

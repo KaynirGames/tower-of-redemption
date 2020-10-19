@@ -43,7 +43,7 @@ public class SkillSlotUI : MonoBehaviour
     public void ShowSkillDescription()
     {
         string name = _skill.Skill.Name;
-        string type = _skill.Skill.SkillTypeName;
+        string type = _skill.Skill.TypeName;
         string description = _skill.GetDescription();
 
         OnSkillDescriptionCall(name, type, description);

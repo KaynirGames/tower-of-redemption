@@ -4749,10 +4749,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2619269294006268615, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2619269295099557799, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
         type: 3}
       propertyPath: m_Name
       value: Tooltip_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619269295099557816, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2619269295099557819, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
         type: 3}
@@ -4858,6 +4868,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619269295099557820, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
+        type: 3}
+      propertyPath: _textPadding.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619269295099557820, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
+        type: 3}
+      propertyPath: _textPadding.y
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f, type: 3}

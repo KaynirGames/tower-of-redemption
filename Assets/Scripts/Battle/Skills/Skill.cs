@@ -8,7 +8,7 @@ public abstract class Skill : ScriptableObject
     [SerializeField] protected TranslatedText _name = new TranslatedText("Skill.TextID.Name");
     [SerializeField] protected TranslatedText _flavorText = new TranslatedText("Skill.TextID.Flavor");
     [SerializeField] protected TranslatedText _description = new TranslatedText("Skill.TextID.Description");
-    [SerializeField] protected SkillType _skillType = null;
+    [SerializeField] protected SkillData _skillData = null;
     [SerializeField] protected Sprite _icon = null;
     [SerializeField] protected SkillSlot _slot = SkillSlot.Active;
     [Header("Общие параметры умения:")]
@@ -19,7 +19,7 @@ public abstract class Skill : ScriptableObject
 
     public string Name => _name.Value;
     public string Description => _description.Value;
-    public string SkillTypeName => _skillType.TypeName;
+    public string TypeName => _skillData.TypeName;
     public Sprite Icon => _icon;
     public SkillSlot Slot => _slot;
 
@@ -49,19 +49,10 @@ public abstract class Skill : ScriptableObject
     {
         StringBuilder builder = new StringBuilder();
 
-        if (_ownerEffects.Count > 0)
-        {
-            string target = _skillType.TargetOwner.ToLower();
-            _ownerEffects.ForEach(eff => builder.AppendLine(eff.GetDescription(target)));
-            builder.AppendLine();
-        }
+        _ownerEffects.ForEach(eff => builder.AppendLine(eff.GetDescription()));
+        _opponentEffects.ForEach(eff => builder.AppendLine(eff.GetDescription()));
 
-        if (_opponentEffects.Count > 0)
-        {
-            string target = _skillType.TargetOpponent.ToLower();
-            _opponentEffects.ForEach(eff => builder.AppendLine(eff.GetDescription(target)));
-            builder.AppendLine();
-        }
+        if (builder.Length > 0) { builder.AppendLine(); }
 
         return builder.ToString();
     }
