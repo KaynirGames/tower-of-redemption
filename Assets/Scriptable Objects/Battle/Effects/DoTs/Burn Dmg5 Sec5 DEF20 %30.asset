@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd46d4003909f145aadf92354283ba2, type: 3}
-  m_Name: Burn.D5.S5.DEF20
+  m_Name: Burn.Dmg5.Sec5.DEF20
   m_EditorClassIdentifier: 
   _duration: 5
   _secondsAmountOverTick: 1

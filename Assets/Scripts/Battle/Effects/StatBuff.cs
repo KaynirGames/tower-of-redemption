@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stat.BuffGrade.S#", menuName = "Scriptable Objects/Battle/Effects/Stat Buff")]
+[CreateAssetMenu(fileName = "Stat BuffGrade Sec#", menuName = "Scriptable Objects/Battle/Effects/Stat Buff")]
 public class StatBuff : Effect
 {
     [Header("Параметры бафа стата:")]
@@ -73,10 +73,5 @@ public class StatBuff : Effect
         }
 
         return false;
-    }
-
-    private void OnEnable()
-    {
-        _descriptionOrder = 1;
     }
 }

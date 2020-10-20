@@ -16,4 +16,27 @@ public class AilmentData : ScriptableObject
     {
         return _textColorData.ColorText(_ailmentName.Value);
     }
+
+    public bool TryRestartAilment(Character target, Effect effect)
+    {
+        var ailments = target.Effects.AilmentEffects;
+
+        if (ailments.ContainsKey(this))
+        {
+            EffectInstance currentInstance = ailments[this];
+
+            if (currentInstance.Effect == effect)
+            {
+                currentInstance.ResetDuration();
+                return true;
+            }
+            else
+            {
+                currentInstance.RemoveEffect();
+                return false;
+            }
+        }
+
+        return false;
+    }
 }

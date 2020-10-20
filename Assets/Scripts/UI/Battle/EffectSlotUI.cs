@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class EffectSlotUI : MonoBehaviour
 {
     [SerializeField] private Image _effectIcon = null;
     [SerializeField] private Image _durationIcon = null;
+    [SerializeField] private TextMeshProUGUI _chargesText = null;
 
     private RectTransform _rectTransform;
     private EffectDisplayUI _effectDisplayUI;
@@ -25,6 +27,13 @@ public class EffectSlotUI : MonoBehaviour
         _effectInstance.OnDurationTick += UpdateDurationDisplay;
         _effectInstance.OnDurationExpire += StopDurationDisplay;
 
+        if (effectInstance.Effect.ChargesAmount > 0)
+        {
+            UpdateChargesDisplay(effectInstance.Effect.ChargesAmount);
+            _effectInstance.OnChargeConsume += UpdateChargesDisplay;
+            _chargesText.gameObject.SetActive(true);
+        }
+
         _effectIcon.sprite = effectInstance.Effect.EffectIcon;
         _durationIcon.fillAmount = 1;
 
@@ -35,6 +44,13 @@ public class EffectSlotUI : MonoBehaviour
     {
         _effectInstance.OnDurationTick -= UpdateDurationDisplay;
         _effectInstance.OnDurationExpire -= StopDurationDisplay;
+
+        if (_effectInstance.Effect.ChargesAmount > 0)
+        {
+            _effectInstance.OnChargeConsume -= UpdateChargesDisplay;
+            _chargesText.gameObject.SetActive(false);
+        }
+
         _effectInstance = null;
 
         SetSlotParent(null);
@@ -54,6 +70,11 @@ public class EffectSlotUI : MonoBehaviour
     private void UpdateDurationDisplay(float timer)
     {
         _durationIcon.fillAmount = timer / _effectDuration;
+    }
+
+    private void UpdateChargesDisplay(int chargesLeft)
+    {
+        _chargesText.SetText(chargesLeft.ToString());
     }
 
     private void StopDurationDisplay()

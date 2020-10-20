@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72525337ae2aabf43a4c876aa75de6c0, type: 3}
   m_Name: Phys Damage TextColorData
   m_EditorClassIdentifier: 
-  _textColor: {r: 0.3372549, g: 0.43529412, b: 0.45490196, a: 255}
+  _textColor: {r: 0.21176471, g: 0.28627452, b: 0.32156864, a: 255}

@@ -377,7 +377,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 389689651557877092, guid: 077155102d53f0447a3a306a72c3f0c1, type: 3}
+  m_Sprite: {fileID: -5813254848069381631, guid: 077155102d53f0447a3a306a72c3f0c1,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -531,7 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textField: {fileID: 3552716786016967471}
   _translatedText:
-    _key: Label.HP
+    _key: Label.SE
 --- !u!1 &3552716787925381961
 GameObject:
   m_ObjectHideFlags: 0

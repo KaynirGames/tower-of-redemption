@@ -32,17 +32,9 @@ public abstract class Skill : ScriptableObject
 
     public abstract string BuildDescription();
 
-    protected int SortEffectsByOrder(Effect effectA, Effect effectB)
-    {
-        if (effectA.DescriptionOrder > effectB.DescriptionOrder) { return 1; }
-        else if (effectA.DescriptionOrder < effectB.DescriptionOrder) { return -1; }
-        else return 0;
-    }
-
     protected virtual void OnValidate()
     {
-        _ownerEffects.Sort(SortEffectsByOrder);
-        _opponentEffects.Sort(SortEffectsByOrder);
+
     }
 
     protected string BuildEffectsDescription()

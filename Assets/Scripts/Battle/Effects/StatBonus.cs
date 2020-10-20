@@ -34,9 +34,4 @@ public class StatBonus : Effect
                              _statData.StatName,
                              _bonusValue);
     }
-
-    private void OnEnable()
-    {
-        _descriptionOrder = 0;
-    }
 }

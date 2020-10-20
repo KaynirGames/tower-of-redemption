@@ -4003,7 +4003,6 @@ MonoBehaviour:
   _testEnemyPrefab: {fileID: 6019955237486239111, guid: 66ed98e37365ee042be0f29be1c1fcee,
     type: 3}
   _testSpawn: {fileID: 671181260}
-  _joystick: {fileID: 1468901088}
 --- !u!1 &1847618625
 GameObject:
   m_ObjectHideFlags: 0
@@ -6524,6 +6523,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6645066156958828742, guid: dc835ee676160f942bee98688ccbbeef,
+        type: 3}
+      propertyPath: _translatedText._key
+      value: UI.Label.SE
       objectReference: {fileID: 0}
     - target: {fileID: 6645066156958828792, guid: dc835ee676160f942bee98688ccbbeef,
         type: 3}

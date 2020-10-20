@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Name.D#.S#.STAT#.%#", menuName = "Scriptable Objects/Battle/Effects/Damage Over Time")]
+[CreateAssetMenu(fileName = "Name Dmg# Sec# STAT# %#", menuName = "Scriptable Objects/Battle/Effects/Damage Over Time")]
 public class DamageOverTime : Effect
 {
     [Header("Параметры ДоТ эффекта:")]
@@ -72,29 +72,6 @@ public class DamageOverTime : Effect
 
     protected override bool TryRestartEffect(Character target)
     {
-        var ailments = target.Effects.AilmentEffects;
-
-        if (ailments.ContainsKey(_ailmentData))
-        {
-            EffectInstance currentInstance = ailments[_ailmentData];
-
-            if (currentInstance.Effect == this)
-            {
-                currentInstance.ResetDuration();
-                return true;
-            }
-            else
-            {
-                currentInstance.RemoveEffect();
-                return false;
-            }
-        }
-
-        return false;
-    }
-
-    private void OnEnable()
-    {
-        _descriptionOrder = 2;
+        return _ailmentData.TryRestartAilment(target, this);
     }
 }

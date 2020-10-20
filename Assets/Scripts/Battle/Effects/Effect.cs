@@ -8,19 +8,17 @@ public abstract class Effect : ScriptableObject
     [SerializeField] protected int _secondsAmountOverTick = 1;
     [SerializeField, Range(0, 100)] protected int _inflictionChance = 0;
     [Header("Параметры описания эффекта:")]
-    [SerializeField] protected int _descriptionOrder = 0;
     [SerializeField] protected TranslatedText _descriptionFormat = new TranslatedText("Effect.EffectType.Format");
     [SerializeField] protected TranslatedText _tooltipFormat = new TranslatedText("Tooltip.EffectType.Format");
     [SerializeField, HideInInspector] protected TranslatedText _tooltipText = null;
 
     public int Duration => _duration;
     public int SecondsAmountOverTick => _secondsAmountOverTick;
-    public int DescriptionOrder => _descriptionOrder;
 
     public string ID { get; private set; }
     public string TooltipKey { get; private set; }
 
-    public virtual int StacksAmount => 0;
+    public virtual int ChargesAmount => 0;
     public virtual Sprite EffectIcon => null;
 
     public abstract void Apply(Character target, object effectSource);

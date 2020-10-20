@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _descriptionFormat:
     _key: Recovery.EnergyRestoration
-  _recoveryValue: 0
+  _recoveryValue: 20
   _isPercent: 0

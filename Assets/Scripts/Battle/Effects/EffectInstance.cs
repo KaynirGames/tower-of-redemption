@@ -9,8 +9,10 @@ using UnityEngine;
 public class EffectInstance
 {
     public delegate void OnDurationTimerTick(float durationTimer);
+    public delegate void OnEffectChargeConsume(int chargesLeft);
 
     public event OnDurationTimerTick OnDurationTick = delegate { };
+    public event OnEffectChargeConsume OnChargeConsume = delegate { };
     public event Action OnDurationExpire = delegate { };
 
     public Effect Effect { get; private set; }
@@ -20,6 +22,7 @@ public class EffectInstance
 
     private int _durationTimer;
     private int _secondsAmountOverTick;
+    private int _chargesAmount = -1;
 
     private WaitForSecondsRealtime _waitForNextTick;
     private Coroutine _lastDurationRoutine;
@@ -29,6 +32,11 @@ public class EffectInstance
         Effect = effect;
         EffectSource = effectSource;
         _target = target;
+
+        if (effect.ChargesAmount > 0)
+        {
+            _chargesAmount = effect.ChargesAmount;
+        }
 
         if (effect.Duration > 0)
         {
@@ -63,6 +71,21 @@ public class EffectInstance
     public void ResetDuration()
     {
         _durationTimer = Effect.Duration;
+    }
+
+    public void RemoveCharge()
+    {
+        if (_chargesAmount > 0)
+        {
+            _chargesAmount--;
+
+            OnChargeConsume.Invoke(_chargesAmount);
+
+            if (_chargesAmount == 0)
+            {
+                RemoveEffect();
+            }
+        }
     }
 
     private IEnumerator DurationRoutine()

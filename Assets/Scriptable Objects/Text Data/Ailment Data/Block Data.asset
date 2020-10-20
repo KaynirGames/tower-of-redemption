@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cbea2fee34557d408051e4f55ba6986, type: 3}
-  m_Name: Defensive Skill Data
+  m_Script: {fileID: 11500000, guid: 2a59dd1d640d751499edf26fb72040e8, type: 3}
+  m_Name: Block Data
   m_EditorClassIdentifier: 
-  _typeName:
-    _key: DefensiveSkill.TypeName
-  _descriptionFormat:
-    _key: DefensiveSkill.Format
+  _ailmentName:
+    _key: Ailment.AilmentID.Name
+  _textColorData: {fileID: 0}
+  _icon: {fileID: 0}

@@ -6,25 +6,22 @@ public class AttackSkill : Skill
 {
     [Header("Параметры атакующего умения:")]
     [SerializeField] private DamageTier _damageTier = null;
-    [SerializeField] private Damage[] _damageTypes = null;
+    [SerializeField] private Damage _damageType = null;
 
     public override void Execute(Character owner, Character opponent, SkillInstance skillInstance)
     {
         owner.Stats.ChangeEnergy(-_cost);
 
-        float finalDamage = 0;
+        if (IsAttackNullable(opponent)) { return; }
 
-        foreach (Damage damage in _damageTypes)
-        {
-            finalDamage += damage.CalculateDamage(owner,
-                                                  opponent,
-                                                  _damageTier);
-        }
-
-        opponent.Stats.ChangeHealth(-finalDamage);
+        float damage = _damageType.CalculateDamage(owner,
+                                                   opponent,
+                                                   _damageTier);
 
         _ownerEffects.ForEach(effect => effect.Apply(owner, skillInstance));
         _opponentEffects.ForEach(effect => effect.Apply(opponent, skillInstance));
+
+        opponent.Stats.ChangeHealth(-damage);
     }
 
     public override void Terminate(Character owner, Character opponent, SkillInstance skillInstance) { }
@@ -33,10 +30,13 @@ public class AttackSkill : Skill
     {
         StringBuilder builder = new StringBuilder();
 
-        if (_damageTypes.Length > 0)
+        if (_damageType != null)
         {
-            BuildDamageDescription(builder);
-            builder.AppendLine();
+            builder.AppendFormat(_skillData.DescriptionFormat,
+                     _damageType.GetDamageName(),
+                     _damageTier.TierName);
+
+            builder.AppendLine().AppendLine();
         }
 
         builder.Append(BuildEffectsDescription());
@@ -46,24 +46,26 @@ public class AttackSkill : Skill
         return builder.ToString();
     }
 
-    private void BuildDamageDescription(StringBuilder builder)
+    private bool IsAttackNullable(Character character)
     {
-        builder.Append(_damageTypes[0].GetDamageName());
-
-        for (int i = 1; i < _damageTypes.Length; i++)
+        foreach (var ailment in character.Effects.AilmentEffects)
         {
-            builder.Append(" / ")
-                   .Append(_damageTypes[i].GetDamageName());
+            if (ailment.Value.Effect.GetType() == typeof(AttackNullifier))
+            {
+                AttackNullifier nullifier = (AttackNullifier)ailment.Value.Effect;
+
+                if (nullifier.TryNullifyAttack(_damageType))
+                {
+                    // Вопроизвести анимацию/показать текст о блокировании атаки?
+                    ailment.Value.RemoveCharge();
+                    return true;
+                }
+
+                return false;
+            }
         }
 
-        string damageTypes = builder.ToString();
-        builder.Clear();
-
-        builder.AppendFormat(_skillData.DescriptionFormat,
-                             damageTypes,
-                             _damageTier.TierName);
-
-        builder.AppendLine();
+        return false;
     }
 
     protected override void OnValidate()
