@@ -166,6 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ed50a8035bf9a46a4451583118237c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthRateForDefence: 0.6
+  _healthRateForEnrage: 0.2
 --- !u!114 &6019955237486239111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,9 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5031f0f266e399440bd180f8b3ad9be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeSlotCount: 4
-  _passiveSlotCount: 3
-  _specialSlotCount: 1
+  _activeSkillsCount: 4
+  _passiveSkillsCount: 3
+  _specialSkillsCount: 1
 --- !u!1 &7282492576520255794
 GameObject:
   m_ObjectHideFlags: 0

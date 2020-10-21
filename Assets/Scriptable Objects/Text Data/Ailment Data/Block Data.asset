@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Block Data
   m_EditorClassIdentifier: 
   _ailmentName:
-    _key: Ailment.AilmentID.Name
-  _textColorData: {fileID: 0}
-  _icon: {fileID: 0}
+    _key: Ailment.Block.Name
+  _textColorData: {fileID: 11400000, guid: fe11339ca6e2e72468bcb1fc441b66f6, type: 2}
+  _icon: {fileID: 21300000, guid: e5fd6d8ed06428b4fb1a11dac467323b, type: 3}

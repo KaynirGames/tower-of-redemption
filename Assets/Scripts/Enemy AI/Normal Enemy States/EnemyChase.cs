@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using KaynirGames.AI;
 using UnityEngine;
-using KaynirGames.AI;
 
 public class EnemyChase : BaseState<EnemyStateKey>
 {
@@ -19,7 +17,6 @@ public class EnemyChase : BaseState<EnemyStateKey>
     public override void EnterState()
     {
         ChaseTarget();
-        Debug.Log("Chasing target!");
     }
 
     public override BaseState<EnemyStateKey> UpdateState()
@@ -32,10 +29,7 @@ public class EnemyChase : BaseState<EnemyStateKey>
         return null;
     }
 
-    public override void ExitState()
-    {
-        Debug.Log("Target is lost!");
-    }
+    public override void ExitState() { }
 
     private void ChaseTarget()
     {

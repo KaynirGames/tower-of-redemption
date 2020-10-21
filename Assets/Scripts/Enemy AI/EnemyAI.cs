@@ -2,16 +2,6 @@
 using KaynirGames.Movement;
 using UnityEngine;
 
-/// <summary>
-/// Ключи перехода в состояния.
-/// </summary>
-public enum EnemyStateKey
-{
-    PlayerInSight,
-    PlayerOffSight,
-    WaitComplete
-}
-
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float _sightRange = 5f;

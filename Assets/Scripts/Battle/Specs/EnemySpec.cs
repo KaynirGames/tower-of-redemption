@@ -15,7 +15,7 @@ public class EnemySpec : SpecBase
     [SerializeField] private float _viewDistance = 4f;
 
     public float EnergyRegen => _energyRegen;
-    public float EnergyRegenDelay => _energyRegen;
+    public float EnergyRegenDelay => _energyRegenDelay;
     public SpawnTable LootTable => _lootTable;
 
     public float MoveSpeed => _moveSpeed;

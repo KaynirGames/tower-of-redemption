@@ -18,7 +18,6 @@ public class EnemyPatrol : BaseState<EnemyStateKey>
 
     public override void EnterState()
     {
-        Debug.Log("Patrolling...");
         PatrolTo();
     }
 
@@ -31,10 +30,7 @@ public class EnemyPatrol : BaseState<EnemyStateKey>
         return null;
     }
 
-    public override void ExitState()
-    {
-        
-    }
+    public override void ExitState() { }
 
     private void PatrolTo()
     {

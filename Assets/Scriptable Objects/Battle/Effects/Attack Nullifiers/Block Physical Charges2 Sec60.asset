@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a7de272bda1f1741a793d4fd69afb81, type: 3}
-  m_Name: Name AttackType Stacks# Sec#
+  m_Name: Block Physical Charges2 Sec60
   m_EditorClassIdentifier: 
-  _duration: 0
+  _duration: 60
   _secondsAmountOverTick: 1
   _inflictionChance: 0
-  _descriptionOrder: 0
   _descriptionFormat:
-    _key: Effect.EffectType.Format
+    _key: Effect.Block.Format
   _tooltipFormat:
-    _key: Tooltip.EffectType.Format
+    _key: Tooltip.PhysicalBlock.Format
   _tooltipText:
-    _key: 
-  _chargesAmount: 1
-  _ailmentData: {fileID: 0}
-  _nullableDamageTypes: []
+    _key: Tooltip.4da1f535f3152bc4f9cb3217dd4076f4
+  _chargesAmount: 2
+  _ailmentData: {fileID: 11400000, guid: 73201c1a355a4c5498fa9cf7ca94973e, type: 2}
+  _nullableDamageTypes:
+  - {fileID: 11400000, guid: 5c8a5d3b7b464c14882c006366947081, type: 2}

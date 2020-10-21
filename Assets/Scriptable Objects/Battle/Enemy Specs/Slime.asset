@@ -29,7 +29,7 @@ MonoBehaviour:
   _baseSkills:
   - {fileID: 11400000, guid: 33736e5e5424f6149807acb20cc7bd1b, type: 2}
   - {fileID: 11400000, guid: be24b0eebab65a4429c21467dbd2c37c, type: 2}
-  _energyRegen: 1
+  _energyRegen: 2
   _energyRegenDelay: 1
   _lootTable: {fileID: 0}
   _moveSpeed: 2

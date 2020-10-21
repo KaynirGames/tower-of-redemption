@@ -5,44 +5,35 @@ using UnityEngine;
 public class EnemyWait : BaseState<EnemyStateKey>
 {
     private EnemyAI _enemyAI = null;
-    private float _waitingTime = 0; // Время бездействия.
-    private bool _isWaiting = false; // Нахождение в состоянии бездействия.
+
+    private WaitForSeconds _waitingTime;
+    private Coroutine _lastWaitRoutine;
 
     public EnemyWait(EnemyAI enemyAI, float waitingTime)
     {
         _enemyAI = enemyAI;
-        _waitingTime = waitingTime;
+
+        _waitingTime = new WaitForSeconds(waitingTime);
     }
 
     public override void EnterState()
     {
-        Debug.Log("Waiting for my next action.");
+        _lastWaitRoutine = _enemyAI.StartCoroutine(WaitRoutine());
     }
 
     public override BaseState<EnemyStateKey> UpdateState()
     {
-        if (!_enemyAI.IsMoving)
-        {
-            if (!_isWaiting)
-            {
-                _enemyAI.StartCoroutine(WaitForDelay(_waitingTime));
-            }
-        }
         return null;
     }
 
     public override void ExitState()
     {
-        _isWaiting = false;
+        _enemyAI.StopCoroutine(_lastWaitRoutine);
     }
 
-    /// <summary>
-    /// Корутина бездействия.
-    /// </summary>
-    private IEnumerator WaitForDelay(float delay)
+    private IEnumerator WaitRoutine()
     {
-        _isWaiting = true;
-        yield return new WaitForSeconds(delay);
+        yield return _waitingTime;
         _enemyAI.SetTransition(EnemyStateKey.WaitComplete);
     }
 }

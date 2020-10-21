@@ -58,7 +58,9 @@ public class BattleManager : MonoBehaviour
 
             PrepareBattlefield();
 
-            _battleUI.ShowBattleUI(_player, enemy);
+            _battleUI.ShowBattleUI(_player, _enemy);
+
+            _enemy.PrepareForBattle();
 
             return true;
         }

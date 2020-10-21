@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74572b7c6dc403244916ab8eb505e612, type: 3}
-  m_Name: STR.SmallUp
+  m_Name: STR Small Up Sec10
   m_EditorClassIdentifier: 
   _duration: 10
   _secondsAmountOverTick: 1
   _inflictionChance: 0
-  _descriptionOrder: 1
   _descriptionFormat:
     _key: Effect.SmallStatUp.Format
   _tooltipFormat:

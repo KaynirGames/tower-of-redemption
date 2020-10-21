@@ -10,8 +10,8 @@ public class EnemyCharacter : Character
 
     public EnemySpec EnemySpec => _enemySpec;
 
-    private EnemyAI _enemyAI = null; // Основной ИИ противника.
-    private EnemyBattleAI _enemyBattleAI = null; // Боевой ИИ противника.
+    private EnemyAI _enemyAI = null;
+    private EnemyBattleAI _enemyBattleAI = null;
 
     protected override void Awake()
     {
@@ -28,17 +28,26 @@ public class EnemyCharacter : Character
         Stats.SetCharacterStats(_enemySpec);
         SkillBook.SetBaseSpecSkills(_enemySpec);
 
+        _enemyBattleAI.PrepareBattleAI(SkillBook);
+
         EnemyManager.Instance.RegisterEnemy(this);
     }
 
     public override void PrepareForBattle()
     {
-        _enemyAI.enabled = false;
-        _enemyBattleAI.enabled = true;
+        ToggleBattleAI(true);
+    }
+
+    private void ToggleBattleAI(bool enable)
+    {
+        _enemyBattleAI.enabled = enable;
+        _enemyBattleAI.ToggleEnergyRegen(enable);
     }
 
     protected override void Die()
     {
+        ToggleBattleAI(false);
+
         SkillBook.TogglePassiveBattleEffects(false);
         Effects.DisableAllEffects();
 
@@ -59,7 +68,7 @@ public class EnemyCharacter : Character
         {
             bool inBattle = OnBattleTrigger.Invoke(this, false);
 
-            if (inBattle) { PrepareForBattle(); }
+            if (inBattle) { _enemyAI.enabled = false; }
         }
     }
 }

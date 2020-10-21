@@ -137,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effectIcon: {fileID: 1693570263152904860}
   _durationIcon: {fileID: 6372663903106949324}
-  _stacksText: {fileID: 7113375013424350881}
+  _chargesText: {fileID: 7113375013424350881}
 --- !u!1 &8136190358009142302
 GameObject:
   m_ObjectHideFlags: 0

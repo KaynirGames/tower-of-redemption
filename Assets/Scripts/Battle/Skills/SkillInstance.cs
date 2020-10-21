@@ -20,9 +20,9 @@ public class SkillInstance
 
     public Skill Skill => _skill;
 
-    private string _cachedDescription;
+    public bool IsCooldown { get; private set; }
 
-    private bool _isCooldown;
+    private string _cachedDescription;
     private float _cooldownTimer;
 
     public SkillInstance(Skill skill)
@@ -60,7 +60,7 @@ public class SkillInstance
 
     private bool ExecuteActiveSkill(Character owner)
     {
-        if (_isCooldown) { return false; }
+        if (IsCooldown) { return false; }
 
         if (!owner.Stats.IsEnoughEnergy(_skill.Cost))
         {
@@ -84,7 +84,7 @@ public class SkillInstance
     private IEnumerator CooldownRoutine()
     {
         OnCooldownToggle.Invoke(true);
-        _isCooldown = true;
+        IsCooldown = true;
 
         _cooldownTimer = _skill.Cooldown;
 
@@ -97,6 +97,6 @@ public class SkillInstance
         }
 
         OnCooldownToggle.Invoke(false);
-        _isCooldown = false;
+        IsCooldown = false;
     }
 }
