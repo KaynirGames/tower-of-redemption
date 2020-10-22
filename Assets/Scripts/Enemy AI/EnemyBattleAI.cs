@@ -22,7 +22,7 @@ public class EnemyBattleAI : MonoBehaviour
     private float _energyRegenDelay;
 
     private Coroutine _lastEnergyRegenRoutine;
-    private WaitForSeconds _energyRegenWaitForSeconds;
+    private WaitForSeconds _waitForEnergyRegenDelay;
 
     private void Awake()
     {
@@ -53,18 +53,16 @@ public class EnemyBattleAI : MonoBehaviour
         }
     }
 
-    public void PrepareBattleAI(SkillBook skillBook)
+    public void InitializeBattleAI(SkillBook skillBook)
     {
         Health = _enemy.Stats.Health;
         Energy = _enemy.Stats.Energy;
 
         _energyRegen = _enemy.EnemySpec.EnergyRegen;
         _energyRegenDelay = _enemy.EnemySpec.EnergyRegenDelay;
-
-        _energyRegenWaitForSeconds = new WaitForSeconds(_energyRegenDelay);
+        _waitForEnergyRegenDelay = new WaitForSeconds(_energyRegenDelay);
 
         CollectSkills(skillBook);
-
         CreateAvailableStates();
     }
 
@@ -86,11 +84,6 @@ public class EnemyBattleAI : MonoBehaviour
     public void SetTransition(EnemyBattleStateKey battleStateKey)
     {
         _stateMachine.TransitionNext(battleStateKey);
-    }
-
-    public void ExecuteSkill(SkillInstance skillInstance)
-    {
-        skillInstance.TryExecute(_enemy);
     }
 
     public SkillInstance GetSuitableSkill(Dictionary<SkillInstance, int> skillWeights)
@@ -154,7 +147,7 @@ public class EnemyBattleAI : MonoBehaviour
         {
             Energy.ChangeResource(_energyRegen);
 
-            yield return _energyRegenWaitForSeconds;
+            yield return _waitForEnergyRegenDelay;
         }
     }
 

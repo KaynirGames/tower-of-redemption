@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
@@ -13,6 +12,10 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private BattleUI _battleUI = null;
     [SerializeField] private EnergyGenerator _energyGenerator = null;
     [SerializeField] private CameraController _cameraController = null;
+    [Header("Настройки перехода в бой:")]
+    [SerializeField] private Animator _battleTransitionAnimator = null;
+    [SerializeField] private float _timeForBattleTransition = 1f;
+    [SerializeField] private float _timeForEnemyActivation = 2f;
     [Header("Бонусная энергия при боевом преимуществе:")]
     [SerializeField] private float _playerEnergyBonus = 0.25f;
     [SerializeField] private float _enemyEnergyBonus = 1f;
@@ -24,6 +27,9 @@ public class BattleManager : MonoBehaviour
 
     private Vector3 _lastPlayerPosition;
     private Vector3 _lastEnemyPosition;
+
+    private WaitForSecondsRealtime _waitForBattleTransition;
+    private WaitForSecondsRealtime _waitForEnemyActivation;
 
     private void Awake()
     {
@@ -40,8 +46,12 @@ public class BattleManager : MonoBehaviour
         PlayerAttackHit.OnBattleTrigger += StartBattle;
 
         EnemyCharacter.OnBattleEnd += EndBattle;
+    }
 
-        BattleTester.OnBattleTrigger += StartBattle;
+    private void Start()
+    {
+        _waitForBattleTransition = new WaitForSecondsRealtime(_timeForBattleTransition);
+        _waitForEnemyActivation = new WaitForSecondsRealtime(_timeForEnemyActivation);
     }
 
     private bool StartBattle(EnemyCharacter enemy, bool isPlayerAdvantage)
@@ -56,11 +66,7 @@ public class BattleManager : MonoBehaviour
 
             HandleAdvantageBonus(isPlayerAdvantage);
 
-            PrepareBattlefield();
-
-            _battleUI.ShowBattleUI(_player, _enemy);
-
-            _enemy.PrepareForBattle();
+            StartCoroutine(OpenBattleRoutine());
 
             return true;
         }
@@ -74,7 +80,6 @@ public class BattleManager : MonoBehaviour
 
         _player.transform.position = GetBattlePosition(_battleUI.PlayerPlacement);
         _enemy.transform.position = GetBattlePosition(_battleUI.EnemyPlacement);
-
         _player.PrepareForBattle();
     }
 
@@ -85,7 +90,7 @@ public class BattleManager : MonoBehaviour
 
         if (isPlayerDeath)
         {
-            // Переход на Game Over сцену.
+            // Game Over scene.
         }
         else
         {
@@ -114,6 +119,26 @@ public class BattleManager : MonoBehaviour
         position.z = 0;
 
         return position;
+    }
+
+    private IEnumerator OpenBattleRoutine()
+    {
+        GameMaster.Instance.TogglePause(true);
+
+        _battleTransitionAnimator.enabled = true;
+
+        yield return _waitForBattleTransition;
+
+        PrepareBattlefield();
+        _battleUI.ShowBattleUI(_player, _enemy);
+        _battleTransitionAnimator.SetTrigger("End");
+
+        GameMaster.Instance.TogglePause(false);
+
+        yield return _waitForEnemyActivation;
+
+        _enemy.PrepareForBattle();
+        _battleTransitionAnimator.enabled = false;
     }
 
     private IEnumerator CloseBattleRoutine()

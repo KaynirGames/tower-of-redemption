@@ -28,7 +28,7 @@ public class EnemyCharacter : Character
         Stats.SetCharacterStats(_enemySpec);
         SkillBook.SetBaseSpecSkills(_enemySpec);
 
-        _enemyBattleAI.PrepareBattleAI(SkillBook);
+        _enemyBattleAI.InitializeBattleAI(SkillBook);
 
         EnemyManager.Instance.RegisterEnemy(this);
     }
