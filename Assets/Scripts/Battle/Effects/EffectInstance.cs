@@ -24,7 +24,7 @@ public class EffectInstance
     private int _secondsAmountOverTick;
     private int _chargesAmount = -1;
 
-    private WaitForSecondsRealtime _waitForNextTick;
+    private WaitForSeconds _waitForNextTick;
     private Coroutine _lastDurationRoutine;
 
     public EffectInstance(Effect effect, Character target, object effectSource)
@@ -42,7 +42,7 @@ public class EffectInstance
         {
             _durationTimer = effect.Duration;
             _secondsAmountOverTick = effect.SecondsAmountOverTick;
-            _waitForNextTick = new WaitForSecondsRealtime(_secondsAmountOverTick);
+            _waitForNextTick = new WaitForSeconds(_secondsAmountOverTick);
         }
     }
 

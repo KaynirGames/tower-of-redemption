@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -56,46 +55,48 @@ public class SkillSlotUI : MonoBehaviour
 
     private void FillSlotUI(SkillInstance skill)
     {
-        _skill = skill;
-        _skillIcon.sprite = _skill.Skill.Icon;
-        _skillIcon.enabled = true;
-        _useButton.interactable = true;
-        _useButton.targetGraphic.raycastTarget = true;
+        _skillIcon.sprite = skill.Skill.Icon;
+
+        ToggleSlotDisplay(true);
 
         if (_displayCooldown)
         {
-            _skillCooldown = _skill.Skill.Cooldown;
-            _skillCooldownMask.sprite = _skill.Skill.Icon;
+            _skillCooldown = skill.Skill.Cooldown;
+            _skillCooldownMask.sprite = skill.Skill.Icon;
 
-            _skill.OnCooldownToggle += ToggleCooldownDisplay;
-            _skill.OnCooldownTick += UpdateCooldownDisplay;
+            skill.OnCooldownToggle += ToggleCooldownDisplay;
+            skill.OnCooldownTick += UpdateCooldownDisplay;
         }
+
+        _skill = skill;
     }
 
     private void ClearSlotUI()
     {
-        _skillIcon.sprite = null;
-        _skillIcon.enabled = false;
-        _useButton.interactable = false;
-        _useButton.targetGraphic.raycastTarget = false;
+        ToggleSlotDisplay(false);
 
-        if (_displayCooldown) 
+        if (_displayCooldown)
         {
-            _skillCooldownMask.sprite = null;
-
             if (_skill != null)
             {
                 _skill.OnCooldownToggle -= ToggleCooldownDisplay;
                 _skill.OnCooldownTick -= UpdateCooldownDisplay;
             }
+
+            ToggleCooldownDisplay(false);
         }
 
         _skill = null;
     }
 
+    private void ToggleSlotDisplay(bool enable)
+    {
+        _skillIcon.enabled = enable;
+        _useButton.interactable = enable;
+    }
+
     private void ToggleCooldownDisplay(bool enable)
     {
-        _useButton.interactable = !enable;
         _skillCooldownMask.enabled = enable;
         _skillCooldownMask.fillAmount = enable ? 1 : 0;
     }

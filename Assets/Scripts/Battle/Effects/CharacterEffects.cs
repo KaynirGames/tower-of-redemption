@@ -32,15 +32,9 @@ public class CharacterEffects : MonoBehaviour
         OnDisplayEffectCall.Invoke(instance);
     }
 
-    public void DisableAllEffects()
+    public void DisableBattleEffects()
     {
-        for (int i = StatBonuses.Count - 1; i >= 0; i--)
-        {
-            StatBonuses[i].RemoveEffect();
-        }
-
         DisableAilments();
-
         DisableBuffs(true);
         DisableBuffs(false);
     }

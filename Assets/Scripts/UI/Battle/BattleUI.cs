@@ -41,6 +41,8 @@ public class BattleUI : MonoBehaviour
 
     public void CloseBattleUI()
     {
+        _enemySkillDisplay.ClearAllSlots();
+
         ToggleBattleWindow(false);
         _playerUI.TogglePlayerHUD(true);
     }

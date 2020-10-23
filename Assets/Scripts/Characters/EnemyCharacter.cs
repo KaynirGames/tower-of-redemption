@@ -38,6 +38,15 @@ public class EnemyCharacter : Character
         ToggleBattleAI(true);
     }
 
+    public override void ExitBattle(Vector3 lastPosition)
+    {
+        gameObject.SetActive(false);
+        base.ExitBattle(lastPosition);
+
+        // Заспавнить лут.
+        // Уничтожить объект.
+    }
+
     private void ToggleBattleAI(bool enable)
     {
         _enemyBattleAI.enabled = enable;
@@ -46,20 +55,8 @@ public class EnemyCharacter : Character
 
     protected override void Die()
     {
-        ToggleBattleAI(false);
-
-        SkillBook.TogglePassiveBattleEffects(false);
-        Effects.DisableAllEffects();
-
-        gameObject.SetActive(false);
-
-        OnBattleEnd.Invoke(false);
-
-        //Destroy(gameObject);
-
-        // Выйти из боевой системы.
-        // Заспавнить лут.
-        // Уничтожить объект.
+        // Death Animation (unscaled time)
+        OnBattleEnd.Invoke(true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

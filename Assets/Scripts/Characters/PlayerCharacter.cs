@@ -83,7 +83,8 @@ public class PlayerCharacter : Character
 
     protected override void Die()
     {
-        OnBattleEnd.Invoke(true);
+        // Death Animation (unscaled time)
+        OnBattleEnd.Invoke(false);
     }
 
     private IEnumerator AttackRoutine(bool allowMovement)

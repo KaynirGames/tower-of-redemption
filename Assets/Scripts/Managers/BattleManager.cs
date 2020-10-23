@@ -7,15 +7,17 @@ public class BattleManager : MonoBehaviour
 
     public delegate bool OnBattleTrigger(EnemyCharacter enemy, bool isPlayerAdvantage);
 
-    public delegate void OnBattleEnd(bool isPlayerDeath);
+    public delegate void OnBattleEnd(bool isVictory);
 
     [SerializeField] private BattleUI _battleUI = null;
     [SerializeField] private EnergyGenerator _energyGenerator = null;
     [SerializeField] private CameraController _cameraController = null;
     [Header("Настройки перехода в бой:")]
-    [SerializeField] private Animator _battleTransitionAnimator = null;
+    [SerializeField] private Animator _battleEnterTransition = null;
+    [SerializeField] private Animator _battleOutTransition = null;
     [SerializeField] private float _timeForBattleTransition = 1f;
-    [SerializeField] private float _timeForEnemyActivation = 2f;
+    [SerializeField] private float _timeForDeathAnimation = 1f;
+    [SerializeField] private float _timeBeforeEnemyActivation = 2f;
     [Header("Бонусная энергия при боевом преимуществе:")]
     [SerializeField] private float _playerEnergyBonus = 0.25f;
     [SerializeField] private float _enemyEnergyBonus = 1f;
@@ -29,7 +31,8 @@ public class BattleManager : MonoBehaviour
     private Vector3 _lastEnemyPosition;
 
     private WaitForSecondsRealtime _waitForBattleTransition;
-    private WaitForSecondsRealtime _waitForEnemyActivation;
+    private WaitForSecondsRealtime _waitForDeathAnimation;
+    private WaitForSecondsRealtime _waitBeforeEnemyActivation;
 
     private void Awake()
     {
@@ -46,12 +49,14 @@ public class BattleManager : MonoBehaviour
         PlayerAttackHit.OnBattleTrigger += StartBattle;
 
         EnemyCharacter.OnBattleEnd += EndBattle;
+        PlayerCharacter.OnBattleEnd += EndBattle;
     }
 
     private void Start()
     {
         _waitForBattleTransition = new WaitForSecondsRealtime(_timeForBattleTransition);
-        _waitForEnemyActivation = new WaitForSecondsRealtime(_timeForEnemyActivation);
+        _waitForDeathAnimation = new WaitForSecondsRealtime(_timeForDeathAnimation);
+        _waitBeforeEnemyActivation = new WaitForSecondsRealtime(_timeBeforeEnemyActivation);
     }
 
     private bool StartBattle(EnemyCharacter enemy, bool isPlayerAdvantage)
@@ -65,8 +70,7 @@ public class BattleManager : MonoBehaviour
             _player.CurrentOpponent = _enemy;
 
             HandleAdvantageBonus(isPlayerAdvantage);
-
-            StartCoroutine(OpenBattleRoutine());
+            StartCoroutine(BattleStartRoutine());
 
             return true;
         }
@@ -83,18 +87,18 @@ public class BattleManager : MonoBehaviour
         _player.PrepareForBattle();
     }
 
-    private void EndBattle(bool isPlayerDeath)
+    private void EndBattle(bool isVictory)
     {
         _player.CurrentOpponent = null;
         _enemy.CurrentOpponent = null;
 
-        if (isPlayerDeath)
+        if (isVictory)
         {
-            // Game Over scene.
+            StartCoroutine(BattleVictoryRoutine());
         }
         else
         {
-            StartCoroutine(CloseBattleRoutine());
+            StartCoroutine(BattleDefeatRoutine());
         }
     }
 
@@ -121,32 +125,64 @@ public class BattleManager : MonoBehaviour
         return position;
     }
 
-    private IEnumerator OpenBattleRoutine()
+    private IEnumerator BattleStartRoutine()
     {
         GameMaster.Instance.TogglePause(true);
 
-        _battleTransitionAnimator.enabled = true;
+        _battleEnterTransition.Rebind();
+        _battleEnterTransition.enabled = true;
 
         yield return _waitForBattleTransition;
 
         PrepareBattlefield();
         _battleUI.ShowBattleUI(_player, _enemy);
-        _battleTransitionAnimator.SetTrigger("End");
+
+        _battleEnterTransition.SetTrigger("End");
 
         GameMaster.Instance.TogglePause(false);
 
-        yield return _waitForEnemyActivation;
+        yield return _waitBeforeEnemyActivation;
 
         _enemy.PrepareForBattle();
-        _battleTransitionAnimator.enabled = false;
+        _battleEnterTransition.enabled = false;
     }
 
-    private IEnumerator CloseBattleRoutine()
+    private IEnumerator BattleVictoryRoutine()
     {
-        // Анимация выхода из боя.
+        GameMaster.Instance.TogglePause(true);
+
+        yield return _waitForDeathAnimation;
+
+        _battleOutTransition.Rebind();
+        _battleOutTransition.enabled = true;
+
+        yield return _waitForBattleTransition;
+
+        _enemy.ExitBattle(_lastEnemyPosition);
+        _player.ExitBattle(_lastPlayerPosition);
         _battleUI.CloseBattleUI();
+
+        _battleOutTransition.SetTrigger("Victory");
+
+        GameMaster.Instance.TogglePause(false);
+
+        yield return _waitBeforeEnemyActivation;
+
+        _battleOutTransition.enabled = false;
         _enemy = null;
-        yield return null;
-        _player.transform.position = _lastPlayerPosition;
+    }
+
+    private IEnumerator BattleDefeatRoutine()
+    {
+        GameMaster.Instance.TogglePause(true);
+
+        yield return _waitForDeathAnimation;
+
+        _battleOutTransition.Rebind();
+        _battleOutTransition.enabled = true;
+
+        yield return _waitForBattleTransition;
+        
+        _battleOutTransition.SetTrigger("Defeat");
     }
 }
