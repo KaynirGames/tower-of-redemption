@@ -18,12 +18,16 @@ public class CharacterStats : MonoBehaviour
     private Dictionary<StatType, Stat> _statDictionary;
     private Dictionary<ElementType, float> _elementEfficacyDictionary;
 
+    private FloatingTextPopup _damageTextPopup;
+
     public void SetCharacterStats(SpecBase spec)
     {
         CreateStats(spec);
 
         _statDictionary = CreateStatDictionary();
         _elementEfficacyDictionary = CreateElementEfficacyDictionary(spec);
+
+        _damageTextPopup = BattleManager.Instance.DamageTextPopup;
     }
 
     public Stat GetStat(StatType statType)
@@ -39,6 +43,11 @@ public class CharacterStats : MonoBehaviour
     public void ChangeHealth(float healthAmount)
     {
         Health.ChangeResource(healthAmount);
+
+        if (healthAmount < 0)
+        {
+            ShowDamageTextPopup(healthAmount);
+        }
 
         if (Health.CurrentValue <= 0)
         {
@@ -117,5 +126,16 @@ public class CharacterStats : MonoBehaviour
                 Energy.FixCurrentValue(true);
                 break;
         }
+    }
+
+    private void ShowDamageTextPopup(float damageTaken)
+    {
+        float fontSize = damageTaken <= -10f
+            ? _damageTextPopup.FontSize - Mathf.Round(damageTaken / 10f)
+            : _damageTextPopup.FontSize;
+
+        _damageTextPopup.Create(damageTaken.ToString(),
+                                transform.position,
+                                fontSize);
     }
 }

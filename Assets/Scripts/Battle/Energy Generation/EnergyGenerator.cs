@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using KaynirGames.Tools;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class EnergyGenerator : MonoBehaviour
 {
     [SerializeField] private GemstoneMatrix _gemMatrix = null;
     [SerializeField] private GemstoneMatrixUI _gemMatrixUI = null;
+    [SerializeField] private FloatingTextPopup _energyGainTextPopup = null;
     [Header("Параметры матрицы камней:")]
     [SerializeField] private Vector2Int _gemMatrixSize = new Vector2Int(4, 8);
     [SerializeField] private int _minGemstonesForConsume = 2;
@@ -21,7 +23,6 @@ public class EnergyGenerator : MonoBehaviour
     private void Start()
     {
         _waitForMatrixUpdate = new WaitForSeconds(_timeForMatrixUpdate);
-
         SetupGenerator();
     }
 
@@ -29,7 +30,6 @@ public class EnergyGenerator : MonoBehaviour
     {
         _gemMatrix.CreateMatrix(_gemMatrixSize.x, _gemMatrixSize.y);
         _gemMatrixUI.CreateMatrixUI(_gemMatrixSize.x, _gemMatrixSize.y, _gemMatrix);
-
         _gemMatrixUI.UpdateMatrixUI();
     }
 
@@ -65,6 +65,8 @@ public class EnergyGenerator : MonoBehaviour
             UpdateEmptySlotsInColumns();
 
             PlayerManager.Instance.Player.Stats.ChangeEnergy(energyGain);
+
+            ShowEnergyTextPopup(energyGain);
         }
 
         ClearGemSelection();
@@ -116,5 +118,16 @@ public class EnergyGenerator : MonoBehaviour
         yield return _waitForMatrixUpdate;
 
         _gemMatrixUI.UpdateMatrixColumnUI(column);
+    }
+
+    private void ShowEnergyTextPopup(float energyGain)
+    {
+        float fontSize = energyGain > 10f
+            ? _energyGainTextPopup.FontSize + Mathf.Round(energyGain / 10f)
+            : _energyGainTextPopup.FontSize;
+
+        _energyGainTextPopup.Create(energyGain.ToString("+0"),
+                                    KaynirTools.GetPointerWorldPosition(),
+                                    fontSize);
     }
 }

@@ -78,6 +78,7 @@ public class GemstoneUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandl
         _gemstoneInstance = null;
         _gemstoneIcon.sprite = null;
         _gemstoneIcon.enabled = false;
+
         ToggleSelectionAnimation(false);
     }
 

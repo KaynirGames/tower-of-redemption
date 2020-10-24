@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 3775270695086437065}
   - component: {fileID: 3775270695086437066}
   m_Layer: 0
-  m_Name: FloatingDamagePopup
+  m_Name: FloatingEnergyPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,11 +214,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textMesh: {fileID: 3775270694045679504}
-  _textColor: {r: 0.68235296, g: 0.23137257, b: 0.19215688, a: 1}
+  _textColor: {r: 0.44705886, g: 0.6156863, b: 0.2627451, a: 1}
   _fontSize: 8
-  _positionOffset: {x: 0, y: 1}
-  _minHorizontalMove: -2
-  _maxHorizontalMove: 2
+  _positionOffset: {x: 0.5, y: 0.5}
   _popupVerticalSpeed: 2
   _popupScaleFactor: 1
   _timeBeforeFading: 0.5

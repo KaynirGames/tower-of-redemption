@@ -47,6 +47,6 @@ TagManager:
   - name: Foreground
     uniqueID: 2216587053
     locked: 0
-  - name: UI Particles
+  - name: UI Particles and Text
     uniqueID: 4124037377
     locked: 0

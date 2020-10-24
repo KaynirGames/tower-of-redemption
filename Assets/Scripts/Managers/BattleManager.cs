@@ -11,7 +11,7 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] private BattleUI _battleUI = null;
     [SerializeField] private EnergyGenerator _energyGenerator = null;
-    [SerializeField] private CameraController _cameraController = null;
+    [SerializeField] private FloatingTextPopup _damageTextPopup = null;
     [Header("Настройки перехода в бой:")]
     [SerializeField] private Animator _battleEnterTransition = null;
     [SerializeField] private Animator _battleOutTransition = null;
@@ -23,6 +23,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private float _enemyEnergyBonus = 1f;
 
     public EnergyGenerator EnergyGenerator => _energyGenerator;
+    public FloatingTextPopup DamageTextPopup => _damageTextPopup;
 
     private PlayerCharacter _player;
     private EnemyCharacter _enemy;
@@ -82,8 +83,8 @@ public class BattleManager : MonoBehaviour
         _lastPlayerPosition = _player.transform.position;
         _lastEnemyPosition = _enemy.transform.position;
 
-        _player.transform.position = GetBattlePosition(_battleUI.PlayerPlacement);
-        _enemy.transform.position = GetBattlePosition(_battleUI.EnemyPlacement);
+        _player.transform.position = _battleUI.PlayerPlacement.position;
+        _enemy.transform.position = _battleUI.EnemyPlacement.position;
         _player.PrepareForBattle();
     }
 
@@ -114,15 +115,6 @@ public class BattleManager : MonoBehaviour
 
         stats.ChangeEnergy(stats.Energy.MaxValue.GetFinalValue()
                            * energyBonus);
-    }
-
-    private Vector3 GetBattlePosition(Transform battleUIPlacement)
-    {
-        Vector3 position = _cameraController.CurrentCamera
-                                            .ScreenToWorldPoint(battleUIPlacement.position);
-        position.z = 0;
-
-        return position;
     }
 
     private IEnumerator BattleStartRoutine()
