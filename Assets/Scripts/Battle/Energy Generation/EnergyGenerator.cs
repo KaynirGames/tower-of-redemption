@@ -4,61 +4,62 @@ using UnityEngine;
 
 public class EnergyGenerator : MonoBehaviour
 {
-    [SerializeField] private GemStoneMatrix _gemMatrix = new GemStoneMatrix();
-    [SerializeField] private GemStoneMatrixUI _gemMatrixUI = null;
+    [SerializeField] private GemstoneMatrix _gemMatrix = null;
+    [SerializeField] private GemstoneMatrixUI _gemMatrixUI = null;
     [Header("Параметры матрицы камней:")]
     [SerializeField] private Vector2Int _gemMatrixSize = new Vector2Int(4, 8);
-    [SerializeField] private int _minGemConsumeAmount = 2;
-    [SerializeField] private float _matrixUpdateUIDelay = 0.2f;
+    [SerializeField] private int _minGemstonesForConsume = 2;
+    [SerializeField] private float _timeForMatrixUpdate = 0.25f;
 
     public bool IsSelectingGems { get; set; }
 
-    private List<GemStoneInstance> _matchingGems = new List<GemStoneInstance>();
+    private List<GemstoneInstance> _matchingGemstones = new List<GemstoneInstance>();
     private List<int> _changedColumns = new List<int>();
 
-    private WaitForSeconds _matrixUpdateWaitForSeconds;
+    private WaitForSeconds _waitForMatrixUpdate;
 
-    private void Awake()
+    private void Start()
     {
+        _waitForMatrixUpdate = new WaitForSeconds(_timeForMatrixUpdate);
+
         SetupGenerator();
-        _matrixUpdateWaitForSeconds = new WaitForSeconds(_matrixUpdateUIDelay);
     }
 
     public void SetupGenerator()
     {
-        _gemMatrix.CreateInitialMatrix(_gemMatrixSize.x, _gemMatrixSize.y);
-        _gemMatrixUI.RegisterGemStoneMatrix(_gemMatrix);
-        _gemMatrix.UpdateMatrixDisplay();
+        _gemMatrix.CreateMatrix(_gemMatrixSize.x, _gemMatrixSize.y);
+        _gemMatrixUI.CreateMatrixUI(_gemMatrixSize.x, _gemMatrixSize.y, _gemMatrix);
+
+        _gemMatrixUI.UpdateMatrixUI();
     }
 
-    public bool TrySelectGem(GemStoneInstance instance)
+    public bool TrySelectGemstone(GemstoneInstance gemstone)
     {
-        if (_matchingGems.Count > 0)
+        if (_matchingGemstones.Count > 0)
         {
-            if (_matchingGems.Contains(instance) || !_matchingGems[0].TryMatch(instance))
+            if (_matchingGemstones.Contains(gemstone) || !_matchingGemstones[0].CheckMatch(gemstone.Gemstone))
             {
                 ClearGemSelection();
                 return false;
             }
         }
 
-        _matchingGems.Add(instance);
+        _matchingGemstones.Add(gemstone);
 
         return true;
     }
 
-    public void ConsumeMatchingGems()
+    public void ConsumeMatchingGemstones()
     {
-        if (_matchingGems.Count >= _minGemConsumeAmount)
+        if (_matchingGemstones.Count >= _minGemstonesForConsume)
         {
-            float energyGain = 0f;
             _changedColumns.Clear();
+            float energyGain = 0f;
 
-            foreach (GemStoneInstance gem in _matchingGems)
+            foreach (GemstoneInstance gem in _matchingGemstones)
             {
-                energyGain += gem.GetStone.EnergyGainValue;
-
-                HandleGemStoneDisposal(gem);
+                energyGain += gem.Gemstone.EnergyGainValue;
+                HandleGemstoneDisposal(gem);
             }
 
             UpdateEmptySlotsInColumns();
@@ -71,20 +72,25 @@ public class EnergyGenerator : MonoBehaviour
 
     public void ClearGemSelection()
     {
-        _matchingGems.Clear();
-        IsSelectingGems = false;
-    }
-
-    private void HandleGemStoneDisposal(GemStoneInstance instance)
-    {
-        _gemMatrix.UpdateMatrixSlot(instance.PositionX, instance.PositionY, null, true);
-
-        if (!_changedColumns.Contains(instance.PositionY))
+        foreach (GemstoneInstance gem in _matchingGemstones)
         {
-            _changedColumns.Add(instance.PositionY);
+            _gemMatrixUI.ResetSelection(gem.X, gem.Y);
         }
 
-        _gemMatrix.GemPooler.ReturnToPooler(instance);
+        _matchingGemstones.Clear();
+    }
+
+    private void HandleGemstoneDisposal(GemstoneInstance gemstone)
+    {
+        _gemMatrix.UpdateMatrixSlot(gemstone.X, gemstone.Y, null);
+        _gemMatrixUI.UpdateMatrixSlotUI(gemstone.X, gemstone.Y, null);
+
+        if (!_changedColumns.Contains(gemstone.Y))
+        {
+            _changedColumns.Add(gemstone.Y);
+        }
+
+        _gemMatrix.GemstonePooler.ReturnToPooler(gemstone);
     }
 
     private void UpdateEmptySlotsInColumns()
@@ -92,7 +98,6 @@ public class EnergyGenerator : MonoBehaviour
         foreach (int col in _changedColumns)
         {
             _gemMatrix.RelocateEmptySlotsInColumn(col);
-
             StartCoroutine(PopulateEmptySlotsInColumn(col));
         }
     }
@@ -103,14 +108,13 @@ public class EnergyGenerator : MonoBehaviour
         {
             if (_gemMatrix.CheckForEmptySlot(x, column))
             {
-                GemStoneInstance instance = _gemMatrix.CreateGemStoneInstance(x, column);
-
-                _gemMatrix.UpdateMatrixSlot(x, column, instance);
+                GemstoneInstance gemstone = _gemMatrix.CreateGemstoneInstance(x, column);
+                _gemMatrix.UpdateMatrixSlot(x, column, gemstone);
             }
         }
 
-        yield return _matrixUpdateWaitForSeconds;
+        yield return _waitForMatrixUpdate;
 
-        _gemMatrix.UpdateMatrixColumnDisplay(column);
+        _gemMatrixUI.UpdateMatrixColumnUI(column);
     }
 }

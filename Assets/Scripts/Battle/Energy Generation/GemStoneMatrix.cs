@@ -1,71 +1,55 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class GemStoneMatrix
+public class GemstoneMatrix
 {
-    public delegate void OnMatrixSlotUpdate(int posX, int posY, GemStoneInstance gemStone);
+    [SerializeField] private SpawnTable _gemstoneSpawnTable = null;
+    [SerializeField] private GemstonePooler _gemstonePooler = null;
 
-    public event OnMatrixSlotUpdate OnSlotUpdate = delegate { };
+    public GemstonePooler GemstonePooler => _gemstonePooler;
 
-    [SerializeField] private SpawnTable _gemSpawnTable = null;
-    [SerializeField] private GemStonePooler _gemPooler = null;
+    private GemstoneInstance[,] _matrix;
 
-    public int SizeX { get; private set; }
-    public int SizeY { get; private set; }
-
-    public GemStonePooler GemPooler => _gemPooler;
-
-    private GemStoneInstance[,] _matrix;
-
-    public void CreateInitialMatrix(int sizeX, int sizeY)
+    public void CreateMatrix(int sizeX, int sizeY)
     {
-        _matrix = new GemStoneInstance[sizeX, sizeY];
-        _gemPooler.CreatePooler();
+        _matrix = new GemstoneInstance[sizeX, sizeY];
 
-        SizeX = sizeX;
-        SizeY = sizeY;
+        _gemstonePooler.CreatePooler();
 
         for (int x = 0; x < sizeX; x++)
         {
             for (int y = 0; y < sizeY; y++)
             {
-                GemStoneInstance newGem = CreateGemStoneInstance(x, y);
+                GemstoneInstance newGem = CreateGemstoneInstance(x, y);
 
                 _matrix[x, y] = newGem;
             }
         }
     }
 
-    public GemStoneInstance CreateGemStoneInstance(int posX, int posY)
+    public GemstoneInstance CreateGemstoneInstance(int x, int y)
     {
-        GemStone random = (GemStone)_gemSpawnTable.ChooseRandom();
-        GemStoneInstance gemStone = _gemPooler.GetFromPooler(random);
+        Gemstone random = (Gemstone)_gemstoneSpawnTable.ChooseRandom();
+        GemstoneInstance gemStone = _gemstonePooler.GetFromPooler(random);
 
-        gemStone.SetPosition(posX, posY);
+        gemStone.SetPosition(x, y);
 
         return gemStone;
     }
 
-    public void UpdateMatrixSlot(int posX, int posY, GemStoneInstance instance)
+    public void UpdateMatrixSlot(int x, int y, GemstoneInstance gemstone)
     {
-        _matrix[posX, posY] = instance;
+        _matrix[x, y] = gemstone;
     }
 
-    public void UpdateMatrixSlot(int posX, int posY, GemStoneInstance instance, bool updateDisplay)
+    public bool CheckForEmptySlot(int x, int y)
     {
-        UpdateMatrixSlot(posX, posY, instance);
-
-        if (updateDisplay) { UpdateMatrixSlotDisplay(posX, posY); }
-    }
-
-    public bool CheckForEmptySlot(int posX, int posY)
-    {
-        return _matrix[posX, posY] == null;
+        return _matrix[x, y] == null;
     }
 
     public void RelocateEmptySlotsInColumn(int column)
     {
-        int currentX = SizeX - 1;
+        int currentX = _matrix.GetLength(0) - 1;
 
         while (currentX > 0)
         {
@@ -88,28 +72,9 @@ public class GemStoneMatrix
         }
     }
 
-    public void UpdateMatrixSlotDisplay(int x, int y)
+    public GemstoneInstance GetGemstone(int x, int y)
     {
-        OnSlotUpdate.Invoke(x, y, _matrix[x, y]);
-    }
-
-    public void UpdateMatrixColumnDisplay(int column)
-    {
-        for (int x = 0; x < SizeX; x++)
-        {
-            OnSlotUpdate.Invoke(x, column, _matrix[x, column]);
-        }
-    }
-
-    public void UpdateMatrixDisplay()
-    {
-        for (int x = 0; x < SizeX; x++)
-        {
-            for (int y = 0; y < SizeY; y++)
-            {
-                OnSlotUpdate.Invoke(x, y, _matrix[x, y]);
-            }
-        }
+        return _matrix[x, y];
     }
 
     private void SwapWithEmptySlot(int emptyX, int posX, int posY)
@@ -117,6 +82,6 @@ public class GemStoneMatrix
         _matrix[emptyX, posY] = _matrix[posX, posY];
         _matrix[posX, posY] = null;
 
-        _matrix[emptyX, posY].PositionX = emptyX;
+        _matrix[emptyX, posY].X = emptyX;
     }
 }

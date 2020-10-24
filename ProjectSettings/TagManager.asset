@@ -14,9 +14,9 @@ TagManager:
   - 
   - 
   - Obstacle
-  - PlayerHUD
-  - MenuUI
-  - BattleUI
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2216587053
+    locked: 0
+  - name: UI Particles
+    uniqueID: 4124037377
     locked: 0

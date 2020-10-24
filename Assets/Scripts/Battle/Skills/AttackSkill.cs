@@ -28,22 +28,13 @@ public class AttackSkill : Skill
 
     public override string BuildDescription()
     {
-        StringBuilder builder = new StringBuilder();
-
-        if (_damageType != null)
-        {
-            builder.AppendFormat(_skillData.DescriptionFormat,
-                     _damageType.GetDamageName(),
-                     _damageTier.TierName);
-
-            builder.AppendLine().AppendLine();
-        }
-
-        builder.Append(BuildEffectsDescription());
-
-        builder.AppendLine(_flavorText.Value);
-
-        return builder.ToString();
+        return string.Format(_skillData.DescriptionFormat,
+                             _damageType.GetDamageName(),
+                             _damageTier.TierName,
+                             BuildEffectsDescription(),
+                             _cost,
+                             _cooldown,
+                             _flavorText.Value);
     }
 
     private bool IsAttackNullable(Character character)
@@ -70,8 +61,6 @@ public class AttackSkill : Skill
 
     protected override void OnValidate()
     {
-        base.OnValidate();
-
         _ownerEffects.RemoveAll(effect => effect.GetType() == typeof(StatBonus));
         _opponentEffects.RemoveAll(effect => effect.GetType() == typeof(StatBonus));
     }

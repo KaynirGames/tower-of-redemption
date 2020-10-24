@@ -41,10 +41,13 @@ public abstract class Skill : ScriptableObject
     {
         StringBuilder builder = new StringBuilder();
 
+        if (_ownerEffects.Count > 0 || _opponentEffects.Count > 0)
+        { 
+            builder.AppendLine();
+        }
+
         _ownerEffects.ForEach(eff => builder.AppendLine(eff.GetDescription()));
         _opponentEffects.ForEach(eff => builder.AppendLine(eff.GetDescription()));
-
-        if (builder.Length > 0) { builder.AppendLine(); }
 
         return builder.ToString();
     }

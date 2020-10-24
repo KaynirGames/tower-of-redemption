@@ -1,29 +1,29 @@
 ﻿[System.Serializable]
-public class GemStoneInstance
+public class GemstoneInstance
 {
-    public GemStone GetStone { get; private set; }
+    public Gemstone Gemstone { get; private set; }
 
-    public int PositionX { get; set; }
-    public int PositionY { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
 
-    public GemStoneInstance(GemStone gemStone, int posX, int posY)
+    public GemstoneInstance(Gemstone gemstone, int x, int y)
     {
-        GetStone = gemStone;
+        Gemstone = gemstone;
 
-        PositionX = posX;
-        PositionY = posY;
+        X = x;
+        Y = y;
     }
 
-    public GemStoneInstance(GemStone gemStone) : this(gemStone, 0, 0) { }
+    public GemstoneInstance(Gemstone gemStone) : this(gemStone, 0, 0) { }
 
     public void SetPosition(int x, int y)
     {
-        PositionX = x;
-        PositionY = y;
+        X = x;
+        Y = y;
     }
 
-    public bool TryMatch(GemStoneInstance instance)
+    public bool CheckMatch(Gemstone gemstone)
     {
-        return GetStone.IsMatching(instance.GetStone);
+        return Gemstone.IsMatching(gemstone);
     }
 }

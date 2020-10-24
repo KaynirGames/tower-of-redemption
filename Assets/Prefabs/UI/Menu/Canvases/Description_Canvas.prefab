@@ -488,19 +488,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392384742255962355, guid: a4d2b674a33880b4a8b766fda39d5a6a,
         type: 3}
-      propertyPath: m_fontColorGradientPreset
-      value: 
-      objectReference: {fileID: 11400000, guid: 2ee8bb2e7369e0348b4a38ed8533b0c2,
-        type: 2}
-    - target: {fileID: 2392384742255962355, guid: a4d2b674a33880b4a8b766fda39d5a6a,
-        type: 3}
       propertyPath: m_text
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2392384742255962355, guid: a4d2b674a33880b4a8b766fda39d5a6a,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 2392384742255962355, guid: a4d2b674a33880b4a8b766fda39d5a6a,
         type: 3}

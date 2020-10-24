@@ -2,30 +2,30 @@
 using UnityEngine;
 
 [System.Serializable]
-public class GemStonePooler
+public class GemstonePooler
 {
-    [SerializeField] private List<GemStonePool> _gemStonePools = new List<GemStonePool>();
+    [SerializeField] private List<GemstonePool> _gemStonePools = new List<GemstonePool>();
 
-    private Dictionary<GemStone, GemStonePool> _poolerDictionary;
+    private Dictionary<Gemstone, GemstonePool> _poolerDictionary;
 
     public void CreatePooler()
     {
-        _poolerDictionary = new Dictionary<GemStone, GemStonePool>();
+        _poolerDictionary = new Dictionary<Gemstone, GemstonePool>();
 
-        foreach (GemStonePool pool in _gemStonePools)
+        foreach (GemstonePool pool in _gemStonePools)
         {
             pool.CreatePool();
             _poolerDictionary.Add(pool.GemStone, pool);
         }
     }
 
-    public GemStoneInstance GetFromPooler(GemStone gemStone)
+    public GemstoneInstance GetFromPooler(Gemstone gemStone)
     {
         return _poolerDictionary[gemStone].GetFromPool();
     }
 
-    public void ReturnToPooler(GemStoneInstance instance)
+    public void ReturnToPooler(GemstoneInstance instance)
     {
-        _poolerDictionary[instance.GetStone].ReturnToPool(instance);
+        _poolerDictionary[instance.Gemstone].ReturnToPool(instance);
     }
 }

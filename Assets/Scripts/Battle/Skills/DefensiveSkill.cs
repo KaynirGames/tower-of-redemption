@@ -22,6 +22,16 @@ public class DefensiveSkill : Skill
 
     public override string BuildDescription()
     {
+        return string.Format(_skillData.DescriptionFormat,
+                             BuildRecoveryDescription(),
+                             BuildEffectsDescription(),
+                             _cost,
+                             _cooldown,
+                             _flavorText.Value);
+    }
+
+    private string BuildRecoveryDescription()
+    {
         StringBuilder builder = new StringBuilder();
 
         if (_recoveryTypes.Count > 0)
@@ -31,12 +41,8 @@ public class DefensiveSkill : Skill
                 builder.Append(recovery.GetDescription()).Append(" ");
             }
 
-            builder.AppendLine().AppendLine();
+            builder.AppendLine();
         }
-
-        builder.Append(BuildEffectsDescription());
-
-        builder.AppendLine(_flavorText.Value);
 
         return builder.ToString();
     }

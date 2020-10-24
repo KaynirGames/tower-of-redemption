@@ -1,39 +1,67 @@
 ﻿using UnityEngine;
 
-public class GemStoneMatrixUI : MonoBehaviour
+public class GemstoneMatrixUI : MonoBehaviour
 {
     [SerializeField] private GameObject _gemStoneSlotsParent = null;
-    [SerializeField] private GemSlotUI _gemSlotPrefab = null;
+    [SerializeField] private GemstoneUI _gemSlotPrefab = null;
 
-    private GemSlotUI[,] _gemSlotMatrix;
-    private GemStoneMatrix _gemStoneMatrix;
+    private GemstoneMatrix _gemstoneMatrix;
+    private GemstoneUI[,] _gemstoneMatrixUI;
 
-    public void RegisterGemStoneMatrix(GemStoneMatrix matrix)
+    private int _sizeX;
+    private int _sizeY;
+
+    public void DeselectGemSlotUI(int posX, int posY)
     {
-        CreateGemSlotMatrix(matrix.SizeX, matrix.SizeY);
-
-        _gemStoneMatrix = matrix;
-        _gemStoneMatrix.OnSlotUpdate += UpdateGemSlot;
+        _gemstoneMatrixUI[posX, posY].ToggleSelectionAnimation(false);
     }
 
-    private void CreateGemSlotMatrix(int sizeX, int sizeY)
+    public void CreateMatrixUI(int sizeX, int sizeY, GemstoneMatrix gemstoneMatrix)
     {
-        _gemSlotMatrix = new GemSlotUI[sizeX, sizeY];
+        _gemstoneMatrix = gemstoneMatrix;
+        _gemstoneMatrixUI = new GemstoneUI[sizeX, sizeY];
+
+        _sizeX = sizeX;
+        _sizeY = sizeY;
 
         for (int x = 0; x < sizeX; x++)
         {
             for (int y = 0; y < sizeY; y++)
             {
-                GemSlotUI gemSlotUI = Instantiate(_gemSlotPrefab, _gemStoneSlotsParent.transform);
+                GemstoneUI gemSlotUI = Instantiate(_gemSlotPrefab, _gemStoneSlotsParent.transform);
                 gemSlotUI.gameObject.name = string.Format("GemSlot [{0},{1}]", x, y);
 
-                _gemSlotMatrix[x, y] = gemSlotUI;
+                _gemstoneMatrixUI[x, y] = gemSlotUI;
             }
         }
     }
 
-    private void UpdateGemSlot(int posX, int posY, GemStoneInstance gemStone)
+    public void UpdateMatrixSlotUI(int x, int y, GemstoneInstance gemstone)
     {
-        _gemSlotMatrix[posX, posY].UpdateGemSlot(gemStone);
+        _gemstoneMatrixUI[x, y].UpdateDisplay(gemstone);
+    }
+
+    public void UpdateMatrixColumnUI(int column)
+    {
+        for (int x = 0; x < _sizeX; x++)
+        {
+            UpdateMatrixSlotUI(x, column, _gemstoneMatrix.GetGemstone(x, column));
+        }
+    }
+
+    public void UpdateMatrixUI()
+    {
+        for (int x = 0; x < _sizeX; x++)
+        {
+            for (int y = 0; y < _sizeY; y++)
+            {
+                UpdateMatrixSlotUI(x, y, _gemstoneMatrix.GetGemstone(x, y));
+            }
+        }
+    }
+
+    public void ResetSelection(int x, int y)
+    {
+        _gemstoneMatrixUI[x, y].ToggleSelectionAnimation(false);
     }
 }
