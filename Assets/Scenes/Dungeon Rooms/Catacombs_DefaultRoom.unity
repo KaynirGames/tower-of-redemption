@@ -1168,6 +1168,12 @@ PrefabInstance:
       propertyPath: _pathfinder
       value: 
       objectReference: {fileID: 46401516}
+    - target: {fileID: 1961769499459052764, guid: 2f73de9b6fb354845a5a3e55dc5ea84c,
+        type: 3}
+      propertyPath: _roomType
+      value: 
+      objectReference: {fileID: 11400000, guid: 437c404e92968c04792f5df2f7cbc8fc,
+        type: 2}
     - target: {fileID: 1961769499459052766, guid: 2f73de9b6fb354845a5a3e55dc5ea84c,
         type: 3}
       propertyPath: m_Name

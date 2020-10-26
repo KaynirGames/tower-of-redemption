@@ -19,10 +19,16 @@ public class CharacterStats : MonoBehaviour
     private Dictionary<ElementType, float> _elementEfficacyDictionary;
 
     private FloatingTextPopup _damageTextPopup;
+    private Character _character;
+
+    private void Awake()
+    {
+        _character = GetComponent<Character>();
+    }
 
     public void SetCharacterStats(SpecBase spec)
     {
-        CreateStats(spec);
+        CreateCharacterStats(spec);
 
         _statDictionary = CreateStatDictionary();
         _elementEfficacyDictionary = CreateElementEfficacyDictionary(spec);
@@ -77,15 +83,23 @@ public class CharacterStats : MonoBehaviour
         return Energy.CurrentValue - energyCost >= 0;
     }
 
-    private void CreateStats(SpecBase spec)
+    private void CreateCharacterStats(SpecBase spec)
     {
-        Health = new CharacterResource(spec.BaseHealth, spec.BaseHealth);
-        Energy = new CharacterResource(spec.BaseEnergy, 0);
+        Health = new CharacterResource(CreateStat(spec.BaseHealth, StatType.MaxHealth), spec.BaseHealth);
+        Energy = new CharacterResource(CreateStat(spec.BaseEnergy, StatType.MaxEnergy), 0);
 
-        _strength = new Stat(spec.BaseStrength);
-        _will = new Stat(spec.BaseWill);
-        _defence = new Stat(spec.BaseDefence);
-        _magicDefence = new Stat(spec.BaseMagicDefence);
+        _strength = CreateStat(spec.BaseStrength, StatType.Strength);
+        _will = CreateStat(spec.BaseWill, StatType.Will);
+        _defence = CreateStat(spec.BaseDefence, StatType.Defence);
+        _magicDefence = CreateStat(spec.BaseMagicDefence, StatType.MagicDefence);
+    }
+
+    private Stat CreateStat(float baseValue, StatType statType)
+    {
+        StatData statData = DatabaseManager.Instance.StatDatabase.Find(x => x.StatType == statType);
+        Stat stat = new Stat(baseValue, statData.MinValue, statData.MaxValue);
+
+        return stat;
     }
 
     private Dictionary<StatType, Stat> CreateStatDictionary()

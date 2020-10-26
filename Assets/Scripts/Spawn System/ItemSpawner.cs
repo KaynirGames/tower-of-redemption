@@ -10,7 +10,7 @@ public class ItemSpawner : MonoBehaviour
         DungeonStageManager.OnStageLoadComplete += SpawnItems;
     }
 
-    private void SpawnItems()
+    private void SpawnItems(DungeonStage dungeonStage)
     {
         Debug.Log("Предметы созданы.");
     }

@@ -11,6 +11,7 @@ public class DefensiveSkill : Skill
     public override void Execute(Character owner, Character opponent, SkillInstance skillInstance)
     {
         owner.Stats.ChangeEnergy(-_cost);
+        owner.Animations.PlayDefenceClip();
 
         _recoveryTypes.ForEach(recovery => recovery.ApplyRecovery(owner));
 

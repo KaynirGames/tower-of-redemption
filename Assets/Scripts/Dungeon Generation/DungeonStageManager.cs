@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(RouteSpawnController))]
 public class DungeonStageManager : MonoBehaviour
 {
-    public static event Action OnStageLoadComplete = delegate { };
+    public static event Action<DungeonStage> OnStageLoadComplete = delegate { };
 
     private struct GridPoint
     {
@@ -86,7 +86,7 @@ public class DungeonStageManager : MonoBehaviour
         }
         else
         {
-            OnStageLoadComplete.Invoke();
+            OnStageLoadComplete.Invoke(_currentStage);
         }
     }
 

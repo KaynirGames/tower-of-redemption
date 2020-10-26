@@ -1,5 +1,4 @@
-﻿using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "Undefined Attack", menuName = "Scriptable Objects/Battle/Skills/Attack Skill")]
 public class AttackSkill : Skill
@@ -11,6 +10,7 @@ public class AttackSkill : Skill
     public override void Execute(Character owner, Character opponent, SkillInstance skillInstance)
     {
         owner.Stats.ChangeEnergy(-_cost);
+        owner.Animations.PlayAttackClip();
 
         if (IsAttackNullable(opponent)) { return; }
 

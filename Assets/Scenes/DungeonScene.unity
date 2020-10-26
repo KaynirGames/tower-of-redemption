@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95950c22f96031147be8dc341857ab09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _doorDatabase: {fileID: 11400000, guid: 3fa36dbaaced6b045b33be7077fcf4b6, type: 2}
+  _statDatabase: {fileID: 11400000, guid: 3565a9af924d17d40813db3770c8150c, type: 2}
 --- !u!1 &209842588 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1689588595254121037, guid: 24b717f9b811356409261d4728b1bc8f,
@@ -1640,7 +1640,7 @@ PrefabInstance:
     - target: {fileID: 685439163847981927, guid: e69817d0036688a4083b8659a5b6cdd1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.0000305
+      value: 2.000023
       objectReference: {fileID: 0}
     - target: {fileID: 685439163847981927, guid: e69817d0036688a4083b8659a5b6cdd1,
         type: 3}
@@ -1735,7 +1735,7 @@ PrefabInstance:
     - target: {fileID: 1306428439658571493, guid: e69817d0036688a4083b8659a5b6cdd1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.0000305
+      value: 2.000023
       objectReference: {fileID: 0}
     - target: {fileID: 1419758325163737436, guid: e69817d0036688a4083b8659a5b6cdd1,
         type: 3}

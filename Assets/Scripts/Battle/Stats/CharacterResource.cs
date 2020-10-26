@@ -16,12 +16,12 @@ public class CharacterResource
 
     private float _previousMaxValue;
 
-    public CharacterResource(float maxValue, float currentValue)
+    public CharacterResource(Stat stat, float currentValue)
     {
-        _maxValue = new Stat(maxValue);
+        _maxValue = stat;
         CurrentValue = currentValue;
 
-        _previousMaxValue = _maxValue.GetFinalValue();
+        _previousMaxValue = stat.GetFinalValue();
     }
 
     public void ChangeResource(float amount)

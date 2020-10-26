@@ -8,16 +8,25 @@ public class Stat
 
     public float BaseValue => _baseValue;
 
-    private List<StatModifier> _modifiers = new List<StatModifier>();
-    private float _finalValue = 0;
-    private bool _hasChanges = false;
+    private bool _hasChanges;
+    private List<StatModifier> _modifiers;
 
-    public Stat(float baseValue)
+    private float _finalValue;
+    private float _minValue;
+    private float _maxValue;
+
+    public Stat(float baseValue, float minValue, float maxValue)
     {
         _baseValue = baseValue;
-        _finalValue = _baseValue;
+        _minValue = minValue;
+        _maxValue = maxValue;
+        _finalValue = baseValue;
+
+        _modifiers = new List<StatModifier>();
         _hasChanges = false;
     }
+
+    public Stat(float baseValue) : this(baseValue, 0, int.MaxValue) { }
 
     public float GetFinalValue()
     {
@@ -61,10 +70,11 @@ public class Stat
         {
             _modifiers.ForEach(mod => _finalValue += mod.Value);
 
-            if (_finalValue < 0) { _finalValue = 0; }
+            _finalValue = Mathf.Clamp(Mathf.Round(_finalValue),
+                                      _minValue,
+                                      _maxValue);
         }
 
         _hasChanges = false;
-        _finalValue = Mathf.Round(_finalValue);
     }
 }

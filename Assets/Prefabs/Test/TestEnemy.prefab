@@ -166,6 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ed50a8035bf9a46a4451583118237c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthRateForDefence: 0.6
+  _healthRateForEnrage: 0.2
 --- !u!114 &6019955237486239111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,9 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5031f0f266e399440bd180f8b3ad9be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeSlotCount: 4
-  _passiveSlotCount: 3
-  _specialSlotCount: 1
+  _activeSkillsCount: 4
+  _passiveSkillsCount: 3
+  _specialSkillsCount: 1
 --- !u!1 &7282492576520255794
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +231,7 @@ GameObject:
   - component: {fileID: 7282492576520255806}
   - component: {fileID: 7282492576520255793}
   - component: {fileID: 7282492576520255804}
+  - component: {fileID: 2385619924503060671}
   m_Layer: 0
   m_Name: EnemyGFX
   m_TagString: Untagged
@@ -311,7 +314,7 @@ Animator:
   m_GameObject: {fileID: 7282492576520255794}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 431ce52eb3cd35349b758eb1c3e63d95, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -320,3 +323,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2385619924503060671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282492576520255794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63395e1d3e8be7548b4129cb19df82aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animatedCharacter: {fileID: 6019955237486239111}

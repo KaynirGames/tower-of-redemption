@@ -4,11 +4,9 @@ public class DatabaseManager : MonoBehaviour
 {
     public static DatabaseManager Instance { get; private set; }
 
-    [SerializeField] private DoorDatabase _doorDatabase = null;
-    /// <summary>
-    /// База данных дверей.
-    /// </summary>
-    public DoorDatabase Doors => _doorDatabase;
+    [SerializeField] private StatDatabase _statDatabase = null;
+
+    public StatDatabase StatDatabase => _statDatabase;
 
     private void Awake()
     {

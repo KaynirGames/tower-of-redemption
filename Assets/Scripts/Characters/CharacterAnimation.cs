@@ -7,32 +7,32 @@
 public class CharacterAnimation : MonoBehaviour
 {
     [SerializeField] private Character _animatedCharacter = null;
-    [Header("Параметры аниматора:")]
-    [SerializeField] private string _horizontalMoveParam = "Horizontal";
-    [SerializeField] private string _verticalMoveParam = "Vertical";
-    [SerializeField] private string _moveSpeedParam = "Speed";
-    [SerializeField] private string _attackParam = "Attack";
 
-    private Animator _animator;
+    public Animator Animator { get; private set; }
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        Animator = GetComponent<Animator>();
     }
 
     public void PlayMoveClip(Vector2 moveDirection)
     {
         if (moveDirection != Vector2.zero)
         {
-            _animator.SetFloat(_horizontalMoveParam, moveDirection.x);
-            _animator.SetFloat(_verticalMoveParam, moveDirection.y);
+            Animator.SetFloat("Horizontal", moveDirection.x);
+            Animator.SetFloat("Vertical", moveDirection.y);
         }
-        _animator.SetFloat(_moveSpeedParam, moveDirection.sqrMagnitude);
+        Animator.SetFloat("Speed", moveDirection.sqrMagnitude);
     }
 
     public void PlayAttackClip()
     {
-        _animator.SetTrigger(_attackParam);
+        Animator.SetTrigger("Attack");
+    }
+
+    public void PlayDefenceClip()
+    {
+        Animator.SetTrigger("Defence");
     }
 
     public void EnableMovementAfterAttackAnimation()

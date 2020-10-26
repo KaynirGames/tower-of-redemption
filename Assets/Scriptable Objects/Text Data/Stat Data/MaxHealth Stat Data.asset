@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MaxHealth Stat Data
   m_EditorClassIdentifier: 
   _statType: 100
+  _minValue: 1
+  _maxValue: 999
   _statName:
     _key: Stat.MaxHealth.Name
   _statShrinkName:
     _key: Stat.MaxHealth.ShrinkName
-  _positiveStatColor: {r: 0.25490198, g: 0.46666667, b: 0.19607843, a: 1}
-  _negativeStatColor: {r: 0.68235296, g: 0.23137255, b: 0.19215687, a: 1}
