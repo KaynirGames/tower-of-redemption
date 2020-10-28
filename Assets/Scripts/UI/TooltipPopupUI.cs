@@ -22,7 +22,6 @@ public class TooltipPopupUI : MonoBehaviour
         _tooltipText.ForceMeshUpdate();
 
         Vector2 textSize = _tooltipText.GetRenderedValues(false);
-
         _popupRect.sizeDelta = textSize + _textPadding;
     }
 

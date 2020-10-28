@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2392384741298897565}
   - component: {fileID: 2392384741298897566}
+  - component: {fileID: 4089365553151371097}
   m_Layer: 10
   m_Name: DescriptionBox
   m_TagString: Untagged
@@ -121,6 +122,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2392384741298897564}
   m_CullTransparentMesh: 0
+--- !u!114 &4089365553151371097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2392384741298897564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4387f9c6e6c236743b966cc6902a3e82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textWithLinks: {fileID: 2392384742255962355}
 --- !u!1 &2392384742255962353
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,8 +146,6 @@ GameObject:
   - component: {fileID: 2392384742255962354}
   - component: {fileID: 2392384742255962356}
   - component: {fileID: 2392384742255962355}
-  - component: {fileID: 3095808902409018567}
-  - component: {fileID: 6928267466468474116}
   m_Layer: 10
   m_Name: DescriptionText
   m_TagString: Untagged
@@ -259,39 +271,3 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &3095808902409018567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2392384742255962353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4387f9c6e6c236743b966cc6902a3e82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textMeshPro: {fileID: 2392384742255962355}
---- !u!114 &6928267466468474116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2392384742255962353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21256c5b62f346f18640dad779911e20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowCharacters: 0
-  ShowWords: 0
-  ShowLinks: 1
-  ShowLines: 0
-  ShowMeshBounds: 0
-  ShowTextBounds: 0
-  ObjectStats: 'Characters: 0   Words: 0   Spaces: 0   Sprites: 0   Links: 0
-
-    Lines:
-    0   Pages: 0'
-  m_TextComponent: {fileID: 2392384742255962355}

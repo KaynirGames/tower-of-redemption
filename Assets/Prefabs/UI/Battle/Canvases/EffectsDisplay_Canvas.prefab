@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4293887756219728533}
   - component: {fileID: 4293887756219728535}
   - component: {fileID: 4293887756219728534}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: Effects_Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -68.1}
-  m_SizeDelta: {x: 128, y: 385}
+  m_AnchoredPosition: {x: 0, y: -74.5}
+  m_SizeDelta: {x: 128, y: 552.17303}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4293887756219728535
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 80, y: 80}
+  m_CellSize: {x: 100, y: 100}
   m_Spacing: {x: 0, y: 10}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 4293887757831106476}
   - component: {fileID: 4293887757831106478}
   - component: {fileID: 4293887757831106472}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: EffectsDisplay_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ MonoBehaviour:
     type: 3}
   _scrollSpeed: 0.5
   _minAmountToScroll: 4
-  _scrollResetLoopPosition: 0.22
+  _scrollResetLoopPosition: 0.05
 --- !u!1 &4293887757965225554
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 4293887757965225564}
   - component: {fileID: 4293887757965225567}
   - component: {fileID: 4293887757965225566}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: Effects_ScrollView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,8 +184,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 35}
-  m_SizeDelta: {x: 0, y: -60}
+  m_AnchoredPosition: {x: 0, y: -99}
+  m_SizeDelta: {x: 0, y: 78}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4293887757965225565
 CanvasRenderer:

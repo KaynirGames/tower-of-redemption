@@ -35,7 +35,8 @@ public class EffectSlotUI : MonoBehaviour
         }
 
         _effectIcon.sprite = effectInstance.Effect.EffectIcon;
-        _durationIcon.fillAmount = 1;
+        _durationIcon.sprite = effectInstance.Effect.EffectIcon;
+        _durationIcon.fillAmount = 0;
 
         gameObject.SetActive(true);
     }
@@ -69,7 +70,7 @@ public class EffectSlotUI : MonoBehaviour
 
     private void UpdateDurationDisplay(float timer)
     {
-        _durationIcon.fillAmount = timer / _effectDuration;
+        _durationIcon.fillAmount = 1 - timer / _effectDuration;
     }
 
     private void UpdateChargesDisplay(int chargesLeft)

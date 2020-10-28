@@ -11,24 +11,53 @@ public class TooltipHandlerUI : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public static event OnTooltipPopupCall OnTooltipCall = delegate { };
     public static event Action OnTooltipCancel = delegate { };
 
-    [SerializeField] private TextMeshProUGUI _textMeshPro = null;
+    [SerializeField] private TooltipCallType _tooltipCallType = TooltipCallType.ByLink;
+    [SerializeField] private TextMeshProUGUI _textWithLinks = null;
+    [SerializeField] private TranslatedText _tooltipText = null;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (_textMeshPro.text != string.Empty)
+        switch (_tooltipCallType)
         {
-            int linkIndex = TMP_TextUtilities.FindIntersectingLink(_textMeshPro, Input.mousePosition, null);
+            case TooltipCallType.ByLink:
+                HandleCallByLink();
+                break;
+            case TooltipCallType.ByKey:
+                HandleCallByKey();
+                break;
+        }
+    }
+
+    private void HandleCallByLink()
+    {
+        if (_textWithLinks.text != string.Empty)
+        {
+            int linkIndex = TMP_TextUtilities.FindIntersectingLink(_textWithLinks, Input.mousePosition, null);
 
             if (linkIndex >= 0)
             {
-                TMP_LinkInfo linkInfo = _textMeshPro.textInfo.linkInfo[linkIndex];
+                TMP_LinkInfo linkInfo = _textWithLinks.textInfo.linkInfo[linkIndex];
                 OnTooltipCall.Invoke(KaynirTools.GetPointerRawPosition(), linkInfo.GetLinkID());
             }
+        }
+    }
+
+    private void HandleCallByKey()
+    {
+        if (_tooltipText != null)
+        {
+            OnTooltipCall.Invoke(KaynirTools.GetPointerRawPosition(), _tooltipText.Key);
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         OnTooltipCancel.Invoke();
+    }
+
+    private enum TooltipCallType
+    {
+        ByLink,
+        ByKey
     }
 }

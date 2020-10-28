@@ -32,6 +32,8 @@ public class SkillInstance
 
     public bool TryExecute(Character owner)
     {
+        if (owner.CurrentOpponent == null) { return false; }
+
         if (_skill.Slot == SkillSlot.Passive)
         {
             ExecutePassiveSkill(owner);
@@ -45,6 +47,8 @@ public class SkillInstance
 
     public void Terminate(Character owner)
     {
+        if (owner.CurrentOpponent == null) { return; }
+
         _skill.Terminate(owner, owner.CurrentOpponent, this);
     }
 

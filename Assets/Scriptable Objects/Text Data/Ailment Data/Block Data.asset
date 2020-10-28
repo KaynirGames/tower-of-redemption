@@ -15,4 +15,4 @@ MonoBehaviour:
   _ailmentName:
     _key: Ailment.Block.Name
   _textColorData: {fileID: 11400000, guid: fe11339ca6e2e72468bcb1fc441b66f6, type: 2}
-  _icon: {fileID: 21300000, guid: e5fd6d8ed06428b4fb1a11dac467323b, type: 3}
+  _icon: {fileID: 21300000, guid: feb9917546eafc5409dbbbe1f119d548, type: 3}
