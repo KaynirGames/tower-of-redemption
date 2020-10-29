@@ -235,9 +235,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012876749, y: 0.073572755}
-  m_Size: {x: 0.6196666, y: 1.2306583}
-  m_Direction: 0
+  m_Offset: {x: 0.0033143428, y: -0.5303773}
+  m_Size: {x: 0.97585994, y: 0.6583958}
+  m_Direction: 1
 --- !u!114 &7233533201263309741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,8 +467,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animatedCharacter: {fileID: 7233533201263309741}
-  _horizontalMoveParam: Horizontal
-  _verticalMoveParam: Vertical
-  _moveSpeedParam: Speed
-  _attackParam: Attack
-  _magicParam: Magic
