@@ -134,7 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4387f9c6e6c236743b966cc6902a3e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textWithLinks: {fileID: 2392384742255962355}
+  _linkedTextField: {fileID: 2392384742255962355}
+  _tooltipHeaderText:
+    _key: 
+  _tooltipContentText:
+    _key: 
+  _tooltipDelay: 0.5
 --- !u!1 &2392384742255962353
 GameObject:
   m_ObjectHideFlags: 0

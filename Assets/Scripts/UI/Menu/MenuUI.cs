@@ -80,10 +80,10 @@ public class MenuUI : MonoBehaviour
         _descriptionUI.SetDescriptionText(name, type, description);
     }
 
-    private void ShowTooltip(Vector3 anchoredPosition, string tooltipKey)
+    private void ShowTooltip(Vector3 position, string content, string header)
     {
-        _tooltipPopupUI.SetTooltipText(Translator.GetTranslationLine(tooltipKey));
-        _tooltipPopupUI.SetTooltipPosition(anchoredPosition);
+        _tooltipPopupUI.SetTooltipText(content, header);
+        _tooltipPopupUI.SetTooltipPosition(position);
         _tooltipPopupUI.ToggleTooltipPopup(true);
     }
 

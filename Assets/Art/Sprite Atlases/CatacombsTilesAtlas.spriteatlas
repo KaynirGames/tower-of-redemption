@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CatacombsTilesAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+    totalSpriteSurfaceArea: 18432
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 8766613834155507023, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: -3773584988723647694, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: -1914480182854531846, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: 8621099015007305117, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: -288500338149248865, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: 2630828161603775733, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: -175021819321956693, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: -2061201610733952743, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: -7664802980608126691, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: -4030861303988049823, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: 4313692362456829039, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: -1514401371926203192, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: 4886531669774367187, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: 921141839314591673, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: -5720180731855150826, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: 1968455014966272725, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: -3874781322018448667, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  - {fileID: -2094341914985863446, guid: 880dd2058f4403e41a5aa909d27d0756, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - CatacombsTileset_14
+  - CatacombsTileset_15
+  - CatacombsTileset_16
+  - CatacombsTileset_17
+  - CatacombsTileset_1
+  - CatacombsTileset_0
+  - CatacombsTileset_3
+  - CatacombsTileset_2
+  - CatacombsTileset_5
+  - CatacombsTileset_4
+  - CatacombsTileset_7
+  - CatacombsTileset_6
+  - CatacombsTileset_9
+  - CatacombsTileset_8
+  - CatacombsTileset_10
+  - CatacombsTileset_11
+  - CatacombsTileset_12
+  - CatacombsTileset_13
+  m_Tag: CatacombsTilesAtlas
+  m_IsVariant: 0

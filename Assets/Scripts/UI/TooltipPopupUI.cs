@@ -1,11 +1,14 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TooltipPopupUI : MonoBehaviour
 {
     [SerializeField] private RectTransform _popupRect = null;
-    [SerializeField] private TextMeshProUGUI _tooltipText = null;
-    [SerializeField] private Vector2 _textPadding = new Vector2(15, 15);
+    [SerializeField] private LayoutElement _popupLayoutElement = null;
+    [SerializeField] private TextMeshProUGUI _headerField = null;
+    [SerializeField] private TextMeshProUGUI _contentField = null;
+    [SerializeField] private int _textWrapLimit = 200;
 
     private CanvasGroup _canvasGroup;
     private RectTransform _canvasRect;
@@ -16,13 +19,21 @@ public class TooltipPopupUI : MonoBehaviour
         _canvasRect = GetComponent<RectTransform>();
     }
 
-    public void SetTooltipText(string tooltipText)
+    public void SetTooltipText(string content, string header = "")
     {
-        _tooltipText.SetText(tooltipText);
-        _tooltipText.ForceMeshUpdate();
+        if (string.IsNullOrEmpty(header))
+        {
+            _headerField.gameObject.SetActive(false);
+        }
+        else
+        {
+            _headerField.SetText(header);
+            _headerField.gameObject.SetActive(true);
+        }
 
-        Vector2 textSize = _tooltipText.GetRenderedValues(false);
-        _popupRect.sizeDelta = textSize + _textPadding;
+        _contentField.SetText(content);
+
+        ResizeTooltip();
     }
 
     public void ToggleTooltipPopup(bool enable)
@@ -45,5 +56,15 @@ public class TooltipPopupUI : MonoBehaviour
         }
 
         _popupRect.anchoredPosition = anchoredPosition;
+    }
+
+    private void ResizeTooltip()
+    {
+        int headerLength = _headerField.text.Length;
+        int contentLength = _contentField.text.Length;
+
+        _popupLayoutElement.enabled = (headerLength > _textWrapLimit || contentLength > _textWrapLimit)
+            ? true
+            : false;
     }
 }
