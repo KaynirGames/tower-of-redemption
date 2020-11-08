@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0be3f38a93961842beb1e6fc774009c, type: 3}
-  m_Name: DefaultDoor
+  m_Name: DefaultDoor_Catacombs
   m_EditorClassIdentifier: 
-  Name: DefaultDoor
-  PlacingPriority: 0
-  IsRequireKey: 0
-  RequiredKey: {fileID: 0}
+  _placingPriority: 0
+  _doorGFX: {fileID: 6203271674832713108, guid: 5b14bfcacdf1d23418574dd79700bff8,
+    type: 3}

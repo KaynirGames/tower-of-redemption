@@ -5,75 +5,66 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public static event Action<Room> OnRoomLoadComplete = delegate { };
-    public static event Action<Room> OnActiveRoomChange = delegate { };
+    public delegate void OnRoomStatusChange(Room room);
+
+    public static event OnRoomStatusChange OnRoomLoadComplete = delegate { };
+    public static event OnRoomStatusChange OnActiveRoomChange = delegate { };
+
+    public static List<Room> LoadedRooms { get; private set; } = new List<Room>();
 
     [SerializeField] private int _width = 20;
     [SerializeField] private int _height = 12;
     [SerializeField] private RoomType _roomType = null;
-    [SerializeField] private GameObject _roomEnvironment = null;
+    [SerializeField] private GameObject _doorsParent = null;
     [SerializeField] private Pathfinder _pathfinder = null;
-
-    public Vector2Int DungeonGridPosition { get; set; }
+    [SerializeField] private Vector2Int _gridPosition = Vector2Int.zero;
 
     public RoomType RoomType => _roomType;
 
-    private List<Door> _roomDoors = new List<Door>();
+    private List<Door> _doors = new List<Door>();
 
-    private DungeonStage _currentStage;
-
-    private void Start()
+    private void Awake()
     {
-        GameMaster.Instance.LoadedRooms.Add(this);
-        OnRoomLoadComplete?.Invoke(this);
+        _doors.AddRange(_doorsParent.GetComponentsInChildren<Door>());
 
-        _roomDoors.AddRange(_roomEnvironment.GetComponentsInChildren<Door>());
-
-        DungeonStageManager.OnStageLoadComplete += PrepareRoom;
+        LoadedRooms.Add(this);
+        OnRoomLoadComplete.Invoke(this);
     }
 
-    public void SetWorldPosition()
+    public void SetRoomPosition(Vector2Int gridPosition)
     {
-        Vector3 worldPos = new Vector3(DungeonGridPosition.x * _width, DungeonGridPosition.y * _height, 0);
-        transform.position = worldPos;
-        _roomEnvironment.transform.position = worldPos;
-        if (_pathfinder != null) _pathfinder.transform.position = worldPos;
+        _gridPosition = gridPosition;
+        transform.position = new Vector3(gridPosition.x * _width, gridPosition.y * _height, 0);
     }
 
-    public void OpenDoors()
+    public void ToggleDoors(bool open)
     {
-        foreach (Door door in _roomDoors)
-        {
-            door.Open();
-        }
+        _doors.ForEach(door => door.ToggleDoor(open));
     }
 
-    private void PrepareRoom(DungeonStage dungeonStage)
+    public void PrepareRoom(DungeonStage dungeonStage)
     {
-        _currentStage = dungeonStage;
-
         SetupCorrectDoors();
-        OpenDoors();
-        CreatePathfindingGrid();
+        SetupPathfinder();
     }
 
     private void SetupCorrectDoors()
     {
-        for (int i = _roomDoors.Count - 1; i >= 0; i--)
+        for (int i = _doors.Count - 1; i >= 0; i--)
         {
-            switch (_roomDoors[i].Direction)
+            switch (_doors[i].Direction)
             {
                 case Direction.Up:
-                    UpdateDoor(_roomDoors[i], GetNextRoom(Vector2Int.up));
+                    UpdateDoor(_doors[i], GetNextRoom(Vector2Int.up));
                     break;
                 case Direction.Right:
-                    UpdateDoor(_roomDoors[i], GetNextRoom(Vector2Int.right));
+                    UpdateDoor(_doors[i], GetNextRoom(Vector2Int.right));
                     break;
                 case Direction.Down:
-                    UpdateDoor(_roomDoors[i], GetNextRoom(Vector2Int.down));
+                    UpdateDoor(_doors[i], GetNextRoom(Vector2Int.down));
                     break;
                 case Direction.Left:
-                    UpdateDoor(_roomDoors[i], GetNextRoom(Vector2Int.left));
+                    UpdateDoor(_doors[i], GetNextRoom(Vector2Int.left));
                     break;
             }
         }
@@ -81,31 +72,30 @@ public class Room : MonoBehaviour
 
     private Room GetNextRoom(Vector2Int direction)
     {
-        return GameMaster.Instance.LoadedRooms.Find(room => room.DungeonGridPosition == DungeonGridPosition + direction);
+        return LoadedRooms.Find(room => room._gridPosition == _gridPosition + direction);
     }
 
     private void UpdateDoor(Door door, Room nextRoom)
     {
         if (nextRoom == null)
         {
-            _roomDoors.Remove(door);
+            _doors.Remove(door);
             door.Remove();
         }
         else
         {
-            if (_roomType.DoorType.PlacingPriority < nextRoom.RoomType.DoorType.PlacingPriority)
+            if (_roomType.DoorType.PlacingPriority > nextRoom.RoomType.DoorType.PlacingPriority)
             {
-                Door newDoor = _currentStage.SwapDoor(nextRoom.RoomType.DoorType, door);
-
-                _roomDoors.Remove(door);
-                _roomDoors.Add(newDoor);
-
-                Destroy(door.gameObject);
+                door.CreateDoor(_roomType.DoorType);
+            }
+            else
+            {
+                door.CreateDoor(nextRoom.RoomType.DoorType);
             }
         }
     }
 
-    private void CreatePathfindingGrid()
+    private void SetupPathfinder()
     {
         if (_pathfinder != null)
         {
@@ -116,16 +106,16 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.GetComponent<PlayerCharacter>() != null)
         {
             _pathfinder?.gameObject.SetActive(true);
-            OnActiveRoomChange?.Invoke(this);
+            OnActiveRoomChange.Invoke(this);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.GetComponent<PlayerCharacter>() != null)
         {
             _pathfinder?.gameObject.SetActive(false);
         }

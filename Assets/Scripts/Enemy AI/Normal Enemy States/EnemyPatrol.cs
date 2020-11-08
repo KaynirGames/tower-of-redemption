@@ -13,7 +13,7 @@ public class EnemyPatrol : BaseState<EnemyStateKey>
     {
         _enemyAI = enemyAI;
         _nextState = nextState;
-        _patrolWaypoints = Pathfinder.Instance.GetGridWorldPoints(includeObstacles);
+        _patrolWaypoints = Pathfinder.GetGridWorldPoints(includeObstacles);
     }
 
     public override void EnterState()

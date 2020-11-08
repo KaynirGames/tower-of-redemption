@@ -9,8 +9,6 @@ public class GameMaster : MonoBehaviour
 
     public SystemLanguage GameLanguage => _gameLanguage;
 
-    public List<Room> LoadedRooms { get; private set; } = new List<Room>();
-
     public bool IsPause { get; private set; }
 
     private void Awake()
@@ -27,9 +25,7 @@ public class GameMaster : MonoBehaviour
         Translator.SetTranslation(_gameLanguage);
         Debug.Log("Current language is set to " + _gameLanguage.ToString());
     }
-    /// <summary>
-    /// Переключить паузу в игре.
-    /// </summary>
+
     public void TogglePause(bool isPause)
     {
         IsPause = isPause;

@@ -14,14 +14,14 @@ public class DungeonStageManager : MonoBehaviour
         public string RoomScene { get; private set; }
         public Vector2Int GridPosition { get; private set; }
 
-        public GridPoint(string roomScene, Vector2Int gridPos)
+        public GridPoint(string roomScene, Vector2Int gridPosition)
         {
             RoomScene = roomScene;
-            GridPosition = gridPos;
+            GridPosition = gridPosition;
         }
     }
 
-    [SerializeField] private DungeonStage _currentStage = null; // Информация о текущем этаже подземелья.
+    [SerializeField] private DungeonStage _currentStage = null;
 
     public bool spawnTestStage = false;
 
@@ -87,6 +87,7 @@ public class DungeonStageManager : MonoBehaviour
         else
         {
             OnStageLoadComplete.Invoke(_currentStage);
+            Room.LoadedRooms.ForEach(room => room.PrepareRoom(_currentStage));
         }
     }
 
@@ -102,9 +103,7 @@ public class DungeonStageManager : MonoBehaviour
 
     private void RegisterRoom(Room room)
     {
-        room.DungeonGridPosition = _currentGridPoint.GridPosition;
-        room.SetWorldPosition();
-
+        room.SetRoomPosition(_currentGridPoint.GridPosition);
         TryLoadNextRoom();
     }
 }

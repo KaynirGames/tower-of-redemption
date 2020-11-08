@@ -16,7 +16,6 @@ public class DungeonStage : ScriptableObject
     [SerializeField] private RoomType _startRoom = null;
     [SerializeField] private RoomType _bossRoom = null;
     [SerializeField] private SpawnTable _optionalRooms = null;
-    [SerializeField] private List<Door> _doorPrefabs = null;
 
     public string SceneNamePrefix => _sceneNamePrefix;
     public string DisplayName => _displayName.Value;
@@ -28,16 +27,4 @@ public class DungeonStage : ScriptableObject
     public RoomType StartRoom => _startRoom;
     public RoomType BossRoom => _bossRoom;
     public SpawnTable OptionalRooms => _optionalRooms;
-    
-    public Door SwapDoor(DoorType newDoorType, Door prevDoor)
-    {
-        Door newDoor = Instantiate(_doorPrefabs.Find(door => door.DoorType == newDoorType),
-                                   prevDoor.transform.position,
-                                   prevDoor.transform.rotation,
-                                   prevDoor.transform.parent);
-
-        newDoor.SetDirection(prevDoor.Direction);
-
-        return newDoor;
-    }
 }

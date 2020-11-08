@@ -9,6 +9,11 @@ public class BattleTester : MonoBehaviour
 
     private PlayerCharacter _player;
 
+    private void Start()
+    {
+        Debug.Log(Room.LoadedRooms.Count + " room(s) are loaded.");
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))

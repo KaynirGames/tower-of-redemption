@@ -1,46 +1,56 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Набор направлений, куда может вести дверь (вверх, вправо, вниз, влево, по умолчанию - отсутствует).
+/// Набор направлений дверей (вверх, вправо, вниз, влево, по умолчанию - отсутствует).
 /// </summary>
-public enum Direction { Up, Right, Down, Left, None }
+public enum Direction { Up, Right, Down, Left }
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private Direction _direction = Direction.None;
+    [SerializeField] private Direction _direction = Direction.Up;
     [SerializeField] private DoorType _doorType = null;
     [SerializeField] private float _doorwayTransferRange = 4f;
-    [SerializeField] private GameObject _emptyDoorPrefab = null;
+    [SerializeField] private Collider2D _doorCollider = null;
+    [SerializeField] private Collider2D _playerTransferTrigger = null;
+    [SerializeField] private Collider2D _closedDoorwayCollider = null;
 
     public Direction Direction => _direction;
     public DoorType DoorType => _doorType;
 
-    private Collider2D _doorwayCollider;
+    private Animator _doorAnimator;
 
     private void Awake()
     {
-        _doorwayCollider = GetComponent<Collider2D>();
+        CreateDoor(_doorType);
     }
 
-    public void Open()
+    public void CreateDoor(DoorType doorType)
     {
-        _doorwayCollider.enabled = false;
-        // Анимация
-        // Звук
+        GameObject door = Instantiate(doorType.DoorGFX,
+                                      transform.position,
+                                      transform.rotation,
+                                      transform);
+
+        _doorAnimator = door.GetComponent<Animator>();
+
+        ToggleDoorColliders(true);
     }
 
-    public void Close()
+    public void ToggleDoor(bool open)
     {
-        _doorwayCollider.enabled = true;
-        // Анимация
-        // Звук
+        if (open)
+        {
+            Open();
+        }
+        else
+        {
+            Close();
+        }
     }
 
     public void Remove()
     {
-        GameObject emptyDoor = Instantiate(_emptyDoorPrefab, transform.position, transform.rotation, transform.parent);
-        emptyDoor.transform.localScale = transform.localScale;
-        emptyDoor.GetComponent<Collider2D>().offset = _doorwayCollider.offset;
+        _closedDoorwayCollider.enabled = true;
 
         Destroy(gameObject);
     }
@@ -48,6 +58,28 @@ public class Door : MonoBehaviour
     public void SetDirection(Direction direction)
     {
         _direction = direction;
+    }
+
+    private void ToggleDoorColliders(bool enable)
+    {
+        _doorCollider.enabled = enable;
+        _playerTransferTrigger.enabled = enable;
+
+        _closedDoorwayCollider.enabled = !enable;
+    }
+
+    private void Open()
+    {
+        _doorAnimator.SetTrigger("Open");
+        // Звук
+        ToggleDoorColliders(true);
+    }
+
+    private void Close()
+    {
+        _doorAnimator.SetTrigger("Close");
+        // Звук
+        ToggleDoorColliders(false);
     }
 
     private void TransferPlayer(Transform player, Direction direction)
@@ -71,7 +103,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.GetComponent<PlayerCharacter>() != null)
         {
             TransferPlayer(other.transform, _direction);
         }

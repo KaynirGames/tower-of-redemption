@@ -235,8 +235,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0033143428, y: -0.5303773}
-  m_Size: {x: 0.97585994, y: 0.6583958}
+  m_Offset: {x: 0.009649502, y: -0.37199897}
+  m_Size: {x: 0.9885306, y: 0.73441774}
   m_Direction: 1
 --- !u!114 &7233533201263309741
 MonoBehaviour:
@@ -253,7 +253,7 @@ MonoBehaviour:
   _playerSpec: {fileID: 11400000, guid: 57db7f12630d5a44b81264d6bb185e8d, type: 2}
   _attackSpeed: 1
   _allowMovementOnAttack: 0
-  _inputHandler: {fileID: 3006772372958408792}
+  _inputHandler: {fileID: 4661792844993879684}
 --- !u!114 &3597064783027234841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80210416293c62f438cc38025549aa70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 25
+  _moveSpeed: 30
   _moveSmoothing: 0.05
   _enableSmoothing: 1
 --- !u!114 &3597064783027234842
@@ -376,7 +376,7 @@ Transform:
   m_GameObject: {fileID: 4095095375407663547}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 3652545230341760005}
   - {fileID: 1626993253865332530}
