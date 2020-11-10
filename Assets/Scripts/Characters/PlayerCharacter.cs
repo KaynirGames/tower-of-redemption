@@ -11,28 +11,26 @@ public class PlayerCharacter : Character
 
     [SerializeField] private PlayerSpec _playerSpec = null;
     [SerializeField] private float _attackSpeed = 1f;
-    [SerializeField] private bool _allowMovementOnAttack = false;
     [SerializeField] private InputHandler _inputHandler = null;
 
     public PlayerSpec PlayerSpec => _playerSpec;
 
     public Inventory Inventory { get; private set; }
 
-    private Vector2 _moveDirection = Vector2.zero;
     private CharacterMoveBase _characterMoveBase;
-    private CharacterAnimation _baseAnimation;
-
-    private bool _isAttackAvailable;
     private WaitForSeconds _waitForNextAttack;
+
+    private bool _enableAttack;
+    private bool _enableInput;
 
     protected override void Awake()
     {
         base.Awake();
 
         _characterMoveBase = GetComponent<CharacterMoveBase>();
-        _baseAnimation = GetComponentInChildren<CharacterAnimation>();
 
-        _isAttackAvailable = true;
+        _enableAttack = true;
+        _enableInput = true;
         _waitForNextAttack = new WaitForSeconds(_attackSpeed);
 
         Stats.OnCharacterDeath += Die;
@@ -50,34 +48,41 @@ public class PlayerCharacter : Character
     {
         if (GameMaster.Instance.IsPause) return;
 
-        HandleInput();
-    }
-
-    public override void ToggleMovement(bool enable)
-    {
-        _characterMoveBase.Toggle(enable);
-        _inputHandler.enabled = enable;
+        if (_enableInput)
+        {
+            HandleInput();
+        }
     }
 
     public override void PrepareForBattle()
     {
-        _baseAnimation.PlayMoveClip(Vector2.right);
+        Animations.PlayMoveClip(Vector2.right);
+    }
+
+    public void ToggleInput(bool enabled)
+    {
+        if (!enabled)
+        {
+            _characterMoveBase.SetMoveDirection(Vector3.zero);
+        }
+
+        _enableInput = enabled;
     }
 
     private void HandleInput()
     {
         if (_inputHandler.GetAttackInput())
         {
-            if (_isAttackAvailable)
+            if (_enableAttack)
             {
-                StartCoroutine(AttackRoutine(_allowMovementOnAttack));
+                StartCoroutine(AttackRoutine());
             }
         }
         else
         {
-            _moveDirection = _inputHandler.GetMovementInput();
-            _characterMoveBase.SetMoveDirection(_moveDirection);
-            _baseAnimation.PlayMoveClip(_moveDirection);
+            Vector2 moveDirection = _inputHandler.GetMovementInput();
+            _characterMoveBase.SetMoveDirection(moveDirection);
+            Animations.PlayMoveClip(moveDirection);
         }
     }
 
@@ -87,19 +92,14 @@ public class PlayerCharacter : Character
         OnBattleEnd.Invoke(false);
     }
 
-    private IEnumerator AttackRoutine(bool allowMovement)
+    private IEnumerator AttackRoutine()
     {
-        _isAttackAvailable = false;
+        _enableAttack = false;
 
-        _baseAnimation.PlayAttackClip();
-
-        if (!allowMovement)
-        {
-            ToggleMovement(false);
-        }
+        Animations.PlayAttackClip();
 
         yield return _waitForNextAttack;
 
-        _isAttackAvailable = true;
+        _enableAttack = true;
     }
 }

@@ -17,8 +17,6 @@ public abstract class Character : MonoBehaviour
         Animations = GetComponentInChildren<CharacterAnimation>();
     }
 
-    public virtual void ToggleMovement(bool enable) { }
-
     public virtual void PrepareForBattle() { }
 
     public virtual void ExitBattle(Vector3 lastPosition)

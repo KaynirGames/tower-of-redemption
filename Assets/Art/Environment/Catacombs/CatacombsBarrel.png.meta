@@ -1,43 +1,28 @@
 fileFormatVersion: 2
-guid: 0a8737aca3f81b547b19527aeb55086a
+guid: 0e028dacf0523a94bb336d1cb14c38ef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2197436522494568765
-    second: Player Defence_0
+      213: 6344297145711653977
+    second: CatacombsBarrel_0
   - first:
-      213: -1314980329763457895
-    second: Player Defence_1
+      213: -522386051302250282
+    second: CatacombsBarrel_1
   - first:
-      213: -7003047737987043129
-    second: Player Defence_2
+      213: 4691948574594493788
+    second: CatacombsBarrel_2
   - first:
-      213: -3746133632464056348
-    second: Player Defence_3
+      213: -901817438280433455
+    second: CatacombsBarrel_3
   - first:
-      213: 2971538483019086483
-    second: Player Defence_4
+      213: -6448234796020086371
+    second: CatacombsBarrel_4
   - first:
-      213: -3671208712188936464
-    second: Player Defence_5
+      213: -598447965054896009
+    second: CatacombsBarrel_5
   - first:
-      213: 1722687164859984278
-    second: Player Defence_0
-  - first:
-      213: -6534626803475662053
-    second: Player Defence_1
-  - first:
-      213: -8903893077832428720
-    second: Player Defence_2
-  - first:
-      213: -4941541490001490611
-    second: Player Defence_3
-  - first:
-      213: 2503542167008309535
-    second: Player Defence_4
-  - first:
-      213: -2195197269145849877
-    second: Player Defence_5
+      213: -2033675060088414432
+    second: CatacombsBarrel_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -99,7 +84,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -111,7 +96,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 512
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -123,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 512
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -137,127 +122,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player Defence_0
+      name: CatacombsBarrel_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 699aa9869d638e710800000000000000
-      internalID: 1722687164859984278
+      spriteID: 954faa7f3a87b0850800000000000000
+      internalID: 6344297145711653977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Defence_1
+      name: CatacombsBarrel_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1b361f4b875055a0800000000000000
-      internalID: -6534626803475662053
+      spriteID: 6d8a28077ac10c8f0800000000000000
+      internalID: -522386051302250282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Defence_2
+      name: CatacombsBarrel_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5dea1d9e562d1140800000000000000
+      internalID: 4691948574594493788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatacombsBarrel_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0531db9ab640f6480800000000000000
-      internalID: -8903893077832428720
+      spriteID: 1d0ca0361d91c73f0800000000000000
+      internalID: -901817438280433455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Defence_3
+      name: CatacombsBarrel_4
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4d4b9d323e1c6bb0800000000000000
-      internalID: -4941541490001490611
+      spriteID: d99c8e20e944386a0800000000000000
+      internalID: -6448234796020086371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Defence_4
+      name: CatacombsBarrel_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 778f85a1fb2e1b7f0800000000000000
+      internalID: -598447965054896009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CatacombsBarrel_6
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f11fdb8265e5eb220800000000000000
-      internalID: 2503542167008309535
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Defence_5
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.45, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bef67a0e6b71981e0800000000000000
-      internalID: -2195197269145849877
+      spriteID: 02fdbd6ce4fe6c3e0800000000000000
+      internalID: -2033675060088414432
       vertices: []
       indices: 
       edges: []

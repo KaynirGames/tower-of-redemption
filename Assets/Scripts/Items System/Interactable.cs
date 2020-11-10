@@ -4,20 +4,18 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] private UnityEvent _onInteraction = null;
+    [SerializeField] protected UnityEvent _onInteraction = null;
 
-    public virtual void Interact(PlayerCharacter player)
+    public virtual void Interact()
     {
         _onInteraction?.Invoke();
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerCharacter player = collision.GetComponent<PlayerCharacter>();
-
-        if (player != null)
+        if (other.GetComponent<PlayerCharacter>() != null)
         {
-            Interact(player);
+            Interact();
         }
     }
 

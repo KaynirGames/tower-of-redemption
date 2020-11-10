@@ -6,8 +6,6 @@
 [RequireComponent(typeof(Animator))]
 public class CharacterAnimation : MonoBehaviour
 {
-    [SerializeField] private Character _animatedCharacter = null;
-
     public Animator Animator { get; private set; }
 
     private void Awake()
@@ -33,10 +31,5 @@ public class CharacterAnimation : MonoBehaviour
     public void PlayDefenceClip()
     {
         Animator.SetTrigger("Defence");
-    }
-
-    public void EnableMovementAfterAttackAnimation()
-    {
-        _animatedCharacter.ToggleMovement(true);
     }
 }

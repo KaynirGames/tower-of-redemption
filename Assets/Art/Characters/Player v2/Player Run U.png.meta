@@ -1,43 +1,31 @@
 fileFormatVersion: 2
-guid: 0a8737aca3f81b547b19527aeb55086a
+guid: eb9f5cb5855feb44b83d7ca062dd217c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2197436522494568765
-    second: Player Defence_0
+      213: -6357533814087215082
+    second: Player Run U_0
   - first:
-      213: -1314980329763457895
-    second: Player Defence_1
+      213: 4329699862216568131
+    second: Player Run U_1
   - first:
-      213: -7003047737987043129
-    second: Player Defence_2
+      213: 1078192982847954741
+    second: Player Run U_2
   - first:
-      213: -3746133632464056348
-    second: Player Defence_3
+      213: 2319372150362271116
+    second: Player Run U_3
   - first:
-      213: 2971538483019086483
-    second: Player Defence_4
+      213: 6369218628548247191
+    second: Player Run U_4
   - first:
-      213: -3671208712188936464
-    second: Player Defence_5
+      213: -5533930245810008469
+    second: Player Run U_5
   - first:
-      213: 1722687164859984278
-    second: Player Defence_0
+      213: 2565256083845339921
+    second: Player Run U_6
   - first:
-      213: -6534626803475662053
-    second: Player Defence_1
-  - first:
-      213: -8903893077832428720
-    second: Player Defence_2
-  - first:
-      213: -4941541490001490611
-    second: Player Defence_3
-  - first:
-      213: 2503542167008309535
-    second: Player Defence_4
-  - first:
-      213: -2195197269145849877
-    second: Player Defence_5
+      213: 5904187511604127117
+    second: Player Run U_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -137,7 +125,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player Defence_0
+      name: Player Run U_0
       rect:
         serializedVersion: 2
         x: 0
@@ -151,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 699aa9869d638e710800000000000000
-      internalID: 1722687164859984278
+      spriteID: 6181cc30ea085c7a0800000000000000
+      internalID: -6357533814087215082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Defence_1
+      name: Player Run U_1
       rect:
         serializedVersion: 2
         x: 48
@@ -172,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1b361f4b875055a0800000000000000
-      internalID: -6534626803475662053
+      spriteID: 34de97fb51f261c30800000000000000
+      internalID: 4329699862216568131
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Defence_2
+      name: Player Run U_2
       rect:
         serializedVersion: 2
         x: 96
@@ -193,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0531db9ab640f6480800000000000000
-      internalID: -8903893077832428720
+      spriteID: 53f98fd2ec286fe00800000000000000
+      internalID: 1078192982847954741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Defence_3
+      name: Player Run U_3
       rect:
         serializedVersion: 2
         x: 144
@@ -214,14 +202,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4d4b9d323e1c6bb0800000000000000
-      internalID: -4941541490001490611
+      spriteID: c8de644aea0103020800000000000000
+      internalID: 2319372150362271116
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Defence_4
+      name: Player Run U_4
       rect:
         serializedVersion: 2
         x: 192
@@ -235,14 +223,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f11fdb8265e5eb220800000000000000
-      internalID: 2503542167008309535
+      spriteID: 79e3b6bd892046850800000000000000
+      internalID: 6369218628548247191
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Defence_5
+      name: Player Run U_5
       rect:
         serializedVersion: 2
         x: 240
@@ -256,8 +244,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bef67a0e6b71981e0800000000000000
-      internalID: -2195197269145849877
+      spriteID: b6e44bee2c78333b0800000000000000
+      internalID: -5533930245810008469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Run U_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.45, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11bd28321de999320800000000000000
+      internalID: 2565256083845339921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Run U_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.45, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8526749243efe150800000000000000
+      internalID: 5904187511604127117
       vertices: []
       indices: 
       edges: []
