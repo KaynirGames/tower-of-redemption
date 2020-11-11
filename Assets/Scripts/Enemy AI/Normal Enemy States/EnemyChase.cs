@@ -34,6 +34,6 @@ public class EnemyChase : BaseState<EnemyStateKey>
     private void ChaseTarget()
     {
         _previousTargetPosition = _target.position;
-        _enemyAI.SetDestination(_previousTargetPosition);
+        _enemyAI.MovePosition.SetPosition(_previousTargetPosition);
     }
 }

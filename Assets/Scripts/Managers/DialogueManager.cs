@@ -33,6 +33,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        // Пауза
+
         foreach (DialogueLine line in dialogue.DialogueLines)
         {
             _linesQueue.Enqueue(line);
@@ -72,6 +74,8 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
+        // Снять паузу
+
         ToggleDialogueCanvas(false);
 
         if (_lastTypeRoutine != null)

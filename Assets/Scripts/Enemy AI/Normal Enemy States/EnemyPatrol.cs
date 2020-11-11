@@ -23,7 +23,7 @@ public class EnemyPatrol : BaseState<EnemyStateKey>
 
     public override BaseState<EnemyStateKey> UpdateState()
     {
-        if (!_enemyAI.IsMoving)
+        if (!_enemyAI.MovePosition.IsMoving)
         {
             return _nextState;
         }
@@ -36,6 +36,6 @@ public class EnemyPatrol : BaseState<EnemyStateKey>
     {
         int index = Random.Range(0, _patrolWaypoints.Length);
         _currentDestination = _patrolWaypoints[index];
-        _enemyAI.SetDestination(_currentDestination);
+        _enemyAI.MovePosition.SetPosition(_currentDestination);
     }
 }

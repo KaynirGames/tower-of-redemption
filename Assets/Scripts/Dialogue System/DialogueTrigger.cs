@@ -3,17 +3,15 @@
 public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private Dialogue _dialogue = null;
-    [SerializeField] private bool _isRepeatable = false;
-
-    private bool _isTriggered;
+    [SerializeField] private bool _triggerOnce = false;
 
     public void TriggerDialogue()
     {
-        if (_isRepeatable || !_isTriggered)
-        {
-            _isTriggered = true;
+        DialogueManager.Instance.StartDialogue(_dialogue);
 
-            DialogueManager.Instance.StartDialogue(_dialogue);
+        if (_triggerOnce)
+        {
+            Destroy(this);
         }
     }
 }

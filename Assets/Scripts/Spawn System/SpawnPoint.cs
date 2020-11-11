@@ -1,25 +1,35 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Точка появления объекта.
-/// </summary>
 public class SpawnPoint : MonoBehaviour
 {
-    [SerializeField] private SpawnTable _spawnTable = null; // Таблица вероятности появления объектов.
+    [SerializeField] private SpawnTable _spawnTable = null;
+    [SerializeField] private int _spawnAmount = 1;
+    [SerializeField] private bool _applyForce = false;
+    [SerializeField] private float _forceValue = 0.25f;
 
-    /// <summary>
-    /// Создать объект на месте точки.
-    /// </summary>
     public void Spawn()
     {
-        Spawn(null);
+        for (int i = 1; i <= _spawnAmount; i++)
+        {
+            GameObject gameObject = Instantiate((GameObject)_spawnTable.ChooseRandom(),
+                                    transform.position,
+                                    Quaternion.identity);
+
+            if (_applyForce)
+            {
+                ApplyForce(gameObject.GetComponent<Rigidbody2D>());
+            }
+        }
     }
-    /// <summary>
-    /// Создать объект на месте точки (с присвоением родительского объекта).
-    /// </summary>
-    public void Spawn(Transform parent)
+
+    private void ApplyForce(Rigidbody2D rigidbody)
     {
-        GameObject gameObject = _spawnTable.ChooseRandom() as GameObject;
-        Instantiate(gameObject, transform.position, Quaternion.identity, parent);
+        if (rigidbody != null)
+        {
+            Vector2 force = new Vector2(Random.Range(-1, 1),
+                                        Random.Range(-1, 1)) * _forceValue;
+
+            rigidbody.AddForce(force, ForceMode2D.Impulse);
+        }
     }
 }

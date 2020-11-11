@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
 
             foreach (SpawnPoint point in _enemySpawnPoints)
             {
-                point.Spawn(room.transform);
+                point.Spawn();
             }
         }
         Room.OnActiveRoomChange -= SpawnEnemies;

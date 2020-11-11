@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Создаваемый объект в таблице вероятностей появления.
-/// </summary>
 [System.Serializable]
 public class SpawnableObject
 {
@@ -11,9 +8,7 @@ public class SpawnableObject
     [SerializeField] private int _index = 0;
 
     public Object ObjectToSpawn => _objectToSpawn;
-
     public int Weight => _weight;
-
     public int Index => _index;
 
     public SpawnableObject(Object objectToSpawn, int weight, int index)

@@ -17,7 +17,7 @@ public class PlayerCharacter : Character
 
     public Inventory Inventory { get; private set; }
 
-    private CharacterMoveBase _characterMoveBase;
+    private MoveBase _moveBase;
     private WaitForSeconds _waitForNextAttack;
 
     private bool _enableAttack;
@@ -27,7 +27,7 @@ public class PlayerCharacter : Character
     {
         base.Awake();
 
-        _characterMoveBase = GetComponent<CharacterMoveBase>();
+        _moveBase = GetComponent<MoveBase>();
 
         _enableAttack = true;
         _enableInput = true;
@@ -63,7 +63,7 @@ public class PlayerCharacter : Character
     {
         if (!enabled)
         {
-            _characterMoveBase.SetMoveDirection(Vector3.zero);
+            _moveBase.SetMoveDirection(Vector3.zero);
         }
 
         _enableInput = enabled;
@@ -81,7 +81,7 @@ public class PlayerCharacter : Character
         else
         {
             Vector2 moveDirection = _inputHandler.GetMovementInput();
-            _characterMoveBase.SetMoveDirection(moveDirection);
+            _moveBase.SetMoveDirection(moveDirection);
             Animations.PlayMoveClip(moveDirection);
         }
     }

@@ -8,12 +8,16 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float _waitTimeOnTargetLost = 3f;
     [SerializeField] private bool _includeObstaclesOnPatrol = false;
     [SerializeField] private bool _displayGizmos = true;
-    [SerializeField] private BaseMovement _movementMechanics = null;
-
-    public bool IsMoving => _movementMechanics.IsMoving;
+    
+    public MovePositionBase MovePosition { get; private set; }
 
     private StateMachine<EnemyStateKey> _stateMachine;
     private Transform _target;
+
+    private void Awake()
+    {
+        MovePosition = GetComponent<MovePositionBase>();
+    }
 
     private void Start()
     {
@@ -50,16 +54,6 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void SetDestination(Vector2 targetPosition)
-    {
-        _movementMechanics.SetMovementPosition(targetPosition);
-    }
-
-    public void StopMovement()
-    {
-        _movementMechanics.StopMovement();
-    }
-
     public void SetTransition(EnemyStateKey transitionKey)
     {
         _stateMachine.TransitionNext(transitionKey);
@@ -72,7 +66,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnDisable()
     {
-        StopMovement();
+        MovePosition.StopMovement();
     }
 
     private void OnDrawGizmos()
