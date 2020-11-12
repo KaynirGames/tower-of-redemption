@@ -124,6 +124,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7887436195908774976}
     m_Modifications:
+    - target: {fileID: 2943017453468984054, guid: 68c4e0587e6880940acc87c18bba569d,
+        type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 93442104684544
+      objectReference: {fileID: 0}
     - target: {fileID: 3552716786836015400, guid: 68c4e0587e6880940acc87c18bba569d,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -282,6 +287,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7887436195908774976}
     m_Modifications:
+    - target: {fileID: 2943017453468984054, guid: 68c4e0587e6880940acc87c18bba569d,
+        type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 93505346400256
+      objectReference: {fileID: 0}
     - target: {fileID: 3552716786836015400, guid: 68c4e0587e6880940acc87c18bba569d,
         type: 3}
       propertyPath: m_AnchorMax.x

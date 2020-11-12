@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Localization;
 
 public class MenuTabUI : MonoBehaviour
 {
     [SerializeField] private Canvas _tabCanvas = null;
     [SerializeField] private GameObject _tabSelectionButton = null;
     [SerializeField] private GameObject _tabActiveImageBox = null;
-    [SerializeField] private TranslatedText _tabName = null;
+    [SerializeField] private LocalizedString _tabName = null;
 
-    public string TabName => _tabName.Value;
+    public string TabName => _tabName.GetLocalizedString().Result;
 
     public virtual void Toggle(bool enable)
     {

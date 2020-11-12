@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391a4de9ea6faed459cbf08bdc8bf010, type: 3}
   m_Name: Guardian
   m_EditorClassIdentifier: 
-  _specNameText:
-    _key: PlayerSpec.Guardian.Name
-  _specDescriptionText:
-    _key: PlayerSpec.Guardian.Description
+  _specName:
+    m_TableReference:
+      m_TableCollectionName: GUID:5c8745f2e300ee044b7c3a88a42370fe
+    m_TableEntryReference:
+      m_KeyId: 28604913479680
+      m_Key: 
+  _specDescription:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
   _baseHealth: 120
   _baseEnergy: 80
   _baseStrength: 25

@@ -46,11 +46,11 @@ public abstract class Effect : ScriptableObject
             : false;
     }
 
-    protected virtual void OnValidate()
-    {
-        string assetPath = AssetDatabase.GetAssetPath(this);
-        ID = AssetDatabase.AssetPathToGUID(assetPath);
-        _tooltipText = new TranslatedText($"Tooltip.{ID}");
-        TooltipKey = _tooltipText.Key;
-    }
+    //protected virtual void OnValidate()
+    //{
+    //    string assetPath = AssetDatabase.GetAssetPath(this);
+    //    ID = AssetDatabase.AssetPathToGUID(assetPath);
+    //    _tooltipText = new TranslatedText($"Tooltip.{ID}");
+    //    TooltipKey = _tooltipText.Key;
+    //}
 }

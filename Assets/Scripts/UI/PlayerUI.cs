@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using KaynirGames.InputSystem;
+using UnityEngine;
 
 public class PlayerUI : MonoBehaviour
 {
     [SerializeField] private ResourceDisplayUI _resourceDisplay = null;
     [SerializeField] private Joystick _joystick = null;
+    [SerializeField] private ScreenJoybutton _attackButton = null;
 
     private CanvasGroup _canvasGroup;
 
@@ -23,5 +25,11 @@ public class PlayerUI : MonoBehaviour
     private void RegisterPlayer(PlayerCharacter player)
     {
         _resourceDisplay.RegisterResources(player.Stats);
+        ScreenJoystickHandler joystickHandler = player.GetComponent<ScreenJoystickHandler>();
+
+        if (joystickHandler != null)
+        {
+            joystickHandler.SetJoystick(_joystick, _attackButton);
+        }
     }
 }

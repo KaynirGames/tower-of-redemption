@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c70923fe7c8a3644a59cb893db8e93c, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
-  _specNameText:
-    _key: EnemySpec.Slime.Name
-  _specDescriptionText:
-    _key: EnemySpec.Slime.Description
+  _specName:
+    m_TableReference:
+      m_TableCollectionName: GUID:5c8745f2e300ee044b7c3a88a42370fe
+    m_TableEntryReference:
+      m_KeyId: 28930907369472
+      m_Key: 
+  _specDescription:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
   _baseHealth: 20
   _baseEnergy: 10
   _baseStrength: 15

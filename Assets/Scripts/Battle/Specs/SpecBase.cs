@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public abstract class SpecBase : ScriptableObject
 {
     [Header("Базовая информация о персонаже:")]
-    [SerializeField] private TranslatedText _specNameText = null;
-    [SerializeField] private TranslatedText _specDescriptionText = null;
+    [SerializeField] private LocalizedString _specName = null;
+    [SerializeField] private LocalizedString _specDescription = null;
     [Header("Базовые статы персонажа:")]
     [SerializeField] private float _baseHealth = 100;
     [SerializeField] private float _baseEnergy = 100;
@@ -22,8 +23,8 @@ public abstract class SpecBase : ScriptableObject
     [Header("Базовые умения персонажа:")]
     [SerializeField] private List<Skill> _baseSkills = new List<Skill>();
 
-    public string SpecName => _specNameText.Value;
-    public string SpecDescription => _specDescriptionText.Value;
+    public string SpecName => _specName.GetLocalizedString().Result;
+    public string SpecDescription => _specDescription.GetLocalizedString().Result;
 
     public float BaseHealth => _baseHealth;
     public float BaseEnergy => _baseEnergy;
