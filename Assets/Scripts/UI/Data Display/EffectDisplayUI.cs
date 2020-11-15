@@ -41,14 +41,14 @@ public class EffectDisplayUI : MonoBehaviour
         HandleContentScroll();
     }
 
-    private void UpdateEffectsDisplay(EffectInstance instance)
+    private void UpdateEffectsDisplay(Effect instance)
     {
         _effectSlots.Add(CreateSlot(instance));
 
         HandleContentScroll();
     }
 
-    private EffectSlotUI CreateSlot(EffectInstance instance)
+    private EffectSlotUI CreateSlot(Effect instance)
     {
         EffectSlotUI effectSlot = _emptySlotsPool.Count > 0
             ? GetSlotFromPool()

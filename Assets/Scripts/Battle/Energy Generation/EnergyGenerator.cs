@@ -15,7 +15,7 @@ public class EnergyGenerator : MonoBehaviour
 
     public bool IsSelectingGems { get; set; }
 
-    private List<GemstoneInstance> _matchingGemstones = new List<GemstoneInstance>();
+    private List<Gemstone> _matchingGemstones = new List<Gemstone>();
     private List<int> _changedColumns = new List<int>();
 
     private WaitForSeconds _waitForMatrixUpdate;
@@ -33,11 +33,11 @@ public class EnergyGenerator : MonoBehaviour
         _gemMatrixUI.UpdateMatrixUI();
     }
 
-    public bool TrySelectGemstone(GemstoneInstance gemstone)
+    public bool TrySelectGemstone(Gemstone gemstone)
     {
         if (_matchingGemstones.Count > 0)
         {
-            if (_matchingGemstones.Contains(gemstone) || !_matchingGemstones[0].CheckMatch(gemstone.Gemstone))
+            if (_matchingGemstones.Contains(gemstone) || !_matchingGemstones[0].CheckMatch(gemstone.GemstoneSO))
             {
                 ClearGemSelection();
                 return false;
@@ -56,9 +56,9 @@ public class EnergyGenerator : MonoBehaviour
             _changedColumns.Clear();
             float energyGain = 0f;
 
-            foreach (GemstoneInstance gem in _matchingGemstones)
+            foreach (Gemstone gem in _matchingGemstones)
             {
-                energyGain += gem.Gemstone.EnergyGainValue;
+                energyGain += gem.GemstoneSO.EnergyGainValue;
                 HandleGemstoneDisposal(gem);
             }
 
@@ -74,7 +74,7 @@ public class EnergyGenerator : MonoBehaviour
 
     public void ClearGemSelection()
     {
-        foreach (GemstoneInstance gem in _matchingGemstones)
+        foreach (Gemstone gem in _matchingGemstones)
         {
             _gemMatrixUI.ResetSelection(gem.X, gem.Y);
         }
@@ -82,7 +82,7 @@ public class EnergyGenerator : MonoBehaviour
         _matchingGemstones.Clear();
     }
 
-    private void HandleGemstoneDisposal(GemstoneInstance gemstone)
+    private void HandleGemstoneDisposal(Gemstone gemstone)
     {
         _gemMatrix.UpdateMatrixSlot(gemstone.X, gemstone.Y, null);
         _gemMatrixUI.UpdateMatrixSlotUI(gemstone.X, gemstone.Y, null);
@@ -110,7 +110,7 @@ public class EnergyGenerator : MonoBehaviour
         {
             if (_gemMatrix.CheckForEmptySlot(x, column))
             {
-                GemstoneInstance gemstone = _gemMatrix.CreateGemstoneInstance(x, column);
+                Gemstone gemstone = _gemMatrix.CreateGemstoneInstance(x, column);
                 _gemMatrix.UpdateMatrixSlot(x, column, gemstone);
             }
         }

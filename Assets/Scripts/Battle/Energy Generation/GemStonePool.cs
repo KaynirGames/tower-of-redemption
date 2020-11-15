@@ -4,37 +4,37 @@ using UnityEngine;
 [System.Serializable]
 public class GemstonePool
 {
-    [SerializeField] private Gemstone _gemStone = null;
+    [SerializeField] private GemstoneSO _gemStoneSO = null;
     [SerializeField] private int _initialPoolSize = 10;
 
-    public Gemstone GemStone => _gemStone;
+    public GemstoneSO GemstoneSO => _gemStoneSO;
 
-    private Queue<GemstoneInstance> _gemQueue;
+    private Queue<Gemstone> _gemstoneQueue;
 
     public void CreatePool()
     {
-        _gemQueue = new Queue<GemstoneInstance>();
+        _gemstoneQueue = new Queue<Gemstone>();
 
         for (int i = 0; i < _initialPoolSize; i++)
         {
-            _gemQueue.Enqueue(new GemstoneInstance(_gemStone));
+            _gemstoneQueue.Enqueue(new Gemstone(_gemStoneSO));
         }
     }
 
-    public GemstoneInstance GetFromPool()
+    public Gemstone GetFromPool()
     {
-        if (_gemQueue.Count > 0)
+        if (_gemstoneQueue.Count > 0)
         {
-            return _gemQueue.Dequeue();
+            return _gemstoneQueue.Dequeue();
         }
         else
         {
-            return new GemstoneInstance(_gemStone);
+            return new Gemstone(_gemStoneSO);
         }
     }
 
-    public void ReturnToPool(GemstoneInstance gemStone)
+    public void ReturnToPool(Gemstone gemStone)
     {
-        _gemQueue.Enqueue(gemStone);
+        _gemstoneQueue.Enqueue(gemStone);
     }
 }

@@ -96,7 +96,7 @@ public class CharacterStats : MonoBehaviour
 
     private Stat CreateStat(float baseValue, StatType statType)
     {
-        StatData statData = DatabaseManager.Instance.StatDatabase.Find(x => x.StatType == statType);
+        StatSO statData = DatabaseManager.Instance.StatDatabase.Find(x => x.StatType == statType);
         Stat stat = new Stat(baseValue, statData.MinValue, statData.MaxValue);
 
         return stat;

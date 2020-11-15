@@ -36,7 +36,7 @@ public class GemstoneMatrixUI : MonoBehaviour
         }
     }
 
-    public void UpdateMatrixSlotUI(int x, int y, GemstoneInstance gemstone)
+    public void UpdateMatrixSlotUI(int x, int y, Gemstone gemstone)
     {
         _gemstoneMatrixUI[x, y].UpdateDisplay(gemstone);
     }

@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Character Status_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: eb870e2553eec4a48ad476083e5bd3d9, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 42110087168
+    m_Localized: Strength
+    m_Metadata:
+      m_Items: []
+  - m_Id: 284557635584
+    m_Localized: STR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 353470050304
+    m_Localized: Will
+    m_Metadata:
+      m_Items: []
+  - m_Id: 526409592832
+    m_Localized: WIL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 635092398080
+    m_Localized: Defence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 701542756352
+    m_Localized: DEF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 794429812736
+    m_Localized: Magic Defence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 896980545536
+    m_Localized: MDF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3754585026560
+    m_Localized: Health points
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3980028866560
+    m_Localized: HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4465251119104
+    m_Localized: Spirit points
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4599993135104
+    m_Localized: SP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9630368722944
+    m_Localized: <color=#{0}>Burn</color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9695795671040
+    m_Localized: <color=#{0}>Perfect guard</color>
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1

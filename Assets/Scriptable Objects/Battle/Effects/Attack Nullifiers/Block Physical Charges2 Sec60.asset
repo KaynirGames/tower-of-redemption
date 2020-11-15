@@ -14,13 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 60
   _secondsAmountOverTick: 1
-  _inflictionChance: 0
-  _descriptionFormat:
-    _key: Effect.Block.Format
-  _tooltipFormat:
-    _key: Tooltip.PhysicalBlock.Format
-  _tooltipText:
-    _key: Tooltip.4da1f535f3152bc4f9cb3217dd4076f4
+  _inflictionChance: 100
   _chargesAmount: 2
   _ailmentData: {fileID: 11400000, guid: 73201c1a355a4c5498fa9cf7ca94973e, type: 2}
   _nullableDamageTypes:

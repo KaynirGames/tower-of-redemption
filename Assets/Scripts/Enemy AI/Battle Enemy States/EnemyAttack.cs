@@ -4,14 +4,14 @@ using System.Collections.Generic;
 public class EnemyAttack : BaseState<EnemyBattleStateKey>
 {
     private EnemyBattleAI _enemyBattleAI;
-    private Dictionary<SkillInstance, int> _attackSkillWeights;
+    private Dictionary<Skill, int> _attackSkillWeights;
 
     private EnemyCharacter _enemy;
-    private SkillInstance _selectedSkill;
+    private Skill _selectedSkill;
 
     private int _requiredEnergy;
 
-    public EnemyAttack(EnemyBattleAI battleAI, Dictionary<SkillInstance, int> attackSkillWeights)
+    public EnemyAttack(EnemyBattleAI battleAI, Dictionary<Skill, int> attackSkillWeights)
     {
         _enemyBattleAI = battleAI;
         _attackSkillWeights = attackSkillWeights;
@@ -29,7 +29,7 @@ public class EnemyAttack : BaseState<EnemyBattleStateKey>
         }
         else
         {
-            _requiredEnergy = _selectedSkill.Skill.Cost;
+            _requiredEnergy = _selectedSkill.SkillSO.Cost;
         }
     }
 

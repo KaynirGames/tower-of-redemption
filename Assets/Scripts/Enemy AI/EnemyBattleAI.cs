@@ -13,9 +13,9 @@ public class EnemyBattleAI : MonoBehaviour
 
     private StateMachine<EnemyBattleStateKey> _stateMachine;
 
-    private List<SkillInstance> _attackSkills;
-    private List<SkillInstance> _defenceSkills;
-    private SkillInstance _specialSkill;
+    private List<Skill> _attackSkills;
+    private List<Skill> _defenceSkills;
+    private Skill _specialSkill;
 
     private EnemyCharacter _enemy;
     private float _energyRegen;
@@ -26,8 +26,8 @@ public class EnemyBattleAI : MonoBehaviour
 
     private void Awake()
     {
-        _attackSkills = new List<SkillInstance>();
-        _defenceSkills = new List<SkillInstance>();
+        _attackSkills = new List<Skill>();
+        _defenceSkills = new List<Skill>();
 
         _enemy = GetComponent<EnemyCharacter>();
     }
@@ -86,9 +86,9 @@ public class EnemyBattleAI : MonoBehaviour
         _stateMachine.TransitionNext(battleStateKey);
     }
 
-    public SkillInstance GetSuitableSkill(Dictionary<SkillInstance, int> skillWeights)
+    public Skill GetSuitableSkill(Dictionary<Skill, int> skillWeights)
     {
-        SkillInstance skillInstance = null;
+        Skill skillInstance = null;
         int minWeight = int.MaxValue;
 
         foreach (var pair in skillWeights)
@@ -109,15 +109,15 @@ public class EnemyBattleAI : MonoBehaviour
     {
         var activeSkills = skillBook.GetSkillSlots(SkillSlot.Active);
 
-        foreach (SkillInstance instance in activeSkills)
+        foreach (Skill instance in activeSkills)
         {
             if (instance == null) { continue; }
 
-            if (instance.Skill.GetType() == typeof(AttackSkill))
+            if (instance.SkillSO.GetType() == typeof(AttackSkillSO))
             {
                 _attackSkills.Add(instance);
             }
-            else if (instance.Skill.GetType() == typeof(DefensiveSkill))
+            else if (instance.SkillSO.GetType() == typeof(DefenceSkillSO))
             {
                 _defenceSkills.Add(instance);
             }
@@ -151,14 +151,14 @@ public class EnemyBattleAI : MonoBehaviour
         }
     }
 
-    private Dictionary<SkillInstance, int> CreateSkillWeights(List<SkillInstance> skills)
+    private Dictionary<Skill, int> CreateSkillWeights(List<Skill> skills)
     {
-        Dictionary<SkillInstance, int> skillWeights = new Dictionary<SkillInstance, int>();
+        Dictionary<Skill, int> skillWeights = new Dictionary<Skill, int>();
 
-        foreach (SkillInstance instance in skills)
+        foreach (Skill instance in skills)
         {
             int energyPerSecond = Mathf.RoundToInt(_energyRegen / _energyRegenDelay);
-            int weight = instance.Skill.Cooldown * energyPerSecond - instance.Skill.Cost;
+            int weight = instance.SkillSO.Cooldown * energyPerSecond - instance.SkillSO.Cost;
 
             skillWeights.Add(instance, weight);
         }

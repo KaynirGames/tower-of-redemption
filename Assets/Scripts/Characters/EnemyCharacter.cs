@@ -28,8 +28,6 @@ public class EnemyCharacter : Character
         SkillBook.SetBaseSpecSkills(_enemySpec);
 
         _enemyBattleAI.InitializeBattleAI(SkillBook);
-
-        EnemyManager.Instance.RegisterEnemy(this);
     }
 
     public override void PrepareForBattle()

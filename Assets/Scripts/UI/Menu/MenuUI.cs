@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Tables;
 
 public class MenuUI : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class MenuUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _tabHeaderText = null;
     [SerializeField] private PlayerUI _playerUI = null;
     [SerializeField] private DescriptionUI _descriptionUI = null;
-    [SerializeField] private TooltipPopupUI _tooltipPopupUI = null;
 
     private CanvasGroup _menuCanvasGroup;
     private MenuTabUI[] _menuTabs;
@@ -23,9 +23,6 @@ public class MenuUI : MonoBehaviour
         SelectionHandlerUI.OnSelectionCancel += CancelSelection;
 
         SkillSlotUI.OnSkillDescriptionCall += ShowDescription;
-
-        TooltipHandlerUI.OnTooltipCall += ShowTooltip;
-        TooltipHandlerUI.OnTooltipCancel += HideTooltip;
     }
 
     public void OpenTab(int tabIndex)
@@ -78,18 +75,6 @@ public class MenuUI : MonoBehaviour
     private void ShowDescription(string name, string type, string description)
     {
         _descriptionUI.SetDescriptionText(name, type, description);
-    }
-
-    private void ShowTooltip(Vector3 position, string content, string header)
-    {
-        _tooltipPopupUI.SetTooltipText(content, header);
-        _tooltipPopupUI.SetTooltipPosition(position);
-        _tooltipPopupUI.ToggleTooltipPopup(true);
-    }
-
-    private void HideTooltip()
-    {
-        _tooltipPopupUI.ToggleTooltipPopup(false);
     }
 
     private void CancelSelection()

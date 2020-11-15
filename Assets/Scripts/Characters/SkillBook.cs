@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class SkillBook : MonoBehaviour
 {
-    public delegate void OnSkillSlotChange(int slotID, SkillSlot slot, SkillInstance skill);
+    public delegate void OnSkillSlotChange(int slotID, SkillSlot slot, Skill skill);
 
     public OnSkillSlotChange OnSlotChange = delegate { };
 
@@ -16,37 +16,37 @@ public class SkillBook : MonoBehaviour
 
     public Character Owner { get; private set; }
 
-    private SkillInstance[] _activeSkills;
-    private SkillInstance[] _passiveSkills;
-    private SkillInstance[] _specialSkills;
+    private Skill[] _activeSkills;
+    private Skill[] _passiveSkills;
+    private Skill[] _specialSkills;
 
-    private Dictionary<SkillSlot, SkillInstance[]> _skillSlots;
+    private Dictionary<SkillSlot, Skill[]> _skillSlots;
 
     private void Awake()
     {
         Owner = GetComponent<Character>();
 
-        _activeSkills = new SkillInstance[_activeSkillsCount];
-        _passiveSkills = new SkillInstance[_passiveSkillsCount];
-        _specialSkills = new SkillInstance[_specialSkillsCount];
+        _activeSkills = new Skill[_activeSkillsCount];
+        _passiveSkills = new Skill[_passiveSkillsCount];
+        _specialSkills = new Skill[_specialSkillsCount];
 
         _skillSlots = CreateSkillSlots();
     }
 
     public void SetBaseSpecSkills(SpecBase currentSpec)
     {
-        foreach (Skill skill in currentSpec.BaseSkills)
+        foreach (SkillSO skillSO in currentSpec.BaseSkills)
         {
-            TryAddSkill(skill);
+            TryAddSkill(skillSO);
         }
     }
 
-    public SkillInstance[] GetSkillSlots(SkillSlot slot)
+    public Skill[] GetSkillSlots(SkillSlot slot)
     {
         return _skillSlots[slot];
     }
 
-    public bool TryAddSkill(Skill skill)
+    public bool TryAddSkill(SkillSO skill)
     {
         int slotID = FindFirstEmptySlot(skill.Slot);
 
@@ -59,11 +59,11 @@ public class SkillBook : MonoBehaviour
         return false;
     }
 
-    public SkillInstance RemoveSkill(int slotID, SkillSlot slot)
+    public Skill RemoveSkill(int slotID, SkillSlot slot)
     {
-        SkillInstance[] slots = GetSkillSlots(slot);
+        Skill[] slots = GetSkillSlots(slot);
 
-        SkillInstance removedSkill = slots[slotID];
+        Skill removedSkill = slots[slotID];
         slots[slotID] = null;
 
         OnSlotChange.Invoke(slotID, slot, null);
@@ -76,17 +76,17 @@ public class SkillBook : MonoBehaviour
         return removedSkill;
     }
 
-    public SkillInstance ReplaceSkill(int slotID, Skill newSkill)
+    public Skill ReplaceSkill(int slotID, SkillSO newSkillSO)
     {
-        SkillInstance replacedSkill = RemoveSkill(slotID, newSkill.Slot);
-        AddSkill(newSkill, slotID);
+        Skill replacedSkill = RemoveSkill(slotID, newSkillSO.Slot);
+        AddSkill(newSkillSO, slotID);
 
         return replacedSkill;
     }
 
     public void TogglePassiveBattleEffects(bool enable)
     {
-        foreach (SkillInstance instance in _passiveSkills)
+        foreach (Skill instance in _passiveSkills)
         {
             if (instance == null) { continue; }
 
@@ -101,9 +101,9 @@ public class SkillBook : MonoBehaviour
         }
     }
 
-    private Dictionary<SkillSlot, SkillInstance[]> CreateSkillSlots()
+    private Dictionary<SkillSlot, Skill[]> CreateSkillSlots()
     {
-        return new Dictionary<SkillSlot, SkillInstance[]>()
+        return new Dictionary<SkillSlot, Skill[]>()
         {
             { SkillSlot.Active, _activeSkills },
             { SkillSlot.Passive, _passiveSkills },
@@ -111,22 +111,22 @@ public class SkillBook : MonoBehaviour
         };
     }
 
-    private void AddSkill(Skill skill, int slotID)
+    private void AddSkill(SkillSO skillSO, int slotID)
     {
-        SkillInstance instance = new SkillInstance(skill);
+        Skill instance = new Skill(skillSO);
 
-        if (skill.Slot == SkillSlot.Passive)
+        if (skillSO.Slot == SkillSlot.Passive)
         {
             TogglePassivePermanentEffects(true, instance);
         }
 
-        GetSkillSlots(skill.Slot)[slotID] = instance;
-        OnSlotChange.Invoke(slotID, skill.Slot, instance);
+        GetSkillSlots(skillSO.Slot)[slotID] = instance;
+        OnSlotChange.Invoke(slotID, skillSO.Slot, instance);
     }
 
     private int FindFirstEmptySlot(SkillSlot slot)
     {
-        SkillInstance[] slots = GetSkillSlots(slot);
+        Skill[] slots = GetSkillSlots(slot);
 
         for (int i = 0; i < slots.Length; i++)
         {
@@ -139,17 +139,17 @@ public class SkillBook : MonoBehaviour
         return -1;
     }
 
-    private void TogglePassivePermanentEffects(bool enable, SkillInstance skillInstance)
+    private void TogglePassivePermanentEffects(bool enable, Skill skill)
     {
-        PassiveSkill passive = skillInstance.Skill as PassiveSkill;
+        PassiveSkillSO passive = skill.SkillSO as PassiveSkillSO;
 
         if (enable)
         {
-            passive.ApplyPermanentEffects(Owner, skillInstance);
+            passive.ApplyPermanentEffects(Owner, skill);
         }
         else
         {
-            passive.RemovePermanentEffects(Owner, skillInstance);
+            passive.RemovePermanentEffects(Owner, skill);
         }
     }
 }

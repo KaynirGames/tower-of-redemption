@@ -8,11 +8,11 @@ public class GemstoneMatrix
 
     public GemstonePooler GemstonePooler => _gemstonePooler;
 
-    private GemstoneInstance[,] _matrix;
+    private Gemstone[,] _matrix;
 
     public void CreateMatrix(int sizeX, int sizeY)
     {
-        _matrix = new GemstoneInstance[sizeX, sizeY];
+        _matrix = new Gemstone[sizeX, sizeY];
 
         _gemstonePooler.CreatePooler();
 
@@ -20,24 +20,24 @@ public class GemstoneMatrix
         {
             for (int y = 0; y < sizeY; y++)
             {
-                GemstoneInstance newGem = CreateGemstoneInstance(x, y);
+                Gemstone newGem = CreateGemstoneInstance(x, y);
 
                 _matrix[x, y] = newGem;
             }
         }
     }
 
-    public GemstoneInstance CreateGemstoneInstance(int x, int y)
+    public Gemstone CreateGemstoneInstance(int x, int y)
     {
-        Gemstone random = (Gemstone)_gemstoneSpawnTable.ChooseRandom();
-        GemstoneInstance gemStone = _gemstonePooler.GetFromPooler(random);
+        GemstoneSO random = (GemstoneSO)_gemstoneSpawnTable.ChooseRandom();
+        Gemstone gemStone = _gemstonePooler.GetFromPooler(random);
 
         gemStone.SetPosition(x, y);
 
         return gemStone;
     }
 
-    public void UpdateMatrixSlot(int x, int y, GemstoneInstance gemstone)
+    public void UpdateMatrixSlot(int x, int y, Gemstone gemstone)
     {
         _matrix[x, y] = gemstone;
     }
@@ -72,7 +72,7 @@ public class GemstoneMatrix
         }
     }
 
-    public GemstoneInstance GetGemstone(int x, int y)
+    public Gemstone GetGemstone(int x, int y)
     {
         return _matrix[x, y];
     }

@@ -4,30 +4,30 @@ using UnityEngine;
 
 public class CharacterEffects : MonoBehaviour
 {
-    public event Action<EffectInstance> OnDisplayEffectCall = delegate { };
+    public event Action<Effect> OnDisplayEffectCall = delegate { };
 
-    public List<EffectInstance> StatBonuses { get; private set; }
-    public Dictionary<AilmentData, EffectInstance> AilmentEffects { get; private set; }
+    public List<Effect> StatBonuses { get; private set; }
+    public Dictionary<AilmentSO, Effect> AilmentEffects { get; private set; }
 
-    private Dictionary<StatType, EffectInstance> _positiveStatBuffs;
-    private Dictionary<StatType, EffectInstance> _negativeStatBuffs;
+    private Dictionary<StatType, Effect> _positiveStatBuffs;
+    private Dictionary<StatType, Effect> _negativeStatBuffs;
 
     private void Awake()
     {
-        StatBonuses = new List<EffectInstance>();
-        AilmentEffects = new Dictionary<AilmentData, EffectInstance>();
-        _positiveStatBuffs = new Dictionary<StatType, EffectInstance>();
-        _negativeStatBuffs = new Dictionary<StatType, EffectInstance>();
+        StatBonuses = new List<Effect>();
+        AilmentEffects = new Dictionary<AilmentSO, Effect>();
+        _positiveStatBuffs = new Dictionary<StatType, Effect>();
+        _negativeStatBuffs = new Dictionary<StatType, Effect>();
     }
 
-    public Dictionary<StatType, EffectInstance> GetStatBuffs(bool isPositive)
+    public Dictionary<StatType, Effect> GetStatBuffs(bool isPositive)
     {
         return isPositive
             ? _positiveStatBuffs
             : _negativeStatBuffs;
     }
 
-    public void DisplayEffect(EffectInstance instance)
+    public void DisplayEffect(Effect instance)
     {
         OnDisplayEffectCall.Invoke(instance);
     }
@@ -58,7 +58,7 @@ public class CharacterEffects : MonoBehaviour
     {
         if (AilmentEffects.Count > 0)
         {
-            List<AilmentData> ailmentKeys = new List<AilmentData>(AilmentEffects.Keys);
+            List<AilmentSO> ailmentKeys = new List<AilmentSO>(AilmentEffects.Keys);
 
             foreach (var key in ailmentKeys)
             {

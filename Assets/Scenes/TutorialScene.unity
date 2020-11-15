@@ -6409,6 +6409,7 @@ GameObject:
   - component: {fileID: 743953790}
   - component: {fileID: 743953794}
   - component: {fileID: 743953795}
+  - component: {fileID: 743953796}
   m_Layer: 5
   m_Name: MenuUI_Canvas
   m_TagString: Untagged
@@ -6527,7 +6528,21 @@ MonoBehaviour:
   _tabHeaderText: {fileID: 558698419}
   _playerUI: {fileID: 1585140001}
   _descriptionUI: {fileID: 1061212176}
-  _tooltipPopupUI: {fileID: 1891468116}
+--- !u!114 &743953796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743953789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ceea0218860b649910bbf1d22c01fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tooltipUI: {fileID: 1891468116}
+  _tooltipTableCollection: {fileID: 11400000, guid: e999986a625e682479616fad49b6dfb0,
+    type: 2}
 --- !u!1 &744839630
 GameObject:
   m_ObjectHideFlags: 0
@@ -9129,6 +9144,7 @@ MonoBehaviour:
   _tooltipContentText:
     _key: 
   _tooltipDelay: 0.5
+  _tooltipType: 0
 --- !u!1 &948599046
 GameObject:
   m_ObjectHideFlags: 0
@@ -9299,7 +9315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1020542786
 Transform:
   m_ObjectHideFlags: 0
@@ -9307,12 +9323,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020542785}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1339406886}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1020542787
 MonoBehaviour:
@@ -10986,7 +11002,6 @@ Transform:
   m_Children:
   - {fileID: 2084337770}
   - {fileID: 147773481}
-  - {fileID: 1020542786}
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14147,13 +14162,13 @@ MonoBehaviour:
       type: 2}
     _gemstonePooler:
       _gemStonePools:
-      - _gemStone: {fileID: 11400000, guid: 94b9b7087786033409c48c16cc5a45e3, type: 2}
+      - _gemStoneSO: {fileID: 11400000, guid: 94b9b7087786033409c48c16cc5a45e3, type: 2}
         _initialPoolSize: 10
-      - _gemStone: {fileID: 11400000, guid: d33ea111ec9624842ae2e5b089f26dff, type: 2}
+      - _gemStoneSO: {fileID: 11400000, guid: d33ea111ec9624842ae2e5b089f26dff, type: 2}
         _initialPoolSize: 10
-      - _gemStone: {fileID: 11400000, guid: 6f3bbe124a00b524eab4dada398b88fd, type: 2}
+      - _gemStoneSO: {fileID: 11400000, guid: 6f3bbe124a00b524eab4dada398b88fd, type: 2}
         _initialPoolSize: 10
-      - _gemStone: {fileID: 11400000, guid: bb217aa25ac899245804883440ddfd1a, type: 2}
+      - _gemStoneSO: {fileID: 11400000, guid: bb217aa25ac899245804883440ddfd1a, type: 2}
         _initialPoolSize: 10
   _gemMatrixUI: {fileID: 119933965}
   _energyGainTextPopup: {fileID: 3775270695086437066, guid: 9ab0a5df27b052f4cbea5babb088af61,
@@ -16404,7 +16419,7 @@ PrefabInstance:
     - target: {fileID: 6667814140684230168, guid: a2b80ae0fa26e9347a2f3489c7ddd30e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20.000061
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6667814140684230168, guid: a2b80ae0fa26e9347a2f3489c7ddd30e,
         type: 3}

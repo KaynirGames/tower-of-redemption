@@ -7,7 +7,7 @@ public class GemstoneUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandl
     [SerializeField] private Image _gemstoneIcon = null;
 
     private EnergyGenerator _energyGenerator;
-    private GemstoneInstance _gemstoneInstance;
+    private Gemstone _gemstoneInstance;
 
     private Animator _animator;
 
@@ -21,7 +21,7 @@ public class GemstoneUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandl
         _energyGenerator = BattleManager.Instance.EnergyGenerator;
     }
 
-    public void UpdateDisplay(GemstoneInstance gemstone)
+    public void UpdateDisplay(Gemstone gemstone)
     {
         if (gemstone == null)
         {
@@ -62,16 +62,16 @@ public class GemstoneUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandl
         _animator.enabled = enable;
     }
 
-    private void SetGemstone(GemstoneInstance gemStone)
+    private void SetGemstone(Gemstone gemStone)
     {
         _gemstoneInstance = gemStone;
-        _gemstoneIcon.sprite = gemStone.Gemstone.GemSprite;
+        _gemstoneIcon.sprite = gemStone.GemstoneSO.GemSprite;
         _gemstoneIcon.enabled = true;
     }
 
     private void ClearGemstone()
     {
-        Instantiate(_gemstoneInstance.Gemstone.ConsumedGemstoneParticles,
+        Instantiate(_gemstoneInstance.GemstoneSO.ConsumedGemstoneParticles,
                     _gemstoneIcon.transform.position,
                     Quaternion.identity);
 

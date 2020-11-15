@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2392384740636464608}
   - component: {fileID: 2392384740636464610}
   - component: {fileID: 2392384740636464609}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 2392384741298897565}
   - component: {fileID: 2392384741298897566}
   - component: {fileID: 4089365553151371097}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: DescriptionBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,8 @@ MonoBehaviour:
     _key: 
   _tooltipContentText:
     _key: 
-  _tooltipDelay: 0.5
+  _tooltipDelay: 0
+  _tooltipType: 1
 --- !u!1 &2392384742255962353
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +152,7 @@ GameObject:
   - component: {fileID: 2392384742255962354}
   - component: {fileID: 2392384742255962356}
   - component: {fileID: 2392384742255962355}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: DescriptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,10 +173,10 @@ RectTransform:
   m_Father: {fileID: 2392384741298897565}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 384.21, y: 205.64}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2392384742255962356
 CanvasRenderer:
@@ -235,7 +236,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -270,7 +271,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 20, y: 20, z: 20, w: 20}
+  m_margin: {x: 30, y: 30, z: 30, w: 30}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

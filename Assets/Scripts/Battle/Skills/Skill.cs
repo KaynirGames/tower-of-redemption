@@ -1,54 +1,103 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
-public abstract class Skill : ScriptableObject
+[Serializable]
+public class Skill
 {
-    [Header("Параметры отображения умения:")]
-    [SerializeField] protected TranslatedText _name = new TranslatedText("Skill.TextID.Name");
-    [SerializeField] protected TranslatedText _flavorText = new TranslatedText("Skill.TextID.Flavor");
-    [SerializeField] protected TranslatedText _description = new TranslatedText("Skill.TextID.Description");
-    [SerializeField] protected SkillData _skillData = null;
-    [SerializeField] protected Sprite _icon = null;
-    [SerializeField] protected SkillSlot _slot = SkillSlot.Active;
-    [Header("Общие параметры умения:")]
-    [SerializeField] protected int _cost = 0;
-    [SerializeField] protected int _cooldown = 0;
-    [SerializeField] protected List<Effect> _ownerEffects = new List<Effect>();
-    [SerializeField] protected List<Effect> _opponentEffects = new List<Effect>();
+    public delegate void OnSkillCooldownTick(float timer);
+    public delegate void OnSkillCooldownToggle(bool enable);
 
-    public string Name => _name.Value;
-    public string Description => _description.Value;
-    public string TypeName => _skillData.TypeName;
-    public Sprite Icon => _icon;
-    public SkillSlot Slot => _slot;
+    public event OnSkillCooldownTick OnCooldownTick = delegate { };
+    public event OnSkillCooldownToggle OnCooldownToggle = delegate { };
 
-    public int Cost => _cost;
-    public int Cooldown => _cooldown;
+    public event Action OnRequiredEnergyShortage = delegate { };
 
-    public abstract void Execute(Character owner, Character opponent, SkillInstance skillInstance);
+    [SerializeField] private SkillSO _skillSO = null;
 
-    public abstract void Terminate(Character owner, Character opponent, SkillInstance skillInstance);
+    public SkillSO SkillSO => _skillSO;
 
-    public abstract string BuildDescription();
+    public bool IsCooldown { get; private set; }
 
-    protected virtual void OnValidate()
+    private string _cachedDescription;
+    private float _cooldownTimer;
+
+    public Skill(SkillSO skillSO)
     {
-
+        _skillSO = skillSO;
     }
 
-    protected string BuildEffectsDescription()
+    public bool TryExecute(Character owner)
     {
-        StringBuilder builder = new StringBuilder();
+        if (owner.CurrentOpponent == null) { return false; }
 
-        if (_ownerEffects.Count > 0 || _opponentEffects.Count > 0)
-        { 
-            builder.AppendLine();
+        if (_skillSO.Slot == SkillSlot.Passive)
+        {
+            ExecutePassiveSkill(owner);
+            return true;
+        }
+        else
+        {
+            return ExecuteActiveSkill(owner);
+        }
+    }
+
+    public void Terminate(Character owner)
+    {
+        if (owner.CurrentOpponent == null) { return; }
+
+        _skillSO.Terminate(owner, owner.CurrentOpponent, this);
+    }
+
+    public string GetDescription()
+    {
+        if (_cachedDescription == null)
+        {
+            _cachedDescription = _skillSO.Description;
         }
 
-        _ownerEffects.ForEach(eff => builder.AppendLine(eff.GetDescription()));
-        _opponentEffects.ForEach(eff => builder.AppendLine(eff.GetDescription()));
+        return _cachedDescription;
+    }
 
-        return builder.ToString();
+    private bool ExecuteActiveSkill(Character owner)
+    {
+        if (IsCooldown) { return false; }
+
+        if (!owner.Stats.IsEnoughEnergy(_skillSO.Cost))
+        {
+            OnRequiredEnergyShortage.Invoke();
+            Debug.Log("Not enough energy!");
+            return false;
+        }
+
+        _skillSO.Execute(owner, owner.CurrentOpponent, this);
+
+        owner.StartCoroutine(CooldownRoutine());
+
+        return true;
+    }
+
+    private void ExecutePassiveSkill(Character owner)
+    {
+        _skillSO.Execute(owner, owner.CurrentOpponent, this);
+    }
+
+    private IEnumerator CooldownRoutine()
+    {
+        OnCooldownToggle.Invoke(true);
+        IsCooldown = true;
+
+        _cooldownTimer = _skillSO.Cooldown;
+
+        while (_cooldownTimer > 0)
+        {
+            _cooldownTimer -= Time.deltaTime;
+            OnCooldownTick.Invoke(_cooldownTimer);
+
+            yield return null;
+        }
+
+        OnCooldownToggle.Invoke(false);
+        IsCooldown = false;
     }
 }

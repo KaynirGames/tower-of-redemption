@@ -1,21 +1,23 @@
-﻿using System;
+﻿using KaynirGames.Tools;
+using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using TMPro;
-using KaynirGames.Tools;
-using System.Collections;
 
 public class TooltipHandlerUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public delegate void OnTooltipPopupCall(Vector3 position, string content, string header);
 
     public static event OnTooltipPopupCall OnTooltipCall = delegate { };
+    public static event OnTooltipPopupCall OnLinkedTooltipCall = delegate { };
     public static event Action OnTooltipCancel = delegate { };
 
     [SerializeField] private TextMeshProUGUI _linkedTextField = null;
     [SerializeField] private TranslatedText _tooltipHeaderText = null;
     [SerializeField] private TranslatedText _tooltipContentText = null;
     [SerializeField] private float _tooltipDelay = 0f;
+    [SerializeField] private TooltipType _tooltipType = TooltipType.Normal;
 
     private WaitForSecondsRealtime _waitForTooltipCall;
     private Coroutine _lastCallRoutine;
@@ -42,36 +44,44 @@ public class TooltipHandlerUI : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     private void HandleTooltipCall()
     {
-        string header = string.Empty;
-        string content = string.Empty;
-
-        if (_linkedTextField != null)
+        switch (_tooltipType)
         {
-            content = GetTextByLink();
+            case TooltipType.Normal:
+                CallTooltip();
+                break;
+            case TooltipType.Linked:
+                CallLinkedTooltip();
+                break;
         }
-        else
-        {
-            if (_tooltipHeaderText != null) { header = _tooltipHeaderText.Value; }
-            if (_tooltipContentText != null) { content = _tooltipContentText.Value; }
-        }
-
-        if (content == string.Empty) { return; }
-
-        OnTooltipCall.Invoke(KaynirTools.GetPointerRawPosition(), content, header);
     }
 
-    private string GetTextByLink()
+    private void CallTooltip()
     {
-        int linkIndex = TMP_TextUtilities.FindIntersectingLink(_linkedTextField, Input.mousePosition, null);
+        string header = _tooltipHeaderText.Value;
+        string content = _tooltipContentText.Value;
+
+        if (!string.IsNullOrEmpty(content))
+        {
+            OnTooltipCall.Invoke(KaynirTools.GetPointerRawPosition(),
+                                 content,
+                                 header);
+        }
+    }
+
+    private void CallLinkedTooltip()
+    {
+        int linkIndex = TMP_TextUtilities.FindIntersectingLink(_linkedTextField,
+                                                               KaynirTools.GetPointerRawPosition(),
+                                                               null);
 
         if (linkIndex >= 0)
         {
             TMP_LinkInfo linkInfo = _linkedTextField.textInfo.linkInfo[linkIndex];
 
-            return Translator.GetTranslationLine(linkInfo.GetLinkID());
+            OnLinkedTooltipCall.Invoke(KaynirTools.GetPointerRawPosition(),
+                                       linkInfo.GetLinkID(),
+                                       linkInfo.GetLinkText());
         }
-
-        return string.Empty;
     }
 
     private IEnumerator TooltipCallRoutine()
@@ -79,5 +89,11 @@ public class TooltipHandlerUI : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         yield return _waitForTooltipCall;
 
         HandleTooltipCall();
+    }
+
+    private enum TooltipType
+    {
+        Normal,
+        Linked
     }
 }

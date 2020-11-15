@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Character Status Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Character Status
+  m_TableCollectionNameGuidString: eb870e2553eec4a48ad476083e5bd3d9
+  m_Entries:
+  - m_Id: 42110087168
+    m_Key: Stat.STR.Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 284557635584
+    m_Key: Stat.STR.Shrink
+    m_Metadata:
+      m_Items: []
+  - m_Id: 353470050304
+    m_Key: Stat.WIL.Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 526409592832
+    m_Key: Stat.WIL.Shrink
+    m_Metadata:
+      m_Items: []
+  - m_Id: 635092398080
+    m_Key: Stat.DEF.Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 701542756352
+    m_Key: Stat.DEF.Shrink
+    m_Metadata:
+      m_Items: []
+  - m_Id: 794429812736
+    m_Key: Stat.MDF.Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 896980545536
+    m_Key: Stat.MDF.Shrink
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3754585026560
+    m_Key: Stat.MaxHP.Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3980028866560
+    m_Key: Stat.MaxHP.Shrink
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4465251119104
+    m_Key: Stat.MaxSP.Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4599993135104
+    m_Key: Stat.MaxSP.Shrink
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9630368722944
+    m_Key: Ailment.Burn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9695795671040
+    m_Key: Ailment.PerfectGuard
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1605254570382

@@ -19,7 +19,7 @@ public class SkillSlotUI : MonoBehaviour
 
     private Character _owner;
 
-    private SkillInstance _skill;
+    private Skill _skill;
     private float _skillCooldown;
 
     public void RegisterSlotUI(Character owner)
@@ -27,7 +27,7 @@ public class SkillSlotUI : MonoBehaviour
         _owner = owner;
     }
 
-    public void UpdateSlotUI(SkillInstance skill)
+    public void UpdateSlotUI(Skill skill)
     {
         if (skill == null)
         {
@@ -41,8 +41,8 @@ public class SkillSlotUI : MonoBehaviour
 
     public void ShowSkillDescription()
     {
-        string name = _skill.Skill.Name;
-        string type = _skill.Skill.TypeName;
+        string name = _skill.SkillSO.Name;
+        string type = _skill.SkillSO.Type;
         string description = _skill.GetDescription();
 
         OnSkillDescriptionCall(name, type, description);
@@ -53,16 +53,16 @@ public class SkillSlotUI : MonoBehaviour
         _skill.TryExecute(_owner);
     }
 
-    private void FillSlotUI(SkillInstance skill)
+    private void FillSlotUI(Skill skill)
     {
-        _skillIcon.sprite = skill.Skill.Icon;
+        _skillIcon.sprite = skill.SkillSO.Icon;
 
         ToggleSlotDisplay(true);
 
         if (_displayCooldown)
         {
-            _skillCooldown = skill.Skill.Cooldown;
-            _skillCooldownMask.sprite = skill.Skill.Icon;
+            _skillCooldown = skill.SkillSO.Cooldown;
+            _skillCooldownMask.sprite = skill.SkillSO.Icon;
 
             skill.OnCooldownToggle += ToggleCooldownDisplay;
             skill.OnCooldownTick += UpdateCooldownDisplay;

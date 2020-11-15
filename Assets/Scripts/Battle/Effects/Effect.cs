@@ -1,56 +1,103 @@
-﻿using UnityEditor;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
-public abstract class Effect : ScriptableObject
+[Serializable]
+public class Effect
 {
-    [Header("Общие параметры эффекта:")]
-    [SerializeField] protected int _duration = 0;
-    [SerializeField] protected int _secondsAmountOverTick = 1;
-    [SerializeField, Range(0, 100)] protected int _inflictionChance = 0;
-    [Header("Параметры описания эффекта:")]
-    [SerializeField] protected TranslatedText _descriptionFormat = new TranslatedText("Effect.EffectType.Format");
-    [SerializeField] protected TranslatedText _tooltipFormat = new TranslatedText("Tooltip.EffectType.Format");
-    [SerializeField, HideInInspector] protected TranslatedText _tooltipText = null;
+    public delegate void OnDurationTimerTick(float durationTimer);
+    public delegate void OnEffectChargeConsume(int chargesLeft);
 
-    public int Duration => _duration;
-    public int SecondsAmountOverTick => _secondsAmountOverTick;
+    public event OnDurationTimerTick OnDurationTick = delegate { };
+    public event OnEffectChargeConsume OnChargeConsume = delegate { };
+    public event Action OnDurationExpire = delegate { };
 
-    public string ID { get; private set; }
-    public string TooltipKey { get; private set; }
+    public EffectSO EffectSO { get; private set; }
+    public object EffectSource { get; private set; }
 
-    public virtual int ChargesAmount => 0;
-    public virtual Sprite EffectIcon => null;
+    private Character _target;
 
-    public abstract void Apply(Character target, object effectSource);
+    private int _durationTimer;
+    private int _secondsAmountOverTick;
+    private int _chargesAmount = -1;
 
-    public abstract void Tick(Character target);
+    private WaitForSeconds _waitForNextTick;
+    private Coroutine _lastDurationRoutine;
 
-    public abstract void Remove(Character target, object effectSource);
-
-    public abstract string GetDescription();
-
-    public virtual string BuildTooltipText()
+    public Effect(EffectSO effectSO, Character target, object effectSource)
     {
-        return string.Empty;
+        EffectSO = effectSO;
+        EffectSource = effectSource;
+        _target = target;
+
+        if (effectSO.ChargesAmount > 0)
+        {
+            _chargesAmount = effectSO.ChargesAmount;
+        }
+
+        if (effectSO.Duration > 0)
+        {
+            _durationTimer = effectSO.Duration;
+            _secondsAmountOverTick = effectSO.SecondsAmountOverTick;
+            _waitForNextTick = new WaitForSeconds(_secondsAmountOverTick);
+        }
     }
 
-    protected virtual bool TryRestartEffect(Character target)
+    public void StartDuration()
     {
-        return false;
+        if (_durationTimer > 0)
+        {
+            if (!_target.gameObject.activeSelf) { return; }
+
+            _lastDurationRoutine = _target.StartCoroutine(DurationRoutine());
+            _target.Effects.DisplayEffect(this);
+        }
     }
 
-    protected bool ThrowInflictionChanceDice()
+    public void RemoveEffect()
     {
-        return Random.Range(1, 100) <= _inflictionChance
-            ? true
-            : false;
+        if (_lastDurationRoutine != null)
+        {
+            _target.StopCoroutine(_lastDurationRoutine);
+        }
+
+        EffectSO.Remove(_target, this);
+        OnDurationExpire.Invoke();
     }
 
-    //protected virtual void OnValidate()
-    //{
-    //    string assetPath = AssetDatabase.GetAssetPath(this);
-    //    ID = AssetDatabase.AssetPathToGUID(assetPath);
-    //    _tooltipText = new TranslatedText($"Tooltip.{ID}");
-    //    TooltipKey = _tooltipText.Key;
-    //}
+    public void ResetDuration()
+    {
+        _durationTimer = EffectSO.Duration;
+    }
+
+    public void RemoveCharge()
+    {
+        if (_chargesAmount > 0)
+        {
+            _chargesAmount--;
+
+            OnChargeConsume.Invoke(_chargesAmount);
+
+            if (_chargesAmount == 0)
+            {
+                RemoveEffect();
+            }
+        }
+    }
+
+    private IEnumerator DurationRoutine()
+    {
+        while (_durationTimer > 0)
+        {
+            EffectSO.Tick(_target);
+
+            _durationTimer -= _secondsAmountOverTick;
+            OnDurationTick.Invoke(_durationTimer);
+
+            yield return _waitForNextTick;
+        }
+
+        _lastDurationRoutine = null;
+        RemoveEffect();
+    }
 }

@@ -131,7 +131,12 @@ PrefabInstance:
     - target: {fileID: 160043670085627337, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
-      value: 258909466624
+      value: 701542756352
+      objectReference: {fileID: 0}
+    - target: {fileID: 160043670085627337, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:eb870e2553eec4a48ad476083e5bd3d9
       objectReference: {fileID: 0}
     - target: {fileID: 719669832625000543, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
@@ -323,7 +328,12 @@ PrefabInstance:
     - target: {fileID: 160043670085627337, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
-      value: 174998220800
+      value: 526409592832
+      objectReference: {fileID: 0}
+    - target: {fileID: 160043670085627337, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:eb870e2553eec4a48ad476083e5bd3d9
       objectReference: {fileID: 0}
     - target: {fileID: 719669832625000543, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
@@ -515,7 +525,12 @@ PrefabInstance:
     - target: {fileID: 160043670085627337, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
-      value: 16772296704
+      value: 284557635584
+      objectReference: {fileID: 0}
+    - target: {fileID: 160043670085627337, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:eb870e2553eec4a48ad476083e5bd3d9
       objectReference: {fileID: 0}
     - target: {fileID: 719669832625000543, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
@@ -662,7 +677,12 @@ PrefabInstance:
     - target: {fileID: 160043670085627337, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
-      value: 313385086976
+      value: 896980545536
+      objectReference: {fileID: 0}
+    - target: {fileID: 160043670085627337, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:eb870e2553eec4a48ad476083e5bd3d9
       objectReference: {fileID: 0}
     - target: {fileID: 719669832625000543, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}

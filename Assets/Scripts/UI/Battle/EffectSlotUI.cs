@@ -11,7 +11,7 @@ public class EffectSlotUI : MonoBehaviour
     private RectTransform _rectTransform;
     private EffectDisplayUI _effectDisplayUI;
 
-    private EffectInstance _effectInstance;
+    private Effect _effectInstance;
     private float _effectDuration;
 
     private void Awake()
@@ -20,22 +20,22 @@ public class EffectSlotUI : MonoBehaviour
         _effectDisplayUI = gameObject.GetComponentInParent<EffectDisplayUI>();
     }
 
-    public void RegisterEffect(EffectInstance effectInstance)
+    public void RegisterEffect(Effect effectInstance)
     {
         _effectInstance = effectInstance;
-        _effectDuration = effectInstance.Effect.Duration;
+        _effectDuration = effectInstance.EffectSO.Duration;
         _effectInstance.OnDurationTick += UpdateDurationDisplay;
         _effectInstance.OnDurationExpire += StopDurationDisplay;
 
-        if (effectInstance.Effect.ChargesAmount > 0)
+        if (effectInstance.EffectSO.ChargesAmount > 0)
         {
-            UpdateChargesDisplay(effectInstance.Effect.ChargesAmount);
+            UpdateChargesDisplay(effectInstance.EffectSO.ChargesAmount);
             _effectInstance.OnChargeConsume += UpdateChargesDisplay;
             _chargesText.gameObject.SetActive(true);
         }
 
-        _effectIcon.sprite = effectInstance.Effect.EffectIcon;
-        _durationIcon.sprite = effectInstance.Effect.EffectIcon;
+        _effectIcon.sprite = effectInstance.EffectSO.EffectIcon;
+        _durationIcon.sprite = effectInstance.EffectSO.EffectIcon;
         _durationIcon.fillAmount = 0;
 
         gameObject.SetActive(true);
@@ -46,7 +46,7 @@ public class EffectSlotUI : MonoBehaviour
         _effectInstance.OnDurationTick -= UpdateDurationDisplay;
         _effectInstance.OnDurationExpire -= StopDurationDisplay;
 
-        if (_effectInstance.Effect.ChargesAmount > 0)
+        if (_effectInstance.EffectSO.ChargesAmount > 0)
         {
             _effectInstance.OnChargeConsume -= UpdateChargesDisplay;
             _chargesText.gameObject.SetActive(false);
