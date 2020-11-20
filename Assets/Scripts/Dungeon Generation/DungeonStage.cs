@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "New DungeonStage", menuName = "Scriptable Objects/Dungeon Generation/Dungeon Stage")]
 public class DungeonStage : ScriptableObject
 {
     [Header("Текстовая информация об этаже:")]
     [SerializeField] private string _sceneNamePrefix = "Undefined";
-    [SerializeField] private TranslatedText _displayName = null;
+    [SerializeField] private LocalizedString _displayName = null;
     [Header("Параметры создания этажа:")]
     [SerializeField] private int _minRouteLength = 0;
     [SerializeField] private int _maxRouteLength = 0;
@@ -18,7 +17,7 @@ public class DungeonStage : ScriptableObject
     [SerializeField] private SpawnTable _optionalRooms = null;
 
     public string SceneNamePrefix => _sceneNamePrefix;
-    public string DisplayName => _displayName.Value;
+    public string DisplayName => _displayName.GetLocalizedString().Result;
 
     public int MinRouteLength => _minRouteLength;
     public int MaxRouteLength => _maxRouteLength;

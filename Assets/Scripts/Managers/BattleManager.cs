@@ -65,7 +65,7 @@ public class BattleManager : MonoBehaviour
         if (_enemy == null)
         {
             _enemy = enemy;
-            _player = PlayerManager.Instance.Player;
+            _player = PlayerCharacter.Active;
 
             _enemy.CurrentOpponent = _player;
             _player.CurrentOpponent = _enemy;
@@ -113,7 +113,7 @@ public class BattleManager : MonoBehaviour
             ? _playerEnergyBonus
             : _enemyEnergyBonus;
 
-        stats.ChangeEnergy(stats.Energy.MaxValue.GetFinalValue()
+        stats.ChangeSpirit(stats.Spirit.MaxValue.GetFinalValue()
                            * energyBonus);
     }
 

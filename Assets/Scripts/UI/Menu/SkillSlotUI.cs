@@ -29,11 +29,9 @@ public class SkillSlotUI : MonoBehaviour
 
     public void UpdateSlotUI(Skill skill)
     {
-        if (skill == null)
-        {
-            ClearSlotUI();
-        }
-        else
+        ClearSlotUI();
+
+        if (skill != null)
         {
             FillSlotUI(skill);
         }
@@ -61,6 +59,8 @@ public class SkillSlotUI : MonoBehaviour
 
         if (_displayCooldown)
         {
+            ToggleCooldownDisplay(false);
+
             _skillCooldown = skill.SkillSO.Cooldown;
             _skillCooldownMask.sprite = skill.SkillSO.Icon;
 

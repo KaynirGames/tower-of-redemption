@@ -10,7 +10,6 @@ public class GameMaster : MonoBehaviour
     [SerializeField] private int _gameLanguageID = 0;
     [SerializeField] private GameObject _testPlayer;
 
-
     public SystemLanguage GameLanguage => _gameLanguage;
 
     public bool IsPause { get; private set; }
@@ -25,9 +24,6 @@ public class GameMaster : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        Translator.SetTranslation(_gameLanguage);
-        Debug.Log("Current language is set to " + _gameLanguage.ToString());
 
         StartCoroutine(SetLanguage());
     }

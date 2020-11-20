@@ -26,6 +26,11 @@ public class EfficacyDisplayUI : MonoBehaviour
         DisplayElementEfficacies();
     }
 
+    public void ClearEfficaciesUI()
+    {
+        _stats = null;
+    }
+
     private void UpdateEfficacyDisplay(ElementType elementType)
     {
         if (_efficacyTextFields.ContainsKey(elementType))

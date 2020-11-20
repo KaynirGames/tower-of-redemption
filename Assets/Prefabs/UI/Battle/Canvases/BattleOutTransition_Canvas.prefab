@@ -101,7 +101,6 @@ GameObject:
   - component: {fileID: 377924833543286364}
   - component: {fileID: 377924833543286355}
   - component: {fileID: 377924833543286354}
-  - component: {fileID: 377924833543286365}
   m_Layer: 5
   m_Name: PlayerWinText
   m_TagString: Untagged
@@ -226,21 +225,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &377924833543286365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 377924833543286367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7697f21ba22f83c4b95423091febb7be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textField: {fileID: 377924833543286354}
-  _translatedText:
-    _key: Battle.PlayerWon
 --- !u!1 &377924833766843411
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +236,6 @@ GameObject:
   - component: {fileID: 377924833766843408}
   - component: {fileID: 377924833766843415}
   - component: {fileID: 377924833766843414}
-  - component: {fileID: 377924833766843409}
   m_Layer: 5
   m_Name: PlayerLostText
   m_TagString: Untagged
@@ -377,21 +360,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &377924833766843409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 377924833766843411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7697f21ba22f83c4b95423091febb7be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textField: {fileID: 377924833766843414}
-  _translatedText:
-    _key: Battle.PlayerLost
 --- !u!1 &7849851750300228908
 GameObject:
   m_ObjectHideFlags: 0

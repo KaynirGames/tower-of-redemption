@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,6 +40,11 @@ public class EffectDisplayUI : MonoBehaviour
         _emptySlotsPool.Enqueue(effectSlot);
 
         HandleContentScroll();
+    }
+
+    public void ClearEffectsUI()
+    {
+        _effectSlots.ForEach(slot => slot.Clear());
     }
 
     private void UpdateEffectsDisplay(Effect instance)

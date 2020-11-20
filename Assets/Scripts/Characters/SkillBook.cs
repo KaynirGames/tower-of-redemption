@@ -33,9 +33,9 @@ public class SkillBook : MonoBehaviour
         _skillSlots = CreateSkillSlots();
     }
 
-    public void SetBaseSpecSkills(SpecBase currentSpec)
+    public void SetBaseSkills(SpecBase spec)
     {
-        foreach (SkillSO skillSO in currentSpec.BaseSkills)
+        foreach (SkillSO skillSO in spec.BaseSkills)
         {
             TryAddSkill(skillSO);
         }
@@ -46,13 +46,13 @@ public class SkillBook : MonoBehaviour
         return _skillSlots[slot];
     }
 
-    public bool TryAddSkill(SkillSO skill)
+    public bool TryAddSkill(SkillSO skillSO)
     {
-        int slotID = FindFirstEmptySlot(skill.Slot);
+        int slotID = FindFirstEmptySlot(skillSO.Slot);
 
         if (slotID >= 0)
         {
-            AddSkill(skill, slotID);
+            AddSkill(skillSO, slotID);
             return true;
         }
 
@@ -76,27 +76,46 @@ public class SkillBook : MonoBehaviour
         return removedSkill;
     }
 
-    public Skill ReplaceSkill(int slotID, SkillSO newSkillSO)
+    public Skill ReplaceSkill(int slotID, SkillSO otherSkillSO)
     {
-        Skill replacedSkill = RemoveSkill(slotID, newSkillSO.Slot);
-        AddSkill(newSkillSO, slotID);
+        Skill replacedSkill = RemoveSkill(slotID, otherSkillSO.Slot);
+        AddSkill(otherSkillSO, slotID);
 
         return replacedSkill;
     }
 
     public void TogglePassiveBattleEffects(bool enable)
     {
-        foreach (Skill instance in _passiveSkills)
+        foreach (Skill skill in _passiveSkills)
         {
-            if (instance == null) { continue; }
+            if (skill == null) { continue; }
 
             if (enable)
             {
-                instance.TryExecute(Owner);
+                skill.TryExecute(Owner);
             }
             else
             {
-                instance.Terminate(Owner);
+                skill.Terminate(Owner);
+            }
+        }
+    }
+
+    public void ResetSkillCooldowns()
+    {
+        foreach (var active in _activeSkills)
+        {
+            if (active != null)
+            {
+                active.ResetCooldown();
+            }
+        }
+
+        foreach (var special in _specialSkills)
+        {
+            if (special != null)
+            {
+                special.ResetCooldown();
             }
         }
     }
@@ -113,15 +132,15 @@ public class SkillBook : MonoBehaviour
 
     private void AddSkill(SkillSO skillSO, int slotID)
     {
-        Skill instance = new Skill(skillSO);
+        Skill skill = new Skill(skillSO);
 
         if (skillSO.Slot == SkillSlot.Passive)
         {
-            TogglePassivePermanentEffects(true, instance);
+            TogglePassivePermanentEffects(true, skill);
         }
 
-        GetSkillSlots(skillSO.Slot)[slotID] = instance;
-        OnSlotChange.Invoke(slotID, skillSO.Slot, instance);
+        GetSkillSlots(skillSO.Slot)[slotID] = skill;
+        OnSlotChange.Invoke(slotID, skillSO.Slot, skill);
     }
 
     private int FindFirstEmptySlot(SkillSlot slot)

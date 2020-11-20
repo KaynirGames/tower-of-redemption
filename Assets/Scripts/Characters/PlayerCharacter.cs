@@ -9,6 +9,8 @@ public class PlayerCharacter : Character
     public static event Action<PlayerCharacter> OnPlayerActive = delegate { };
     public static event BattleManager.OnBattleEnd OnBattleEnd = delegate { };
 
+    public static PlayerCharacter Active { get; private set; }
+
     [SerializeField] private PlayerSpec _playerSpec = null;
     [SerializeField] private float _attackSpeed = 1f;
     [SerializeField] private InputHandler _inputHandler = null;
@@ -39,8 +41,9 @@ public class PlayerCharacter : Character
     private void Start()
     {
         Stats.SetCharacterStats(_playerSpec);
-        SkillBook.SetBaseSpecSkills(_playerSpec);
+        SkillBook.SetBaseSkills(_playerSpec);
 
+        Active = this;
         OnPlayerActive.Invoke(this);
     }
 
@@ -67,6 +70,14 @@ public class PlayerCharacter : Character
         }
 
         _enableInput = enabled;
+    }
+
+    public override void ExitBattle(Vector3 lastPosition)
+    {
+        base.ExitBattle(lastPosition);
+
+        Effects.DisableBattleEffects();
+        SkillBook.ResetSkillCooldowns();
     }
 
     private void HandleInput()

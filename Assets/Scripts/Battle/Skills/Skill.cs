@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine;
 
-[Serializable]
 public class Skill
 {
     public delegate void OnSkillCooldownTick(float timer);
@@ -13,10 +12,7 @@ public class Skill
 
     public event Action OnRequiredEnergyShortage = delegate { };
 
-    [SerializeField] private SkillSO _skillSO = null;
-
-    public SkillSO SkillSO => _skillSO;
-
+    public SkillSO SkillSO { get; private set; }
     public bool IsCooldown { get; private set; }
 
     private string _cachedDescription;
@@ -24,14 +20,14 @@ public class Skill
 
     public Skill(SkillSO skillSO)
     {
-        _skillSO = skillSO;
+        SkillSO = skillSO;
     }
 
     public bool TryExecute(Character owner)
     {
         if (owner.CurrentOpponent == null) { return false; }
 
-        if (_skillSO.Slot == SkillSlot.Passive)
+        if (SkillSO.Slot == SkillSlot.Passive)
         {
             ExecutePassiveSkill(owner);
             return true;
@@ -46,31 +42,39 @@ public class Skill
     {
         if (owner.CurrentOpponent == null) { return; }
 
-        _skillSO.Terminate(owner, owner.CurrentOpponent, this);
+        SkillSO.Terminate(owner, owner.CurrentOpponent, this);
     }
 
     public string GetDescription()
     {
         if (_cachedDescription == null)
         {
-            _cachedDescription = _skillSO.Description;
+            _cachedDescription = SkillSO.Description;
         }
 
         return _cachedDescription;
+    }
+
+    public void ResetCooldown()
+    {
+        if (IsCooldown)
+        {
+            _cooldownTimer = 0;
+        }
     }
 
     private bool ExecuteActiveSkill(Character owner)
     {
         if (IsCooldown) { return false; }
 
-        if (!owner.Stats.IsEnoughEnergy(_skillSO.Cost))
+        if (!owner.Stats.IsEnoughEnergy(SkillSO.Cost))
         {
             OnRequiredEnergyShortage.Invoke();
             Debug.Log("Not enough energy!");
             return false;
         }
 
-        _skillSO.Execute(owner, owner.CurrentOpponent, this);
+        SkillSO.Execute(owner, owner.CurrentOpponent, this);
 
         owner.StartCoroutine(CooldownRoutine());
 
@@ -79,7 +83,7 @@ public class Skill
 
     private void ExecutePassiveSkill(Character owner)
     {
-        _skillSO.Execute(owner, owner.CurrentOpponent, this);
+        SkillSO.Execute(owner, owner.CurrentOpponent, this);
     }
 
     private IEnumerator CooldownRoutine()
@@ -87,7 +91,7 @@ public class Skill
         OnCooldownToggle.Invoke(true);
         IsCooldown = true;
 
-        _cooldownTimer = _skillSO.Cooldown;
+        _cooldownTimer = SkillSO.Cooldown;
 
         while (_cooldownTimer > 0)
         {

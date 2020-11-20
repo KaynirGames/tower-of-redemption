@@ -56,7 +56,7 @@ public class EnemyBattleAI : MonoBehaviour
     public void InitializeBattleAI(SkillBook skillBook)
     {
         Health = _enemy.Stats.Health;
-        Energy = _enemy.Stats.Energy;
+        Energy = _enemy.Stats.Spirit;
 
         _energyRegen = _enemy.EnemySpec.EnergyRegen;
         _energyRegenDelay = _enemy.EnemySpec.EnergyRegenDelay;

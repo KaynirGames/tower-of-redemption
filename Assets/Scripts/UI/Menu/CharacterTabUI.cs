@@ -14,10 +14,10 @@ public class CharacterTabUI : MenuTabUI
 
     private void Awake()
     {
-        PlayerCharacter.OnPlayerActive += RegisterPlayerCharacter;
+        PlayerCharacter.OnPlayerActive += RegisterPlayer;
     }
 
-    private void RegisterPlayerCharacter(PlayerCharacter player)
+    protected override void RegisterPlayer(PlayerCharacter player)
     {
         _specIconDisplay.sprite = player.PlayerSpec.PlayerSpecIcon;
         _specIconDisplay.enabled = true;

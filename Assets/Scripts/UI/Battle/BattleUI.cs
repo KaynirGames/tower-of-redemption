@@ -41,7 +41,7 @@ public class BattleUI : MonoBehaviour
 
     public void CloseBattleUI()
     {
-        _enemySkillDisplay.ClearAllSlots();
+        ClearEnemyUI();
 
         ToggleBattleWindow(false);
         _playerUI.TogglePlayerHUD(true);
@@ -72,5 +72,14 @@ public class BattleUI : MonoBehaviour
         _enemyEfficacyDisplay.RegisterElementEfficacies(enemy.Stats);
         _enemySkillDisplay.RegisterSkillBook(enemy.SkillBook);
         _enemyEffectDisplay.RegisterCharacterEffects(enemy.Effects);
+    }
+
+    private void ClearEnemyUI()
+    {
+        _enemyResourceDisplay.ClearResourceUI();
+        _enemyStatsDisplay.ClearStatsUI();
+        _enemyEfficacyDisplay.ClearEfficaciesUI();
+        _enemySkillDisplay.ClearBookUI();
+        _enemyEffectDisplay.ClearEffectsUI();
     }
 }

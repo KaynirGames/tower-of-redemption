@@ -51,7 +51,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3754585026560
-    m_Localized: Health points
+    m_Localized: Health
     m_Metadata:
       m_Items: []
   - m_Id: 3980028866560
@@ -59,7 +59,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4465251119104
-    m_Localized: Spirit points
+    m_Localized: Spirit
     m_Metadata:
       m_Items: []
   - m_Id: 4599993135104

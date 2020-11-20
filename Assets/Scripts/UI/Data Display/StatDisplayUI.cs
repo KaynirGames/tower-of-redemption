@@ -31,6 +31,12 @@ public class StatDisplayUI : MonoBehaviour
         stats.OnStatChange += UpdateStatDisplay;
     }
 
+    public void ClearStatsUI()
+    {
+        _stats.OnStatChange -= UpdateStatDisplay;
+        _stats = null;
+    }
+
     private void UpdateStatDisplay(StatType statType)
     {
         if (_statTextFields.ContainsKey(statType))

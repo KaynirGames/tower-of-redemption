@@ -64,7 +64,7 @@ public class EnergyGenerator : MonoBehaviour
 
             UpdateEmptySlotsInColumns();
 
-            PlayerManager.Instance.Player.Stats.ChangeEnergy(energyGain);
+            PlayerCharacter.Active.Stats.ChangeSpirit(energyGain);
 
             ShowEnergyTextPopup(energyGain);
         }

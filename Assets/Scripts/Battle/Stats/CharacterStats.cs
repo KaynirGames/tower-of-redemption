@@ -8,7 +8,7 @@ public class CharacterStats : MonoBehaviour
     public event Action OnCharacterDeath = delegate { };
 
     public CharacterResource Health { get; private set; }
-    public CharacterResource Energy { get; private set; }
+    public CharacterResource Spirit { get; private set; }
 
     private Stat _strength;
     private Stat _will;
@@ -61,9 +61,9 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public void ChangeEnergy(float energyAmount)
+    public void ChangeSpirit(float spiritAmount)
     {
-        Energy.ChangeResource(energyAmount);
+        Spirit.ChangeResource(spiritAmount);
     }
 
     public void AddStatModifier(StatType statType, StatModifier modifier)
@@ -80,13 +80,13 @@ public class CharacterStats : MonoBehaviour
 
     public bool IsEnoughEnergy(float energyCost)
     {
-        return Energy.CurrentValue - energyCost >= 0;
+        return Spirit.CurrentValue - energyCost >= 0;
     }
 
     private void CreateCharacterStats(SpecBase spec)
     {
         Health = new CharacterResource(CreateStat(spec.BaseHealth, StatType.MaxHealth), spec.BaseHealth);
-        Energy = new CharacterResource(CreateStat(spec.BaseEnergy, StatType.MaxEnergy), 0);
+        Spirit = new CharacterResource(CreateStat(spec.BaseEnergy, StatType.MaxSpirit), 0);
 
         _strength = CreateStat(spec.BaseStrength, StatType.Strength);
         _will = CreateStat(spec.BaseWill, StatType.Will);
@@ -96,7 +96,7 @@ public class CharacterStats : MonoBehaviour
 
     private Stat CreateStat(float baseValue, StatType statType)
     {
-        StatSO statData = DatabaseManager.Instance.StatDatabase.Find(x => x.StatType == statType);
+        StatSO statData = AssetManager.Instance.StatDatabase.Find(x => x.StatType == statType);
         Stat stat = new Stat(baseValue, statData.MinValue, statData.MaxValue);
 
         return stat;
@@ -107,7 +107,7 @@ public class CharacterStats : MonoBehaviour
         return new Dictionary<StatType, Stat>()
         {
             { StatType.MaxHealth, Health.MaxValue },
-            { StatType.MaxEnergy, Energy.MaxValue },
+            { StatType.MaxSpirit, Spirit.MaxValue },
             { StatType.Strength, _strength },
             { StatType.Will, _will },
             { StatType.Defence, _defence },
@@ -136,8 +136,8 @@ public class CharacterStats : MonoBehaviour
             case StatType.MaxHealth:
                 Health.FixCurrentValue(true);
                 break;
-            case StatType.MaxEnergy:
-                Energy.FixCurrentValue(true);
+            case StatType.MaxSpirit:
+                Spirit.FixCurrentValue(true);
                 break;
         }
     }

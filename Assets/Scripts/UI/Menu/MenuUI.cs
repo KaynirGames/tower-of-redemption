@@ -1,11 +1,11 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Localization.Tables;
+using UnityEngine.EventSystems;
 
 public class MenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject _menuTabsParent = null;
-    [SerializeField] private GameObject _selectionCursor = null;
     [SerializeField] private TextMeshProUGUI _tabHeaderText = null;
     [SerializeField] private PlayerUI _playerUI = null;
     [SerializeField] private DescriptionUI _descriptionUI = null;
@@ -19,38 +19,39 @@ public class MenuUI : MonoBehaviour
         _menuCanvasGroup = GetComponent<CanvasGroup>();
         _menuTabs = _menuTabsParent.GetComponentsInChildren<MenuTabUI>();
 
-        SelectionHandlerUI.OnCursorCall += ShowSelectionCursor;
-        SelectionHandlerUI.OnSelectionCancel += CancelSelection;
-
+        PlayerCharacter.OnPlayerActive += SetupMenu;
         SkillSlotUI.OnSkillDescriptionCall += ShowDescription;
+        SelectionHandlerUI.OnSelectionCancel += CancelSelection;
     }
 
-    public void OpenTab(int tabIndex)
+    public void SetTab(int tabIndex)
     {
-        CloseTab(_currentTabIndex);
-        _currentTabIndex = tabIndex;
+        if (tabIndex != _currentTabIndex)
+        {
+            CloseTab(_currentTabIndex);
+            _currentTabIndex = tabIndex;
+        }
 
         _tabHeaderText.SetText(_menuTabs[tabIndex].TabName);
-        _menuTabs[tabIndex].Open();
+        _menuTabs[tabIndex].Toggle(true);
     }
 
     public void OpenMenu()
     {
         _playerUI.TogglePlayerHUD(false);
+
         ToggleMenuWindow(true);
 
-        _menuTabs[_currentTabIndex].Toggle(true);
-        _tabHeaderText.SetText(_menuTabs[_currentTabIndex].TabName);
         GameMaster.Instance.TogglePause(true);
     }
 
     public void CloseMenu()
     {
         ToggleMenuWindow(false);
+        CancelSelection();
+
         _playerUI.TogglePlayerHUD(true);
 
-        _menuTabs[_currentTabIndex].Toggle(false);
-        CancelSelection();
         GameMaster.Instance.TogglePause(false);
     }
 
@@ -60,16 +61,15 @@ public class MenuUI : MonoBehaviour
         _menuCanvasGroup.blocksRaycasts = enable;
     }
 
-    private void CloseTab(int tabIndex)
+    private void SetupMenu(PlayerCharacter player)
     {
-        _menuTabs[tabIndex].Close();
-        CancelSelection();
+        SetTab(_currentTabIndex);
     }
 
-    private void ShowSelectionCursor(Vector3 position)
+    private void CloseTab(int tabIndex)
     {
-        _selectionCursor.transform.position = position;
-        _selectionCursor.SetActive(true);
+        _menuTabs[tabIndex].Toggle(false);
+        CancelSelection();
     }
 
     private void ShowDescription(string name, string type, string description)
@@ -79,7 +79,6 @@ public class MenuUI : MonoBehaviour
 
     private void CancelSelection()
     {
-        _selectionCursor.SetActive(false);
         _descriptionUI.ClearDescriptionText();
     }
 }

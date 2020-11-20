@@ -4,21 +4,30 @@ using UnityEngine.EventSystems;
 
 public class SelectionHandlerUI : MonoBehaviour, IPointerDownHandler, IDeselectHandler
 {
-    public delegate void OnSelectionCursorCall(Vector3 position);
-
-    public static event OnSelectionCursorCall OnCursorCall = delegate { };
     public static event Action OnSelectionCancel = delegate { };
 
-    public void OnPointerDown(PointerEventData eventData)
+    [SerializeField] private bool _isButton = true;
+
+    private EventSystem _eventSystem;
+
+    private void Start()
     {
-        OnCursorCall(transform.position);
+        _eventSystem = EventSystem.current;
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!_eventSystem.IsPointerOverGameObject())
         {
             OnSelectionCancel();
+        }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (!_isButton)
+        {
+            _eventSystem.SetSelectedGameObject(gameObject);
         }
     }
 }

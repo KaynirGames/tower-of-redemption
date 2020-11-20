@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class EnemyCharacter : Character
 {
     public static event BattleManager.OnBattleTrigger OnBattleTrigger = delegate { return false; };
     public static event BattleManager.OnBattleEnd OnBattleEnd = delegate { };
+
+    public static List<EnemyCharacter> ActiveEnemies = new List<EnemyCharacter>();
 
     [SerializeField] private EnemySpec _enemySpec = null;
 
@@ -25,9 +28,10 @@ public class EnemyCharacter : Character
     private void Start()
     {
         Stats.SetCharacterStats(_enemySpec);
-        SkillBook.SetBaseSpecSkills(_enemySpec);
+        SkillBook.SetBaseSkills(_enemySpec);
 
         _enemyBattleAI.InitializeBattleAI(SkillBook);
+        ActiveEnemies.Add(this);
     }
 
     public override void PrepareForBattle()
@@ -37,10 +41,12 @@ public class EnemyCharacter : Character
 
     public override void ExitBattle(Vector3 lastPosition)
     {
-        gameObject.SetActive(false);
         base.ExitBattle(lastPosition);
+        StopAllCoroutines();
+        gameObject.SetActive(false);
 
         // Заспавнить лут.
+        ActiveEnemies.Remove(this);
         // Уничтожить объект.
     }
 

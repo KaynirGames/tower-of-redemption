@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization;
 
 public class TooltipHandlerUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -14,8 +15,8 @@ public class TooltipHandlerUI : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public static event Action OnTooltipCancel = delegate { };
 
     [SerializeField] private TextMeshProUGUI _linkedTextField = null;
-    [SerializeField] private TranslatedText _tooltipHeaderText = null;
-    [SerializeField] private TranslatedText _tooltipContentText = null;
+    [SerializeField] private LocalizedString _tooltipHeaderText = null;
+    [SerializeField] private LocalizedString _tooltipContentText = null;
     [SerializeField] private float _tooltipDelay = 0f;
     [SerializeField] private TooltipType _tooltipType = TooltipType.Normal;
 
@@ -57,8 +58,8 @@ public class TooltipHandlerUI : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     private void CallTooltip()
     {
-        string header = _tooltipHeaderText.Value;
-        string content = _tooltipContentText.Value;
+        string header = _tooltipHeaderText.GetLocalizedString().Result;
+        string content = _tooltipContentText.GetLocalizedString().Result;
 
         if (!string.IsNullOrEmpty(content))
         {

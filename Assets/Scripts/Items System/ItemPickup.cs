@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ItemPickup : Interactable
 {
-    [SerializeField] private Item _item = null;
+    [SerializeField] private ItemSO _itemSO = null;
 }

@@ -12,12 +12,12 @@ public class EnergyRecoverySO : RecoverySO
             ? GetEnergyPercent(target)
             : _recoveryValue;
 
-        target.Stats.ChangeEnergy(energyAmount);
+        target.Stats.ChangeSpirit(energyAmount);
     }
 
     private float GetEnergyPercent(Character target)
     {
-        return target.Stats.Energy.MaxValue.GetFinalValue()
+        return target.Stats.Spirit.MaxValue.GetFinalValue()
                * _recoveryValue
                / 100f;
     }

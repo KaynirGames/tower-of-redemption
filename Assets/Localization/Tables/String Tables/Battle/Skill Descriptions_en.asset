@@ -23,12 +23,12 @@ MonoBehaviour:
       target strength by 15% for 15 seconds.
 
 
-      Damage: 80% of strength.
+      Damage: 80% of strength
 
       Spirit
-      cost: 10 SP.
+      cost: 10 SP
 
-      Cooldown: 5 seconds.'
+      Cooldown: 5 sec'
     m_Metadata:
       m_Items: []
   - m_Id: 297845159948288
@@ -36,9 +36,9 @@ MonoBehaviour:
       by 15% for 15 seconds.
 
 
-      Spirit cost: 20 SP.
+      Spirit cost: 20 SP
 
-      Cooldown: 15 seconds.'
+      Cooldown: 15 sec'
     m_Metadata:
       m_Items: []
   references:

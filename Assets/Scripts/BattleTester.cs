@@ -19,7 +19,7 @@ public class BattleTester : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             Instantiate(_testEnemyPrefab, _testSpawn.position, Quaternion.identity);
-            if (_player == null) _player = PlayerManager.Instance.Player;
+            if (_player == null) _player = PlayerCharacter.Active;
         }
     }
 }

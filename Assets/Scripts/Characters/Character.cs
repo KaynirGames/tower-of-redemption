@@ -24,7 +24,6 @@ public abstract class Character : MonoBehaviour
         transform.position = lastPosition;
 
         SkillBook.TogglePassiveBattleEffects(false);
-        Effects.DisableBattleEffects();
     }
 
     protected abstract void Die();
