@@ -33,7 +33,7 @@ public class CharacterStats : MonoBehaviour
         _statDictionary = CreateStatDictionary();
         _elementEfficacyDictionary = CreateElementEfficacyDictionary(spec);
 
-        _damageTextPopup = BattleManager.Instance.DamageTextPopup;
+        _damageTextPopup = AssetManager.Instance.DamageTextPopup;
     }
 
     public Stat GetStat(StatType statType)
@@ -144,12 +144,8 @@ public class CharacterStats : MonoBehaviour
 
     private void ShowDamageTextPopup(float damageTaken)
     {
-        float fontSize = damageTaken <= -10f
-            ? _damageTextPopup.FontSize - Mathf.Round(damageTaken / 10f)
-            : _damageTextPopup.FontSize;
-
-        _damageTextPopup.Create(damageTaken.ToString(),
+        _damageTextPopup.Create(damageTaken,
                                 transform.position,
-                                fontSize);
+                                true);
     }
 }

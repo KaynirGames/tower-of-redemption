@@ -2,8 +2,7 @@
 
 public class GemstoneMatrixUI : MonoBehaviour
 {
-    [SerializeField] private GameObject _gemStoneSlotsParent = null;
-    [SerializeField] private GemstoneUI _gemSlotPrefab = null;
+    [SerializeField] private GameObject _gemSlotsParent = null;
 
     private GemstoneMatrix _gemstoneMatrix;
     private GemstoneUI[,] _gemstoneMatrixUI;
@@ -28,7 +27,7 @@ public class GemstoneMatrixUI : MonoBehaviour
         {
             for (int y = 0; y < sizeY; y++)
             {
-                GemstoneUI gemSlotUI = Instantiate(_gemSlotPrefab, _gemStoneSlotsParent.transform);
+                GemstoneUI gemSlotUI = Instantiate(AssetManager.Instance.GemSlotPrefab, _gemSlotsParent.transform);
                 gemSlotUI.gameObject.name = string.Format("GemSlot [{0},{1}]", x, y);
 
                 _gemstoneMatrixUI[x, y] = gemSlotUI;

@@ -15,6 +15,7 @@ public class ItemSO : ScriptableObject
     public string Description => _description.GetLocalizedString().Result;
     public string Type => _type.GetLocalizedString().Result;
     public ItemSlot Slot => _slot;
+    public bool CanUse => _slot == ItemSlot.Consumable;
 
     public virtual Sprite Icon => _icon;
 

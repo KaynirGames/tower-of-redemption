@@ -6,7 +6,7 @@ public class GemstoneUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandl
 {
     [SerializeField] private Image _gemstoneIcon = null;
 
-    private EnergyGenerator _energyGenerator;
+    private SpiritGenerator _energyGenerator;
     private Gemstone _gemstoneInstance;
 
     private Animator _animator;
@@ -18,7 +18,7 @@ public class GemstoneUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandl
 
     private void Start()
     {
-        _energyGenerator = BattleManager.Instance.EnergyGenerator;
+        _energyGenerator = BattleManager.Instance.SpiritGenerator;
     }
 
     public void UpdateDisplay(Gemstone gemstone)

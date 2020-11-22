@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Item
+﻿public class Item
 {
     public ItemSO ItemSO { get; private set; }
     public int Amount { get; private set; }
@@ -18,9 +14,14 @@ public class Item
         Amount += 1;
     }
 
-    public void Use(Character owner)
+    public void Use(PlayerCharacter player)
     {
-        ItemSO.Use(owner);
+        ItemSO.Use(player);
         Amount--;
+
+        if (Amount == 0)
+        {
+            player.Inventory.RemoveItem(this);
+        }
     }
 }

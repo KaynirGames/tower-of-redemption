@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 3775270695086437066}
   m_Layer: 0
   m_Name: FloatingDamagePopup
-  m_TagString: Untagged
+  m_TagString: DamagePopup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,9 +216,41 @@ MonoBehaviour:
   _textMesh: {fileID: 3775270694045679504}
   _textColor: {r: 0.68235296, g: 0.23137257, b: 0.19215688, a: 1}
   _fontSize: 8
-  _positionOffset: {x: 0, y: 1}
-  _minHorizontalMove: -2
-  _maxHorizontalMove: 2
-  _popupVerticalSpeed: 2
-  _popupScaleFactor: 1
-  _timeBeforeFading: 0.5
+  _popupLifetime: 2
+  _fadeDelay: 1
+  _minMoveOffset: {x: -1, y: 2}
+  _maxMoveOffset: {x: 1, y: 2}
+  _scaleFactor: {x: 1.5, y: 1.5}
+  _scaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

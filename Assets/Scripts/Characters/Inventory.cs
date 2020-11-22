@@ -20,19 +20,32 @@ public class Inventory : MonoBehaviour
     public void AddItem(ItemSO itemSO)
     {
         List<Item> items = GetInventorySlots(itemSO.Slot);
+        Item item = items.Find(x => x.ItemSO == itemSO);
 
-        if (!TryAddAmount(items, itemSO))
+        if (item == null)
         {
-            Item item = new Item(itemSO);
+            item = new Item(itemSO);
             items.Add(item);
 
             OnItemChange.Invoke(item, itemSO.Slot, items.Count - 1);
+        }
+        else
+        {
+            item.AddAmount();
+            OnItemChange.Invoke(item, itemSO.Slot, items.IndexOf(item));
         }
     }
 
     public void RemoveItem(int index, ItemSlot slot)
     {
         GetInventorySlots(slot).RemoveAt(index);
+        OnItemChange.Invoke(null, slot, index);
+    }
+
+    public void RemoveItem(Item item)
+    {
+        RemoveItem(GetInventorySlots(item.ItemSO.Slot).IndexOf(item),
+                   item.ItemSO.Slot);
     }
 
     public List<Item> GetInventorySlots(ItemSlot slot)
@@ -48,20 +61,7 @@ public class Inventory : MonoBehaviour
         _inventorySlots = new Dictionary<ItemSlot, List<Item>>()
         {
             { ItemSlot.Consumable, _consumables },
-            { ItemSlot.StoryItem, _storyItems }
+            { ItemSlot.KeyItem, _storyItems }
         };
-    }
-
-    private bool TryAddAmount(List<Item> items, ItemSO itemSO)
-    {
-        Item current = items.Find(item => item.ItemSO == itemSO);
-
-        if (current != null)
-        {
-            current.AddAmount();
-            return true;
-        }
-
-        return false;
     }
 }

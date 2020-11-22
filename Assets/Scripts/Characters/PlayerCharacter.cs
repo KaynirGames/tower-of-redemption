@@ -30,6 +30,7 @@ public class PlayerCharacter : Character
         base.Awake();
 
         _moveBase = GetComponent<MoveBase>();
+        Inventory = GetComponent<Inventory>();
 
         _enableAttack = true;
         _enableInput = true;

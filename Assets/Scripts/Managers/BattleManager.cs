@@ -10,8 +10,7 @@ public class BattleManager : MonoBehaviour
     public delegate void OnBattleEnd(bool isVictory);
 
     [SerializeField] private BattleUI _battleUI = null;
-    [SerializeField] private EnergyGenerator _energyGenerator = null;
-    [SerializeField] private FloatingTextPopup _damageTextPopup = null;
+    [SerializeField] private SpiritGenerator _spiritGenerator = null;
     [Header("Настройки перехода в бой:")]
     [SerializeField] private Animator _battleEnterTransition = null;
     [SerializeField] private Animator _battleOutTransition = null;
@@ -19,11 +18,10 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private float _timeForDeathAnimation = 1f;
     [SerializeField] private float _timeBeforeEnemyActivation = 2f;
     [Header("Бонусная энергия при боевом преимуществе:")]
-    [SerializeField] private float _playerEnergyBonus = 0.25f;
-    [SerializeField] private float _enemyEnergyBonus = 1f;
+    [SerializeField] private float _playerSpiritBonus = 0.25f;
+    [SerializeField] private float _enemySpiritBonus = 1f;
 
-    public EnergyGenerator EnergyGenerator => _energyGenerator;
-    public FloatingTextPopup DamageTextPopup => _damageTextPopup;
+    public SpiritGenerator SpiritGenerator => _spiritGenerator;
 
     private PlayerCharacter _player;
     private EnemyCharacter _enemy;
@@ -109,12 +107,12 @@ public class BattleManager : MonoBehaviour
             ? _player.Stats
             : _enemy.Stats;
 
-        float energyBonus = isPlayerAdvantage
-            ? _playerEnergyBonus
-            : _enemyEnergyBonus;
+        float spiritBonus = isPlayerAdvantage
+            ? _playerSpiritBonus
+            : _enemySpiritBonus;
 
         stats.ChangeSpirit(stats.Spirit.MaxValue.GetFinalValue()
-                           * energyBonus);
+                           * spiritBonus);
     }
 
     private IEnumerator BattleStartRoutine()

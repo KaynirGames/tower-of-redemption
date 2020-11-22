@@ -50,5 +50,13 @@ MonoBehaviour:
     m_Localized: SP
     m_Metadata:
       m_Items: []
+  - m_Id: 3656751286382592
+    m_Localized: Use
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3656907968802816
+    m_Localized: Inspect
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

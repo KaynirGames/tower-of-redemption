@@ -1,5 +1,5 @@
 ﻿public enum ItemSlot
 {
     Consumable,
-    StoryItem
+    KeyItem
 }

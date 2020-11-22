@@ -4,9 +4,6 @@
 public class GemstoneMatrix
 {
     [SerializeField] private SpawnTable _gemstoneSpawnTable = null;
-    [SerializeField] private GemstonePooler _gemstonePooler = null;
-
-    public GemstonePooler GemstonePooler => _gemstonePooler;
 
     private Gemstone[,] _matrix;
 
@@ -14,24 +11,20 @@ public class GemstoneMatrix
     {
         _matrix = new Gemstone[sizeX, sizeY];
 
-        _gemstonePooler.CreatePooler();
-
         for (int x = 0; x < sizeX; x++)
         {
             for (int y = 0; y < sizeY; y++)
             {
-                Gemstone newGem = CreateGemstoneInstance(x, y);
-
-                _matrix[x, y] = newGem;
+                Gemstone newGemstone = CreateGemstone(x, y);
+                _matrix[x, y] = newGemstone;
             }
         }
     }
 
-    public Gemstone CreateGemstoneInstance(int x, int y)
+    public Gemstone CreateGemstone(int x, int y)
     {
-        GemstoneSO random = (GemstoneSO)_gemstoneSpawnTable.ChooseRandom();
-        Gemstone gemStone = _gemstonePooler.GetFromPooler(random);
-
+        GemstoneSO randomSO = (GemstoneSO)_gemstoneSpawnTable.ChooseRandom();
+        Gemstone gemStone = new Gemstone(randomSO);
         gemStone.SetPosition(x, y);
 
         return gemStone;

@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class FloatingTextPopup : MonoBehaviour
@@ -6,31 +7,39 @@ public class FloatingTextPopup : MonoBehaviour
     [SerializeField] private TextMeshPro _textMesh = null;
     [SerializeField] private Color _textColor = new Color(0f, 0f, 0f, 1f);
     [SerializeField] private float _fontSize = 8f;
-    [SerializeField] private Vector2 _positionOffset = Vector2.zero;
-    [Header("Настройки анимации:")]
-    [SerializeField] private float _minHorizontalMove = -1f;
-    [SerializeField] private float _maxHorizontalMove = 1f;
-    [SerializeField] private float _popupVerticalSpeed = 2f;
-    [SerializeField] private float _popupScaleFactor = 1f;
-    [SerializeField] private float _timeBeforeFading = 1f;
+    [Header("Настройки DOTween:")]
+    [SerializeField] private float _popupLifetime = 4f;
+    [SerializeField] private float _fadeDelay = 2f;
+    [SerializeField] private Vector2 _minMoveOffset = Vector3.zero;
+    [SerializeField] private Vector2 _maxMoveOffset = Vector3.zero;
+    [SerializeField] private Vector2 _scaleFactor = Vector2.one;
+    [SerializeField] private AnimationCurve _scaleCurve = null;
 
-    public float FontSize => _fontSize;
+    private Vector3 _currentMoveOffset;
 
-    private Vector3 _popupMoveVector;
+    private Tween _scaleTween;
+    private Tween _fadeTween;
 
-    private void Start()
+    private void Awake()
     {
-        _popupMoveVector = new Vector3(Random.Range(_minHorizontalMove, _maxHorizontalMove),
-                                       _popupVerticalSpeed);
+        CreateTweens();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        transform.position += _popupMoveVector * Time.deltaTime;
-        _popupMoveVector -= _popupMoveVector * Time.deltaTime;
+        PlayTweens();
+    }
 
-        HandlePopupScaling();
-        HandlePopupFading();
+    public FloatingTextPopup Create(string textValue, Vector2 position, float fontSize)
+    {
+        FloatingTextPopup textPopup = PoolManager.Instance.Take(tag)
+                                                          .GetComponent<FloatingTextPopup>();
+
+        if (textPopup == null) { return null; }
+
+        textPopup.Setup(textValue, position, fontSize);
+
+        return textPopup;
     }
 
     public FloatingTextPopup Create(string textValue, Vector2 position)
@@ -38,54 +47,74 @@ public class FloatingTextPopup : MonoBehaviour
         return Create(textValue, position, _fontSize);
     }
 
-    public FloatingTextPopup Create(string textValue, Vector2 position, float fontSize)
+    public FloatingTextPopup Create(float numericValue, Vector2 position, float fontSize, bool scaleFontByNumericValue = false)
     {
-        FloatingTextPopup textPopup = Instantiate(this,
-                                          position + _positionOffset,
-                                          Quaternion.identity);
+        if (scaleFontByNumericValue)
+        {
+            fontSize = ScaleFontSize(fontSize, numericValue);
+        }
 
-        textPopup.Setup(textValue, fontSize);
-
-        return textPopup;
+        return Create(numericValue.ToString(), position, fontSize);
     }
 
-    public void Setup(string textValue)
+    public FloatingTextPopup Create(float numericValue, Vector2 position, bool scaleFontByNumericValue = false)
     {
-        Setup(textValue, _fontSize);
+        return Create(numericValue, position, _fontSize, scaleFontByNumericValue);
     }
 
-    public void Setup(string textValue, float fontSize)
+    private float ScaleFontSize(float fontSize, float numericValue)
     {
+        if (numericValue > 10f)
+        {
+            return fontSize + Mathf.Round(fontSize / 10f);
+        }
+
+        return fontSize;
+    }
+
+    private void Setup(string textValue, Vector2 position, float fontSize)
+    {
+        transform.position = position;
         _textMesh.color = _textColor;
         _textMesh.fontSize = fontSize;
         _textMesh.SetText(textValue);
     }
 
-    private void HandlePopupScaling()
+    private void CreateTweens()
     {
-        if (_timeBeforeFading >= _timeBeforeFading / 2f)
-        {
-            transform.localScale += Vector3.one * _popupScaleFactor * Time.deltaTime;
-        }
-        else
-        {
-            transform.localScale -= Vector3.one * _popupScaleFactor * Time.deltaTime;
-        }
+        _scaleTween = transform.DOScale(_scaleFactor, _popupLifetime / 2)
+                               .SetEase(_scaleCurve)
+                               .SetAutoKill(false)
+                               .Pause();
+
+        _fadeTween = _textMesh.DOFade(0f, _popupLifetime - _fadeDelay)
+                              .SetAutoKill(false)
+                              .Pause()
+                              .SetDelay(_fadeDelay)
+                              .OnComplete(RemoveTextPopup);
     }
 
-    private void HandlePopupFading()
+    private void RemoveTextPopup()
     {
-        _timeBeforeFading -= Time.deltaTime;
+        gameObject.SetActive(false);
 
-        if (_timeBeforeFading < 0)
-        {
-            _textColor.a -= Time.deltaTime;
-            _textMesh.color = _textColor;
+        _fadeTween.Rewind();
+        _scaleTween.Rewind();
 
-            if (_textColor.a < 0)
-            {
-                Destroy(gameObject);
-            }
-        }
+        PoolManager.Instance.Store(gameObject);
+    }
+
+    private void PlayTweens()
+    {
+        float offsetX = Random.Range(_minMoveOffset.x, _maxMoveOffset.x);
+        float offsetY = Random.Range(_minMoveOffset.y, _maxMoveOffset.y);
+
+        _currentMoveOffset = new Vector3(offsetX, offsetY, 0);
+
+        transform.DOMove(transform.position + _currentMoveOffset, _popupLifetime)
+                 .OnKill(() => transform.position = Vector3.zero);
+
+        _scaleTween.Play();
+        _fadeTween.Play();
     }
 }
