@@ -27,6 +27,18 @@ MonoBehaviour:
     m_Key: SkillType.Passive
     m_Metadata:
       m_Items: []
+  - m_Id: 3245034144329728
+    m_Key: ItemType.Potion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3245233893863424
+    m_Key: ItemType.Food
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3378890449154048
+    m_Key: ItemType.KeyItem
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bcaab1ba645e114c96ef561c37af84f, type: 3}
+  m_Name: Hero Diary SO
+  m_EditorClassIdentifier: 
+  _name:
+    m_TableReference:
+      m_TableCollectionName: GUID:ea5fb419c0c2e8e4ba559d9aea4c1c53
+    m_TableEntryReference:
+      m_KeyId: 133569665363968
+      m_Key: 
+  _description:
+    m_TableReference:
+      m_TableCollectionName: GUID:9a7c8d5b2dd8f954ba2c119c32378b6f
+    m_TableEntryReference:
+      m_KeyId: 134042338258944
+      m_Key: 
+  _type:
+    m_TableReference:
+      m_TableCollectionName: GUID:0aba30b8aee276c4dba73bb62815c3dd
+    m_TableEntryReference:
+      m_KeyId: 3378890449154048
+      m_Key: 
+  _slot: 1
+  _icon: {fileID: 21300000, guid: 695541572ba7b084c8c6e8a51305b342, type: 3}

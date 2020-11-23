@@ -26,8 +26,8 @@ public class Room : MonoBehaviour
     {
         _doors.AddRange(_doorsParent.GetComponentsInChildren<Door>());
 
-        LoadedRooms.Add(this);
         OnRoomLoadComplete.Invoke(this);
+        LoadedRooms.Add(this);
     }
 
     public void SetRoomPosition(Vector2Int gridPosition)
@@ -85,11 +85,11 @@ public class Room : MonoBehaviour
         {
             if (_roomType.DoorType.PlacingPriority > nextRoom.RoomType.DoorType.PlacingPriority)
             {
-                door.CreateDoor(_roomType.DoorType);
+                door.CreateDoorGFX(_roomType.DoorType);
             }
             else
             {
-                door.CreateDoor(nextRoom.RoomType.DoorType);
+                door.CreateDoorGFX(nextRoom.RoomType.DoorType);
             }
         }
     }

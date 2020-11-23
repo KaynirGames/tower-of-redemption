@@ -16,11 +16,13 @@ public class Destructible : Interactable
         base.Interact();
     }
 
-    protected override void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<PlayerAttackHit>() != null)
         {
             Interact();
         }
     }
+
+    protected override void OnCollisionEnter2D(Collision2D other) { }
 }

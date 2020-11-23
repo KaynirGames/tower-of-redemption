@@ -2,29 +2,30 @@
 
 public class MenuUI : MonoBehaviour
 {
-    [SerializeField] private PlayerUI _playerUI = null;
+    public static MenuUI Instance { get; private set; }
+
     [SerializeField] private DescriptionUI _descriptionUI = null;
+    [SerializeField] private ActionPopupUI _actionPopupUI = null;
+
+    public DescriptionUI DescriptionUI => _descriptionUI;
+    public ActionPopupUI ActionPopupUI => _actionPopupUI;
 
     private CanvasGroup _menuCanvasGroup;
-    private ActionPopupUI _actionPopupUI;
 
     private void Awake()
     {
+        Instance = this;
+
         _menuCanvasGroup = GetComponent<CanvasGroup>();
 
-        ActionPopupUI.OnItemDescriptionCall += ShowDescription;
-        SkillSlotUI.OnSkillDescriptionCall += ShowDescription;
-        SelectionHandlerUI.OnSelectionCancel += CancelSelection;
-    }
+        _actionPopupUI.OnItemDescriptionCall += ShowDescription;
 
-    private void Start()
-    {
-        _actionPopupUI = AssetManager.Instance.ActionPopup;
+        SkillSlotUI.OnSkillDescriptionCall += ShowDescription;
     }
 
     public void OpenMenu()
     {
-        _playerUI.TogglePlayerHUD(false);
+        PlayerUI.Instance.TogglePlayerHUD(false);
 
         ToggleMenuWindow(true);
 
@@ -34,10 +35,10 @@ public class MenuUI : MonoBehaviour
     public void CloseMenu()
     {
         ToggleMenuWindow(false);
-        CancelSelection();
 
-        _playerUI.TogglePlayerHUD(true);
+        ClearSelection();
 
+        PlayerUI.Instance.TogglePlayerHUD(true);
         GameMaster.Instance.TogglePause(false);
     }
 
@@ -47,7 +48,7 @@ public class MenuUI : MonoBehaviour
         _menuCanvasGroup.blocksRaycasts = enable;
     }
 
-    public void CancelSelection()
+    public void ClearSelection()
     {
         _descriptionUI.ClearDescriptionText();
         _actionPopupUI.Toggle(false);

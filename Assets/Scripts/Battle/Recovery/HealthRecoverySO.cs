@@ -12,7 +12,7 @@ public class HealthRecoverySO : RecoverySO
             ? GetHealthPercent(target)
             : _recoveryValue;
 
-        target.Stats.ChangeSpirit(healthAmount);
+        target.Stats.ChangeHealth(healthAmount);
     }
 
     private float GetHealthPercent(Character target)

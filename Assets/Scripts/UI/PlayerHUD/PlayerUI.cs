@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerUI : MonoBehaviour
 {
+    public static PlayerUI Instance { get; private set; }
+
     [SerializeField] private ResourceDisplayUI _resourceDisplay = null;
     [SerializeField] private Joystick _joystick = null;
     [SerializeField] private ScreenJoybutton _attackButton = null;
@@ -11,6 +13,8 @@ public class PlayerUI : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         _canvasGroup = GetComponent<CanvasGroup>();
         PlayerCharacter.OnPlayerActive += RegisterPlayer;
     }

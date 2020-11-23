@@ -30,5 +30,17 @@ MonoBehaviour:
     m_Localized: Passive
     m_Metadata:
       m_Items: []
+  - m_Id: 3245034144329728
+    m_Localized: Potion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3245233893863424
+    m_Localized: Food
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3378890449154048
+    m_Localized: Key item
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

@@ -1,19 +1,28 @@
 ﻿using UnityEngine;
-using KaynirGames.Tools;
+using UnityEngine.EventSystems;
 
-public class ActionPopupUI : MonoBehaviour
+public class ActionPopupUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public static event DescriptionUI.OnDescriptionCall OnItemDescriptionCall = delegate { };
+    public event DescriptionUI.OnDescriptionCall OnItemDescriptionCall = delegate { };
 
     [SerializeField] private GameObject _useButton = null;
+    [SerializeField] private RectTransform _popupRect = null;
 
+    public bool IsSelectingAction { get; private set; }
+
+    private CanvasGroup _canvasGroup;
     private Item _currentItem;
 
-    public void ShowActionPopup(Item item)
+    private void Awake()
+    {
+        _canvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    public void ShowActionPopup(Item item, Vector2 position)
     {
         _currentItem = item;
 
-        transform.position = KaynirTools.GetPointerRawPosition();
+        _popupRect.position = position;
         _useButton.SetActive(item.ItemSO.CanUse);
 
         Toggle(true);
@@ -33,6 +42,17 @@ public class ActionPopupUI : MonoBehaviour
 
     public void Toggle(bool enable)
     {
-        gameObject.SetActive(enable);
+        _canvasGroup.alpha = enable ? 1 : 0;
+        _canvasGroup.blocksRaycasts = enable;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        IsSelectingAction = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        IsSelectingAction = false;
     }
 }

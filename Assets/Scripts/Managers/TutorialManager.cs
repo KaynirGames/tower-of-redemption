@@ -6,10 +6,13 @@ using UnityEngine;
 public class TutorialManager : MonoBehaviour
 {
     [SerializeField] private DungeonStage _tutorialStage = null;
+    [SerializeField] private Room _startRoom = null;
 
     private void Start()
     {
         PrepareTutorialRooms();
+
+        _startRoom.ToggleDoors(false);
     }
 
     private void PrepareTutorialRooms()

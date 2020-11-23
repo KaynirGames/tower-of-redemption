@@ -19,12 +19,7 @@ public class Door : MonoBehaviour
 
     private Animator _doorAnimator;
 
-    private void Awake()
-    {
-        CreateDoor(_doorType);
-    }
-
-    public void CreateDoor(DoorType doorType)
+    public void CreateDoorGFX(DoorType doorType)
     {
         GameObject door = Instantiate(doorType.DoorGFX,
                                       transform.position,
