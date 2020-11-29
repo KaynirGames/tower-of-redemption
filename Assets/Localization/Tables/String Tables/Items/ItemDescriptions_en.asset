@@ -23,8 +23,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 134042338258944
-    m_Localized: The legendary diary of the greatest Hero... Oops, my mistake. The
-      ordinary inventory.
+    m_Localized: A slightly shabby book found at the dungeon entrance. The diary
+      looks unfamiliar, but the notes describe a hero in detail who suspiciously
+      resembles you.
     m_Metadata:
       m_Items: []
   references:

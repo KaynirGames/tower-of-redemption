@@ -15,7 +15,7 @@ public class EnemyBattleAI : MonoBehaviour
 
     private List<Skill> _attackSkills;
     private List<Skill> _defenceSkills;
-    private Skill _specialSkill;
+    private List<Skill> _specialSkills;
 
     private EnemyCharacter _enemy;
     private float _energyRegen;
@@ -68,7 +68,7 @@ public class EnemyBattleAI : MonoBehaviour
 
     public void ToggleEnergyRegen(bool enable)
     {
-        if (enable)
+        if (enable && gameObject.activeSelf)
         {
             _lastEnergyRegenRoutine = StartCoroutine(EnergyRegenRoutine());
         }
@@ -109,21 +109,27 @@ public class EnemyBattleAI : MonoBehaviour
     {
         var activeSkills = skillBook.GetSkillSlots(SkillSlot.Active);
 
-        foreach (Skill instance in activeSkills)
+        foreach (Skill skill in activeSkills)
         {
-            if (instance == null) { continue; }
+            if (skill == null) { continue; }
 
-            if (instance.SkillSO.GetType() == typeof(AttackSkillSO))
+            if (skill.SkillSO.GetType() == typeof(AttackSkillSO))
             {
-                _attackSkills.Add(instance);
+                _attackSkills.Add(skill);
             }
-            else if (instance.SkillSO.GetType() == typeof(DefenceSkillSO))
+            else if (skill.SkillSO.GetType() == typeof(DefenceSkillSO))
             {
-                _defenceSkills.Add(instance);
+                _defenceSkills.Add(skill);
             }
         }
 
-        _specialSkill = skillBook.GetSkillSlots(SkillSlot.Special)[0];
+        var specialSkills = skillBook.GetSkillSlots(SkillSlot.Special);
+
+        foreach (Skill skill in specialSkills)
+        {
+            if (skill == null) { continue; }
+            _specialSkills.Add(skill);
+        }
     }
 
     private void CreateAvailableStates()
@@ -145,9 +151,9 @@ public class EnemyBattleAI : MonoBehaviour
     {
         while (true)
         {
-            Energy.ChangeResource(_energyRegen);
-
             yield return _waitForEnergyRegenDelay;
+
+            Energy.ChangeResource(_energyRegen);
         }
     }
 

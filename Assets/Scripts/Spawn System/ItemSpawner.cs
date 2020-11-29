@@ -7,7 +7,7 @@ public class ItemSpawner : MonoBehaviour
 
     private void Awake()
     {
-        DungeonStageManager.OnStageLoadComplete += SpawnItems;
+        DungeonStageGenerator.OnStageLoadComplete += SpawnItems;
     }
 
     private void SpawnItems(DungeonStage dungeonStage)

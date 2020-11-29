@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wind Gemstone SO
   m_EditorClassIdentifier: 
   _energyGainValue: 2
-  _gemSprite: {fileID: 4279217498242522118, guid: e5e8b77060827854fa6a0573183290f4,
+  _gemSprite: {fileID: -2484504479209722582, guid: e623e47baa0d92b41aadfaaaab5591a5,
     type: 3}
   _consumedGemstoneParticles: {fileID: 717228997598360981, guid: 6f3792e838e370940860276c9ce0efee,
     type: 3}

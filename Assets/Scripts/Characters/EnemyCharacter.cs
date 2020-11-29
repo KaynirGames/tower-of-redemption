@@ -36,6 +36,7 @@ public class EnemyCharacter : Character
 
     public override void PrepareForBattle()
     {
+        Animations.PlayMoveClip(Vector2.left);
         ToggleBattleAI(true);
     }
 
@@ -43,6 +44,7 @@ public class EnemyCharacter : Character
     {
         base.ExitBattle(lastPosition);
         StopAllCoroutines();
+        ToggleBattleAI(false);
         gameObject.SetActive(false);
 
         // Заспавнить лут.
@@ -58,13 +60,13 @@ public class EnemyCharacter : Character
 
     protected override void Die()
     {
-        // Death Animation (unscaled time)
+        Animations.PlayDeathClip();
         OnBattleEnd.Invoke(true);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.GetComponent<PlayerCharacter>() != null)
+        if (other.collider.GetComponent<PlayerCharacter>() != null)
         {
             bool inBattle = OnBattleTrigger.Invoke(this, false);
 

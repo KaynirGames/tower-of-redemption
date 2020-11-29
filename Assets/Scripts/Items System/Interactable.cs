@@ -17,9 +17,9 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.collider.GetComponent<PlayerCharacter>() != null)
+        if (other.GetComponent<PlayerCharacter>() != null)
         {
             Interact();
         }

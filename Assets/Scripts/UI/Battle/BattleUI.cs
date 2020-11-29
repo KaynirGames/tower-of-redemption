@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class BattleUI : MonoBehaviour
 {
-    [SerializeField] PlayerUI _playerUI = null;
     [Header("Параметры игрока:")]
     [SerializeField] private RectTransform _playerPlacement = null;
     [SerializeField] private ResourceDisplayUI _playerResourceDisplay = null;
@@ -35,22 +34,22 @@ public class BattleUI : MonoBehaviour
         InitPlayer(player);
         InitEnemy(enemy);
 
-        _playerUI.TogglePlayerHUD(false);
-        ToggleBattleWindow(true);
+        PlayerUI.Instance.TogglePlayerHUD(false);
+        _battleCanvasGroup.alpha = 1;
     }
 
     public void CloseBattleUI()
     {
         ClearEnemyUI();
-
-        ToggleBattleWindow(false);
-        _playerUI.TogglePlayerHUD(true);
+        ToggleBattleInteraction(false);
+        _battleCanvasGroup.alpha = 0;
+        PlayerUI.Instance.TogglePlayerHUD(true);
     }
 
-    public void ToggleBattleWindow(bool enable)
+    public void ToggleBattleInteraction(bool enable)
     {
-        _battleCanvasGroup.alpha = enable ? 1 : 0;
         _battleCanvasGroup.blocksRaycasts = enable;
+        _battleCanvasGroup.interactable = enable;
     }
 
     private void InitPlayer(PlayerCharacter player)

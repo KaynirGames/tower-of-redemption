@@ -10,7 +10,7 @@ public class DefenceSkillSO : SkillSO
     public override void Execute(Character owner, Character opponent, Skill skill)
     {
         owner.Stats.ChangeSpirit(-_cost);
-        owner.Animations.PlayDefenceClip();
+        owner.Animations.PlayHurtClip();
 
         _recoveryTypes.ForEach(recovery => recovery.ApplyRecovery(owner));
 

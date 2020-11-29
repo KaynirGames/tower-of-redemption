@@ -5,7 +5,7 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField] private SpawnTable _spawnTable = null;
     [SerializeField] private int _spawnAmount = 1;
     [SerializeField] private bool _applyForce = false;
-    [SerializeField] private float _forceValue = 0.25f;
+    [SerializeField] private float _forceValue = 1f;
 
     public void Spawn()
     {

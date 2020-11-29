@@ -10,4 +10,14 @@ public class ItemPickup : Interactable
         _onInteraction?.Invoke();
         Destroy(gameObject);
     }
+
+    protected override void OnTriggerEnter2D(Collider2D other) { }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.GetComponent<PlayerCharacter>() != null)
+        {
+            Interact();
+        }
+    }
 }

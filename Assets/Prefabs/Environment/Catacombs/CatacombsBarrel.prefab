@@ -15,8 +15,6 @@ GameObject:
   - component: {fileID: 8236556235308108336}
   - component: {fileID: 8236556235308108337}
   - component: {fileID: 8236556235308108334}
-  - component: {fileID: 8236556235308108332}
-  - component: {fileID: 4070797785164691542}
   m_Layer: 0
   m_Name: CatacombsBarrel
   m_TagString: Untagged
@@ -32,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8236556235308108343}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.05, y: 3.89, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -174,45 +172,4 @@ MonoBehaviour:
   _interactOnce: 1
   _onInteraction:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8236556235308108332}
-        m_TargetAssemblyTypeName: SpawnPoint, Assembly-CSharp
-        m_MethodName: Spawn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &8236556235308108332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8236556235308108343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36373f62a0be74642962505484e226c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnTable: {fileID: 11400000, guid: b1cff924d603ae64a8552e8d61404ea3, type: 2}
-  _spawnAmount: 1
-  _applyForce: 1
-  _forceValue: 1
---- !u!114 &4070797785164691542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8236556235308108343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb6522e04d76cea42beed566e18aa688, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _delayBeforeDestroy: 0
+      m_Calls: []

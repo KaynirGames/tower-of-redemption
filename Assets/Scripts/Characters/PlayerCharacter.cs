@@ -20,6 +20,7 @@ public class PlayerCharacter : Character
     public Inventory Inventory { get; private set; }
 
     private MoveBase _moveBase;
+    private GameMaster _gameMaster;
     private WaitForSeconds _waitForNextAttack;
 
     private bool _enableAttack;
@@ -41,6 +42,8 @@ public class PlayerCharacter : Character
 
     private void Start()
     {
+        _gameMaster = GameMaster.Instance;
+
         Stats.SetCharacterStats(_playerSpec);
         SkillBook.SetBaseSkills(_playerSpec);
 
@@ -50,7 +53,11 @@ public class PlayerCharacter : Character
 
     private void Update()
     {
-        if (GameMaster.Instance.IsPause) return;
+        if (_gameMaster.IsPause)
+        {
+            Animations.PlayMoveClip(Vector2.zero);
+            return;
+        }
 
         if (_enableInput)
         {
@@ -100,7 +107,7 @@ public class PlayerCharacter : Character
 
     protected override void Die()
     {
-        // Death Animation (unscaled time)
+        Animations.PlayDeathClip();
         OnBattleEnd.Invoke(false);
     }
 

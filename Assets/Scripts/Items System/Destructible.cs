@@ -13,16 +13,20 @@ public class Destructible : Interactable
     {
         _animator.SetTrigger("Destroy");
 
-        base.Interact();
+        _onInteraction?.Invoke();
+
+        if (_interactOnce)
+        {
+            Destroy(gameObject,
+                    _animator.GetCurrentAnimatorClipInfo(0).Length);
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<PlayerAttackHit>() != null)
         {
             Interact();
         }
     }
-
-    protected override void OnCollisionEnter2D(Collision2D other) { }
 }

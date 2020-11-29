@@ -16,7 +16,95 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: c9b270fddb3033d498f9cc11b3d1468b
   m_Entries:
   - m_Id: 1323960692736
-    m_Key: Dialogue.Tutorial.Line.1
+    m_Key: Dialogue.Tutorial.d1.p1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4258673408143360
+    m_Key: Dialogue.Tutorial.d1.p2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4260294460502016
+    m_Key: Dialogue.Tutorial.d1.p3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4294922047123456
+    m_Key: Dialogue.Tutorial.d2.p1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4295525758464000
+    m_Key: Dialogue.Tutorial.d2.p2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4312026255257600
+    m_Key: Dialogue.Tutorial.d2.p3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4322237334482944
+    m_Key: Dialogue.Tutorial.d3.p1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4330686755696640
+    m_Key: Dialogue.Tutorial.d3.p2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4333647024156672
+    m_Key: Dialogue.Tutorial.d3.p3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4360850420068352
+    m_Key: Dialogue.Tutorial.d4.p1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4362239917486080
+    m_Key: Dialogue.Tutorial.d4.p2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4372050977550336
+    m_Key: Dialogue.Tutorial.d5.p1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4374685356978176
+    m_Key: Dialogue.Tutorial.d5.p2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4375936513667072
+    m_Key: Dialogue.Tutorial.d6.p1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4377824453783552
+    m_Key: Dialogue.Tutorial.d6.p2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4378242281959424
+    m_Key: Dialogue.Tutorial.d7.p1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4384322277928960
+    m_Key: Dialogue.Tutorial.d7.p2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4385435978887168
+    m_Key: Dialogue.Tutorial.d7.p3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4386947283087360
+    m_Key: Dialogue.Tutorial.d7.p4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4387601925861376
+    m_Key: Dialogue.Tutorial.d7.p5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4388289766551552
+    m_Key: Dialogue.Tutorial.d7.p6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4390804528623616
+    m_Key: Dialogue.Tutorial.d8.p1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4391310906945536
+    m_Key: Dialogue.Tutorial.d8.p2
     m_Metadata:
       m_Items: []
   m_Metadata:

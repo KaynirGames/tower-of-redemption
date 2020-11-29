@@ -55,6 +55,46 @@ MonoBehaviour:
     m_Key: UI.ActionButton.Inspect
     m_Metadata:
       m_Items: []
+  - m_Id: 5127148628406272
+    m_Key: UI.MenuButton.MainMenu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5127243696500736
+    m_Key: UI.MenuButton.StartOver
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5502735305994240
+    m_Key: UI.MenuButton.NewGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5502836023816192
+    m_Key: UI.MenuButton.Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5503003657564160
+    m_Key: UI.MenuButton.Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5503466679365632
+    m_Key: UI.MenuButton.Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5503934210043904
+    m_Key: UI.MenuButton.About
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5505036066287616
+    m_Key: UI.MenuButton.Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5508919052267520
+    m_Key: UI.MenuButton.Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5509091660460032
+    m_Key: UI.MenuButton.No
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

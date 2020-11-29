@@ -27,6 +27,10 @@ MonoBehaviour:
     m_Key: Character.Name.Slime
     m_Metadata:
       m_Items: []
+  - m_Id: 4264112887754752
+    m_Key: Character.Name.Watcher
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Water Gemstone SO
   m_EditorClassIdentifier: 
   _energyGainValue: 2
-  _gemSprite: {fileID: 3684212117040684778, guid: e5e8b77060827854fa6a0573183290f4,
+  _gemSprite: {fileID: -2870730385205426769, guid: e623e47baa0d92b41aadfaaaab5591a5,
     type: 3}
   _consumedGemstoneParticles: {fileID: 717228997598360981, guid: f6ed102b7c760804fb5894480b1e03ae,
     type: 3}

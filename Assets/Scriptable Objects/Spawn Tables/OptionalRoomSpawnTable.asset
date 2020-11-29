@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: OptionalRoomSpawnTable
   m_EditorClassIdentifier: 
   _spawnableObjects:
-  - _objectToSpawn: {fileID: 11400000, guid: 437c404e92968c04792f5df2f7cbc8fc, type: 2}
+  - _objectToSpawn: {fileID: 8605735013295192383, guid: 3f6a10082be4c94469568701e4229b65,
+      type: 3}
     _weight: 85
     _index: 0
-  - _objectToSpawn: {fileID: 11400000, guid: cc2097befdd616644be132f4cc741e24, type: 2}
+  - _objectToSpawn: {fileID: 8605735013295192383, guid: 3f6a10082be4c94469568701e4229b65,
+      type: 3}
     _weight: 10
     _index: 1
-  - _objectToSpawn: {fileID: 11400000, guid: 1641c23548ef8da47a5c6602e0c155c2, type: 2}
+  - _objectToSpawn: {fileID: 8605735013295192383, guid: 3f6a10082be4c94469568701e4229b65,
+      type: 3}
     _weight: 5
     _index: 2

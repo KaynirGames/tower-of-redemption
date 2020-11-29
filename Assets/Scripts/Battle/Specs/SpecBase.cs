@@ -1,26 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Localization;
 
-public abstract class SpecBase : ScriptableObject
+public abstract class SpecBase : ScriptableObject, IIdentifiable
 {
-    [Header("Базовая информация о персонаже:")]
+    [Header("Базовая информация о спеке:")]
     [SerializeField] private LocalizedString _specName = null;
     [SerializeField] private LocalizedString _specDescription = null;
-    [Header("Базовые статы персонажа:")]
+    [Header("Базовые характеристики спека:")]
     [SerializeField] private float _baseHealth = 100;
     [SerializeField] private float _baseEnergy = 100;
     [SerializeField] private float _baseStrength = 0;
     [SerializeField] private float _baseWill = 0;
     [SerializeField] private float _baseDefence = 0;
     [SerializeField] private float _baseMagicDefence = 0;
-    [Header("Эффективность стихий против персонажа:")]
+    [Header("Эффективность стихий против спека:")]
     [SerializeField] private int _baseFireEfficacy = 100;
     [SerializeField] private int _baseAirEfficacy = 100;
     [SerializeField] private int _baseEarthEfficacy = 100;
     [SerializeField] private int _baseWaterEfficacy = 100;
-    [Header("Базовые умения персонажа:")]
+    [Header("Базовые умения спека:")]
     [SerializeField] private List<SkillSO> _baseSkills = new List<SkillSO>();
 
     public string SpecName => _specName.GetLocalizedString().Result;
@@ -39,4 +40,12 @@ public abstract class SpecBase : ScriptableObject
     public int BaseWaterEfficacy => _baseWaterEfficacy;
 
     public ReadOnlyCollection<SkillSO> BaseSkills => _baseSkills.AsReadOnly();
+
+    public string ID { get; private set; }
+
+    protected void OnValidate()
+    {
+        string path = AssetDatabase.GetAssetPath(this);
+        ID = AssetDatabase.AssetPathToGUID(path);
+    }
 }

@@ -11,6 +11,7 @@ public class AssetManager : MonoBehaviour
     [SerializeField] private FloatingTextPopup _damageTextPopup = null;
     [Header("Базы данных:")]
     [SerializeField] private StatDatabase _statDatabase = null;
+    [SerializeField] private DungeonStageDatabase _stageDatabase = null;
 
     public ItemSlotUI ItemSlotPrefab => _itemSlotPrefab;
     public GemstoneUI GemSlotPrefab => _gemSlotPrefab;
@@ -18,9 +19,19 @@ public class AssetManager : MonoBehaviour
     public FloatingTextPopup DamageTextPopup => _damageTextPopup;
 
     public StatDatabase StatDatabase => _statDatabase;
+    public DungeonStageDatabase StageDatabase => _stageDatabase;
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 }

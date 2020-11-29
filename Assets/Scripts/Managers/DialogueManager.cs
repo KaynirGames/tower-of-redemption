@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        // Пауза
+        GameMaster.Instance.TogglePause(true);
 
         foreach (DialogueLine line in dialogue.DialogueLines)
         {
@@ -74,7 +74,7 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
-        // Снять паузу
+        GameMaster.Instance.TogglePause(false);
 
         ToggleDialogueCanvas(false);
 

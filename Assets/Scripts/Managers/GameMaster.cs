@@ -1,18 +1,22 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
     public static GameMaster Instance { get; private set; }
 
-    [SerializeField] private SystemLanguage _gameLanguage = SystemLanguage.Russian;
-    [SerializeField] private int _gameLanguageID = 0;
-    [SerializeField] private GameObject _testPlayer;
-
-    public SystemLanguage GameLanguage => _gameLanguage;
+    [SerializeField] private GameObject _loadingScreen;
 
     public bool IsPause { get; private set; }
+
+    private GameSettings _gameSettings;
+    private DungeonStageGenerator _stageGenerator;
+    private AssetManager _assetManager;
+
+    private Queue<DungeonStage> _selectedStages = new Queue<DungeonStage>();
+    private DungeonStage _currentStage;
 
     private void Awake()
     {
@@ -25,7 +29,16 @@ public class GameMaster : MonoBehaviour
             Destroy(gameObject);
         }
 
-        StartCoroutine(SetLanguage());
+        DontDestroyOnLoad(gameObject);
+
+        _gameSettings = GetComponent<GameSettings>();
+        _stageGenerator = GetComponent<DungeonStageGenerator>();
+    }
+
+    private void Start()
+    {
+        _assetManager = AssetManager.Instance;
+        StartCoroutine(LoadGameRoutine());
     }
 
     public void TogglePause(bool isPause)
@@ -34,16 +47,67 @@ public class GameMaster : MonoBehaviour
         Time.timeScale = isPause ? 0f : 1f;
     }
 
-    private IEnumerator SetLanguage()
+    public void LoadScene(SceneType sceneType)
     {
-        yield return LocalizationSettings.InitializationOperation;
-
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[_gameLanguageID];
-        SpawnPlayer();
+        StartCoroutine(LoadSceneRoutine(sceneType));
     }
 
-    private void SpawnPlayer()
+    public void LoadDungeon()
     {
-        Instantiate(_testPlayer, transform.position, Quaternion.identity);
+        // проверка на последнюю стадию, иначе грузим следующую в очереди
+
+        StartCoroutine(LoadDungeonRoutine());
+    }
+
+    private IEnumerator LoadGameRoutine()
+    {
+        _loadingScreen.SetActive(true);
+
+        yield return _gameSettings.SetLanguage();
+
+        yield return LoadSceneRoutine(SceneType.GameMenu);
+    }
+
+    private IEnumerator LoadDungeonRoutine()
+    {
+        _loadingScreen.SetActive(true);
+
+        yield return AsyncLoadRoutine(SceneType.Dungeon);
+
+        if (_selectedStages.Count == 0)
+        {
+            _assetManager.StageDatabase.GetDungeonStageSet()
+                                       .ForEach(stage => _selectedStages.Enqueue(stage));
+        }
+
+        _currentStage = _selectedStages.Dequeue();
+
+        yield return _stageGenerator.LoadDungeonStage(_currentStage);
+
+        _loadingScreen.SetActive(false);
+    }
+
+    private IEnumerator LoadSceneRoutine(SceneType sceneType)
+    {
+        _loadingScreen.SetActive(true);
+
+        yield return AsyncLoadRoutine(sceneType);
+
+        _loadingScreen.SetActive(false);
+    }
+
+    private IEnumerator AsyncLoadRoutine(SceneType sceneType)
+    {
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync((int)sceneType);
+
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+        }
+    }
+
+    private void SpawnPlayer(PlayerCharacter prefab, Vector3 position)
+    {
+        Instantiate(prefab, position, Quaternion.identity);
     }
 }

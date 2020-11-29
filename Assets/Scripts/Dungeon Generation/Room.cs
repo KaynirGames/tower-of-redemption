@@ -17,6 +17,7 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject _doorsParent = null;
     [SerializeField] private Pathfinder _pathfinder = null;
     [SerializeField] private Vector2Int _gridPosition = Vector2Int.zero;
+    [SerializeField] private bool _isClear = false;
 
     public RoomType RoomType => _roomType;
 
@@ -41,10 +42,16 @@ public class Room : MonoBehaviour
         _doors.ForEach(door => door.ToggleDoor(open));
     }
 
-    public void PrepareRoom(DungeonStage dungeonStage)
+    public void PrepareRoom()
     {
         SetupCorrectDoors();
         SetupPathfinder();
+    }
+
+    public void SetRoomStatus(bool isClear)
+    {
+        _isClear = isClear;
+        ToggleDoors(isClear);
     }
 
     private void SetupCorrectDoors()
@@ -109,6 +116,11 @@ public class Room : MonoBehaviour
         {
             _pathfinder?.gameObject.SetActive(true);
             OnActiveRoomChange.Invoke(this);
+
+            if (!_isClear)
+            {
+                ToggleDoors(false);
+            }
         }
     }
 

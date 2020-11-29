@@ -6,13 +6,14 @@ public class PlayerAttackHit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        EnemyCharacter enemy = other.GetComponent<EnemyCharacter>();
-
-        if (enemy != null)
+        if (other.TryGetComponent(out EnemyCharacter enemy))
         {
             bool inBattle = OnBattleTrigger.Invoke(enemy, true);
 
-            if (inBattle) { enemy.PrepareForBattle(); }
+            if (inBattle)
+            {
+                enemy.PrepareForBattle();
+            }
         }
     }
 }

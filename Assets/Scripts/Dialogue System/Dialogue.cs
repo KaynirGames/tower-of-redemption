@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Dialogue", menuName = "Scriptable Objects/Dialogue System/Dialogue")]
+[CreateAssetMenu(fileName = "Dialogue id", menuName = "Scriptable Objects/Dialogue System/Dialogue")]
 public class Dialogue : ScriptableObject
 {
     [SerializeField] private DialogueLine[] _dialogueLines = null;

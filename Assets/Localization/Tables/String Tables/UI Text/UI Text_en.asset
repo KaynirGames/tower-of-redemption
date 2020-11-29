@@ -58,5 +58,45 @@ MonoBehaviour:
     m_Localized: Inspect
     m_Metadata:
       m_Items: []
+  - m_Id: 5127148628406272
+    m_Localized: Main menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5127243696500736
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5502735305994240
+    m_Localized: New game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5502836023816192
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5503466679365632
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5503003657564160
+    m_Localized: Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5503934210043904
+    m_Localized: About
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5505036066287616
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5508919052267520
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5509091660460032
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
