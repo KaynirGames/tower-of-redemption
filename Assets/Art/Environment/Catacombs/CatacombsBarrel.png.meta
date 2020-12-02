@@ -23,6 +23,27 @@ TextureImporter:
   - first:
       213: -2033675060088414432
     second: CatacombsBarrel_6
+  - first:
+      213: 6909508752755148939
+    second: CatacombsBarrel_0
+  - first:
+      213: 2097537992263623234
+    second: CatacombsBarrel_1
+  - first:
+      213: -9222636954769303527
+    second: CatacombsBarrel_2
+  - first:
+      213: 5555749864686322444
+    second: CatacombsBarrel_3
+  - first:
+      213: -8547638613093741069
+    second: CatacombsBarrel_4
+  - first:
+      213: -9059364888610881967
+    second: CatacombsBarrel_5
+  - first:
+      213: 1656009694695103297
+    second: CatacombsBarrel_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -84,7 +105,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -96,7 +117,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -108,7 +129,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -127,8 +148,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,8 +157,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 954faa7f3a87b0850800000000000000
-      internalID: 6344297145711653977
+      spriteID: b884c6c3a9183ef50800000000000000
+      internalID: 6909508752755148939
       vertices: []
       indices: 
       edges: []
@@ -146,10 +167,10 @@ TextureImporter:
       name: CatacombsBarrel_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,8 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d8a28077ac10c8f0800000000000000
-      internalID: -522386051302250282
+      spriteID: 24262c3d0b3fb1d10800000000000000
+      internalID: 2097537992263623234
       vertices: []
       indices: 
       edges: []
@@ -167,10 +188,10 @@ TextureImporter:
       name: CatacombsBarrel_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,8 +199,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5dea1d9e562d1140800000000000000
-      internalID: 4691948574594493788
+      spriteID: 918d592ad8c920080800000000000000
+      internalID: -9222636954769303527
       vertices: []
       indices: 
       edges: []
@@ -188,10 +209,10 @@ TextureImporter:
       name: CatacombsBarrel_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 192
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,8 +220,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d0ca0361d91c73f0800000000000000
-      internalID: -901817438280433455
+      spriteID: c038d89f01df91d40800000000000000
+      internalID: 5555749864686322444
       vertices: []
       indices: 
       edges: []
@@ -209,10 +230,10 @@ TextureImporter:
       name: CatacombsBarrel_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 256
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -220,8 +241,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d99c8e20e944386a0800000000000000
-      internalID: -6448234796020086371
+      spriteID: 3fd822ef7ffa06980800000000000000
+      internalID: -8547638613093741069
       vertices: []
       indices: 
       edges: []
@@ -230,10 +251,10 @@ TextureImporter:
       name: CatacombsBarrel_5
       rect:
         serializedVersion: 2
-        x: 160
+        x: 320
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,8 +262,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 778f85a1fb2e1b7f0800000000000000
-      internalID: -598447965054896009
+      spriteID: 15eb3b3e1aba64280800000000000000
+      internalID: -9059364888610881967
       vertices: []
       indices: 
       edges: []
@@ -251,10 +272,10 @@ TextureImporter:
       name: CatacombsBarrel_6
       rect:
         serializedVersion: 2
-        x: 192
+        x: 384
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,8 +283,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02fdbd6ce4fe6c3e0800000000000000
-      internalID: -2033675060088414432
+      spriteID: 14b97ec1b045bf610800000000000000
+      internalID: 1656009694695103297
       vertices: []
       indices: 
       edges: []

@@ -10,7 +10,7 @@ public class AttackSkillSO : SkillSO
     public override void Execute(Character owner, Character opponent, Skill skill)
     {
         owner.Stats.ChangeSpirit(-_cost);
-        owner.Animations.PlayAttackClip();
+        owner.Animations.PlayAnimation("Attack");
 
         if (TryNullifyAttack(opponent)) { return; }
 

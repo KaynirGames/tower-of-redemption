@@ -34,5 +34,9 @@ MonoBehaviour:
     m_Localized: Watcher
     m_Metadata:
       m_Items: []
+  - m_Id: 7210967258951680
+    m_Localized: Weakened slime
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

@@ -19,5 +19,8 @@ public class ItemSO : ScriptableObject
 
     public virtual Sprite Icon => _icon;
 
-    public virtual void Use(Character owner) { }
+    public virtual bool TryUse(PlayerCharacter player, Item item)
+    {
+        return false;
+    }
 }

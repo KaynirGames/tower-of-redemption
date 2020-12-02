@@ -17,14 +17,21 @@ public class SkillSlotUI : MonoBehaviour
 
     public SkillSlot Slot => _slot;
 
-    private Character _owner;
+    public int SlotID { get; private set; }
+    public Skill Skill { get; private set; }
 
-    private Skill _skill;
+    private Character _owner;
     private float _skillCooldown;
 
-    public void RegisterSlotUI(Character owner)
+    private void Awake()
+    {
+        SlotID = -1;
+    }
+
+    public void RegisterSlotUI(Character owner, int slotID)
     {
         _owner = owner;
+        SlotID = slotID;
     }
 
     public void UpdateSlotUI(Skill skill)
@@ -39,16 +46,21 @@ public class SkillSlotUI : MonoBehaviour
 
     public void ShowSkillDescription()
     {
-        string name = _skill.SkillSO.Name;
-        string type = _skill.SkillSO.Type;
-        string description = _skill.GetDescription();
+        string name = Skill.SkillSO.Name;
+        string type = Skill.SkillSO.Type;
+        string description = Skill.GetDescription();
 
         OnSkillDescriptionCall(name, type, description);
     }
 
     public void ActivateSkill()
     {
-        _skill.TryExecute(_owner);
+        Skill.TryExecute(_owner);
+    }
+
+    public void ToggleSlotInteraction(bool enable)
+    {
+        _useButton.interactable = enable;
     }
 
     private void FillSlotUI(Skill skill)
@@ -68,7 +80,7 @@ public class SkillSlotUI : MonoBehaviour
             skill.OnCooldownTick += UpdateCooldownDisplay;
         }
 
-        _skill = skill;
+        Skill = skill;
     }
 
     private void ClearSlotUI()
@@ -77,16 +89,16 @@ public class SkillSlotUI : MonoBehaviour
 
         if (_displayCooldown)
         {
-            if (_skill != null)
+            if (Skill != null)
             {
-                _skill.OnCooldownToggle -= ToggleCooldownDisplay;
-                _skill.OnCooldownTick -= UpdateCooldownDisplay;
+                Skill.OnCooldownToggle -= ToggleCooldownDisplay;
+                Skill.OnCooldownTick -= UpdateCooldownDisplay;
             }
 
             ToggleCooldownDisplay(false);
         }
 
-        _skill = null;
+        Skill = null;
     }
 
     private void ToggleSlotDisplay(bool enable)

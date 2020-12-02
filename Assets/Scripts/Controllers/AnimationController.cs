@@ -33,7 +33,27 @@ public class AnimationController : MonoBehaviour
         _animator.Play(_stateHashDic[stateName]);
     }
 
-    public IEnumerator PlayAndWaitForAnimRoutine(string stateName, bool unscaled = false, Action onAnimation = null)
+    public void SetParameter(string triggerName)
+    {
+        _animator.SetTrigger(triggerName);
+    }
+
+    public void SetParameter(string boolName, bool value)
+    {
+        _animator.SetBool(boolName, value);
+    }
+
+    public void SetParameter(string floatName, float value)
+    {
+        _animator.SetFloat(floatName, value);
+    }
+
+    public void SetParameter(string intName, int value)
+    {
+        _animator.SetInteger(intName, value);
+    }
+
+    public IEnumerator PlayAndWaitForAnimRoutine(string stateName, bool unscaled, Action onAnimation)
     {
         int stateHash = _stateHashDic[stateName];
 
@@ -57,5 +77,20 @@ public class AnimationController : MonoBehaviour
             timer += delta;
             yield return null;
         }
+    }
+
+    public IEnumerator PlayAndWaitForAnimRoutine(string stateName, bool unscaled)
+    {
+        return PlayAndWaitForAnimRoutine(stateName, unscaled, null);
+    }
+
+    public IEnumerator PlayAndWaitForAnimRoutine(string stateName, Action onAnimation)
+    {
+        return PlayAndWaitForAnimRoutine(stateName, false, onAnimation);
+    }
+
+    public IEnumerator PlayAndWaitForAnimRoutine(string stateName)
+    {
+        return PlayAndWaitForAnimRoutine(stateName, false, null);
     }
 }

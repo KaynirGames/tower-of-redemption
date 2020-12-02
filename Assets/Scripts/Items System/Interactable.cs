@@ -7,6 +7,8 @@ public class Interactable : MonoBehaviour
     [SerializeField] protected bool _interactOnce = false;
     [SerializeField] protected UnityEvent _onInteraction = null;
 
+    public UnityEvent OnInteraction => _onInteraction;
+
     public virtual void Interact()
     {
         _onInteraction?.Invoke();
@@ -19,7 +21,7 @@ public class Interactable : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerCharacter>() != null)
+        if (other.TryGetComponent(out PlayerCharacter player))
         {
             Interact();
         }

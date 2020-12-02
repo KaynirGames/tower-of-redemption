@@ -88,11 +88,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5508919052267520
-    m_Key: UI.MenuButton.Yes
+    m_Key: UI.MenuButton.Confirm
     m_Metadata:
       m_Items: []
   - m_Id: 5509091660460032
-    m_Key: UI.MenuButton.No
+    m_Key: UI.MenuButton.Cancel
     m_Metadata:
       m_Items: []
   m_Metadata:

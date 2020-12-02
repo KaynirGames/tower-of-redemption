@@ -4,10 +4,11 @@ using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
-    [SerializeField] private DungeonStage _tutorialStage = null;
-    [SerializeField] private Room _startRoom = null;
     [SerializeField] private Button _openMenuButton = null;
     [SerializeField] private Dialogue _welcomeDialogue = null;
+    [SerializeField] private Room _attackTutorialRoom = null;
+    [SerializeField] private SpawnPoint _burrelSpawnPoint = null;
+    [SerializeField] private ItemPickup _tutorialPotion = null;
     [SerializeField] private Dialogue _battleDialogue = null;
     [SerializeField] private float _battleDialogueDelay = 2f;
 
@@ -30,10 +31,17 @@ public class TutorialManager : MonoBehaviour
         _openMenuButton.onClick.AddListener(MenuUI.Instance.OpenMenu);
     }
 
+    public void SpawnTutorialPotion()
+    {
+        var spawnList = _burrelSpawnPoint.Spawn(_tutorialPotion.gameObject, 1, true);
+
+        spawnList[0].GetComponent<ItemPickup>().OnInteraction
+                    .AddListener(() => _attackTutorialRoom.SetRoomStatus(true));
+    }
+
     private IEnumerator StartTutorialRoutine()
     {
         Room.LoadedRooms.ForEach(room => room.PrepareRoom());
-
         yield return new WaitForSeconds(2f);
 
         //_dialogueManager.StartDialogue(_startDialogue);

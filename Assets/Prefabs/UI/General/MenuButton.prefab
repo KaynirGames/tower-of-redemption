@@ -139,9 +139,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:a27c007587e81934bb9a9ddf394e7be9
+      m_TableCollectionName: 
     m_TableEntryReference:
-      m_KeyId: 5127243696500736
+      m_KeyId: 0
       m_Key: 
   m_FormatArguments: []
   m_UpdateString:

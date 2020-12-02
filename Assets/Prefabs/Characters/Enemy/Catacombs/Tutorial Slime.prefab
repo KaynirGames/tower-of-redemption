@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 7282492576520255806}
   - component: {fileID: 7282492576520255793}
   - component: {fileID: 7282492576520255804}
-  - component: {fileID: 6022807882919586485}
+  - component: {fileID: 5763809499401112461}
   m_Layer: 0
   m_Name: EnemyGFX
   m_TagString: Untagged
@@ -261,7 +261,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6022807882919586485
+--- !u!114 &5763809499401112461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,6 +270,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7282492576520255794}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63395e1d3e8be7548b4129cb19df82aa, type: 3}
+  m_Script: {fileID: 11500000, guid: b3bf0a6e76bfc4443ae92d592b499bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stateNames:
+  - Attack
+  - Death

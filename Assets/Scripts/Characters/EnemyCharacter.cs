@@ -36,7 +36,7 @@ public class EnemyCharacter : Character
 
     public override void PrepareForBattle()
     {
-        Animations.PlayMoveClip(Vector2.left);
+        PlayMoveAnimation(Vector2.left);
         ToggleBattleAI(true);
     }
 
@@ -48,7 +48,6 @@ public class EnemyCharacter : Character
         gameObject.SetActive(false);
 
         // Заспавнить лут.
-        ActiveEnemies.Remove(this);
         // Уничтожить объект.
     }
 
@@ -60,7 +59,6 @@ public class EnemyCharacter : Character
 
     protected override void Die()
     {
-        Animations.PlayDeathClip();
         OnBattleEnd.Invoke(true);
     }
 

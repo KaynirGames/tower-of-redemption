@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 150040071}
   - component: {fileID: 150040070}
   - component: {fileID: 150040069}
+  - component: {fileID: 8889835043886011702}
   m_Layer: 5
   m_Name: LoadingScreen_Canvas
   m_TagString: Untagged
@@ -59,7 +60,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!114 &150040070
 MonoBehaviour:
@@ -100,6 +101,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &8889835043886011702
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150040067}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &850061683
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,8 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca79ca7fab664854b843861569634e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadingScreen: {fileID: 150040067}
-  testStage: {fileID: 11400000, guid: 3e53a6e0713a95f428ff3fc49a2ce46e, type: 2}
+  _loadingScreenGroup: {fileID: 8889835043886011702}
+  testState: 0
 --- !u!114 &1492742037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,5 +370,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7169cfbe43299d84b8cd6ae0c0626805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentStage: {fileID: 11400000, guid: 3e53a6e0713a95f428ff3fc49a2ce46e, type: 2}
-  spawnTestStage: 0

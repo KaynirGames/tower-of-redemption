@@ -39,6 +39,11 @@ public class SkillBookUI : MonoBehaviour
         _skillBook = null;
     }
 
+    public SkillSlotUI[] GetSlotsUI(SkillSlot slotType)
+    {
+        return _skillSlotsUI[slotType];
+    }
+
     private SkillSlotUI[] CollectSkillSlotsUI(GameObject parent)
     {
         return parent != null
@@ -80,7 +85,7 @@ public class SkillBookUI : MonoBehaviour
 
             for (int i = 0; i < slots.Length; i++)
             {
-                slotsUI[i].RegisterSlotUI(_skillBook.Owner);
+                slotsUI[i].RegisterSlotUI(_skillBook.Owner, i);
                 slotsUI[i].UpdateSlotUI(slots[i]);
             }
         }

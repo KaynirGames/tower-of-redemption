@@ -16,12 +16,14 @@
 
     public void Use(PlayerCharacter player)
     {
-        ItemSO.Use(player);
-        Amount--;
-
-        if (Amount == 0)
+        if (ItemSO.TryUse(player, this))
         {
-            player.Inventory.RemoveItem(this);
+            Amount--;
+
+            if (Amount == 0)
+            {
+                player.Inventory.RemoveItem(this);
+            }
         }
     }
 }

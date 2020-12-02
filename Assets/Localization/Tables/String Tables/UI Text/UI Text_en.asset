@@ -62,10 +62,6 @@ MonoBehaviour:
     m_Localized: Main menu
     m_Metadata:
       m_Items: []
-  - m_Id: 5127243696500736
-    m_Localized: Restart
-    m_Metadata:
-      m_Items: []
   - m_Id: 5502735305994240
     m_Localized: New game
     m_Metadata:
@@ -91,11 +87,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5508919052267520
-    m_Localized: Yes
+    m_Localized: Confirm
     m_Metadata:
       m_Items: []
   - m_Id: 5509091660460032
-    m_Localized: No
+    m_Localized: Cancel
     m_Metadata:
       m_Items: []
   references:

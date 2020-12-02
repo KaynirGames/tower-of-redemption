@@ -13,13 +13,13 @@ public class PlayerCharacter : Character
 
     [SerializeField] private PlayerSpec _playerSpec = null;
     [SerializeField] private float _attackSpeed = 1f;
-    [SerializeField] private InputHandler _inputHandler = null;
 
     public PlayerSpec PlayerSpec => _playerSpec;
 
     public Inventory Inventory { get; private set; }
 
     private MoveBase _moveBase;
+    private InputHandler _inputHandler;
     private GameMaster _gameMaster;
     private WaitForSeconds _waitForNextAttack;
 
@@ -31,6 +31,7 @@ public class PlayerCharacter : Character
         base.Awake();
 
         _moveBase = GetComponent<MoveBase>();
+        _inputHandler = GetComponent<InputHandler>();
         Inventory = GetComponent<Inventory>();
 
         _enableAttack = true;
@@ -55,7 +56,7 @@ public class PlayerCharacter : Character
     {
         if (_gameMaster.IsPause)
         {
-            Animations.PlayMoveClip(Vector2.zero);
+            PlayMoveAnimation(Vector2.zero);
             return;
         }
 
@@ -67,7 +68,7 @@ public class PlayerCharacter : Character
 
     public override void PrepareForBattle()
     {
-        Animations.PlayMoveClip(Vector2.right);
+        PlayMoveAnimation(Vector2.right);
     }
 
     public void ToggleInput(bool enabled)
@@ -101,21 +102,24 @@ public class PlayerCharacter : Character
         {
             Vector2 moveDirection = _inputHandler.GetMovementInput();
             _moveBase.SetMoveDirection(moveDirection);
-            Animations.PlayMoveClip(moveDirection);
+            PlayMoveAnimation(moveDirection);
         }
     }
 
     protected override void Die()
     {
-        Animations.PlayDeathClip();
         OnBattleEnd.Invoke(false);
     }
 
     private IEnumerator AttackRoutine()
     {
         _enableAttack = false;
+        _enableInput = false;
+        _moveBase.SetMoveDirection(Vector3.zero);
 
-        Animations.PlayAttackClip();
+        yield return Animations.PlayAndWaitForAnimRoutine("Attack", true);
+        
+        _enableInput = true;
 
         yield return _waitForNextAttack;
 

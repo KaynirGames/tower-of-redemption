@@ -1,0 +1,400 @@
+fileFormatVersion: 2
+guid: 6cdd6865fb1d6854096b5093350e1466
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6410765919746245902
+    second: GoldenChest_0
+  - first:
+      213: -5098140508519249077
+    second: GoldenChest_1
+  - first:
+      213: -1104771289386399096
+    second: GoldenChest_2
+  - first:
+      213: 9182239991617853531
+    second: GoldenChest_3
+  - first:
+      213: -24348898085536997
+    second: GoldenChest_4
+  - first:
+      213: -8911100217972703990
+    second: GoldenChest_5
+  - first:
+      213: 142067298563307141
+    second: GoldenChest_6
+  - first:
+      213: 3224404168758418685
+    second: GoldenChest_7
+  - first:
+      213: -8311901629183365229
+    second: GoldenChest_8
+  - first:
+      213: -9148813704887250262
+    second: GoldenChest_9
+  - first:
+      213: 6447857585540472431
+    second: GoldenChest_10
+  - first:
+      213: 5400579147952754442
+    second: GoldenChest_11
+  - first:
+      213: 919571454744983349
+    second: GoldenChest_12
+  - first:
+      213: 4208635088312444674
+    second: GoldenChest_13
+  - first:
+      213: -3955855878598097357
+    second: GoldenChest_14
+  - first:
+      213: 7381753963989406589
+    second: GoldenChest_15
+  - first:
+      213: 1900866485007081811
+    second: GoldenChest_16
+  - first:
+      213: 410161062766575305
+    second: GoldenChest_17
+  - first:
+      213: 2049380451338331712
+    second: GoldenChest_18
+  - first:
+      213: -2397376768218635450
+    second: GoldenChest_19
+  - first:
+      213: -7523001980336537505
+    second: GoldenChest_20
+  - first:
+      213: 8315986705775732152
+    second: GoldenChest_21
+  - first:
+      213: -6873264974814720335
+    second: GoldenChest_22
+  - first:
+      213: -5157088114504015164
+    second: GoldenChest_23
+  - first:
+      213: 2714147551158517778
+    second: GoldenChest_24
+  - first:
+      213: -2564935993881433232
+    second: GoldenChest_25
+  - first:
+      213: -1898826454096982695
+    second: GoldenChest_26
+  - first:
+      213: -3058267299408567378
+    second: GoldenChest_27
+  - first:
+      213: 8501041206256230101
+    second: GoldenChest_28
+  - first:
+      213: -8263534254749468811
+    second: GoldenChest_29
+  - first:
+      213: 906828943719576187
+    second: GoldenChest_30
+  - first:
+      213: -363734883339042068
+    second: GoldenChest_31
+  - first:
+      213: 2676263734210967962
+    second: GoldenChest_32
+  - first:
+      213: 95928667360082011
+    second: GoldenChest_33
+  - first:
+      213: 2683455743107301524
+    second: GoldenChest_34
+  - first:
+      213: 1014518864260881568
+    second: GoldenChest_35
+  - first:
+      213: 7265860701520867742
+    second: GoldenChest_36
+  - first:
+      213: -8598193109242538410
+    second: GoldenChest_37
+  - first:
+      213: 3911223649741938815
+    second: GoldenChest_38
+  - first:
+      213: 7069285187862086149
+    second: GoldenChest_39
+  - first:
+      213: -5326445728632859628
+    second: GoldenChest_40
+  - first:
+      213: -8721737318222053446
+    second: GoldenChest_41
+  - first:
+      213: -9196309763377010784
+    second: GoldenChest_42
+  - first:
+      213: -236303436785974540
+    second: GoldenChest_43
+  - first:
+      213: -3542421343134144103
+    second: GoldenChest_44
+  - first:
+      213: 4504023286093805091
+    second: GoldenChest_45
+  - first:
+      213: -8570516404112845009
+    second: GoldenChest_46
+  - first:
+      213: -455323730794104412
+    second: GoldenChest_47
+  - first:
+      213: 8866653561806220294
+    second: GoldenChest_48
+  - first:
+      213: 7072958313064166366
+    second: GoldenChest_49
+  - first:
+      213: 8461569197658695170
+    second: GoldenChest_50
+  - first:
+      213: -6034951327057467502
+    second: GoldenChest_51
+  - first:
+      213: -3670095183390019246
+    second: GoldenChest_52
+  - first:
+      213: -5825714966927416194
+    second: GoldenChest_53
+  - first:
+      213: 2150334722043185798
+    second: GoldenChest_54
+  - first:
+      213: 2412517262377699535
+    second: GoldenChest_55
+  - first:
+      213: 5862579247391259832
+    second: GoldenChest_56
+  - first:
+      213: -3603121224814193885
+    second: GoldenChest_57
+  - first:
+      213: -3402846194180033337
+    second: GoldenChest_58
+  - first:
+      213: 3122161746326442711
+    second: GoldenChest_59
+  - first:
+      213: -7911704394390667321
+    second: GoldenChest_60
+  - first:
+      213: 166627178144778500
+    second: GoldenChest_61
+  - first:
+      213: -3498706003573620519
+    second: GoldenChest_62
+  - first:
+      213: 6267459427531433301
+    second: GoldenChest_63
+  - first:
+      213: -2535461762642389980
+    second: GoldenChest_64
+  - first:
+      213: -2074182375419899873
+    second: GoldenChest_65
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 128
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 128
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 128
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GoldenChest_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e05c7a863ad97f850800000000000000
+      internalID: 6410765919746245902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoldenChest_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4b4ea6f734cf39b0800000000000000
+      internalID: -5098140508519249077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoldenChest_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88ac21a9d501ba0f0800000000000000
+      internalID: -1104771289386399096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoldenChest_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5894ce6f9edd6f70800000000000000
+      internalID: 9182239991617853531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

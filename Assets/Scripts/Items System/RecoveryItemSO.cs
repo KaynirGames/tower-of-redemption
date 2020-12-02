@@ -6,8 +6,9 @@ public class RecoveryItemSO : ItemSO
 {
     [SerializeField] private List<RecoverySO> _recoveryTypes = new List<RecoverySO>();
 
-    public override void Use(Character owner)
+    public override bool TryUse(PlayerCharacter owner, Item item)
     {
         _recoveryTypes.ForEach(recovery => recovery.ApplyRecovery(owner));
+        return true;
     }
 }

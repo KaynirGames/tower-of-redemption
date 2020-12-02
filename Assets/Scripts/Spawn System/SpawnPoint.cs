@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class SpawnPoint : MonoBehaviour
 {
@@ -7,19 +8,32 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField] private bool _applyForce = false;
     [SerializeField] private float _forceValue = 1f;
 
-    public void Spawn()
+    public List<GameObject> Spawn()
     {
-        for (int i = 1; i <= _spawnAmount; i++)
-        {
-            GameObject gameObject = Instantiate((GameObject)_spawnTable.ChooseRandom(),
-                                    transform.position,
-                                    Quaternion.identity);
+        return Spawn((GameObject)_spawnTable.ChooseRandom(),
+                     _spawnAmount,
+                     _applyForce);
+    }
 
-            if (_applyForce)
+    public List<GameObject> Spawn(GameObject prefab, int amount, bool applyForce = false)
+    {
+        List<GameObject> spawnedObjects = new List<GameObject>();
+
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject gameObject = Instantiate(prefab,
+                                                transform.position,
+                                                Quaternion.identity);
+
+            if (applyForce)
             {
                 ApplyForce(gameObject.GetComponent<Rigidbody2D>());
             }
+
+            spawnedObjects.Add(gameObject);
         }
+
+        return spawnedObjects;
     }
 
     private void ApplyForce(Rigidbody2D rigidbody)

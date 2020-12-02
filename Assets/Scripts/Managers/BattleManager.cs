@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
@@ -15,8 +16,6 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private SpiritGenerator _spiritGenerator = null;
     [Header("Настройки перехода в бой:")]
     [SerializeField] private AnimationController _transitionController = null;
-    [SerializeField] private float _transitionTime = 2f;
-    [SerializeField] private float _deathAnimationTime = 2f;
     [SerializeField] private float _enemyActivationDelay = 3f;
     [Header("Бонусная энергия при боевом преимуществе:")]
     [SerializeField] private float _playerSpiritBonus = 0.25f;
@@ -26,12 +25,11 @@ public class BattleManager : MonoBehaviour
 
     private PlayerCharacter _player;
     private EnemyCharacter _enemy;
+    private List<EnemyCharacter> _activeEnemies;
 
     private Vector3 _lastPlayerPosition;
     private Vector3 _lastEnemyPosition;
 
-    private WaitForSecondsRealtime _waitForTransition;
-    private WaitForSecondsRealtime _waitForDeathAnimation;
     private WaitForSeconds _waitBeforeEnemyActivation;
 
     private void Awake()
@@ -47,9 +45,8 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
-        _waitForTransition = new WaitForSecondsRealtime(_transitionTime);
-        _waitForDeathAnimation = new WaitForSecondsRealtime(_deathAnimationTime);
         _waitBeforeEnemyActivation = new WaitForSeconds(_enemyActivationDelay);
+        _activeEnemies = EnemyCharacter.ActiveEnemies;
     }
 
     private bool StartBattle(EnemyCharacter enemy, bool isPlayerAdvantage)
@@ -58,6 +55,9 @@ public class BattleManager : MonoBehaviour
         {
             _enemy = enemy;
             _player = PlayerCharacter.Active;
+
+            _activeEnemies.Remove(enemy);
+            _activeEnemies.ForEach(en => en.gameObject.SetActive(false));
 
             _enemy.CurrentOpponent = _player;
             _player.CurrentOpponent = _enemy;
@@ -72,6 +72,7 @@ public class BattleManager : MonoBehaviour
 
     private void PrepareBattlefield()
     {
+        Room.ActiveRoom.ToggleBattleObstructingObjects(false);
         _battleUI.ShowBattleUI(_player, _enemy);
         _lastPlayerPosition = _player.transform.position;
         _lastEnemyPosition = _enemy.transform.position;
@@ -83,6 +84,7 @@ public class BattleManager : MonoBehaviour
 
     private void CloseBattlefield()
     {
+        Room.ActiveRoom.ToggleBattleObstructingObjects(true);
         _battleUI.CloseBattleUI();
         _enemy.ExitBattle(_lastEnemyPosition);
         _player.ExitBattle(_lastPlayerPosition);
@@ -135,29 +137,47 @@ public class BattleManager : MonoBehaviour
     }
 
     private IEnumerator BattleVictoryRoutine()
-    {     
-        yield return _waitForDeathAnimation;
-
+    {
         GameMaster.Instance.TogglePause(true);
-        //_transitionController.SetTrigger("Victory");
 
-        yield return _waitForTransition;
-        
-        CloseBattlefield();
+        yield return _enemy.Animations.PlayAndWaitForAnimRoutine("Death",
+                                                                 true);
+
+        yield return _transitionController.PlayAndWaitForAnimRoutine("Victory",
+                                                                     true,
+                                                                     CloseBattlefield);
+
         GameMaster.Instance.TogglePause(false);
 
         yield return _waitBeforeEnemyActivation;
 
-        //_transitionController.SetTrigger("Reset");
+        _transitionController.SetParameter("Reset");
         _enemy = null;
+
+        CheckIfRoomClear();
     }
 
     private IEnumerator BattleDefeatRoutine()
     {
-        yield return _waitForDeathAnimation;
-
         GameMaster.Instance.TogglePause(true);
 
+        yield return _player.Animations.PlayAndWaitForAnimRoutine("Death",
+                                                                  true);
+
         _transitionController.PlayAnimation("Defeat");
+
+        GameMaster.Instance.TogglePause(false);
+    }
+
+    private void CheckIfRoomClear()
+    {
+        if (_activeEnemies.Count > 0)
+        {
+            _activeEnemies.ForEach(x => x.gameObject.SetActive(true));
+        }
+        else
+        {
+            Room.ActiveRoom.SetRoomStatus(true);
+        }
     }
 }

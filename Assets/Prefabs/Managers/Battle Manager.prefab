@@ -49,8 +49,6 @@ MonoBehaviour:
   _battleUI: {fileID: 8095424597516202945}
   _spiritGenerator: {fileID: 8095424598031946880}
   _transitionController: {fileID: 8643175066535183256}
-  _transitionTime: 0.5
-  _deathAnimationTime: 1.5
   _enemyActivationDelay: 0.25
   _playerSpiritBonus: 0.25
   _enemySpiritBonus: 1

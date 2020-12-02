@@ -24,7 +24,7 @@ public class Destructible : Interactable
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerAttackHit>() != null)
+        if (other.TryGetComponent(out PlayerAttackHit attackHit))
         {
             Interact();
         }

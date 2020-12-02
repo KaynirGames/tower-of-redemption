@@ -7,7 +7,9 @@ public class GameMaster : MonoBehaviour
 {
     public static GameMaster Instance { get; private set; }
 
-    [SerializeField] private GameObject _loadingScreen;
+    [SerializeField] private CanvasGroup _loadingScreenGroup;
+
+    public bool testState;
 
     public bool IsPause { get; private set; }
 
@@ -33,12 +35,21 @@ public class GameMaster : MonoBehaviour
 
         _gameSettings = GetComponent<GameSettings>();
         _stageGenerator = GetComponent<DungeonStageGenerator>();
+
+        if (testState)
+        {
+            _gameSettings.SetLanguage();
+        }
     }
 
     private void Start()
     {
         _assetManager = AssetManager.Instance;
-        StartCoroutine(LoadGameRoutine());
+
+        if (!testState)
+        {
+            StartCoroutine(LoadGameMenuRoutine(true));
+        }
     }
 
     public void TogglePause(bool isPause)
@@ -49,29 +60,45 @@ public class GameMaster : MonoBehaviour
 
     public void LoadScene(SceneType sceneType)
     {
-        StartCoroutine(LoadSceneRoutine(sceneType));
+        switch (sceneType)
+        {
+            case SceneType.GameMenu:
+                StartCoroutine(LoadGameMenuRoutine());
+                break;
+            case SceneType.Tutorial:
+                StartCoroutine(LoadTutorialRoutine());
+                break;
+            case SceneType.Dungeon:
+                StartCoroutine(LoadDungeonRoutine());
+                break;
+            default:
+                break;
+        }
     }
 
-    public void LoadDungeon()
+    private IEnumerator LoadGameMenuRoutine(bool isApplicationStart = false)
     {
-        // проверка на последнюю стадию, иначе грузим следующую в очереди
+        yield return ToggleLoadingScreenRoutine(true);
 
-        StartCoroutine(LoadDungeonRoutine());
+        if (isApplicationStart)
+        {
+            yield return _gameSettings.SetLanguage();
+        }
+
+        yield return AsyncLoadRoutine(SceneType.GameMenu);
+        yield return ToggleLoadingScreenRoutine(false);
     }
 
-    private IEnumerator LoadGameRoutine()
+    private IEnumerator LoadTutorialRoutine()
     {
-        _loadingScreen.SetActive(true);
-
-        yield return _gameSettings.SetLanguage();
-
-        yield return LoadSceneRoutine(SceneType.GameMenu);
+        yield return ToggleLoadingScreenRoutine(true);
+        yield return AsyncLoadRoutine(SceneType.Tutorial);
+        yield return ToggleLoadingScreenRoutine(false);
     }
 
     private IEnumerator LoadDungeonRoutine()
     {
-        _loadingScreen.SetActive(true);
-
+        yield return ToggleLoadingScreenRoutine(true);
         yield return AsyncLoadRoutine(SceneType.Dungeon);
 
         if (_selectedStages.Count == 0)
@@ -81,19 +108,29 @@ public class GameMaster : MonoBehaviour
         }
 
         _currentStage = _selectedStages.Dequeue();
-
         yield return _stageGenerator.LoadDungeonStage(_currentStage);
-
-        _loadingScreen.SetActive(false);
+        yield return ToggleLoadingScreenRoutine(false);
     }
 
-    private IEnumerator LoadSceneRoutine(SceneType sceneType)
+    public void LoadDungeon()
     {
-        _loadingScreen.SetActive(true);
+        // проверка на последнюю стадию, иначе грузим следующую в очереди
 
-        yield return AsyncLoadRoutine(sceneType);
+        StartCoroutine(LoadDungeonRoutine());
+    }
 
-        _loadingScreen.SetActive(false);
+    private IEnumerator ToggleLoadingScreenRoutine(bool enable)
+    {
+        if (enable)
+        {
+            _loadingScreenGroup.gameObject.SetActive(true);
+            yield return ScreenFader.FadeIn(_loadingScreenGroup);
+        }
+        else
+        {
+            yield return ScreenFader.FadeOut(_loadingScreenGroup);
+            _loadingScreenGroup.gameObject.SetActive(false);
+        }
     }
 
     private IEnumerator AsyncLoadRoutine(SceneType sceneType)

@@ -47,5 +47,5 @@ MonoBehaviour:
   _nodeSize: 1
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 256
   _displayGrid: 0

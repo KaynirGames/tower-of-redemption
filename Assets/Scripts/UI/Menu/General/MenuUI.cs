@@ -6,6 +6,7 @@ public class MenuUI : MonoBehaviour
 
     [SerializeField] private DescriptionUI _descriptionUI = null;
     [SerializeField] private ActionPopupUI _actionPopupUI = null;
+    [SerializeField] private SkillReplaceUI _skillReplaceUI = null;
 
     public DescriptionUI DescriptionUI => _descriptionUI;
     public ActionPopupUI ActionPopupUI => _actionPopupUI;
@@ -52,6 +53,11 @@ public class MenuUI : MonoBehaviour
     {
         _descriptionUI.ClearDescriptionText();
         _actionPopupUI.Toggle(false);
+    }
+
+    public void ShowSkillReplaceWindow(SkillSO skillSO, System.Action<int> onConfirm)
+    {
+        _skillReplaceUI.ShowSkillReplaceWindow(skillSO, onConfirm);
     }
 
     private void ShowDescription(string name, string type, string description)

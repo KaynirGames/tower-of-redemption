@@ -13,9 +13,9 @@ public class ItemPickup : Interactable
 
     protected override void OnTriggerEnter2D(Collider2D other) { }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (collision.collider.GetComponent<PlayerCharacter>() != null)
+        if (other.collider.TryGetComponent(out PlayerCharacter player))
         {
             Interact();
         }

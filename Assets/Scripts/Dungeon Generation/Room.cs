@@ -1,23 +1,26 @@
 ﻿using KaynirGames.Pathfinding;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Room : MonoBehaviour
 {
     public delegate void OnRoomStatusChange(Room room);
 
-    public static event OnRoomStatusChange OnRoomLoadComplete = delegate { };
     public static event OnRoomStatusChange OnActiveRoomChange = delegate { };
 
     public static List<Room> LoadedRooms { get; private set; } = new List<Room>();
+    public static Room ActiveRoom { get; private set; }
 
     [SerializeField] private int _width = 20;
     [SerializeField] private int _height = 12;
     [SerializeField] private RoomType _roomType = null;
     [SerializeField] private GameObject _doorsParent = null;
     [SerializeField] private Pathfinder _pathfinder = null;
+    [SerializeField] private GameObject _parentToDisableInBattle = null;
     [SerializeField] private Vector2Int _gridPosition = Vector2Int.zero;
     [SerializeField] private bool _isClear = false;
+    [SerializeField] private UnityEvent _onRoomClear = null;
 
     public RoomType RoomType => _roomType;
 
@@ -26,8 +29,6 @@ public class Room : MonoBehaviour
     private void Awake()
     {
         _doors.AddRange(_doorsParent.GetComponentsInChildren<Door>());
-
-        OnRoomLoadComplete.Invoke(this);
         LoadedRooms.Add(this);
     }
 
@@ -37,9 +38,9 @@ public class Room : MonoBehaviour
         transform.position = new Vector3(gridPosition.x * _width, gridPosition.y * _height, 0);
     }
 
-    public void ToggleDoors(bool open)
+    public void ToggleBattleObstructingObjects(bool enable)
     {
-        _doors.ForEach(door => door.ToggleDoor(open));
+        _parentToDisableInBattle.SetActive(enable);
     }
 
     public void PrepareRoom()
@@ -52,6 +53,12 @@ public class Room : MonoBehaviour
     {
         _isClear = isClear;
         ToggleDoors(isClear);
+        _onRoomClear?.Invoke();
+    }
+
+    private void ToggleDoors(bool open)
+    {
+        _doors.ForEach(door => door.ToggleDoor(open));
     }
 
     private void SetupCorrectDoors()
@@ -116,6 +123,7 @@ public class Room : MonoBehaviour
         {
             _pathfinder?.gameObject.SetActive(true);
             OnActiveRoomChange.Invoke(this);
+            ActiveRoom = this;
 
             if (!_isClear)
             {
