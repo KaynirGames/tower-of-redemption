@@ -1,6 +1,6 @@
 ﻿public enum SceneType
 {
-    Loading,
+    SelectLanguage,
     GameMenu,
     Tutorial,
     Dungeon

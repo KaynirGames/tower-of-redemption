@@ -6,17 +6,17 @@ public class GameSettings : MonoBehaviour
 {
     [SerializeField] private GameLanguage _gameLanguage = GameLanguage.Russian;
 
-    public IEnumerator SetLanguage()
+    public void SetLanguage(int languageID)
+    {
+        _gameLanguage = (GameLanguage)languageID;
+        GameMaster.Instance.LoadScene(SceneType.GameMenu);
+    }
+
+    public IEnumerator InitLocalizationRoutine()
     {
         yield return LocalizationSettings.InitializationOperation;
 
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales
                                                                   .Locales[(int)_gameLanguage];
-    }
-
-    private enum GameLanguage
-    {
-        English,
-        Russian
     }
 }

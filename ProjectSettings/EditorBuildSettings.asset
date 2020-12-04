@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LoadingScene.unity
-    guid: bc19e327d4e044348a4230417898c029
+    path: Assets/Scenes/ChooseLanguageScene.unity
+    guid: 9f0600f31c1f6ed4390a2a42db3d557f
   - enabled: 1
     path: Assets/Scenes/GameMenuScene.unity
     guid: 897c849f7c46e3848a9117fe33d1b8a7
@@ -17,21 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DungeonScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Dungeon Rooms/Catacombs_StartRoom.unity
-    guid: 9462118dd137f864fa4dffa10be5904d
-  - enabled: 1
-    path: Assets/Scenes/Dungeon Rooms/Catacombs_DefaultRoom.unity
-    guid: 57881569c830d1b4b9e5780905ea4464
-  - enabled: 1
-    path: Assets/Scenes/Dungeon Rooms/Catacombs_BossRoom.unity
-    guid: 260613735fd53d04ea99fa9b82b804f3
-  - enabled: 1
-    path: Assets/Scenes/Dungeon Rooms/Catacombs_ShopRoom.unity
-    guid: 0837e85e321370c42894f3b76b467de6
-  - enabled: 1
-    path: Assets/Scenes/Dungeon Rooms/Catacombs_SecretRoom.unity
-    guid: 1531fc4b6ffa62546aac2ab966a8c56b
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 5e55287c12ee21d40966a8e9e6d3c376,
       type: 2}
