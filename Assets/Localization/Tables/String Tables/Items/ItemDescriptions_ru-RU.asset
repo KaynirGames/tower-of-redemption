@@ -37,5 +37,9 @@ MonoBehaviour:
       \u043D\u0430\u043F\u043E\u043C\u0438\u043D\u0430\u044E\u0449\u0438\u0439 \u0442\u0435\u0431\u044F."
     m_Metadata:
       m_Items: []
+  - m_Id: 3618068583739392
+    m_Localized: Test
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d5b95a2285c9149a35d3e44e16cba2, type: 3}
-  m_Name: Dialogue d2 Diary Pickup
+  m_Name: Dialogue d_3 Menu
   m_EditorClassIdentifier: 
   _dialogueLines:
   - _characterName:
@@ -23,7 +23,7 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:c9b270fddb3033d498f9cc11b3d1468b
       m_TableEntryReference:
-        m_KeyId: 4294922047123456
+        m_KeyId: 4330686755696640
         m_Key: 
   - _characterName:
       m_TableReference:
@@ -35,7 +35,7 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:c9b270fddb3033d498f9cc11b3d1468b
       m_TableEntryReference:
-        m_KeyId: 4295525758464000
+        m_KeyId: 4333647024156672
         m_Key: 
   - _characterName:
       m_TableReference:
@@ -47,5 +47,17 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:c9b270fddb3033d498f9cc11b3d1468b
       m_TableEntryReference:
-        m_KeyId: 4312026255257600
+        m_KeyId: 4360850420068352
+        m_Key: 
+  - _characterName:
+      m_TableReference:
+        m_TableCollectionName: GUID:5c8745f2e300ee044b7c3a88a42370fe
+      m_TableEntryReference:
+        m_KeyId: 243830943744
+        m_Key: 
+    _characterLine:
+      m_TableReference:
+        m_TableCollectionName: GUID:c9b270fddb3033d498f9cc11b3d1468b
+      m_TableEntryReference:
+        m_KeyId: 4362239917486080
         m_Key: 

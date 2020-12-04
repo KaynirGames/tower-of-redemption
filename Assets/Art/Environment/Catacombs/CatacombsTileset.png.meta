@@ -209,6 +209,9 @@ TextureImporter:
   - first:
       213: -3483197009026915955
     second: CatacombsTileset_16
+  - first:
+      213: -3639830941613737102
+    second: CatacombsTileset_17
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -679,8 +682,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9dfafaa0eb44a770800000000000000
-      internalID: 8621099015007305117
+      spriteID: 27b33a21b09bc7dc0800000000000000
+      internalID: -3639830941613737102
       vertices: []
       indices: 
       edges: []

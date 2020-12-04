@@ -12,11 +12,6 @@ public class GameMenuUI : MonoBehaviour
         GameMaster.Instance.LoadScene(SceneType.Tutorial);
     }
 
-    public void LoadDungeon()
-    {
-        GameMaster.Instance.LoadScene(SceneType.Dungeon);
-    }
-
     public void ExitGame()
     {
         // save

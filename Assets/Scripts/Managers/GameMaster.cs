@@ -7,18 +7,19 @@ public class GameMaster : MonoBehaviour
 {
     public static GameMaster Instance { get; private set; }
 
-    [SerializeField] private CanvasGroup _loadingScreenGroup;
+    [SerializeField] private CanvasGroup _loadingScreenGroup = null;
 
     public bool testState;
 
+    public GameSettings GameSettings { get; private set; }
     public bool IsPause { get; private set; }
 
-    private GameSettings _gameSettings;
     private DungeonStageGenerator _stageGenerator;
     private AssetManager _assetManager;
 
     private Queue<DungeonStage> _selectedStages = new Queue<DungeonStage>();
     private DungeonStage _currentStage;
+    private PlayerCharacter _currentPlayer;
 
     private void Awake()
     {
@@ -33,12 +34,12 @@ public class GameMaster : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        _gameSettings = GetComponent<GameSettings>();
+        GameSettings = GetComponent<GameSettings>();
         _stageGenerator = GetComponent<DungeonStageGenerator>();
 
         if (testState)
         {
-            _gameSettings.SetLanguage();
+            GameSettings.SetLanguage();
         }
     }
 
@@ -76,13 +77,19 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    public void StartNewGame(PlayerCharacter player)
+    {
+        _currentPlayer = player;
+        LoadScene(SceneType.Dungeon);
+    }
+
     private IEnumerator LoadGameMenuRoutine(bool isApplicationStart = false)
     {
         yield return ToggleLoadingScreenRoutine(true);
 
         if (isApplicationStart)
         {
-            yield return _gameSettings.SetLanguage();
+            yield return GameSettings.SetLanguage();
         }
 
         yield return AsyncLoadRoutine(SceneType.GameMenu);
@@ -109,6 +116,8 @@ public class GameMaster : MonoBehaviour
 
         _currentStage = _selectedStages.Dequeue();
         yield return _stageGenerator.LoadDungeonStage(_currentStage);
+
+        Instantiate(_currentPlayer.gameObject, Vector3.zero, Quaternion.identity);
         yield return ToggleLoadingScreenRoutine(false);
     }
 

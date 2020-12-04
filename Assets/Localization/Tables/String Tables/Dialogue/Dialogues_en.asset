@@ -19,118 +19,95 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 1323960692736
-    m_Localized: Greatings, Hero, and welcome to the Tower of Redemption. Master
-      loves to receive guests, so i will once more take on my guiding role.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4258673408143360
-    m_Localized: Let me introduce myself. My name is Watcher, and I will introduce
-      you to the basic rules of this place.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4260294460502016
-    m_Localized: First, take a look around the room. One of the items may interest
-      you.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4294922047123456
-    m_Localized: Oh, yes. The Hero's Diary. What a wonderful find!
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4295525758464000
-    m_Localized: The Tower contains many mysteries, treasures, and, most importantly,
-      dangers. Diary entries can increase your chances of survival.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4312026255257600
-    m_Localized: Don't be shy, check out your diary. Just use the button in the lower
-      right corner of the screen.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4322237334482944
-    m_Localized: The diary contains information about your chosen specialization,
-      as well as the skills and items found during exploration of the Tower.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4330686755696640
-    m_Localized: I advise you to check the diary every time you find something interesting
-      along the way.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4333647024156672
-    m_Localized: As soon as you are ready, go to the next room.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4360850420068352
-    m_Localized: Look, Hero. Someone kindly set up a wooden barrel. Perhaps this
-      is a great opportunity to test your strength.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4362239917486080
-    m_Localized: Use the button with the sword icon in the lower right corner of
-      the screen to attack.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4372050977550336
-    m_Localized: So, the mighty enemy fell, leaving behind a healing potion. Pretty
-      useful item, don't you think?
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4374685356978176
-    m_Localized: It's time to meet the living inhabitant of the Tower. One swing
-      won't be enough to defeat him.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4375936513667072
-    m_Localized: The slug doesn't seem to be interested in your presence. He may
-      not feel a threat in you.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4377824453783552
-    m_Localized: Anyway, this is your chance, Hero. Use the experience gained in
-      the battle with the Barrel and crush the enemy!
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4378242281959424
-    m_Localized: The key resources in combat are the character's health and spirit.
-      Health allows you to continue fighting, the spirit is required to use skills.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4384322277928960
-    m_Localized: The battle screen is divided into two halves, the left of which
-      belongs to the Hero, and the right to the enemy.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4385435978887168
-    m_Localized: To accumulate the spirit, the Hero must match gems of the same color
-      on the field in the lower left corner. To do this, slide your finger over the
-      selected stones. The minimum number of stones to match is 2.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4386947283087360
-    m_Localized: If the Hero takes the enemy by surprise by attacking first, then
-      he receives a bonus spirit at the beginning of the battle. And vice versa.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4387601925861376
-    m_Localized: Each opponent has different characteristics and weaknesses. Not
-      all skills can be effective against a specific enemy.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4388289766551552
-    m_Localized: While exploring the Tower, you will come across scrolls with skills
-      that will expand the Hero's arsenal. It is worth noting that the number of
-      skill slots is limited, so you have to choose them wisely.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4390804528623616
-    m_Localized: Nice work, Hero. The Master is pleased with your accomplishments
-      and gives permission to enter the depths of the Tower of Redemption.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 4391310906945536
-    m_Localized: You have good potential and maybe ... No, it's too early to talk
-      about it. See you at the top, Hero. Goodbye.
+    m_Localized: 
     m_Metadata:
       m_Items: []
   references:

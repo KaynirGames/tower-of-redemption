@@ -23,6 +23,10 @@ MonoBehaviour:
     m_Key: KeyItem.HeroDiary.Desc
     m_Metadata:
       m_Items: []
+  - m_Id: 3618068583739392
+    m_Key: SkillScroll.Test.Desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 110a07c0a7811174f872ff9777f86f8e, type: 3}
-  m_Name: TutorialBarrelSpawnTable
+  m_Name: TutorialBarrel SpawnTable
   m_EditorClassIdentifier: 
   _spawnableObjects:
   - _objectToSpawn: {fileID: 2384022530287293373, guid: e0c56429c25c5a343a4aba76d0aa2318,

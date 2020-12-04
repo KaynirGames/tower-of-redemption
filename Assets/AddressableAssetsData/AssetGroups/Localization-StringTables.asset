@@ -177,6 +177,22 @@ MonoBehaviour:
     - Preload
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: d7446d8ebb401f646a4d3cc5950f17f0
+    m_Address: CharacterDescriptions_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8591e68788bff774d82dcc7570e506c1
+    m_Address: CharacterDescriptions_ru-RU
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru-RU
+    - Preload
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 9586cebf42b6c39428a50dcd75ed7e92, type: 2}
   m_SchemaSet:

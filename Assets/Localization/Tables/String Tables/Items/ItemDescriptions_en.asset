@@ -28,5 +28,9 @@ MonoBehaviour:
       resembles you.
     m_Metadata:
       m_Items: []
+  - m_Id: 3618068583739392
+    m_Localized: Test
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

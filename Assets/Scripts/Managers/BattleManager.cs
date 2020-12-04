@@ -10,7 +10,8 @@ public class BattleManager : MonoBehaviour
     public delegate bool OnBattleTrigger(EnemyCharacter enemy, bool isPlayerAdvantage);
     public delegate void OnBattleEnd(bool isVictory);
 
-    public static event Action OnBattleStart = delegate { };
+    public static event Action OnBattleEnter = delegate { };
+    public static event Action OnBattleExit = delegate { };
 
     [SerializeField] private BattleUI _battleUI = null;
     [SerializeField] private SpiritGenerator _spiritGenerator = null;
@@ -22,6 +23,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private float _enemySpiritBonus = 1f;
 
     public SpiritGenerator SpiritGenerator => _spiritGenerator;
+
+    public bool IsBattle { get; private set; }
 
     private PlayerCharacter _player;
     private EnemyCharacter _enemy;
@@ -53,6 +56,7 @@ public class BattleManager : MonoBehaviour
     {
         if (_enemy == null)
         {
+            IsBattle = true;
             _enemy = enemy;
             _player = PlayerCharacter.Active;
 
@@ -128,7 +132,7 @@ public class BattleManager : MonoBehaviour
                                                                      PrepareBattlefield);
 
         GameMaster.Instance.TogglePause(false);
-        OnBattleStart.Invoke();
+        OnBattleEnter.Invoke();
 
         yield return _waitBeforeEnemyActivation;
 
@@ -148,9 +152,11 @@ public class BattleManager : MonoBehaviour
                                                                      CloseBattlefield);
 
         GameMaster.Instance.TogglePause(false);
+        OnBattleExit.Invoke();
 
         yield return _waitBeforeEnemyActivation;
 
+        IsBattle = false;
         _transitionController.SetParameter("Reset");
         _enemy = null;
 

@@ -23,8 +23,9 @@ public class SkillReplaceUI : MonoBehaviour
     public void ShowSkillReplaceWindow(SkillSO skillSO, Action<int> onConfirm)
     {
         _descriptionUI.ClearDescriptionText();
-        _newSkillSlotUI.UpdateSlotUI(new Skill(skillSO));
+        _selectedSlot = null;
 
+        _newSkillSlotUI.UpdateSlotUI(new Skill(skillSO));
         _avaliableSlots = _skillBookUI.GetSlotsUI(skillSO.Slot);
         _storedActionOnConfirm = onConfirm;
 
@@ -39,10 +40,13 @@ public class SkillReplaceUI : MonoBehaviour
 
     public void ReplaceSkill(bool confirm)
     {
-        if (confirm && _selectedSlot.SlotID > -1)
+        if (_selectedSlot != null)
         {
-            _storedActionOnConfirm?.Invoke(_selectedSlot.SlotID);
-            _storedActionOnConfirm = null;
+            if (confirm && _selectedSlot.SlotID > -1)
+            {
+                _storedActionOnConfirm?.Invoke(_selectedSlot.SlotID);
+                _storedActionOnConfirm = null;
+            }
         }
 
         ToggleSkillReplaceWindow(false);

@@ -4,24 +4,34 @@ using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
-    [SerializeField] private Button _openMenuButton = null;
+    [Header("Вступление:")]
     [SerializeField] private Dialogue _welcomeDialogue = null;
+    [SerializeField] private Button _openMenuButton = null;
+    [SerializeField] private float _dialogueDelay = 2f;
+    [Header("Обучение атаке:")]
     [SerializeField] private Room _attackTutorialRoom = null;
     [SerializeField] private SpawnPoint _burrelSpawnPoint = null;
     [SerializeField] private ItemPickup _tutorialPotion = null;
-    [SerializeField] private Dialogue _battleDialogue = null;
-    [SerializeField] private float _battleDialogueDelay = 2f;
+    [Header("Обучение бою:")]
+    [SerializeField] private Dialogue _battleEnterDialogue = null;
+    [SerializeField] private Dialogue _battleExitDialogue = null;
+    [SerializeField] private GameObject _tutorialExit = null;
+    [SerializeField] private ItemPickup _tutorialScroll = null;
+    [SerializeField] private Transform _scrollSpawnPoint = null;
 
     private DialogueManager _dialogueManager;
+    private WaitForSecondsRealtime _waitForDialogue;
 
     private void Awake()
     {
-        //BattleManager.OnBattleStart += TriggerBattleTutorial;
+        BattleManager.OnBattleEnter += TriggerBattleEnterDialogue;
+        BattleManager.OnBattleExit += TriggerBattleExitDialogue;
     }
 
     private void Start()
     {
         _dialogueManager = DialogueManager.Instance;
+        _waitForDialogue = new WaitForSecondsRealtime(_dialogueDelay);
         StartCoroutine(StartTutorialRoutine());
     }
 
@@ -42,20 +52,34 @@ public class TutorialManager : MonoBehaviour
     private IEnumerator StartTutorialRoutine()
     {
         Room.LoadedRooms.ForEach(room => room.PrepareRoom());
-        yield return new WaitForSeconds(2f);
 
-        //_dialogueManager.StartDialogue(_startDialogue);
+        GameMaster.Instance.TogglePause(true);
+        
+        yield return _waitForDialogue;
+
+        _dialogueManager.StartDialogue(_welcomeDialogue);
     }
 
-    private void TriggerBattleTutorial()
+    private void TriggerBattleEnterDialogue()
     {
-        StartCoroutine(BattleTutorialRoutine());
+        StartCoroutine(TriggerDialogueRoutine(_battleEnterDialogue));
     }
 
-    private IEnumerator BattleTutorialRoutine()
+    private void TriggerBattleExitDialogue()
     {
-        yield return new WaitForSecondsRealtime(_battleDialogueDelay);
+        GameObject scroll = Instantiate(_tutorialScroll.gameObject,
+                                        _scrollSpawnPoint.position,
+                                        Quaternion.identity);
 
-        _dialogueManager.StartDialogue(_battleDialogue);
+        scroll.GetComponent<ItemPickup>().OnInteraction
+              .AddListener(() => _tutorialExit.SetActive(true));
+
+        StartCoroutine(TriggerDialogueRoutine(_battleExitDialogue));
+    }
+
+    private IEnumerator TriggerDialogueRoutine(Dialogue dialogue)
+    {
+        yield return _waitForDialogue;
+        _dialogueManager.StartDialogue(dialogue);
     }
 }

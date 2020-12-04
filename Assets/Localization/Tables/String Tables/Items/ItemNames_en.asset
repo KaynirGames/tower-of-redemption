@@ -26,5 +26,9 @@ MonoBehaviour:
     m_Localized: Hero's Diary
     m_Metadata:
       m_Items: []
+  - m_Id: 3618068638265344
+    m_Localized: Test
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

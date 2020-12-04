@@ -21,6 +21,7 @@ public class PlayerCharacter : Character
     private MoveBase _moveBase;
     private InputHandler _inputHandler;
     private GameMaster _gameMaster;
+    private BattleManager _battleManager;
     private WaitForSeconds _waitForNextAttack;
 
     private bool _enableAttack;
@@ -44,6 +45,7 @@ public class PlayerCharacter : Character
     private void Start()
     {
         _gameMaster = GameMaster.Instance;
+        _battleManager = BattleManager.Instance;
 
         Stats.SetCharacterStats(_playerSpec);
         SkillBook.SetBaseSkills(_playerSpec);
@@ -54,9 +56,9 @@ public class PlayerCharacter : Character
 
     private void Update()
     {
-        if (_gameMaster.IsPause)
+        if (_gameMaster.IsPause || _battleManager.IsBattle)
         {
-            PlayMoveAnimation(Vector2.zero);
+            StopPlayer();
             return;
         }
 
@@ -66,16 +68,17 @@ public class PlayerCharacter : Character
         }
     }
 
-    public override void PrepareForBattle()
+    private void StopPlayer()
     {
-        PlayMoveAnimation(Vector2.right);
+        _moveBase.SetMoveDirection(Vector3.zero);
+        PlayMoveAnimation(Vector2.zero);
     }
 
     public void ToggleInput(bool enabled)
     {
         if (!enabled)
         {
-            _moveBase.SetMoveDirection(Vector3.zero);
+            StopPlayer();
         }
 
         _enableInput = enabled;

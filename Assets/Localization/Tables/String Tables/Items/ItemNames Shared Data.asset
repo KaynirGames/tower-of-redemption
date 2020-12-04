@@ -23,6 +23,10 @@ MonoBehaviour:
     m_Key: KeyItem.HeroDiary.Name
     m_Metadata:
       m_Items: []
+  - m_Id: 3618068638265344
+    m_Key: SkillScroll.Test.Name
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

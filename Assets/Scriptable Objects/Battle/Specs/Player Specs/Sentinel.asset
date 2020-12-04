@@ -20,9 +20,9 @@ MonoBehaviour:
       m_Key: 
   _specDescription:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:622e3f2d7f179a049b2fee8108259f81
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 36317753344
       m_Key: 
   _baseHealth: 120
   _baseEnergy: 80

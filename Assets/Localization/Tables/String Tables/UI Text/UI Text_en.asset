@@ -94,5 +94,13 @@ MonoBehaviour:
     m_Localized: Cancel
     m_Metadata:
       m_Items: []
+  - m_Id: 7997401066696704
+    m_Localized: Choose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7997457098403840
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

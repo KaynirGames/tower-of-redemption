@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d5b95a2285c9149a35d3e44e16cba2, type: 3}
-  m_Name: Dialogue d1 Welcome
+  m_Name: Dialogue d_4 Barrel (Phone)
   m_EditorClassIdentifier: 
   _dialogueLines:
   - _characterName:
@@ -23,7 +23,7 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:c9b270fddb3033d498f9cc11b3d1468b
       m_TableEntryReference:
-        m_KeyId: 1323960692736
+        m_KeyId: 4372050977550336
         m_Key: 
   - _characterName:
       m_TableReference:
@@ -35,7 +35,7 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:c9b270fddb3033d498f9cc11b3d1468b
       m_TableEntryReference:
-        m_KeyId: 4258673408143360
+        m_KeyId: 4374685356978176
         m_Key: 
   - _characterName:
       m_TableReference:
@@ -47,5 +47,5 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:c9b270fddb3033d498f9cc11b3d1468b
       m_TableEntryReference:
-        m_KeyId: 4260294460502016
+        m_KeyId: 4377824453783552
         m_Key: 

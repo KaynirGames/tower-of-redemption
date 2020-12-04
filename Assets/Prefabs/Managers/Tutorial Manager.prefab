@@ -43,11 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29edd81ed052034981544548cff0429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startRoom: {fileID: 0}
-  _openMenuButton: {fileID: 0}
   _welcomeDialogue: {fileID: 11400000, guid: dea67f74e90ac9d4bb31177f6c4cdb64, type: 2}
+  _openMenuButton: {fileID: 0}
+  _dialogueDelay: 2
+  _attackTutorialRoom: {fileID: 0}
   _burrelSpawnPoint: {fileID: 0}
   _tutorialPotion: {fileID: 115759498117946842, guid: e0c56429c25c5a343a4aba76d0aa2318,
     type: 3}
-  _battleDialogue: {fileID: 11400000, guid: 58488998fb0a3f4418a1273eaf7184ff, type: 2}
-  _battleDialogueDelay: 0.5
+  _battleEnterDialogue: {fileID: 11400000, guid: 58488998fb0a3f4418a1273eaf7184ff,
+    type: 2}
+  _battleExitDialogue: {fileID: 11400000, guid: a0a95dcc29651be499a69b201ff8acfb,
+    type: 2}
+  _tutorialExit: {fileID: 0}
+  _tutorialScroll: {fileID: 8405743419961305624, guid: 339dcd6cf44e6af44a4ae5c85522b47b,
+    type: 3}

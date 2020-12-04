@@ -42,5 +42,9 @@ MonoBehaviour:
     m_Localized: Book
     m_Metadata:
       m_Items: []
+  - m_Id: 6863091295121408
+    m_Localized: Skill scroll
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
