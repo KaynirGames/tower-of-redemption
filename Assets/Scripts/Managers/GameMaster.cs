@@ -15,9 +15,12 @@ public class GameMaster : MonoBehaviour
     private DungeonStageGenerator _stageGenerator;
     private AssetManager _assetManager;
 
-    private Queue<DungeonStage> _selectedStages = new Queue<DungeonStage>();
+    private Queue<DungeonStage> _selectedStages;
     private DungeonStage _currentStage;
-    private PlayerCharacter _currentPlayer;
+    private GameObject _selectedPlayerPrefab;
+    
+    private SaveData _currentSaveData;
+    private bool _continueGame;
 
     private void Awake()
     {
@@ -34,6 +37,8 @@ public class GameMaster : MonoBehaviour
 
         GameSettings = GetComponent<GameSettings>();
         _stageGenerator = GetComponent<DungeonStageGenerator>();
+
+        SaveSystem.Init();
     }
 
     private void Start()
@@ -67,8 +72,30 @@ public class GameMaster : MonoBehaviour
 
     public void StartNewGame(PlayerCharacter player)
     {
-        _currentPlayer = player;
+        _continueGame = false;
+        _selectedStages = new Queue<DungeonStage>(_assetManager.StageDatabase.GetDungeonStageSet());
+        _selectedPlayerPrefab = player.gameObject;
         LoadScene(SceneType.Dungeon);
+    }
+
+    public void ContinueGame()
+    {
+        _continueGame = true;
+        _selectedStages = new Queue<DungeonStage>(_currentSaveData.LoadDungeonStages());
+        LoadScene(SceneType.Dungeon);
+    }
+
+    public bool TryLoadSaveData()
+    {
+        _currentSaveData = SaveSystem.LoadData() as SaveData;
+        return _currentSaveData != null;
+    }
+
+    public void SaveGame()
+    {
+        _currentSaveData = new SaveData(PlayerCharacter.Active,
+                                        new List<DungeonStage>(_selectedStages));
+        SaveSystem.SaveData(_currentSaveData);
     }
 
     private IEnumerator LoadGameMenuRoutine()
@@ -91,16 +118,17 @@ public class GameMaster : MonoBehaviour
         yield return ToggleLoadingScreenRoutine(true);
         yield return AsyncLoadRoutine(SceneType.Dungeon);
 
-        if (_selectedStages.Count == 0)
+        if (_selectedStages.Count > 0)
         {
-            _assetManager.StageDatabase.GetDungeonStageSet()
-                                       .ForEach(stage => _selectedStages.Enqueue(stage));
+            _currentStage = _selectedStages.Dequeue();
+            yield return _stageGenerator.LoadDungeonStage(_currentStage);
+            SpawnPlayer(Vector3.zero);
+        }
+        else
+        {
+            // load credits scene
         }
 
-        _currentStage = _selectedStages.Dequeue();
-        yield return _stageGenerator.LoadDungeonStage(_currentStage);
-
-        Instantiate(_currentPlayer.gameObject, Vector3.zero, Quaternion.identity);
         yield return ToggleLoadingScreenRoutine(false);
     }
 
@@ -128,8 +156,18 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    private void SpawnPlayer(PlayerCharacter prefab, Vector3 position)
+    private void SpawnPlayer(Vector3 position)
     {
-        Instantiate(prefab, position, Quaternion.identity);
+        if (_continueGame)
+        {
+            PlayerCharacter player = _currentSaveData.LoadPlayer();
+            player.transform.position = position;
+        }
+        else
+        {
+            Instantiate(_selectedPlayerPrefab,
+                        position,
+                        Quaternion.identity);
+        }
     }
 }

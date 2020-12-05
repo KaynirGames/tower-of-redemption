@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -33,11 +34,11 @@ public class SkillBook : MonoBehaviour
         _skillSlots = CreateSkillSlots();
     }
 
-    public void SetBaseSkills(SpecBase spec)
+    public void LoadSkills(SkillSO[] skills)
     {
-        foreach (SkillSO skillSO in spec.BaseSkills)
+        for (int i = 0; i < skills.Length; i++)
         {
-            TryAddSkill(skillSO);
+            AddSkill(skills[i], i);
         }
     }
 

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -22,7 +20,7 @@ public abstract class SpecBase : ScriptableObject, IIdentifiable
     [SerializeField] private int _baseEarthEfficacy = 100;
     [SerializeField] private int _baseWaterEfficacy = 100;
     [Header("Базовые умения спека:")]
-    [SerializeField] private List<SkillSO> _baseSkills = new List<SkillSO>();
+    [SerializeField] private SkillSO[] _baseSkills = null;
 
     public string SpecName => _specName.GetLocalizedString().Result;
     public string SpecDescription => _specDescription.GetLocalizedString().Result;
@@ -39,7 +37,7 @@ public abstract class SpecBase : ScriptableObject, IIdentifiable
     public int BaseEarthEfficacy => _baseEarthEfficacy;
     public int BaseWaterEfficacy => _baseWaterEfficacy;
 
-    public ReadOnlyCollection<SkillSO> BaseSkills => _baseSkills.AsReadOnly();
+    public SkillSO[] BaseSkills => _baseSkills;
 
     public string ID { get; private set; }
 

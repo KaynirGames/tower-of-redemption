@@ -28,7 +28,7 @@ public class EnemyCharacter : Character
     private void Start()
     {
         Stats.SetCharacterStats(_enemySpec);
-        SkillBook.SetBaseSkills(_enemySpec);
+        SkillBook.LoadSkills(_enemySpec.BaseSkills);
 
         _enemyBattleAI.InitializeBattleAI(SkillBook);
         ActiveEnemies.Add(this);

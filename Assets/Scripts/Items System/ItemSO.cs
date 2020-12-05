@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "Undefined Item SO", menuName = "Scriptable Objects/Items/Item SO")]
-public class ItemSO : ScriptableObject
+public class ItemSO : ScriptableObject, IIdentifiable
 {
     [Header("Параметры отображения предмета:")]
     [SerializeField] private LocalizedString _name = null;
@@ -19,8 +20,16 @@ public class ItemSO : ScriptableObject
 
     public virtual Sprite Icon => _icon;
 
+    public string ID { get; private set; }
+
     public virtual bool TryUse(PlayerCharacter player, Item item)
     {
         return false;
+    }
+
+    protected virtual void OnValidate()
+    {
+        string path = AssetDatabase.GetAssetPath(this);
+        ID = AssetDatabase.AssetPathToGUID(path);
     }
 }

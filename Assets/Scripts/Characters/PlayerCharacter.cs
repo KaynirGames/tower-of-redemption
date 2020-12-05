@@ -48,7 +48,7 @@ public class PlayerCharacter : Character
         _battleManager = BattleManager.Instance;
 
         Stats.SetCharacterStats(_playerSpec);
-        SkillBook.SetBaseSkills(_playerSpec);
+        SkillBook.LoadSkills(_playerSpec.BaseSkills);
 
         Active = this;
         OnPlayerActive.Invoke(this);
