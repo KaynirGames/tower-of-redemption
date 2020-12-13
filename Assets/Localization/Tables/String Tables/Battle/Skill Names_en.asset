@@ -26,5 +26,61 @@ MonoBehaviour:
     m_Localized: Fortification
     m_Metadata:
       m_Items: []
+  - m_Id: 8847026253979648
+    m_Localized: Sticky spit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8846984600346624
+    m_Localized: Perfect guard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8962800528384000
+    m_Localized: Acid breath
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9597738411876352
+    m_Localized: Bone throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9598203354669056
+    m_Localized: Rune shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9599089191673856
+    m_Localized: Creepy skull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9599195462754304
+    m_Localized: Intimidation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9599277587226624
+    m_Localized: Strong bone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9599409766522880
+    m_Localized: Bonewhirl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9599642130964480
+    m_Localized: Mighty crush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9599813573140480
+    m_Localized: Battle cry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9599901410254848
+    m_Localized: Armor breaker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9599949644750848
+    m_Localized: Magifobia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9600054145835008
+    m_Localized: Second wind
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

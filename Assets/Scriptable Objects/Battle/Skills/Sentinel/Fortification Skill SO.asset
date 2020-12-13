@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d72c19a40ed3e4db0db3b7c3d4fabf, type: 3}
+  m_Name: Fortification Skill SO
+  m_EditorClassIdentifier: 
+  _name:
+    m_TableReference:
+      m_TableCollectionName: GUID:78457a4a7d81ad54686e524e7c680190
+    m_TableEntryReference:
+      m_KeyId: 298047048577024
+      m_Key: 
+  _description:
+    m_TableReference:
+      m_TableCollectionName: GUID:22190247c6c8bf748a910a789070377e
+    m_TableEntryReference:
+      m_KeyId: 297845159948288
+      m_Key: 
+  _type:
+    m_TableReference:
+      m_TableCollectionName: GUID:0aba30b8aee276c4dba73bb62815c3dd
+    m_TableEntryReference:
+      m_KeyId: 110347218944
+      m_Key: 
+  _icon: {fileID: 21300000, guid: 9b51cd0655059da4facb7ed4f404b984, type: 3}
+  _slot: 0
+  _cost: 20
+  _cooldown: 12
+  _ownerEffects:
+  - {fileID: 11400000, guid: 847098b08cb23394eab11b68627748c9, type: 2}
+  _opponentEffects: []
+  _recoveryTypes:
+  - {fileID: 11400000, guid: f2c507dac8937a44ea5727665d56fe21, type: 2}

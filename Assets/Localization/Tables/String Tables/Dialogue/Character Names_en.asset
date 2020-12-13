@@ -38,5 +38,13 @@ MonoBehaviour:
     m_Localized: Weakened slime
     m_Metadata:
       m_Items: []
+  - m_Id: 10012454472900608
+    m_Localized: Bone Master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10012649902301184
+    m_Localized: Bullheaded
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

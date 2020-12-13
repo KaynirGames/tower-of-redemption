@@ -21,10 +21,19 @@ MonoBehaviour:
   - m_Id: 66558685184
     m_Localized: 'Deals 2 fire damage every 1 sec.
 
-      Reduces Defence by 20%.
+      Reduces Defence by 10%.
 
       Duration:
-      5 sec'
+      5 sec.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9140797378125824
+    m_Localized: 'Deals 2 earth damage every 1 sec.
+
+      Reduces Strength by 10%.
+
+      Duration:
+      5 sec.'
     m_Metadata:
       m_Items: []
   references:

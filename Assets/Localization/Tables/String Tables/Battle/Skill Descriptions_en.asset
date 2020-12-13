@@ -19,26 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 203233250570240
-    m_Localized: 'Unleashes a mighty shield bash to deal physical damage. Reduces
-      target strength by 15% for 15 seconds.
-
-
-      Damage: 80% of strength
-
-      Spirit
-      cost: 10 SP
-
-      Cooldown: 5 sec'
+    m_Localized: 
     m_Metadata:
       m_Items: []
   - m_Id: 297845159948288
-    m_Localized: 'Gets into a defensive stance and restores 15 HP. Defence is increased
-      by 15% for 15 seconds.
-
-
-      Spirit cost: 20 SP
-
-      Cooldown: 15 sec'
+    m_Localized: 
     m_Metadata:
       m_Items: []
   references:

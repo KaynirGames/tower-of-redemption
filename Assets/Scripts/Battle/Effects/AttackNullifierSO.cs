@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AttackNullifier Rank #", menuName = "Scriptable Objects/Battle/Effects/Attack Nullifier SO")]
+[CreateAssetMenu(fileName = "Nullify Type Charges_Duration", menuName = "Scriptable Objects/Battle/Effects/Attack Nullifier SO")]
 public class AttackNullifierSO : EffectSO
 {
+    [Header("Параметры обнуления атаки:")]
     [SerializeField] private int _chargesAmount = 1;
     [SerializeField] private AilmentSO _ailmentData = null;
     [SerializeField] private List<DamageSO> _nullableDamageTypes = null;

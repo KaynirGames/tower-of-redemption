@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d72c19a40ed3e4db0db3b7c3d4fabf, type: 3}
+  m_Name: Second Wind Skill SO
+  m_EditorClassIdentifier: 
+  _name:
+    m_TableReference:
+      m_TableCollectionName: GUID:78457a4a7d81ad54686e524e7c680190
+    m_TableEntryReference:
+      m_KeyId: 9600054145835008
+      m_Key: 
+  _description:
+    m_TableReference:
+      m_TableCollectionName: GUID:22190247c6c8bf748a910a789070377e
+    m_TableEntryReference:
+      m_KeyId: 10329458320859136
+      m_Key: 
+  _type:
+    m_TableReference:
+      m_TableCollectionName: GUID:0aba30b8aee276c4dba73bb62815c3dd
+    m_TableEntryReference:
+      m_KeyId: 110347218944
+      m_Key: 
+  _icon: {fileID: 21300000, guid: 74879b0b69de5ce4591f1480d054a9f0, type: 3}
+  _slot: 2
+  _cost: 30
+  _cooldown: 60
+  _ownerEffects:
+  - {fileID: 11400000, guid: cee8ea5a1d51bed44bc81406bfd842b8, type: 2}
+  - {fileID: 11400000, guid: 6e19f918cfdadaa4497f9cb9d976f7bd, type: 2}
+  _opponentEffects: []
+  _recoveryTypes:
+  - {fileID: 11400000, guid: 950284be5096bc14daa3b1805e48215d, type: 2}

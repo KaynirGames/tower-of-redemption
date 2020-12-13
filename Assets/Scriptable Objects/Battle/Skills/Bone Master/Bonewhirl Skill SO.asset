@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7a260eb34e87b4eb8419129cecedbf, type: 3}
+  m_Name: Bonewhirl Skill SO
+  m_EditorClassIdentifier: 
+  _name:
+    m_TableReference:
+      m_TableCollectionName: GUID:78457a4a7d81ad54686e524e7c680190
+    m_TableEntryReference:
+      m_KeyId: 9599409766522880
+      m_Key: 
+  _description:
+    m_TableReference:
+      m_TableCollectionName: GUID:22190247c6c8bf748a910a789070377e
+    m_TableEntryReference:
+      m_KeyId: 9640839922835456
+      m_Key: 
+  _type:
+    m_TableReference:
+      m_TableCollectionName: GUID:0aba30b8aee276c4dba73bb62815c3dd
+    m_TableEntryReference:
+      m_KeyId: 66533519360
+      m_Key: 
+  _icon: {fileID: 21300000, guid: 4c5447a8dc8f92f41aec94d9521efb38, type: 3}
+  _slot: 2
+  _cost: 60
+  _cooldown: 45
+  _ownerEffects: []
+  _opponentEffects: []
+  _damageType: {fileID: 11400000, guid: 5c8a5d3b7b464c14882c006366947081, type: 2}
+  _attackPower: 1.8

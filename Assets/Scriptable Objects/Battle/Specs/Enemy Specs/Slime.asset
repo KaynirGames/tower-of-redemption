@@ -24,18 +24,19 @@ MonoBehaviour:
     m_TableEntryReference:
       m_KeyId: 0
       m_Key: 
-  _baseHealth: 5
+  _baseHealth: 20
   _baseEnergy: 10
-  _baseStrength: 15
+  _baseStrength: 10
   _baseWill: 5
-  _baseDefence: 75
-  _baseMagicDefence: 0
-  _baseFireEfficacy: 100
-  _baseAirEfficacy: 100
-  _baseEarthEfficacy: 100
-  _baseWaterEfficacy: 100
+  _baseDefence: 50
+  _baseMagicDefence: 10
+  _baseFireEfficacy: 120
+  _baseAirEfficacy: 120
+  _baseEarthEfficacy: 120
+  _baseWaterEfficacy: 120
   _baseSkills:
-  - {fileID: 11400000, guid: 33736e5e5424f6149807acb20cc7bd1b, type: 2}
+  - {fileID: 11400000, guid: c12bf0daef646df45a224f038154b2a0, type: 2}
+  - {fileID: 11400000, guid: c9c077867b57d604da95c5e3fff424cc, type: 2}
   _energyRegen: 2
   _energyRegenDelay: 1
   _lootTable: {fileID: 0}

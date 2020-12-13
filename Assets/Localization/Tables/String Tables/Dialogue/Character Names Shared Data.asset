@@ -35,6 +35,14 @@ MonoBehaviour:
     m_Key: Character.Name.TutorialSlime
     m_Metadata:
       m_Items: []
+  - m_Id: 10012454472900608
+    m_Key: Character.Name.BoneMaster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10012649902301184
+    m_Key: Character.Name.Bullheaded
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

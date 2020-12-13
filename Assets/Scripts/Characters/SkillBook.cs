@@ -36,9 +36,30 @@ public class SkillBook : MonoBehaviour
 
     public void LoadSkills(SkillSO[] skills)
     {
+        int activeCount = 0;
+        int passiveCount = 0;
+        int specialCount = 0;
+
         for (int i = 0; i < skills.Length; i++)
         {
-            AddSkill(skills[i], i);
+            switch (skills[i].Slot)
+            {
+                case SkillSlot.Active:
+                    activeCount = LoadSkill(skills[i],
+                                            activeCount,
+                                            _activeSkillsCount);
+                    break;
+                case SkillSlot.Passive:
+                    passiveCount = LoadSkill(skills[i],
+                                             passiveCount,
+                                             _passiveSkillsCount);
+                    break;
+                case SkillSlot.Special:
+                    specialCount = LoadSkill(skills[i],
+                                             specialCount,
+                                             _specialSkillsCount);
+                    break;
+            }
         }
     }
 
@@ -142,6 +163,17 @@ public class SkillBook : MonoBehaviour
 
         GetSkillSlots(skillSO.Slot)[slotID] = skill;
         OnSlotChange.Invoke(slotID, skillSO.Slot, skill);
+    }
+
+    private int LoadSkill(SkillSO skillSO, int slotCount, int maxSlotCount)
+    {
+        if (slotCount < maxSlotCount)
+        {
+            AddSkill(skillSO, slotCount);
+            slotCount++;
+        }
+
+        return slotCount;
     }
 
     private int FindFirstEmptySlot(SkillSlot slot)

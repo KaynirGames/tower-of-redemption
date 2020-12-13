@@ -16,11 +16,67 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 22190247c6c8bf748a910a789070377e
   m_Entries:
   - m_Id: 203233250570240
-    m_Key: Skill.ShieldBash.Desc
+    m_Key: Skill.Desc.ShieldBash
     m_Metadata:
       m_Items: []
   - m_Id: 297845159948288
-    m_Key: Skill.Fortification.Desc
+    m_Key: Skill.Desc.Fortification
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8846118451404800
+    m_Key: Skill.Desc.PerfectGuard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8846180334166016
+    m_Key: Skill.Desc.StickySpit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8962557183254528
+    m_Key: Skill.Desc.AcidBreath
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9601215221456896
+    m_Key: Skill.Desc.BoneThrow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9606904576729088
+    m_Key: Skill.Desc.RuneShield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9607320202895360
+    m_Key: Skill.Desc.CreepySkull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9607375974555648
+    m_Key: Skill.Desc.Intimidation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9640667050401792
+    m_Key: Skill.Desc.StrongBone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9640839922835456
+    m_Key: Skill.Desc.Bonewhirl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10329194708852736
+    m_Key: Skill.Desc.MightyCrush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10329312707207168
+    m_Key: Skill.Desc.BattleCry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10329365773541376
+    m_Key: Skill.Desc.ArmorBreaker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10329415266328576
+    m_Key: Skill.Desc.Magifobia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10329458320859136
+    m_Key: Skill.Desc.SecondWind
     m_Metadata:
       m_Items: []
   m_Metadata:

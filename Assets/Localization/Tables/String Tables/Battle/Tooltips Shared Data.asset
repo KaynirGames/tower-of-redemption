@@ -19,8 +19,8 @@ MonoBehaviour:
     m_Key: Tooltip.Burn.D
     m_Metadata:
       m_Items: []
-  - m_Id: 432123369811968
-    m_Key: Tooltip.Daze.D
+  - m_Id: 9140797378125824
+    m_Key: Tooltip.Poison.D
     m_Metadata:
       m_Items: []
   m_Metadata:

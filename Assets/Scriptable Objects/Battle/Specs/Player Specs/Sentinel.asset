@@ -37,4 +37,5 @@ MonoBehaviour:
   _baseSkills:
   - {fileID: 11400000, guid: 33736e5e5424f6149807acb20cc7bd1b, type: 2}
   - {fileID: 11400000, guid: 96994699e3ee2d4488e5db5cd20e4f1f, type: 2}
+  - {fileID: 11400000, guid: 6334bb68b6fc4684591f4a0c00e36056, type: 2}
   _playerSpecIcon: {fileID: 21300000, guid: 4e3b837dcd1b4634c9b9450293e45c82, type: 3}

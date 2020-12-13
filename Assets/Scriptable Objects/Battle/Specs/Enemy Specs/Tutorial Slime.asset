@@ -35,9 +35,9 @@ MonoBehaviour:
   _baseEarthEfficacy: 100
   _baseWaterEfficacy: 100
   _baseSkills:
-  - {fileID: 11400000, guid: 33736e5e5424f6149807acb20cc7bd1b, type: 2}
+  - {fileID: 11400000, guid: c12bf0daef646df45a224f038154b2a0, type: 2}
   _energyRegen: 2
   _energyRegenDelay: 1
-  _lootTable: {fileID: 11400000, guid: 3e0b5b1d2028be64bb03334fbef5438c, type: 2}
+  _lootTable: {fileID: 0}
   _moveSpeed: 2
   _viewDistance: 4

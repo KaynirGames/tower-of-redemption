@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19cc1916c25771542b5f4bf39b4283da, type: 3}
+  m_Name: Intimidation Skill SO
+  m_EditorClassIdentifier: 
+  _name:
+    m_TableReference:
+      m_TableCollectionName: GUID:78457a4a7d81ad54686e524e7c680190
+    m_TableEntryReference:
+      m_KeyId: 9599195462754304
+      m_Key: 
+  _description:
+    m_TableReference:
+      m_TableCollectionName: GUID:22190247c6c8bf748a910a789070377e
+    m_TableEntryReference:
+      m_KeyId: 9607375974555648
+      m_Key: 
+  _type:
+    m_TableReference:
+      m_TableCollectionName: GUID:0aba30b8aee276c4dba73bb62815c3dd
+    m_TableEntryReference:
+      m_KeyId: 170359320576
+      m_Key: 
+  _icon: {fileID: 21300000, guid: 23900b6532938b64992260620ca284e9, type: 3}
+  _slot: 1
+  _cost: 0
+  _cooldown: 0
+  _ownerEffects: []
+  _opponentEffects:
+  - {fileID: 11400000, guid: 1d669eff42a06b54bb0e842a699abd6f, type: 2}
+  - {fileID: 11400000, guid: 0cc1820b6558379448143d3d97ee954f, type: 2}
+  - {fileID: 11400000, guid: 37de80a76dd4989409ddceae49f17bd1, type: 2}
+  - {fileID: 11400000, guid: 997dd7d1849e88f49a28535fd384c2d7, type: 2}
+  _ownerBonuses: []

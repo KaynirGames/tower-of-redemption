@@ -29,9 +29,8 @@ public class PlayerUI : MonoBehaviour
     private void RegisterPlayer(PlayerCharacter player)
     {
         _resourceDisplay.RegisterResources(player.Stats);
-        ScreenJoystickHandler joystickHandler = player.GetComponent<ScreenJoystickHandler>();
-
-        if (joystickHandler != null)
+ 
+        if (player.TryGetComponent(out ScreenJoystickHandler joystickHandler))
         {
             joystickHandler.SetJoystick(_joystick, _attackButton);
         }
