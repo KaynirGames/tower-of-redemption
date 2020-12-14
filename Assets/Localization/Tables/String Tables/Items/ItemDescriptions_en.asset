@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 409598226432
-    m_Localized: Small bottle filled with aromatic red liquid. Heals for 20 HP.
+    m_Localized: Small bottle filled with aromatic red liquid. Heals for 20% HP.
     m_Metadata:
       m_Items: []
   - m_Id: 134042338258944
@@ -30,6 +30,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 3618068583739392
     m_Localized: Test
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7740026942451712
+    m_Localized: Calcium is good for teeth. Heals for 5% HP.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7740855434932224
+    m_Localized: Juicy scarlet apple. Heals for 10% HP.
     m_Metadata:
       m_Items: []
   references:

@@ -30,5 +30,13 @@ MonoBehaviour:
     m_Localized: Test
     m_Metadata:
       m_Items: []
+  - m_Id: 7739701284106240
+    m_Localized: Bone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7739934084755456
+    m_Localized: Red apple
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

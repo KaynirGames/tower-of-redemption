@@ -16,15 +16,23 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 9a7c8d5b2dd8f954ba2c119c32378b6f
   m_Entries:
   - m_Id: 409598226432
-    m_Key: Potion.SmallHealing.Desc
+    m_Key: Potion.Desc.SmallHealing
     m_Metadata:
       m_Items: []
   - m_Id: 134042338258944
-    m_Key: KeyItem.HeroDiary.Desc
+    m_Key: KeyItem.Desc.HeroDiary
     m_Metadata:
       m_Items: []
   - m_Id: 3618068583739392
-    m_Key: SkillScroll.Test.Desc
+    m_Key: SkillScroll.Desc.Test
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7740026942451712
+    m_Key: Food.Desc.Bone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7740855434932224
+    m_Key: Food.Desc.RedApple
     m_Metadata:
       m_Items: []
   m_Metadata:

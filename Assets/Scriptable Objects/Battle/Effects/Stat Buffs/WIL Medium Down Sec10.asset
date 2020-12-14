@@ -17,5 +17,5 @@ MonoBehaviour:
   _inflictionChance: 100
   _buffGrade: {fileID: 11400000, guid: da1b246de68ff6f4d95a8be035a4dd61, type: 2}
   _statData: {fileID: 11400000, guid: cd8aaa68ebbd26d47b352337c2a6a8af, type: 2}
-  _buffIcon: {fileID: 1333196915601879426, guid: 51a028b802010294b8087a2ff21269f1,
+  _buffIcon: {fileID: 3267751114351710683, guid: 51a028b802010294b8087a2ff21269f1,
     type: 3}
