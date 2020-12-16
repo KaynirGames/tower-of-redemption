@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "DoT Rank #", menuName = "Scriptable Objects/Battle/Effects/Damage Over Time SO")]
+[CreateAssetMenu(fileName = "DoT Rank# Chance#", menuName = "Scriptable Objects/Battle/Effects/Damage Over Time SO")]
 public class DamageOverTimeSO : EffectSO
 {
     [Header("Параметры ДоТ эффекта:")]

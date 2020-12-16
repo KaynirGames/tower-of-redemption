@@ -19,11 +19,265 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 203233250570240
-    m_Localized: 
+    m_Localized: 'Unleashes a mighty shield bash, dealing physical damage. Reduces
+      target strength by 20% for 12 sec.
+
+
+      Damage: 80% strength
+
+      Spirit
+      cost: 8 SP
+
+      Cooldown: 6 sec'
     m_Metadata:
       m_Items: []
   - m_Id: 297845159948288
-    m_Localized: 
+    m_Localized: 'Strengthens defenses to recover from minor injuries. Heals 20 HP.
+      Defence is increased by 20% for 12 sec.
+
+
+      Spirit cost: 15 SP
+
+      Cooldown:
+      14 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8846118451404800
+    m_Localized: 'Creates an impenetrable barrier that neutralizes any 2 attacks.
+      Lasts 120 sec.
+
+
+      Spirit cost: 40 SP
+
+      Cooldown: 45 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8846180334166016
+    m_Localized: 'Coats the victim''s body with sticky mucus. Deals physical damage.
+
+
+      Damage:
+      80% strength
+
+      Spirit cost: 5 SP
+
+      Cooldown: 5 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8962557183254528
+    m_Localized: 'Releases toxic vapors that weaken the target. Inflicts [<link="Tooltip.Poison.D">Poison</link>]
+      with 100% chance.
+
+
+      Spirit cost: 14 SP
+
+      Cooldown: 12 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9601215221456896
+    m_Localized: 'Throws a huge bone at the target, dealing physical damage.
+
+
+      Damage:
+      120% strength
+
+      Spirit cost: 12 SP
+
+      Cooldown: 14 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9606904576729088
+    m_Localized: 'Uses a mysterious rune-encrusted shield to neutralize 1 physical
+      attack. Lasts 20 sec.
+
+
+      Spirit cost: 18 SP
+
+      Cooldown: 24 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9607320202895360
+    m_Localized: 'Shows a skull from his own collection to intimidate the victim.
+      Heals 30 HP. Reduces target strength and will by 35% for 10 sec.
+
+
+      Spirit
+      cost: 25 SP
+
+      Cooldown: 30 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9607375974555648
+    m_Localized: 'Your fearful presence forces the victim to fight desperately for
+      life. Opponent gains: STR+5, WIL+5, DEF-5, MDF-5.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9640667050401792
+    m_Localized: 'The strong structure of your skeleton allows you to withstand serious
+      physical activity.
+
+
+      DEF+15'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9640839922835456
+    m_Localized: 'Forms a deadly vortex that sweeps away anyone who gets in its way.
+      Deals physical damage.
+
+
+      Damage: 180% strength
+
+      Spirit cost: 45
+      SP
+
+      Cooldown: 35 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10329194708852736
+    m_Localized: 'Channeling all power into one deadly blow. Deals physical damage.
+
+
+      Damage:
+      140% strength
+
+      Spirit cost: 16 SP
+
+      Cooldown: 14 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10329312707207168
+    m_Localized: 'Releases the inner spirit at a great price. HP-25%, SP+75%.
+
+
+      Spirit
+      cost: 0 SP
+
+      Cooldown: 60 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10329365773541376
+    m_Localized: 'Uses brute force to breach a target''s defenses. Deals physical
+      damage. Reduces target defence by 35% for 10 sec.
+
+
+      Damage: 80% strength
+
+      Spirit
+      cost: 10 SP
+
+      Cooldown: 12 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10329415266328576
+    m_Localized: 'Magic is your worst nightmare.
+
+
+      MDF-15'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10329458320859136
+    m_Localized: 'An adrenaline rush keeps you fighting. Heals 25% HP. Strength and
+      defence are increased by 35% for 10 sec.
+
+
+      Spirit cost: 30 SP
+
+      Cooldown:
+      40 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548338842562560
+    m_Localized: 'Injects a fast-acting poison into the victim''s body, dealing physical
+      damage. Inflicts [<link="Tooltip.Poison.D">Poison</link>] with 30% chance.
+
+
+      Damage:
+      80% strength
+
+      Spirit cost: 10 SP
+
+      Cooldown: 12 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548435538046976
+    m_Localized: 'Evaluates the victim''s weaknesses in order to launch a deadly
+      attack. Strength is increased by 50% for 8 sec.
+
+
+      Spirit cost: 12 SP
+
+      Cooldown:
+      14 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548477774688256
+    m_Localized: 'Your body is covered with red-hot armor. It takes a strong will
+      to withstand its heat.
+
+
+      DEF-5, WIL+10'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548523358384128
+    m_Localized: 'Launches a hot stream of flame towards the target. Deals fire damage.
+      Inflicts [<link="Tooltip.Burn.D">Burn</link>] with 30% chance.
+
+
+      Damage:
+      80% will
+
+      Spirit cost: 10 SP
+
+      Cooldown: 12 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548565657939968
+    m_Localized: 'Launches a stone flurry from the sky, causing physical damage to
+      the target.
+
+
+      Damage: 100% strength
+
+      Spirit cost: 10 SP
+
+      Cooldown:
+      12 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548604300062720
+    m_Localized: 'A huge boulder pierces the ground, shaking everything around. Deals
+      earth damage.
+
+
+      Damage: 120% will
+
+      Spirit cost: 12 SP
+
+      Cooldown:
+      14 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548637086937088
+    m_Localized: 'Calls upon the healing power of water to treat serious wounds.
+      Heals 40% HP.
+
+
+      Spirit cost: 25 SP
+
+      Cooldown: 40 sec'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548672491057152
+    m_Localized: 'Fires a sharp ice shard, dealing water damage. Inflicts [<link="Tooltip.Chills.D">Chills</link>]
+      with 20% chance.
+
+
+      Damage: 80% will
+
+      Spirit cost: 10 SP
+
+      Cooldown:
+      12 sec'
     m_Metadata:
       m_Items: []
   references:

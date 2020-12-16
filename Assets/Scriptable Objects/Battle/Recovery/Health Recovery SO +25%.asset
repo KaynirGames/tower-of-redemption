@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a8625691f6fa804cae94bc2810c07f4, type: 3}
   m_Name: Health Recovery SO +25%
   m_EditorClassIdentifier: 
-  _recoveryValue: -25
+  _recoveryValue: 25
   _isPercent: 1

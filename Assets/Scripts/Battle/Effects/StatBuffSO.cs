@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stat BuffGrade Sec#", menuName = "Scriptable Objects/Battle/Effects/Stat Buff SO")]
+[CreateAssetMenu(fileName = "Stat BuffGrade #", menuName = "Scriptable Objects/Battle/Effects/Stat Buff SO")]
 public class StatBuffSO : EffectSO
 {
     [Header("Параметры бафа стата:")]

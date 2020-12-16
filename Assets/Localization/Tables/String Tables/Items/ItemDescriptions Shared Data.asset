@@ -35,6 +35,10 @@ MonoBehaviour:
     m_Key: Food.Desc.RedApple
     m_Metadata:
       m_Items: []
+  - m_Id: 7986302426607616
+    m_Key: Food.Desc.Ham
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

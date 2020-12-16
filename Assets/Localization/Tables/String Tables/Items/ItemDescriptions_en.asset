@@ -40,5 +40,9 @@ MonoBehaviour:
     m_Localized: Juicy scarlet apple. Heals for 10% HP.
     m_Metadata:
       m_Items: []
+  - m_Id: 7986302426607616
+    m_Localized: Smells good... want a bite? Heals for 15% HP.
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

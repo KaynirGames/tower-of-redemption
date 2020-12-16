@@ -32,8 +32,8 @@ MonoBehaviour:
       m_Key: 
   _icon: {fileID: 21300000, guid: 60740edc2773c3c40b91beb2b0b89568, type: 3}
   _slot: 0
-  _cost: 30
-  _cooldown: 25
+  _cost: 25
+  _cooldown: 30
   _ownerEffects: []
   _opponentEffects:
   - {fileID: 11400000, guid: b59355e3f1a74244ea4e1984d276b540, type: 2}

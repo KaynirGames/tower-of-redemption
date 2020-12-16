@@ -39,11 +39,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10012454472900608
-    m_Localized: Bone Master
+    m_Localized: Bone master
     m_Metadata:
       m_Items: []
   - m_Id: 10012649902301184
     m_Localized: Bullheaded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11891925392355328
+    m_Localized: Golem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11892000000634880
+    m_Localized: Cobra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11892070959869952
+    m_Localized: Fire elemental
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11892193999777792
+    m_Localized: Ice elemental
     m_Metadata:
       m_Items: []
   references:

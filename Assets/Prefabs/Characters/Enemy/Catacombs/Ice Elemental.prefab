@@ -17,6 +17,9 @@ GameObject:
   - component: {fileID: 4577616968161644827}
   - component: {fileID: 2721498490193036206}
   - component: {fileID: -7143604648000324319}
+  - component: {fileID: -8576018360692690863}
+  - component: {fileID: 460899201351893032}
+  - component: {fileID: 7278867230181275822}
   m_Layer: 0
   m_Name: Ice Elemental
   m_TagString: Untagged
@@ -88,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1909d42307af9c849b499237b35dcc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sightRange: 5
+  _sightRange: 4
   _waitTimeOnTargetLost: 3
   _includeObstaclesOnPatrol: 1
   _displayGizmos: 0
@@ -118,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f52408cc83d99149807a429b4e9ccc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemySpec: {fileID: 11400000, guid: 4b5cdad240422d3468ab05bc4d667d5e, type: 2}
+  _enemySpec: {fileID: 11400000, guid: 611674d69f0e8fa42892c92f5b1071fb, type: 2}
 --- !u!114 &4577616968161644827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +161,48 @@ MonoBehaviour:
   _activeSkillsCount: 4
   _passiveSkillsCount: 3
   _specialSkillsCount: 1
+--- !u!114 &-8576018360692690863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577616968161644898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc042a7ed4aaed64ba532bd5649c7cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &460899201351893032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577616968161644898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f70337ab5436a41a5d03654fafb56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _positionReachedDistance: 0.05
+  _useSimplePath: 1
+  _displayPath: 0
+--- !u!114 &7278867230181275822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577616968161644898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80210416293c62f438cc38025549aa70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 25
+  _moveSmoothing: 0.05
+  _enableSmoothing: 1
 --- !u!1 &7282492576520255794
 GameObject:
   m_ObjectHideFlags: 0

@@ -79,6 +79,38 @@ MonoBehaviour:
     m_Key: Skill.Desc.SecondWind
     m_Metadata:
       m_Items: []
+  - m_Id: 11548338842562560
+    m_Key: Skill.Desc.Injection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548435538046976
+    m_Key: Skill.Desc.PredatorGaze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548477774688256
+    m_Key: Skill.Desc.FireShell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548523358384128
+    m_Key: Skill.Desc.FlameStream
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548565657939968
+    m_Key: Skill.Desc.Rockfall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548604300062720
+    m_Key: Skill.Desc.Tremor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548637086937088
+    m_Key: Skill.Desc.Cure
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11548672491057152
+    m_Key: Skill.Desc.IceShard
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

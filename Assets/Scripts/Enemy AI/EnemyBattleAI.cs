@@ -7,6 +7,7 @@ public class EnemyBattleAI : MonoBehaviour
 {
     [SerializeField, Range(0, 1)] private float _healthRateForDefence = 0.6f;
     [SerializeField, Range(0, 1)] private float _healthRateForEnrage = 0.2f;
+    [SerializeField] private int _enrageAmount = 0;
 
     public CharacterResource Health { get; private set; }
     public CharacterResource Energy { get; private set; }
@@ -28,6 +29,7 @@ public class EnemyBattleAI : MonoBehaviour
     {
         _attackSkills = new List<Skill>();
         _defenceSkills = new List<Skill>();
+        _specialSkills = new List<Skill>();
 
         _enemy = GetComponent<EnemyCharacter>();
     }
@@ -48,7 +50,15 @@ public class EnemyBattleAI : MonoBehaviour
             }
             else
             {
-                _stateMachine.TransitionNext(EnemyBattleStateKey.TryEnrage);
+                if (_enrageAmount > 0)
+                {
+                    _enrageAmount--;
+                    _stateMachine.TransitionNext(EnemyBattleStateKey.TryEnrage);
+                }
+                else
+                {
+                    _stateMachine.TransitionNext(EnemyBattleStateKey.TryDefence);
+                }
             }
         }
     }
@@ -135,13 +145,26 @@ public class EnemyBattleAI : MonoBehaviour
     private void CreateAvailableStates()
     {
         EnemyAttack enemyAttack = new EnemyAttack(this, CreateSkillWeights(_attackSkills));
+        EnemyDefence enemyDefence = null;
 
         if (_defenceSkills.Count > 0)
         {
-            EnemyDefence enemyDefence = new EnemyDefence(this, CreateSkillWeights(_defenceSkills));
+            enemyDefence = new EnemyDefence(this, CreateSkillWeights(_defenceSkills));
 
             enemyAttack.AddTransition(EnemyBattleStateKey.TryDefence, enemyDefence);
             enemyDefence.AddTransition(EnemyBattleStateKey.TryAttack, enemyAttack);
+        }
+
+        if (_specialSkills.Count > 0 && _enrageAmount > 0)
+        {
+            EnemyEnrage enemyEnrage = new EnemyEnrage(this, CreateSkillWeights(_specialSkills));
+
+            enemyAttack.AddTransition(EnemyBattleStateKey.TryEnrage, enemyEnrage);
+
+            if (enemyDefence != null)
+            {
+                enemyDefence.AddTransition(EnemyBattleStateKey.TryEnrage, enemyEnrage);
+            }
         }
 
         _stateMachine = new StateMachine<EnemyBattleStateKey>(enemyAttack);

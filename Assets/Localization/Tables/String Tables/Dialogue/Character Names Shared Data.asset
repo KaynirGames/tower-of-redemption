@@ -43,6 +43,22 @@ MonoBehaviour:
     m_Key: Character.Name.Bullheaded
     m_Metadata:
       m_Items: []
+  - m_Id: 11891925392355328
+    m_Key: Character.Name.Golem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11892000000634880
+    m_Key: Character.Name.Cobra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11892070959869952
+    m_Key: Character.Name.FireElemental
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11892193999777792
+    m_Key: Character.Name.IceElemental
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

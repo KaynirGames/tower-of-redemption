@@ -35,6 +35,10 @@ MonoBehaviour:
     m_Key: Food.Name.RedApple
     m_Metadata:
       m_Items: []
+  - m_Id: 7986825833803776
+    m_Key: Food.Name.Ham
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

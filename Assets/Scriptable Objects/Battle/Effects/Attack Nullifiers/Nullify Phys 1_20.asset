@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7de272bda1f1741a793d4fd69afb81, type: 3}
   m_Name: Nullify Phys 1_20
   m_EditorClassIdentifier: 
-  _duration: 60
+  _duration: 20
   _secondsAmountOverTick: 1
   _inflictionChance: 100
   _chargesAmount: 1

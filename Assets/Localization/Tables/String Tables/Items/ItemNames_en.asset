@@ -38,5 +38,9 @@ MonoBehaviour:
     m_Localized: Red apple
     m_Metadata:
       m_Items: []
+  - m_Id: 7986825833803776
+    m_Localized: Ham
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

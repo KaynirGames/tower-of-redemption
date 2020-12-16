@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c70923fe7c8a3644a59cb893db8e93c, type: 3}
+  m_Name: Golem
+  m_EditorClassIdentifier: 
+  _specName:
+    m_TableReference:
+      m_TableCollectionName: GUID:5c8745f2e300ee044b7c3a88a42370fe
+    m_TableEntryReference:
+      m_KeyId: 11891925392355328
+      m_Key: 
+  _specDescription:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+  _baseHealth: 35
+  _baseSpirit: 20
+  _baseStrength: 15
+  _baseWill: 15
+  _baseDefence: 35
+  _baseMagicDefence: 35
+  _baseFireEfficacy: 100
+  _baseAirEfficacy: 100
+  _baseEarthEfficacy: 50
+  _baseWaterEfficacy: 100
+  _baseSkills:
+  - {fileID: 11400000, guid: 8f3cef78b7639444bb7fde90ac35e4d0, type: 2}
+  - {fileID: 11400000, guid: 749192ac767f04b4d960acb329092682, type: 2}
+  _energyRegen: 1
+  _energyRegenDelay: 2

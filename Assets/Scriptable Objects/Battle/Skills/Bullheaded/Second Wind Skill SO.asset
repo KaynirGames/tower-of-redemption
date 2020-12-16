@@ -33,7 +33,7 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: 74879b0b69de5ce4591f1480d054a9f0, type: 3}
   _slot: 2
   _cost: 30
-  _cooldown: 60
+  _cooldown: 40
   _ownerEffects:
   - {fileID: 11400000, guid: cee8ea5a1d51bed44bc81406bfd842b8, type: 2}
   - {fileID: 11400000, guid: 6e19f918cfdadaa4497f9cb9d976f7bd, type: 2}

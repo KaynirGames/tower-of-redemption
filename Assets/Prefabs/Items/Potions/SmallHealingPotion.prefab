@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2922273800541545215}
   - component: {fileID: 7336939156357934326}
   - component: {fileID: 6993150261907312024}
-  - component: {fileID: 4219436523307512950}
-  - component: {fileID: 115759498117946842}
+  - component: {fileID: 4475316228413100179}
   - component: {fileID: 5149556249088878197}
+  - component: {fileID: 115759498117946842}
   m_Layer: 0
   m_Name: SmallHealingPotion
   m_TagString: Untagged
@@ -107,8 +107,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &4219436523307512950
-BoxCollider2D:
+--- !u!70 &4475316228413100179
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,19 +120,22 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.95}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.015, y: 0}
+  m_Size: {x: 0.2, y: 0.95}
+  m_Direction: 0
+--- !u!114 &5149556249088878197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2384022530287293373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e1ed8694d253d43a8bea05650f791e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sortOnlyOnce: 0
 --- !u!114 &115759498117946842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,16 +153,3 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _itemSO: {fileID: 11400000, guid: 817cf8e767e1d214e812a0836ee0f608, type: 2}
---- !u!114 &5149556249088878197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2384022530287293373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e1ed8694d253d43a8bea05650f791e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sortOnlyOnce: 0

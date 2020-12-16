@@ -86,7 +86,7 @@ public class CharacterStats : MonoBehaviour
     private void CreateCharacterStats(SpecBase spec)
     {
         Health = new CharacterResource(CreateStat(spec.BaseHealth, StatType.MaxHealth), spec.BaseHealth);
-        Spirit = new CharacterResource(CreateStat(spec.BaseEnergy, StatType.MaxSpirit), 0);
+        Spirit = new CharacterResource(CreateStat(spec.BaseSpirit, StatType.MaxSpirit), 0);
 
         _strength = CreateStat(spec.BaseStrength, StatType.Strength);
         _will = CreateStat(spec.BaseWill, StatType.Will);

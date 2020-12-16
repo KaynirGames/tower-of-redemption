@@ -41,7 +41,7 @@ public class EnemyDefence : BaseState<EnemyBattleStateKey>
 
     public override BaseState<EnemyBattleStateKey> UpdateState()
     {
-        if (_selectedSkill == null) { return null; }
+        if (_selectedSkill == null) { return this; }
 
         if (_enemyBattleAI.Energy.CurrentValue >= _requiredEnergy)
         {

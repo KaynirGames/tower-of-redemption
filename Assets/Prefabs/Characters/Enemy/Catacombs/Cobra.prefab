@@ -17,6 +17,9 @@ GameObject:
   - component: {fileID: 4577616968161644827}
   - component: {fileID: 2721498490193036206}
   - component: {fileID: -7143604648000324319}
+  - component: {fileID: 6997210832729948486}
+  - component: {fileID: -5139488809326321771}
+  - component: {fileID: 3750029159611870413}
   m_Layer: 0
   m_Name: Cobra
   m_TagString: Untagged
@@ -118,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f52408cc83d99149807a429b4e9ccc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemySpec: {fileID: 11400000, guid: 4b5cdad240422d3468ab05bc4d667d5e, type: 2}
+  _enemySpec: {fileID: 11400000, guid: c01a99785205189469d2962c42b1822c, type: 2}
 --- !u!114 &4577616968161644827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +161,48 @@ MonoBehaviour:
   _activeSkillsCount: 4
   _passiveSkillsCount: 3
   _specialSkillsCount: 1
+--- !u!114 &6997210832729948486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577616968161644898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc042a7ed4aaed64ba532bd5649c7cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5139488809326321771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577616968161644898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f70337ab5436a41a5d03654fafb56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _positionReachedDistance: 0.05
+  _useSimplePath: 1
+  _displayPath: 0
+--- !u!114 &3750029159611870413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577616968161644898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80210416293c62f438cc38025549aa70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 35
+  _moveSmoothing: 0.05
+  _enableSmoothing: 1
 --- !u!1 &7282492576520255794
 GameObject:
   m_ObjectHideFlags: 0

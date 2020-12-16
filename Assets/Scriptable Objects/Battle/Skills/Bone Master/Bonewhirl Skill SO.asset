@@ -32,8 +32,8 @@ MonoBehaviour:
       m_Key: 
   _icon: {fileID: 21300000, guid: 4c5447a8dc8f92f41aec94d9521efb38, type: 3}
   _slot: 2
-  _cost: 60
-  _cooldown: 45
+  _cost: 45
+  _cooldown: 35
   _ownerEffects: []
   _opponentEffects: []
   _damageType: {fileID: 11400000, guid: 5c8a5d3b7b464c14882c006366947081, type: 2}

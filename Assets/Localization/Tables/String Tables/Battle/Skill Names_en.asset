@@ -82,5 +82,37 @@ MonoBehaviour:
     m_Localized: Second wind
     m_Metadata:
       m_Items: []
+  - m_Id: 11549210246967296
+    m_Localized: Injection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11549457538936832
+    m_Localized: Ice shard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11549442854678528
+    m_Localized: Cure
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11549419484016640
+    m_Localized: Tremor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11549397648470016
+    m_Localized: Rockfall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11549369420804096
+    m_Localized: Flame stream
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11549335203672064
+    m_Localized: Fire shell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11549268963028992
+    m_Localized: Predator gaze
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

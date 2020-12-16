@@ -9,7 +9,7 @@ public abstract class SpecBase : ScriptableObject, IIdentifiable
     [SerializeField] private LocalizedString _specDescription = null;
     [Header("Базовые характеристики спека:")]
     [SerializeField] private float _baseHealth = 100;
-    [SerializeField] private float _baseEnergy = 100;
+    [SerializeField] private float _baseSpirit = 100;
     [SerializeField] private float _baseStrength = 0;
     [SerializeField] private float _baseWill = 0;
     [SerializeField] private float _baseDefence = 0;
@@ -26,7 +26,7 @@ public abstract class SpecBase : ScriptableObject, IIdentifiable
     public string SpecDescription => _specDescription.GetLocalizedString().Result;
 
     public float BaseHealth => _baseHealth;
-    public float BaseEnergy => _baseEnergy;
+    public float BaseSpirit => _baseSpirit;
     public float BaseStrength => _baseStrength;
     public float BaseWill => _baseWill;
     public float BaseDefence => _baseDefence;

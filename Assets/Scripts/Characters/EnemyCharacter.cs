@@ -46,9 +46,6 @@ public class EnemyCharacter : Character
         StopAllCoroutines();
         ToggleBattleAI(false);
         gameObject.SetActive(false);
-
-        // Заспавнить лут.
-        // Уничтожить объект.
     }
 
     private void ToggleBattleAI(bool enable)
