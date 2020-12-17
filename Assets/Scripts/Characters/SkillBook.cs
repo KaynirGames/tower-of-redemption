@@ -86,7 +86,6 @@ public class SkillBook : MonoBehaviour
         Skill[] slots = GetSkillSlots(slot);
 
         Skill removedSkill = slots[slotID];
-        slots[slotID] = null;
 
         OnSlotChange.Invoke(slotID, slot, null);
         
@@ -94,6 +93,8 @@ public class SkillBook : MonoBehaviour
         {
             TogglePassivePermanentEffects(false, removedSkill);
         }
+
+        slots[slotID] = null;
 
         return removedSkill;
     }

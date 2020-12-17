@@ -11,6 +11,8 @@ public class MenuUI : MonoBehaviour
     public DescriptionUI DescriptionUI => _descriptionUI;
     public ActionPopupUI ActionPopupUI => _actionPopupUI;
 
+    public bool InMenu { get; private set; }
+
     private CanvasGroup _menuCanvasGroup;
 
     private void Awake()
@@ -27,10 +29,9 @@ public class MenuUI : MonoBehaviour
     public void OpenMenu()
     {
         PlayerUI.Instance.TogglePlayerHUD(false);
+        GameMaster.Instance.TogglePause(true);
 
         ToggleMenuWindow(true);
-
-        GameMaster.Instance.TogglePause(true);
     }
 
     public void CloseMenu()
@@ -45,6 +46,8 @@ public class MenuUI : MonoBehaviour
 
     public void ToggleMenuWindow(bool enable)
     {
+        InMenu = enable;
+
         _menuCanvasGroup.alpha = enable ? 1 : 0;
         _menuCanvasGroup.blocksRaycasts = enable;
     }

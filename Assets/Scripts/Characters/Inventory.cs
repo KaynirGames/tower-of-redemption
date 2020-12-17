@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public delegate void OnItemSlotChange(Item item, ItemSlot slot, int index);
+    public delegate void OnInventorySlotsChange(ItemSlot slot);
 
-    public event OnItemSlotChange OnItemChange = delegate { };
+    public event OnInventorySlotsChange OnInventoryChange = delegate { };
 
     private List<Item> _consumables;
     private List<Item> _storyItems;
@@ -26,20 +26,24 @@ public class Inventory : MonoBehaviour
         {
             item = new Item(itemSO);
             items.Add(item);
-
-            OnItemChange.Invoke(item, itemSO.Slot, items.Count - 1);
         }
         else
         {
             item.AddAmount();
-            OnItemChange.Invoke(item, itemSO.Slot, items.IndexOf(item));
         }
+
+        OnInventoryChange.Invoke(itemSO.Slot);
+    }
+
+    public void UpdateItemAmount(Item item)
+    {
+        OnInventoryChange.Invoke(item.ItemSO.Slot);
     }
 
     public void RemoveItem(int index, ItemSlot slot)
     {
         GetInventorySlots(slot).RemoveAt(index);
-        OnItemChange.Invoke(null, slot, index);
+        OnInventoryChange.Invoke(slot);
     }
 
     public void RemoveItem(Item item)

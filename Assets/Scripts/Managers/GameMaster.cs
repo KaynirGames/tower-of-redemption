@@ -48,8 +48,11 @@ public class GameMaster : MonoBehaviour
 
     public void TogglePause(bool isPause)
     {
-        IsPause = isPause;
-        Time.timeScale = isPause ? 0f : 1f;
+        if (!MenuUI.Instance.InMenu)
+        {
+            IsPause = isPause;
+            Time.timeScale = isPause ? 0f : 1f;
+        }
     }
 
     public void LoadScene(SceneType sceneType)

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 863b5ac04ee51a741854168b7627539c, type: 3}
-  m_Name: Test Scroll SO
+  m_Name: Fortification Scroll SO
   m_EditorClassIdentifier: 
   _name:
     m_TableReference:

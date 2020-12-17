@@ -23,6 +23,7 @@ public class SkillReplaceUI : MonoBehaviour
     public void ShowSkillReplaceWindow(SkillSO skillSO, Action<int> onConfirm)
     {
         _descriptionUI.ClearDescriptionText();
+        _skillBookUI.ToggleSlotsInteraction(false);
         _selectedSlot = null;
 
         _newSkillSlotUI.UpdateSlotUI(new Skill(skillSO));

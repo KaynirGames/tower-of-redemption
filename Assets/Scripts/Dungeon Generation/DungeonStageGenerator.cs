@@ -29,6 +29,7 @@ public class DungeonStageGenerator : MonoBehaviour
             yield return null;
         }
 
+        Instantiate(stage.GlobalLightPrefab, Vector3.zero, Quaternion.identity);
         yield return null;
 
         Debug.Log(Room.LoadedRooms.Count);

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: adce6a689371916469d10644baf1f47e, type: 3}
-  m_Name: TreasureRoom
+  m_Name: TreasureRoom_Catacombs
   m_EditorClassIdentifier: 
-  _doorType: {fileID: 0}
+  _doorType: {fileID: 11400000, guid: 8a1ce62534b83914591818e262af3ad3, type: 2}
   _isStartPoint: 0

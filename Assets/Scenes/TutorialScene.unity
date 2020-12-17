@@ -147,6 +147,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneSmallB (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2338033907226498053, guid: 95a3a46fcfcee5b43a3bf7ee1b6170be,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2338033907226498106, guid: 95a3a46fcfcee5b43a3bf7ee1b6170be,
         type: 3}
       propertyPath: m_RootOrder
@@ -275,6 +280,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneSmallA
       objectReference: {fileID: 0}
+    - target: {fileID: 8554858904502656017, guid: 26d1820fb6768c44faa00f24e462732f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 8554858904502656046, guid: 26d1820fb6768c44faa00f24e462732f,
         type: 3}
       propertyPath: m_RootOrder
@@ -350,6 +360,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombsChainA
       objectReference: {fileID: 0}
+    - target: {fileID: 6202638969490382206, guid: ea3aeb4e0aacc7a4eb3cc2915b85fd2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6202638969490382207, guid: ea3aeb4e0aacc7a4eb3cc2915b85fd2d,
         type: 3}
       propertyPath: m_RootOrder
@@ -413,12 +428,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 100077877}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &110018287 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1456924762}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &129057033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -426,6 +435,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 858037481}
     m_Modifications:
+    - target: {fileID: 8356504368860924916, guid: 2777a8fcdb35abb4485de7fb691af09d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 8356504368860924917, guid: 2777a8fcdb35abb4485de7fb691af09d,
         type: 3}
       propertyPath: m_Name
@@ -521,10 +535,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 893483804}
-  - {fileID: 110018287}
-  - {fileID: 1309586561}
-  - {fileID: 621922297}
+  - {fileID: 4190791385596070304}
+  - {fileID: 1456924763}
+  - {fileID: 1336994182}
+  - {fileID: 1994216817}
   m_Father: {fileID: 1339406886}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -611,7 +625,7 @@ Transform:
   - {fileID: 2001188425}
   - {fileID: 1462319938}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &184508466
 PrefabInstance:
@@ -815,7 +829,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1036,7 +1050,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1917,6 +1931,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e44485728c570c4c832f8a76bd8268b, type: 3}
+--- !u!4 &236423951 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
+    type: 3}
+  m_PrefabInstance: {fileID: 236423950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &240202408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1979,6 +1999,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 767180354753198825, guid: 001dc76039398b04eb0534119c16216d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 767180354753198831, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
       propertyPath: m_Name
@@ -2049,7 +2074,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2690,6 +2715,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6699275416700165115, guid: 41797d49371c03347a92ce7d9966ef5e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6699275416700165117, guid: 41797d49371c03347a92ce7d9966ef5e,
         type: 3}
       propertyPath: m_Name
@@ -2709,6 +2739,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombsSpiderWebA
       objectReference: {fileID: 0}
+    - target: {fileID: 2423347837716776387, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2423347837716776388, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
         type: 3}
       propertyPath: m_RootOrder
@@ -2834,6 +2869,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
       objectReference: {fileID: 0}
+    - target: {fileID: 767180354753198825, guid: 001dc76039398b04eb0534119c16216d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 767180354753198831, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
       propertyPath: m_Name
@@ -2909,6 +2949,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 767180354753198825, guid: 001dc76039398b04eb0534119c16216d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 767180354753198831, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
       propertyPath: m_Name
@@ -3035,7 +3080,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3255,12 +3300,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1801870254}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &418969593 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1936786187}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &430539702
 GameObject:
   m_ObjectHideFlags: 0
@@ -3312,7 +3351,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3940,7 +3979,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4370,7 +4409,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4898,6 +4937,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -51.301
       objectReference: {fileID: 0}
+    - target: {fileID: 987310649087176516, guid: 55c62c644082a6f45962c9970dfdc844,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 987310649087176517, guid: 55c62c644082a6f45962c9970dfdc844,
         type: 3}
       propertyPath: m_Name
@@ -5038,6 +5082,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombsSpiderWebA (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2423347837716776387, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2423347837716776388, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
         type: 3}
       propertyPath: m_RootOrder
@@ -5168,6 +5217,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4349812313919639084, guid: 879ecbf294eafed4f9e4ae3fff8acb2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 4349812313919639085, guid: 879ecbf294eafed4f9e4ae3fff8acb2d,
         type: 3}
       propertyPath: m_Name
@@ -5308,7 +5362,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5502,6 +5556,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneMediumB (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 718924203129040781, guid: 267f112395e3fd1468ab21b2c2c9024b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 718924203129040818, guid: 267f112395e3fd1468ab21b2c2c9024b,
         type: 3}
       propertyPath: m_RootOrder
@@ -5565,12 +5624,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 564903574}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &566301713 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1623901276}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &580393255 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 767180354753198824, guid: 001dc76039398b04eb0534119c16216d,
@@ -5589,6 +5642,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneLargeA
       objectReference: {fileID: 0}
+    - target: {fileID: 6846289656692809801, guid: b056dbe7d558c1f4e9e1d83c22a6803b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6846289656692809846, guid: b056dbe7d558c1f4e9e1d83c22a6803b,
         type: 3}
       propertyPath: m_RootOrder
@@ -5658,6 +5716,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombsChainA (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6202638969490382206, guid: ea3aeb4e0aacc7a4eb3cc2915b85fd2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6202638969490382207, guid: ea3aeb4e0aacc7a4eb3cc2915b85fd2d,
         type: 3}
       propertyPath: m_RootOrder
@@ -5727,12 +5790,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1450910247}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &621922297 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1994216816}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &633428518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5745,6 +5802,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneLargeA
       objectReference: {fileID: 0}
+    - target: {fileID: 6846289656692809801, guid: b056dbe7d558c1f4e9e1d83c22a6803b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6846289656692809846, guid: b056dbe7d558c1f4e9e1d83c22a6803b,
         type: 3}
       propertyPath: m_RootOrder
@@ -5929,7 +5991,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6111,6 +6173,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombsSpiderWebA
       objectReference: {fileID: 0}
+    - target: {fileID: 2423347837716776387, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2423347837716776388, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
         type: 3}
       propertyPath: m_RootOrder
@@ -6174,42 +6241,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 651493273}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &671181259
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 671181260}
-  m_Layer: 0
-  m_Name: '[TestEnemySpawn]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &671181260
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671181259}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &671800684 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
-    type: 3}
-  m_PrefabInstance: {fileID: 236423950}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &682027204
 GameObject:
   m_ObjectHideFlags: 0
@@ -6252,6 +6283,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneSmallB
       objectReference: {fileID: 0}
+    - target: {fileID: 2338033907226498053, guid: 95a3a46fcfcee5b43a3bf7ee1b6170be,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2338033907226498106, guid: 95a3a46fcfcee5b43a3bf7ee1b6170be,
         type: 3}
       propertyPath: m_RootOrder
@@ -6366,7 +6402,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7069,6 +7105,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1339406886}
     m_Modifications:
+    - target: {fileID: 233108547973458665, guid: 1fe1ae069cde515428207f79ae9814a4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 3597064783027234846, guid: 1fe1ae069cde515428207f79ae9814a4,
         type: 3}
       propertyPath: m_Name
@@ -7205,6 +7246,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2913178975989914613, guid: 6b345cd209f2b7045ad83340c75112af,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2913178975989914614, guid: 6b345cd209f2b7045ad83340c75112af,
         type: 3}
       propertyPath: m_Name
@@ -7351,7 +7397,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7659,7 +7705,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7891,6 +7937,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 767180354753198825, guid: 001dc76039398b04eb0534119c16216d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 767180354753198831, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
       propertyPath: m_Name
@@ -7926,6 +7977,11 @@ PrefabInstance:
       propertyPath: _onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: TutorialManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 8236556235308108338, guid: 126d9029d3d59f24da537912c79b2885,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 8236556235308108339, guid: 126d9029d3d59f24da537912c79b2885,
         type: 3}
       propertyPath: m_RootOrder
@@ -8121,7 +8177,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8352,6 +8408,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 767180354753198825, guid: 001dc76039398b04eb0534119c16216d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 767180354753198831, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
       propertyPath: m_Name
@@ -8377,6 +8438,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombsSpiderWebA (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2423347837716776387, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2423347837716776388, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
         type: 3}
       propertyPath: m_RootOrder
@@ -8527,7 +8593,7 @@ Transform:
   - {fileID: 249595481}
   - {fileID: 1274001177}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &853971807
 PrefabInstance:
@@ -8740,6 +8806,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 767180354753198825, guid: 001dc76039398b04eb0534119c16216d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 767180354753198831, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
       propertyPath: m_Name
@@ -8760,6 +8831,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2001188425}
     m_Modifications:
+    - target: {fileID: 580283096124413760, guid: 0e134e74d2763ff45979e57555aadcec,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 580283096124413761, guid: 0e134e74d2763ff45979e57555aadcec,
         type: 3}
       propertyPath: m_Name
@@ -8822,12 +8898,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e134e74d2763ff45979e57555aadcec, type: 3}
---- !u!4 &893483804 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4190791385596070303}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &911360349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8890,6 +8960,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 987310649087176516, guid: 55c62c644082a6f45962c9970dfdc844,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 987310649087176517, guid: 55c62c644082a6f45962c9970dfdc844,
         type: 3}
       propertyPath: m_Name
@@ -9137,7 +9212,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9654,7 +9729,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10450,12 +10525,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!4 &987660439 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2128399326}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1001792870
 GameObject:
   m_ObjectHideFlags: 0
@@ -10584,6 +10653,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5429834062208800938, guid: 7f54a8b49824709478f7c96a1c72b6a6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 5429834062208800939, guid: 7f54a8b49824709478f7c96a1c72b6a6,
         type: 3}
       propertyPath: m_Name
@@ -10659,6 +10733,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 2913178975989914613, guid: 6b345cd209f2b7045ad83340c75112af,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2913178975989914614, guid: 6b345cd209f2b7045ad83340c75112af,
         type: 3}
       propertyPath: m_Name
@@ -10684,6 +10763,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneMediumB
       objectReference: {fileID: 0}
+    - target: {fileID: 718924203129040781, guid: 267f112395e3fd1468ab21b2c2c9024b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 718924203129040818, guid: 267f112395e3fd1468ab21b2c2c9024b,
         type: 3}
       propertyPath: m_RootOrder
@@ -10798,7 +10882,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11572,7 +11656,7 @@ PrefabInstance:
     - target: {fileID: 767180354753198824, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.91
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 767180354753198824, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
@@ -11619,6 +11703,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 767180354753198825, guid: 001dc76039398b04eb0534119c16216d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 767180354753198831, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
       propertyPath: m_Name
@@ -11638,6 +11727,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneSmallA
       objectReference: {fileID: 0}
+    - target: {fileID: 8554858904502656017, guid: 26d1820fb6768c44faa00f24e462732f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 8554858904502656046, guid: 26d1820fb6768c44faa00f24e462732f,
         type: 3}
       propertyPath: m_RootOrder
@@ -11762,6 +11856,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 767180354753198825, guid: 001dc76039398b04eb0534119c16216d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 767180354753198831, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
       propertyPath: m_Name
@@ -11920,6 +12019,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneSmallB
       objectReference: {fileID: 0}
+    - target: {fileID: 2338033907226498053, guid: 95a3a46fcfcee5b43a3bf7ee1b6170be,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2338033907226498106, guid: 95a3a46fcfcee5b43a3bf7ee1b6170be,
         type: 3}
       propertyPath: m_RootOrder
@@ -12045,6 +12149,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4349812313919639084, guid: 879ecbf294eafed4f9e4ae3fff8acb2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 4349812313919639085, guid: 879ecbf294eafed4f9e4ae3fff8acb2d,
         type: 3}
       propertyPath: m_Name
@@ -12093,12 +12202,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 987310649087176515, guid: 55c62c644082a6f45962c9970dfdc844,
     type: 3}
   m_PrefabInstance: {fileID: 987310647918221415}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1309586561 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1336994181}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1330548159
 PrefabInstance:
@@ -12162,6 +12265,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6699275416700165115, guid: 41797d49371c03347a92ce7d9966ef5e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6699275416700165117, guid: 41797d49371c03347a92ce7d9966ef5e,
         type: 3}
       propertyPath: m_Name
@@ -12254,6 +12362,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e44485728c570c4c832f8a76bd8268b, type: 3}
+--- !u!4 &1336994182 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1336994181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1339406885
 GameObject:
   m_ObjectHideFlags: 0
@@ -12289,7 +12403,7 @@ Transform:
   - {fileID: 716010889}
   - {fileID: 1591144887682878272}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1339406887
 MonoBehaviour:
@@ -12437,6 +12551,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombsSpiderWebA (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2423347837716776387, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2423347837716776388, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
         type: 3}
       propertyPath: m_RootOrder
@@ -12523,6 +12642,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneSmallA
       objectReference: {fileID: 0}
+    - target: {fileID: 8554858904502656017, guid: 26d1820fb6768c44faa00f24e462732f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 8554858904502656046, guid: 26d1820fb6768c44faa00f24e462732f,
         type: 3}
       propertyPath: m_RootOrder
@@ -12637,10 +12761,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 566301713}
-  - {fileID: 987660439}
-  - {fileID: 671800684}
-  - {fileID: 418969593}
+  - {fileID: 1623901277}
+  - {fileID: 2128399327}
+  - {fileID: 236423951}
+  - {fileID: 1936786188}
   m_Father: {fileID: 170243348}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12711,6 +12835,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 767180354753198825, guid: 001dc76039398b04eb0534119c16216d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 767180354753198831, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
       propertyPath: m_Name
@@ -12730,6 +12859,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneLargeA
       objectReference: {fileID: 0}
+    - target: {fileID: 6846289656692809801, guid: b056dbe7d558c1f4e9e1d83c22a6803b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6846289656692809846, guid: b056dbe7d558c1f4e9e1d83c22a6803b,
         type: 3}
       propertyPath: m_RootOrder
@@ -12872,6 +13006,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e44485728c570c4c832f8a76bd8268b, type: 3}
+--- !u!4 &1456924763 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1456924762}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1462319938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2816341510683814149, guid: d1f2d69197846ae42a0da2eb9a6c7cc3,
@@ -12991,7 +13131,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13336,7 +13476,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13692,7 +13832,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14337,6 +14477,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 987310649087176516, guid: 55c62c644082a6f45962c9970dfdc844,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 987310649087176517, guid: 55c62c644082a6f45962c9970dfdc844,
         type: 3}
       propertyPath: m_Name
@@ -14424,6 +14569,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e44485728c570c4c832f8a76bd8268b, type: 3}
+--- !u!4 &1623901277 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1623901276}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1637790801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5806424162661486334, guid: 11104f39e73168c428f08d89ef36f61c,
@@ -14526,6 +14677,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 767180354753198825, guid: 001dc76039398b04eb0534119c16216d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 767180354753198831, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
       propertyPath: m_Name
@@ -14545,6 +14701,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombsSpiderWebA (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2423347837716776387, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2423347837716776388, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
         type: 3}
       propertyPath: m_RootOrder
@@ -14620,6 +14781,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneSmallA (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8554858904502656017, guid: 26d1820fb6768c44faa00f24e462732f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 8554858904502656046, guid: 26d1820fb6768c44faa00f24e462732f,
         type: 3}
       propertyPath: m_RootOrder
@@ -14800,6 +14966,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1686638023145494093, guid: 3cd9bde0dcf4bae47bcecf79c4094d83,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cd9bde0dcf4bae47bcecf79c4094d83, type: 3}
 --- !u!4 &1775950381 stripped
@@ -14870,6 +15041,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4349812313919639084, guid: 879ecbf294eafed4f9e4ae3fff8acb2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 4349812313919639085, guid: 879ecbf294eafed4f9e4ae3fff8acb2d,
         type: 3}
       propertyPath: m_Name
@@ -14889,6 +15065,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombStoneMediumB
       objectReference: {fileID: 0}
+    - target: {fileID: 718924203129040781, guid: 267f112395e3fd1468ab21b2c2c9024b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 718924203129040818, guid: 267f112395e3fd1468ab21b2c2c9024b,
         type: 3}
       propertyPath: m_RootOrder
@@ -15007,52 +15188,6 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
---- !u!1 &1825701037
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1825701038}
-  - component: {fileID: 1825701039}
-  m_Layer: 0
-  m_Name: '[TESTING]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1825701038
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825701037}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1825701039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825701037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa1401ea1f99e5c499a59d26369fc579, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _testEnemyPrefab: {fileID: 6019955237486239111, guid: 66ed98e37365ee042be0f29be1c1fcee,
-    type: 3}
-  _testSpawn: {fileID: 671181260}
 --- !u!4 &1838054549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 718924203129040818, guid: 267f112395e3fd1468ab21b2c2c9024b,
@@ -15066,6 +15201,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1170680192}
     m_Modifications:
+    - target: {fileID: 580283096124413760, guid: 0e134e74d2763ff45979e57555aadcec,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 580283096124413761, guid: 0e134e74d2763ff45979e57555aadcec,
         type: 3}
       propertyPath: m_Name
@@ -15196,6 +15336,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6699275416700165115, guid: 41797d49371c03347a92ce7d9966ef5e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6699275416700165117, guid: 41797d49371c03347a92ce7d9966ef5e,
         type: 3}
       propertyPath: m_Name
@@ -15288,6 +15433,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e44485728c570c4c832f8a76bd8268b, type: 3}
+--- !u!4 &1936786188 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1936786187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1986841406
 GameObject:
   m_ObjectHideFlags: 0
@@ -15401,6 +15552,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e44485728c570c4c832f8a76bd8268b, type: 3}
+--- !u!4 &1994216817 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994216816}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2001188424
 GameObject:
   m_ObjectHideFlags: 0
@@ -15578,7 +15735,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15875,7 +16032,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16328,6 +16485,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e44485728c570c4c832f8a76bd8268b, type: 3}
+--- !u!4 &2128399327 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2128399326}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &561847662644973979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17097,7 +17260,7 @@ PrefabInstance:
     - target: {fileID: 767180354753198824, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.34
+      value: -4.19
       objectReference: {fileID: 0}
     - target: {fileID: 767180354753198824, guid: 001dc76039398b04eb0534119c16216d,
         type: 3}
@@ -17151,6 +17314,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 001dc76039398b04eb0534119c16216d, type: 3}
+--- !u!1001 &898337174537609941
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 898337175036161571, guid: e70651ed4a8f4d349b33e785ec7f2a2d,
+        type: 3}
+      propertyPath: m_Name
+      value: CatacombsLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 898337175036161581, guid: e70651ed4a8f4d349b33e785ec7f2a2d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 898337175036161581, guid: e70651ed4a8f4d349b33e785ec7f2a2d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898337175036161581, guid: e70651ed4a8f4d349b33e785ec7f2a2d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898337175036161581, guid: e70651ed4a8f4d349b33e785ec7f2a2d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898337175036161581, guid: e70651ed4a8f4d349b33e785ec7f2a2d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 898337175036161581, guid: e70651ed4a8f4d349b33e785ec7f2a2d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898337175036161581, guid: e70651ed4a8f4d349b33e785ec7f2a2d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898337175036161581, guid: e70651ed4a8f4d349b33e785ec7f2a2d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898337175036161581, guid: e70651ed4a8f4d349b33e785ec7f2a2d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898337175036161581, guid: e70651ed4a8f4d349b33e785ec7f2a2d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 898337175036161581, guid: e70651ed4a8f4d349b33e785ec7f2a2d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e70651ed4a8f4d349b33e785ec7f2a2d, type: 3}
 --- !u!1001 &987310647918221415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17213,6 +17445,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 987310649087176516, guid: 55c62c644082a6f45962c9970dfdc844,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 987310649087176517, guid: 55c62c644082a6f45962c9970dfdc844,
         type: 3}
       propertyPath: m_Name
@@ -17319,6 +17556,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1170680192}
     m_Modifications:
+    - target: {fileID: 3661511120247040046, guid: 9984549d0fa0e174c8ca2b6019e53b10,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6240024370385475842, guid: 9984549d0fa0e174c8ca2b6019e53b10,
         type: 3}
       propertyPath: _onInteraction.m_PersistentCalls.m_Calls.Array.size
@@ -17495,6 +17737,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatacombsSpiderWebA
       objectReference: {fileID: 0}
+    - target: {fileID: 2423347837716776387, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2423347837716776388, guid: 9be3cfab8fa88aa4a869b38c50260d6d,
         type: 3}
       propertyPath: m_RootOrder
@@ -17664,6 +17911,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2797375189286603719, guid: 63d5a0eac29f75a46b4c69093c0eef1d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63d5a0eac29f75a46b4c69093c0eef1d, type: 3}
 --- !u!1 &2797375189104184732 stripped
@@ -17738,6 +17990,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tutorial Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3263784594842601182, guid: 6b3e26525845cad4a8fe82e992a693ff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3263784594842601183, guid: 6b3e26525845cad4a8fe82e992a693ff,
         type: 3}
@@ -17845,6 +18102,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e44485728c570c4c832f8a76bd8268b, type: 3}
+--- !u!4 &4190791385596070304 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4190791384878936707, guid: 3e44485728c570c4c832f8a76bd8268b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4190791385596070303}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5429834062200909531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17907,6 +18170,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5429834062208800938, guid: 7f54a8b49824709478f7c96a1c72b6a6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 5429834062208800939, guid: 7f54a8b49824709478f7c96a1c72b6a6,
         type: 3}
       propertyPath: m_Name
@@ -17987,6 +18255,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ef36177172476a34d89df2a53871e862,
         type: 2}
+    - target: {fileID: 7282492576520255793, guid: e9ad8151611580f41a028d7eab9f2364,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9ad8151611580f41a028d7eab9f2364, type: 3}
 --- !u!4 &6131820582286700024 stripped

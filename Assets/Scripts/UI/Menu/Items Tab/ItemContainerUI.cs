@@ -7,7 +7,8 @@ public class ItemContainerUI : MonoBehaviour
     [SerializeField] private GameObject _slotsParent = null;
     [SerializeField] private ItemSlot _containerType = ItemSlot.Consumable;
 
-    private List<ItemSlotUI> _itemSlots = new List<ItemSlotUI>();
+    private List<ItemSlotUI> _itemSlots;
+    private List<Item> _items;
 
     private PoolManager _poolManager;
     private AssetManager _assetManager;
@@ -16,59 +17,50 @@ public class ItemContainerUI : MonoBehaviour
     {
         _poolManager = PoolManager.Instance;
         _assetManager = AssetManager.Instance;
-        CreateItemSlots();
+        _itemSlots = new List<ItemSlotUI>();
+
+        CreateItemSlots(_maxSlots);
     }
 
     public void RegisterItems(List<Item> items)
     {
-        for (int i = 0; i < items.Count; i++)
-        {
-            _itemSlots[i].UpdateSlot(items[i]);
-        }
+        _items = items;
+        UpdateItemSlots();
     }
 
-    public void UpdateContainerSlot(Item item, ItemSlot slotType, int index)
+    public void UpdateContainer(ItemSlot slotType)
     {
         if (_containerType == slotType)
         {
-            if (item == null)
-            {
-                HandleEmptiedSlot(index);
-            }
-            else
-            {
-                if (index > _maxSlots)
-                {
-                    CreateSlot();
-                }
-
-                _itemSlots[index].UpdateSlot(item);
-            }
+            UpdateItemSlots();
         }
     }
 
-    private void HandleEmptiedSlot(int index)
+    private void UpdateItemSlots()
     {
-        ItemSlotUI empty = _itemSlots[index];
-
-        _itemSlots.RemoveAt(index);
-        empty.UpdateSlot(null);
-
-        if (_itemSlots.Count < _maxSlots)
+        if (_items.Count > _itemSlots.Count)
         {
-            _itemSlots.Add(empty);
+            CreateItemSlots(_items.Count - _itemSlots.Count);
         }
-        else
+        else if (_itemSlots.Count > _maxSlots)
         {
-            _poolManager.Store(empty.gameObject);
+            RemoveItemSlots(_itemSlots.Count - _maxSlots);
+        }
+
+        for (int i = 0; i < _items.Count; i++)
+        {
+            _itemSlots[i].UpdateSlot(_items[i]);
+        }
+
+        for (int i = _items.Count; i < _itemSlots.Count; i++)
+        {
+            _itemSlots[i].UpdateSlot(null);
         }
     }
 
-    private void CreateItemSlots()
+    private void CreateItemSlots(int amount)
     {
-        _itemSlots.Clear();
-
-        for (int i = 0; i < _maxSlots; i++)
+        for (int i = 0; i < amount; i++)
         {
             CreateSlot();
         }
@@ -80,5 +72,17 @@ public class ItemContainerUI : MonoBehaviour
         slotObject.transform.SetParent(_slotsParent.transform, false);
 
         _itemSlots.Add(slotObject.GetComponent<ItemSlotUI>());
+    }
+
+    private void RemoveItemSlots(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            ItemSlotUI empty = _itemSlots[i];
+            empty.UpdateSlot(null);
+
+            _itemSlots.RemoveAt(i);
+            _poolManager.Store(empty.gameObject);
+        }
     }
 }

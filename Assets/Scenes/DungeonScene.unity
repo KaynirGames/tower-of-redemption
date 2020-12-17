@@ -826,6 +826,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4380873025268029392, guid: adae2b5208cb31347aa22f0289b60036,
+        type: 3}
+      propertyPath: m_Name
+      value: MenuSpecialSkillSlot
+      objectReference: {fileID: 0}
     - target: {fileID: 4537238223193340888, guid: adae2b5208cb31347aa22f0289b60036,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1079,6 +1084,26 @@ PrefabInstance:
     - target: {fileID: 7068663000535769178, guid: adae2b5208cb31347aa22f0289b60036,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277499759651346982, guid: adae2b5208cb31347aa22f0289b60036,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277499759929801544, guid: adae2b5208cb31347aa22f0289b60036,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277499760417609639, guid: adae2b5208cb31347aa22f0289b60036,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277499760756588042, guid: adae2b5208cb31347aa22f0289b60036,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8611844329706500498, guid: adae2b5208cb31347aa22f0289b60036,

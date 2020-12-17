@@ -20,7 +20,7 @@ public class SkillBookUI : MonoBehaviour
 
         UpdateAllSlotsDisplay();
 
-        _skillBook.OnSlotChange = UpdateSkillSlotDisplay;
+        _skillBook.OnSlotChange += UpdateSkillSlotDisplay;
     }
 
     public void ClearBookUI()
@@ -42,6 +42,19 @@ public class SkillBookUI : MonoBehaviour
     public SkillSlotUI[] GetSlotsUI(SkillSlot slotType)
     {
         return _skillSlotsUI[slotType];
+    }
+
+    public void ToggleSlotsInteraction(bool enable)
+    {
+        foreach (SkillSlot key in _skillSlotsUI.Keys)
+        {
+            SkillSlotUI[] slots = GetSlotsUI(key);
+
+            for (int i = 0; i < slots.Length; i++)
+            {
+                slots[i].ToggleSlotInteraction(enable);
+            }
+        }
     }
 
     private SkillSlotUI[] CollectSkillSlotsUI(GameObject parent)

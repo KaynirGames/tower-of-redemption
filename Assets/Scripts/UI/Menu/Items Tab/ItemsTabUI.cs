@@ -10,7 +10,7 @@ public class ItemsTabUI : MenuTabUI
         _consumables.RegisterItems(player.Inventory.GetInventorySlots(ItemSlot.Consumable));
         _keyItems.RegisterItems(player.Inventory.GetInventorySlots(ItemSlot.KeyItem));
 
-        player.Inventory.OnItemChange += _consumables.UpdateContainerSlot;
-        player.Inventory.OnItemChange += _keyItems.UpdateContainerSlot;
+        player.Inventory.OnInventoryChange += _consumables.UpdateContainer;
+        player.Inventory.OnInventoryChange += _keyItems.UpdateContainer;
     }
 }

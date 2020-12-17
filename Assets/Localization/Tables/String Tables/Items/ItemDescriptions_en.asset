@@ -23,13 +23,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 134042338258944
-    m_Localized: A slightly shabby book found at the dungeon entrance. The diary
-      looks unfamiliar, but the notes describe a hero in detail who suspiciously
-      resembles you.
+    m_Localized: A slightly shabby book found at the dungeon entrance. You recognize
+      your own handwriting, but do not remember keeping any entries in a diary.
     m_Metadata:
       m_Items: []
   - m_Id: 3618068583739392
-    m_Localized: Test
+    m_Localized: An ancient scroll containing a detailed description of the "Fortification"
+      skill. You just need to read it, and the knowledge will be yours.
     m_Metadata:
       m_Items: []
   - m_Id: 7740026942451712

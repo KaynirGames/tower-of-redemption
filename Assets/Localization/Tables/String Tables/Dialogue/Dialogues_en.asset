@@ -19,95 +19,161 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 1323960692736
-    m_Localized: 
+    m_Localized: Welcome to my humble abode, Hero. I guess this is your first time
+      here, so let me tell you about the basic rules of this place.
     m_Metadata:
       m_Items: []
   - m_Id: 4258673408143360
-    m_Localized: 
+    m_Localized: You just have to trust me. After all, I am extremely interested
+      in your survival, Hero.
     m_Metadata:
       m_Items: []
   - m_Id: 4260294460502016
-    m_Localized: 
+    m_Localized: First rule. Carefully study the environment. Sometimes interesting
+      things can be found in the most unexpected places.
     m_Metadata:
       m_Items: []
   - m_Id: 4294922047123456
-    m_Localized: 
+    m_Localized: (Use W, A, S, D keys to move the character.)
     m_Metadata:
       m_Items: []
   - m_Id: 4295525758464000
-    m_Localized: 
+    m_Localized: (Use the on-screen joystick to move the character.)
     m_Metadata:
       m_Items: []
   - m_Id: 4312026255257600
-    m_Localized: 
+    m_Localized: Hero's Diary. This thing must be yours. Why not take a look inside?
     m_Metadata:
       m_Items: []
   - m_Id: 4322237334482944
-    m_Localized: 
+    m_Localized: (To open the diary, use the book button in the lower right corner
+      of the screen.)
     m_Metadata:
       m_Items: []
   - m_Id: 4330686755696640
-    m_Localized: 
+    m_Localized: (The diary contains information about the character's specialization,
+      characteristics and available skills.)
     m_Metadata:
       m_Items: []
   - m_Id: 4333647024156672
-    m_Localized: 
+    m_Localized: (Each specialization has an initial set of skills, which will change
+      when special scrolls are found. The number of applied skills is limited, so
+      you need to choose them wisely.)
     m_Metadata:
       m_Items: []
   - m_Id: 4360850420068352
-    m_Localized: 
+    m_Localized: (In addition to skills, the diary has a tab with items that can
+      also be found while exploring dungeons. Unlike skills, items cannot be used
+      during combat.)
     m_Metadata:
       m_Items: []
   - m_Id: 4362239917486080
-    m_Localized: 
+    m_Localized: A useful thing, I would say. As soon as you finish studying the
+      diary, go to the next room.
     m_Metadata:
       m_Items: []
   - m_Id: 4372050977550336
-    m_Localized: 
+    m_Localized: As a training, I have prepared a small test. There is a special
+      object hidden somewhere in the room, try to find it.
     m_Metadata:
       m_Items: []
   - m_Id: 4374685356978176
-    m_Localized: 
+    m_Localized: Mindfulness alone will not be enough, and you will have to use brute
+      force.
     m_Metadata:
       m_Items: []
   - m_Id: 4375936513667072
-    m_Localized: 
+    m_Localized: (Press SPACEBAR to attack.)
     m_Metadata:
       m_Items: []
   - m_Id: 4377824453783552
-    m_Localized: 
+    m_Localized: (Press the sword button in the lower right corner of the screen
+      to attack.)
     m_Metadata:
       m_Items: []
   - m_Id: 4378242281959424
-    m_Localized: 
+    m_Localized: The health potion is one of many items that will allow you to heal
+      after combat.
     m_Metadata:
       m_Items: []
   - m_Id: 4384322277928960
-    m_Localized: 
+    m_Localized: I advise you not to lose sight of the various barrels, boxes and
+      chests. You never know what treasures might be inside.
     m_Metadata:
       m_Items: []
   - m_Id: 4385435978887168
-    m_Localized: 
+    m_Localized: The time has come for the final test. I have to test your fighting
+      skills. Fortunately, I managed to find the perfect candidate as an opponent.
     m_Metadata:
       m_Items: []
   - m_Id: 4386947283087360
-    m_Localized: 
+    m_Localized: It is unlikely that this weak creature will pose you a danger. However,
+      be careful.
     m_Metadata:
       m_Items: []
   - m_Id: 4387601925861376
-    m_Localized: 
+    m_Localized: (Attack your opponent to start the fight.)
     m_Metadata:
       m_Items: []
   - m_Id: 4388289766551552
-    m_Localized: 
+    m_Localized: (The key resources in battle are health and spirit. The ability
+      to continue fight depends on the health, and the spirit is responsible for
+      using skills.)
     m_Metadata:
       m_Items: []
   - m_Id: 4390804528623616
-    m_Localized: 
+    m_Localized: (If the enemy was caught off guard, then the player receives a bonus
+      to the current spirit. And vice versa.)
     m_Metadata:
       m_Items: []
   - m_Id: 4391310906945536
-    m_Localized: 
+    m_Localized: (To replenish the spirit, the player must match stones of the same
+      color in the lower left corner of the screen.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7642129529892864
+    m_Localized: (To do this, while holding the LEFT MOUSE BUTTON, slide over the
+      selected stones and release the button to confirm the selection.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7642607391141888
+    m_Localized: (To do this, you must slide your finger over the selected stones
+      and release to confirm the selection.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7643123110178816
+    m_Localized: (The amount of spirit received may differ depending on the color
+      and rarity of the stones.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7646436954271744
+    m_Localized: Great job, Hero! You have passed all the tests and definitely deserve
+      a reward.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7648425461215232
+    m_Localized: Pay attention to the scroll that dropped from the creature. With
+      its help, you can learn a new skill.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7652104125870080
+    m_Localized: (When using the scroll, the character will automatically receive
+      the skill specified in the description.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7657482666438656
+    m_Localized: (If there are no free cells, then the player will be prompted to
+      replace one of the existing skills.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7657619904065536
+    m_Localized: Your training has come to an end. Now you know everything you need
+      to survive in my abode.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7660293265354752
+    m_Localized: Everyone comes here with a purpose. I hope you find what you are
+      looking for. See you at the top of the Tower of Redemption, Hero.
     m_Metadata:
       m_Items: []
   references:

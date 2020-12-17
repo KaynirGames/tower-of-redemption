@@ -1,6 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.Localization;
+
 
 [CreateAssetMenu(fileName = "DungeonStage", menuName = "Scriptable Objects/Dungeon Generation/Dungeon Stage")]
 public class DungeonStage : ScriptableObject, IIdentifiable
@@ -17,22 +19,16 @@ public class DungeonStage : ScriptableObject, IIdentifiable
     [SerializeField] private Room _startRoomPrefab = null;
     [SerializeField] private Room _bossRoomPrefab = null;
     [SerializeField] private SpawnTable _optionalRoomsTable = null;
-
-    [SerializeField] private RoomType _startRoom = null;
-    [SerializeField] private RoomType _bossRoom = null;
-    [SerializeField] private SpawnTable _optionalRooms = null;
+    [SerializeField] private Light2D _globalLightPrefab = null;
 
     public int RandomFloorAmount => Random.Range(_minFloorAmount, _maxFloorAmount + 1);
     public int RandomRouteLength => Random.Range(_minRouteLength, _maxRouteLength + 1);
     public int RouteSpawnerCount => _routeSpawnerCount;
 
-    public RoomType StartRoom => _startRoom;
-    public RoomType BossRoom => _bossRoom;
-    public SpawnTable OptionalRooms => _optionalRooms;
-
     public GameObject StartRoomPrefab => _startRoomPrefab.gameObject;
     public GameObject BossRoomPrefab => _bossRoomPrefab.gameObject;
     public GameObject RandomOptionalRoomPrefab => _optionalRoomsTable.ChooseRandom() as GameObject;
+    public GameObject GlobalLightPrefab => _globalLightPrefab.gameObject;
 
     public string ID { get; private set; }
 

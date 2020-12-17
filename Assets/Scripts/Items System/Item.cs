@@ -24,6 +24,10 @@
             {
                 player.Inventory.RemoveItem(this);
             }
+            else
+            {
+                player.Inventory.UpdateItemAmount(this);
+            }
         }
     }
 }

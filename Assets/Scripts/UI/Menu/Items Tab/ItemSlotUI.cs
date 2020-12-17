@@ -61,12 +61,15 @@ public class ItemSlotUI : MonoBehaviour, IDeselectHandler
 
     private void ClearSlot()
     {
-        _icon.enabled = false;
-        _icon.sprite = null;
-        _amountText.SetText("");
-        _useButton.interactable = false;
-        _item = null;
+        if (_item != null)
+        {
+            _icon.enabled = false;
+            _icon.sprite = null;
+            _amountText.SetText("");
+            _useButton.interactable = false;
+            _item = null;
 
-        _menuUI.DescriptionUI.ClearDescriptionText();
+            _menuUI.DescriptionUI.ClearDescriptionText();
+        }
     }
 }

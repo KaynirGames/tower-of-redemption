@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: adce6a689371916469d10644baf1f47e, type: 3}
-  m_Name: BossRoom
+  m_Name: BossRoom_Catacombs
   m_EditorClassIdentifier: 
-  _roomSceneName: BossRoom
-  _doorType: {fileID: 11400000, guid: 893a2ce6fb8bfca45b6cdc297b26faed, type: 2}
+  _doorType: {fileID: 11400000, guid: cf18d7eb8bf5c074ba2b7d013822e27c, type: 2}
   _isStartPoint: 0
