@@ -18,6 +18,7 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject _doorsParent = null;
     [SerializeField] private Pathfinder _pathfinder = null;
     [SerializeField] private GameObject _parentToDisableInBattle = null;
+    [SerializeField] private ObjectSpawner _enemySpawner = null;
     [SerializeField] private Vector2Int _gridPosition = Vector2Int.zero;
     [SerializeField] private bool _isClear = false;
     [SerializeField] private UnityEvent _onRoomClear = null;
@@ -30,6 +31,14 @@ public class Room : MonoBehaviour
     {
         _doors.AddRange(_doorsParent.GetComponentsInChildren<Door>());
         LoadedRooms.Add(this);
+    }
+
+    private void Start()
+    {
+        if (_isClear)
+        {
+            SetRoomStatus(true);
+        }
     }
 
     public void SetRoomPosition(Vector2Int gridPosition)
@@ -128,6 +137,7 @@ public class Room : MonoBehaviour
             if (!_isClear)
             {
                 ToggleDoors(false);
+                _enemySpawner.SpawnObjects();
             }
         }
     }

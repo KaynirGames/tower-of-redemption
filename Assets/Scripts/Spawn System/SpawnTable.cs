@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Таблица вероятностей появления объектов.
 /// </summary>
-[CreateAssetMenu(fileName = "Undefined SpawnTable", menuName = "Scriptable Objects/Spawn Table")]
+[CreateAssetMenu(fileName = "Undefined ST", menuName = "Scriptable Objects/Spawn Table")]
 public class SpawnTable : ScriptableObject
 {
     [SerializeField] private List<SpawnableObject> _spawnableObjects = new List<SpawnableObject>();

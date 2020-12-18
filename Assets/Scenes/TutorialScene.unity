@@ -604,6 +604,7 @@ MonoBehaviour:
   _doorsParent: {fileID: 1433568933}
   _pathfinder: {fileID: 0}
   _parentToDisableInBattle: {fileID: 0}
+  _enemySpawner: {fileID: 0}
   _gridPosition: {x: 1, y: 0}
   _isClear: 0
   _onRoomClear:
@@ -8568,6 +8569,7 @@ MonoBehaviour:
   _doorsParent: {fileID: 1091625312}
   _pathfinder: {fileID: 0}
   _parentToDisableInBattle: {fileID: 1756092781}
+  _enemySpawner: {fileID: 0}
   _gridPosition: {x: 2, y: 0}
   _isClear: 0
   _onRoomClear:
@@ -12423,6 +12425,7 @@ MonoBehaviour:
   _doorsParent: {fileID: 147773480}
   _pathfinder: {fileID: 0}
   _parentToDisableInBattle: {fileID: 0}
+  _enemySpawner: {fileID: 0}
   _gridPosition: {x: 0, y: 0}
   _isClear: 0
   _onRoomClear:
