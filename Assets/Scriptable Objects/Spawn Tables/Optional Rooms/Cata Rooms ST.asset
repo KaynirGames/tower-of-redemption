@@ -13,15 +13,27 @@ MonoBehaviour:
   m_Name: Cata Rooms ST
   m_EditorClassIdentifier: 
   _spawnableObjects:
-  - _objectToSpawn: {fileID: 8605735013295192383, guid: 3f6a10082be4c94469568701e4229b65,
+  - _objectToSpawn: {fileID: 8605735013295192383, guid: 5fccadef3680fff4f9172d9bb481c0f9,
       type: 3}
-    _weight: 85
+    _weight: 18
     _index: 0
-  - _objectToSpawn: {fileID: 8605735013295192383, guid: 3f6a10082be4c94469568701e4229b65,
+  - _objectToSpawn: {fileID: 8605735013295192383, guid: 34f09e9a5f918d74aa40eb02a04dd848,
+      type: 3}
+    _weight: 18
+    _index: 1
+  - _objectToSpawn: {fileID: 8605735013295192383, guid: 98410c19b8897e543a9819b364f85920,
+      type: 3}
+    _weight: 18
+    _index: 2
+  - _objectToSpawn: {fileID: 8605735013295192383, guid: b2775ab14b3b26a46bb69d090b776891,
+      type: 3}
+    _weight: 18
+    _index: 3
+  - _objectToSpawn: {fileID: 8605735013295192383, guid: c4ddaf87cce4bbe4484fe0b3e9e43050,
+      type: 3}
+    _weight: 18
+    _index: 4
+  - _objectToSpawn: {fileID: 8605735013295192383, guid: e4790c53d782bfe4f95fadc9c9f88804,
       type: 3}
     _weight: 10
-    _index: 1
-  - _objectToSpawn: {fileID: 8605735013295192383, guid: 3f6a10082be4c94469568701e4229b65,
-      type: 3}
-    _weight: 5
-    _index: 2
+    _index: 5

@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9884dec27edd9d04a8dd86ff427e9a2d, type: 3}
-  m_Name: Dungeon Stage Database
+  m_Script: {fileID: 11500000, guid: 110a07c0a7811174f872ff9777f86f8e, type: 3}
+  m_Name: Cata Boss A ST
   m_EditorClassIdentifier: 
-  _objects:
-  - {fileID: 11400000, guid: 3e53a6e0713a95f428ff3fc49a2ce46e, type: 2}
-  - {fileID: 11400000, guid: f445f7113cd036645afb555817aa5cbd, type: 2}
+  _spawnableObjects:
+  - _objectToSpawn: {fileID: 4577616968161644898, guid: e51f695934685b74d84f2987a9c8e831,
+      type: 3}
+    _weight: 100
+    _index: 0

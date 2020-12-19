@@ -83,6 +83,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: acdea883224f84c4ebc1c6411618d330
+    m_Address: Stages Shared Data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 9586cebf42b6c39428a50dcd75ed7e92, type: 2}
   m_SchemaSet:

@@ -137,7 +137,11 @@ public class Room : MonoBehaviour
             if (!_isClear)
             {
                 ToggleDoors(false);
-                _enemySpawner.SpawnObjects();
+
+                if (_enemySpawner != null)
+                {
+                    _enemySpawner.SpawnObjects();
+                }
             }
         }
     }

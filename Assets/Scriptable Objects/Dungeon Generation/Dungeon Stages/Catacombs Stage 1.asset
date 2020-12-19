@@ -10,22 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2988be5c55ebb7d478a69d8a0429f6bf, type: 3}
-  m_Name: Catacombs Stage
+  m_Name: Catacombs Stage 1
   m_EditorClassIdentifier: 
-  _stageNameFormat:
+  _stageName:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:acdea883224f84c4ebc1c6411618d330
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 27576823808
       m_Key: 
-  _minFloorAmount: 2
-  _maxFloorAmount: 3
   _minRouteLength: 3
   _maxRouteLength: 5
-  _routeSpawnerCount: 3
+  _routeSpawnerCount: 1
   _startRoomPrefab: {fileID: 8605735013295192381, guid: 3f6a10082be4c94469568701e4229b65,
     type: 3}
-  _bossRoomPrefab: {fileID: 8605735013295192381, guid: 3f6a10082be4c94469568701e4229b65,
+  _bossRoomPrefab: {fileID: 8605735013295192381, guid: 44369455ba8a14b4f9164308a80a6f57,
     type: 3}
   _optionalRoomsTable: {fileID: 11400000, guid: 12c15291a7177e140945d2728ebd3750,
     type: 2}
