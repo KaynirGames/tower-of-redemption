@@ -64,7 +64,7 @@ MonoBehaviour:
   _transitionController: {fileID: 8643175066535183256}
   _enemyActivationDelay: 0.25
   _playerSpiritBonus: 0.25
-  _enemySpiritBonus: 1
+  _enemySpiritBonus: 0.5
 --- !u!114 &8095424598031946880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,6 +91,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8095424598031946882}
     m_Modifications:
+    - target: {fileID: 173247583844692798, guid: 4b91b50b14033b04bacfbaacfde841bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048279185281630181, guid: 4b91b50b14033b04bacfbaacfde841bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2394470270234656233, guid: 4b91b50b14033b04bacfbaacfde841bf,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -304,6 +314,21 @@ PrefabInstance:
     - target: {fileID: 3955384071702732508, guid: 4b91b50b14033b04bacfbaacfde841bf,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456009111345291076, guid: 4b91b50b14033b04bacfbaacfde841bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456009112793644215, guid: 4b91b50b14033b04bacfbaacfde841bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456009113132302474, guid: 4b91b50b14033b04bacfbaacfde841bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4564194383923600636, guid: 4b91b50b14033b04bacfbaacfde841bf,

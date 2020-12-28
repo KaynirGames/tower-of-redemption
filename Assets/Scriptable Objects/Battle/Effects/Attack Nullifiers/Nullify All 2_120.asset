@@ -17,6 +17,12 @@ MonoBehaviour:
   _inflictionChance: 100
   _chargesAmount: 2
   _ailmentData: {fileID: 11400000, guid: 73201c1a355a4c5498fa9cf7ca94973e, type: 2}
+  _effectTooltip:
+    m_TableReference:
+      m_TableCollectionName: GUID:83e88c540d53c314bb6705121f156f5f
+    m_TableEntryReference:
+      m_KeyId: 16375539790311424
+      m_Key: 
   _nullableDamageTypes:
   - {fileID: 11400000, guid: 5c8a5d3b7b464c14882c006366947081, type: 2}
   - {fileID: 11400000, guid: cb4bec2b4970517458d9fa74d8544df6, type: 2}

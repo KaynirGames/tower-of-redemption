@@ -8,14 +8,12 @@ public enum Direction { Up, Right, Down, Left }
 public class Door : MonoBehaviour
 {
     [SerializeField] private Direction _direction = Direction.Up;
-    [SerializeField] private DoorType _doorType = null;
     [SerializeField] private float _doorwayTransferRange = 4f;
     [SerializeField] private Collider2D _doorCollider = null;
     [SerializeField] private Collider2D _playerTransferTrigger = null;
     [SerializeField] private Collider2D _closedDoorwayCollider = null;
 
     public Direction Direction => _direction;
-    public DoorType DoorType => _doorType;
 
     private Animator _doorAnimator;
 
@@ -26,7 +24,7 @@ public class Door : MonoBehaviour
                                       transform.rotation,
                                       transform);
 
-        _doorAnimator = door.GetComponent<Animator>();
+        _doorAnimator = door.GetComponentInChildren<Animator>();
 
         ToggleDoorColliders(true);
     }

@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Poison Ailment SO
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 6fe9b8352ff42dd4e9019eafe0d6f8b6, type: 3}
+  _name:
+    m_TableReference:
+      m_TableCollectionName: GUID:eb870e2553eec4a48ad476083e5bd3d9
+    m_TableEntryReference:
+      m_KeyId: 16383600407932928
+      m_Key: 

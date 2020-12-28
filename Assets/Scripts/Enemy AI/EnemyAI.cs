@@ -1,5 +1,4 @@
 ﻿using KaynirGames.AI;
-using KaynirGames.Movement;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -8,15 +7,15 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float _waitTimeOnTargetLost = 3f;
     [SerializeField] private bool _includeObstaclesOnPatrol = false;
     [SerializeField] private bool _displayGizmos = true;
-    
-    public MovePositionBase MovePosition { get; private set; }
+
+    public EnemyCharacter Enemy { get; private set; }
 
     private StateMachine<EnemyStateKey> _stateMachine;
     private Transform _target;
 
     private void Awake()
     {
-        MovePosition = GetComponent<MovePositionBase>();
+        Enemy = GetComponent<EnemyCharacter>();
     }
 
     private void Start()
@@ -66,7 +65,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnDisable()
     {
-        MovePosition.StopMovement();
+        Enemy.StopMovement();
     }
 
     private void OnDrawGizmos()

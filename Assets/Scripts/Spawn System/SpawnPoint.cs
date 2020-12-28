@@ -8,11 +8,11 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField] private bool _applyForce = false;
     [SerializeField] private float _forceValue = 1f;
 
-    public List<GameObject> Spawn()
+    public void Spawn()
     {
-        return Spawn((GameObject)_spawnTable.ChooseRandom(),
-                     _spawnAmount,
-                     _applyForce);
+        Spawn((GameObject)_spawnTable.ChooseRandom(),
+              _spawnAmount,
+              _applyForce);
     }
 
     public List<GameObject> Spawn(GameObject prefab, int amount, bool applyForce = false)

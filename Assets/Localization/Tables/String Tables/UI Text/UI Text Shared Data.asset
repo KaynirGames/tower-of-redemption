@@ -103,6 +103,10 @@ MonoBehaviour:
     m_Key: UI.MenuButton.Back
     m_Metadata:
       m_Items: []
+  - m_Id: 13783330419175424
+    m_Key: UI.GameTitle
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -54,6 +54,9 @@ MonoBehaviour:
     type: 3}
   _statDatabase: {fileID: 11400000, guid: 3565a9af924d17d40813db3770c8150c, type: 2}
   _stageDatabase: {fileID: 11400000, guid: a4c0add3f73751c479c3884253eadd39, type: 2}
+  _playerDatabase: {fileID: 11400000, guid: 60910ae2250ca654d84d95cada9c95f0, type: 2}
+  _skillDatabase: {fileID: 11400000, guid: 9a5231f97e0f07140b3478ee44952142, type: 2}
+  _itemDatabase: {fileID: 11400000, guid: 305269cd2ded011478703e77a925ee4e, type: 2}
 --- !u!114 &4958547239275269021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,4 +75,6 @@ MonoBehaviour:
   - _prefab: {fileID: 3775270695086437067, guid: 9ab0a5df27b052f4cbea5babb088af61,
       type: 3}
   - _prefab: {fileID: 3775270695086437067, guid: 49fce650f7d9bd949888f55b7663db4e,
+      type: 3}
+  - _prefab: {fileID: 6459740503176005825, guid: 9c980c3ae498da34c847a5a335088efa,
       type: 3}

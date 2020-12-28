@@ -64,11 +64,51 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9630368722944
-    m_Key: Ailment.Burn
+    m_Key: Ailment.Name.Burn
     m_Metadata:
       m_Items: []
   - m_Id: 9695795671040
-    m_Key: Ailment.PerfectGuard
+    m_Key: Ailment.Name.Nullify
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16383600407932928
+    m_Key: Ailment.Name.Poison
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16383936816279552
+    m_Key: Ailment.Name.Chills
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16384486941192192
+    m_Key: Buff.Name.SmallStrengthDown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16384728252084224
+    m_Key: Buff.Name.SmallDefenceUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16384758245552128
+    m_Key: Buff.Name.MediumStrengthUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16384787471462400
+    m_Key: Buff.Name.MediumStrengthDown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16384855071059968
+    m_Key: Buff.Name.MediumWillDown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16385538960715776
+    m_Key: Buff.Name.MediumDefenceUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16385629486379008
+    m_Key: Buff.Name.MediumDefenceDown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16385704258236416
+    m_Key: Buff.Name.LargeStrengthUp
     m_Metadata:
       m_Items: []
   m_Metadata:

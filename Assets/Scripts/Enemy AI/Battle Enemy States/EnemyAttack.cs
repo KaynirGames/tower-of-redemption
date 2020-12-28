@@ -41,15 +41,17 @@ public class EnemyAttack : BaseState<EnemyBattleStateKey>
 
     public override BaseState<EnemyBattleStateKey> UpdateState()
     {
-        if (_selectedSkill == null) { return this; }
-
-        if (_enemyBattleAI.Energy.CurrentValue >= _requiredEnergy)
+        if (_selectedSkill != null)
         {
-            _selectedSkill.TryExecute(_enemy);
-            _attackSkillWeights[_selectedSkill] += _requiredEnergy;
-            return this;
-        }
+            if (_enemyBattleAI.Energy.CurrentValue >= _requiredEnergy)
+            {
+                _selectedSkill.TryExecute(_enemy);
+                _attackSkillWeights[_selectedSkill] += _requiredEnergy;
+                return this;
+            }
 
-        return null;
+            return null;
+        }
+        else { return this; }
     }
 }

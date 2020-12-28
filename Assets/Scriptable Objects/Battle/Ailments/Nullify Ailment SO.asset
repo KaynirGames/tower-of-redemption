@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Nullify Ailment SO
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: feb9917546eafc5409dbbbe1f119d548, type: 3}
+  _name:
+    m_TableReference:
+      m_TableCollectionName: GUID:eb870e2553eec4a48ad476083e5bd3d9
+    m_TableEntryReference:
+      m_KeyId: 9695795671040
+      m_Key: 

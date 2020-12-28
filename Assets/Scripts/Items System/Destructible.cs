@@ -2,6 +2,8 @@
 
 public class Destructible : Interactable
 {
+    [SerializeField] private float _destroyDelay = 3f;
+
     private Animator _animator;
 
     private void Awake()
@@ -17,8 +19,7 @@ public class Destructible : Interactable
 
         if (_interactOnce)
         {
-            Destroy(gameObject,
-                    _animator.GetCurrentAnimatorClipInfo(0).Length);
+            Destroy(gameObject, _destroyDelay);
         }
     }
 

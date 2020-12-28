@@ -3308,7 +3308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _width: 22
   _height: 14
-  _roomType: {fileID: 11400000, guid: ac744e5a683535b4f90c6b472aca43ce, type: 2}
+  _roomType: {fileID: 11400000, guid: b63a30da179b1fb4aad1a2ec4786acf8, type: 2}
   _doorsParent: {fileID: 8605735012270250802}
   _pathfinder: {fileID: 1471219019327298598}
   _parentToDisableInBattle: {fileID: 1695550891816714610}
@@ -4439,6 +4439,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4190791384878936706, guid: 3e44485728c570c4c832f8a76bd8268b,
         type: 3}
+      propertyPath: _doorType
+      value: 
+      objectReference: {fileID: 11400000, guid: cf18d7eb8bf5c074ba2b7d013822e27c,
+        type: 2}
+    - target: {fileID: 4190791384878936706, guid: 3e44485728c570c4c832f8a76bd8268b,
+        type: 3}
       propertyPath: _closedDoorwayCollider
       value: 
       objectReference: {fileID: 8605735012524622164}
@@ -4912,6 +4918,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4190791384878936706, guid: 3e44485728c570c4c832f8a76bd8268b,
         type: 3}
+      propertyPath: _doorType
+      value: 
+      objectReference: {fileID: 11400000, guid: cf18d7eb8bf5c074ba2b7d013822e27c,
+        type: 2}
+    - target: {fileID: 4190791384878936706, guid: 3e44485728c570c4c832f8a76bd8268b,
+        type: 3}
       propertyPath: _direction
       value: 2
       objectReference: {fileID: 0}
@@ -4997,6 +5009,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4190791384878936706, guid: 3e44485728c570c4c832f8a76bd8268b,
         type: 3}
+      propertyPath: _doorType
+      value: 
+      objectReference: {fileID: 11400000, guid: cf18d7eb8bf5c074ba2b7d013822e27c,
+        type: 2}
+    - target: {fileID: 4190791384878936706, guid: 3e44485728c570c4c832f8a76bd8268b,
+        type: 3}
       propertyPath: _direction
       value: 1
       objectReference: {fileID: 0}
@@ -5080,6 +5098,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8605735012270250803}
     m_Modifications:
+    - target: {fileID: 4190791384878936706, guid: 3e44485728c570c4c832f8a76bd8268b,
+        type: 3}
+      propertyPath: _doorType
+      value: 
+      objectReference: {fileID: 11400000, guid: cf18d7eb8bf5c074ba2b7d013822e27c,
+        type: 2}
     - target: {fileID: 4190791384878936706, guid: 3e44485728c570c4c832f8a76bd8268b,
         type: 3}
       propertyPath: _direction

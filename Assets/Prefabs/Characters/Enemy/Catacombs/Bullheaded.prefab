@@ -107,9 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ed50a8035bf9a46a4451583118237c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthRateForDefence: 0.9
   _healthRateForEnrage: 0.5
-  _enrageAmount: 1
 --- !u!114 &6019955237486239111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +214,7 @@ GameObject:
   - component: {fileID: 7282492576520255793}
   - component: {fileID: 7282492576520255804}
   - component: {fileID: 5763809499401112461}
+  - component: {fileID: 676939708046766914}
   m_Layer: 0
   m_Name: EnemyGFX
   m_TagString: Untagged
@@ -323,3 +322,16 @@ MonoBehaviour:
   _stateNames:
   - Attack
   - Death
+--- !u!114 &676939708046766914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282492576520255794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e1ed8694d253d43a8bea05650f791e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sortOnlyOnce: 0

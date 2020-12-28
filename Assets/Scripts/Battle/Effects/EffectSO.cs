@@ -12,6 +12,8 @@ public abstract class EffectSO : ScriptableObject
 
     public virtual int ChargesAmount => 0;
     public virtual Sprite EffectIcon => null;
+    public virtual string EffectName => string.Empty;
+    public virtual string Tooltip => string.Empty;
 
     public abstract void Apply(Character target, object effectSource);
 

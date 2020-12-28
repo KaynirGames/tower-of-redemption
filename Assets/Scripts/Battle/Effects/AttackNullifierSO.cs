@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "Nullify Type Charges_Duration", menuName = "Scriptable Objects/Battle/Effects/Attack Nullifier SO")]
 public class AttackNullifierSO : EffectSO
@@ -7,10 +8,13 @@ public class AttackNullifierSO : EffectSO
     [Header("Параметры обнуления атаки:")]
     [SerializeField] private int _chargesAmount = 1;
     [SerializeField] private AilmentSO _ailmentData = null;
+    [SerializeField] private LocalizedString _effectTooltip = null;
     [SerializeField] private List<DamageSO> _nullableDamageTypes = null;
 
     public override int ChargesAmount => _chargesAmount;
     public override Sprite EffectIcon => _ailmentData.Icon;
+    public override string EffectName => _ailmentData.Name;
+    public override string Tooltip => _effectTooltip.GetLocalizedString().Result;
 
     public override void Apply(Character target, object effectSource)
     {

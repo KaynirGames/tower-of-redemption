@@ -179,7 +179,7 @@ public class BattleManager : MonoBehaviour
     {
         if (_activeEnemies.Count > 0)
         {
-            _activeEnemies.ForEach(x => x.gameObject.SetActive(true));
+            _activeEnemies.ForEach(en => en.gameObject.SetActive(true));
         }
         else
         {

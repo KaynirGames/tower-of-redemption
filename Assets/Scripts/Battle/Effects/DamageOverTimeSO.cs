@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "DoT Rank# Chance#", menuName = "Scriptable Objects/Battle/Effects/Damage Over Time SO")]
 public class DamageOverTimeSO : EffectSO
@@ -9,9 +10,13 @@ public class DamageOverTimeSO : EffectSO
     [SerializeField, Range(-100, 100)] private int _baseStatModifyRate = 0;
     [SerializeField] private StatSO _statData = null;
     [SerializeField] private AilmentSO _ailmentData = null;
+    [SerializeField] private LocalizedString _effectTooltip = null;
 
     public AilmentSO AilmentData => _ailmentData;
+
     public override Sprite EffectIcon => _ailmentData.Icon;
+    public override string EffectName => _ailmentData.Name;
+    public override string Tooltip => _effectTooltip.GetLocalizedString().Result;
 
     public override void Apply(Character target, object effectSource)
     {

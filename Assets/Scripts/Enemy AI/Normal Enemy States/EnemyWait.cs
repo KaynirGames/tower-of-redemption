@@ -18,6 +18,7 @@ public class EnemyWait : BaseState<EnemyStateKey>
 
     public override void EnterState()
     {
+        _enemyAI.Enemy.StopMovement();
         _lastWaitRoutine = _enemyAI.StartCoroutine(WaitRoutine());
     }
 

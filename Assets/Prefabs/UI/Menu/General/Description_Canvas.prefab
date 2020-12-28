@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9150958338263790084}
   - component: {fileID: 4528141638004005906}
   - component: {fileID: 3059917176533977517}
-  - component: {fileID: 4231799545690560205}
+  - component: {fileID: 2525002837437767508}
   m_Layer: 5
   m_Name: DescriptionField
   m_TagString: Untagged
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4231799545690560205
+--- !u!114 &2525002837437767508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,24 +146,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1322892361887426909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4387f9c6e6c236743b966cc6902a3e82, type: 3}
+  m_Script: {fileID: 11500000, guid: 689db7a730621d248844912c93496fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _linkedTextField: {fileID: 3059917176533977517}
-  _tooltipHeaderText:
-    m_TableReference:
-      m_TableCollectionName: 
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: 
-  _tooltipContentText:
-    m_TableReference:
-      m_TableCollectionName: 
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: 
   _tooltipDelay: 0
-  _tooltipType: 1
+  _tooltipTable: {fileID: 11400000, guid: e999986a625e682479616fad49b6dfb0, type: 2}
+  _linkedTextField: {fileID: 3059917176533977517}
 --- !u!1 &5552362222263667256
 GameObject:
   m_ObjectHideFlags: 0

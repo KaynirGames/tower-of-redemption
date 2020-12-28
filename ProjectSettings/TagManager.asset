@@ -7,6 +7,7 @@ TagManager:
   - ItemSlot
   - DamagePopup
   - SpiritPopup
+  - EffectSlot
   layers:
   - Default
   - TransparentFX

@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class EnemyBattleAI : MonoBehaviour
 {
-    [SerializeField, Range(0, 1)] private float _healthRateForDefence = 0.6f;
     [SerializeField, Range(0, 1)] private float _healthRateForEnrage = 0.2f;
-    [SerializeField] private int _enrageAmount = 0;
 
     public CharacterResource Health { get; private set; }
     public CharacterResource Energy { get; private set; }
@@ -24,6 +22,7 @@ public class EnemyBattleAI : MonoBehaviour
 
     private Coroutine _lastEnergyRegenRoutine;
     private WaitForSeconds _waitForEnergyRegenDelay;
+    private bool _canEnrage;
 
     private void Awake()
     {
@@ -38,27 +37,12 @@ public class EnemyBattleAI : MonoBehaviour
     {
         _stateMachine.Update();
 
-        if (Health.CurrentValue >= _healthRateForDefence * Health.MaxValue.GetFinalValue())
+        if (_canEnrage)
         {
-            _stateMachine.TransitionNext(EnemyBattleStateKey.TryAttack);
-        }
-        else
-        {
-            if (Health.CurrentValue >= _healthRateForEnrage * Health.MaxValue.GetFinalValue())
+            if (Health.CurrentValue < _healthRateForEnrage * Health.MaxValue.GetFinalValue())
             {
-                _stateMachine.TransitionNext(EnemyBattleStateKey.TryDefence);
-            }
-            else
-            {
-                if (_enrageAmount > 0)
-                {
-                    _enrageAmount--;
-                    _stateMachine.TransitionNext(EnemyBattleStateKey.TryEnrage);
-                }
-                else
-                {
-                    _stateMachine.TransitionNext(EnemyBattleStateKey.TryDefence);
-                }
+                _canEnrage = false;
+                _stateMachine.TransitionNext(EnemyBattleStateKey.TryEnrage);
             }
         }
     }
@@ -98,21 +82,22 @@ public class EnemyBattleAI : MonoBehaviour
 
     public Skill GetSuitableSkill(Dictionary<Skill, int> skillWeights)
     {
-        Skill skillInstance = null;
+        Skill skill = null;
         int minWeight = int.MaxValue;
 
         foreach (var pair in skillWeights)
         {
-            if (pair.Key.IsCooldown) continue;
-
-            if (pair.Value <= minWeight)
+            if (!pair.Key.IsCooldown)
             {
-                minWeight = pair.Value;
-                skillInstance = pair.Key;
+                if (pair.Value <= minWeight)
+                {
+                    minWeight = pair.Value;
+                    skill = pair.Key;
+                }
             }
         }
 
-        return skillInstance;
+        return skill;
     }
 
     private void CollectSkills(SkillBook skillBook)
@@ -137,8 +122,10 @@ public class EnemyBattleAI : MonoBehaviour
 
         foreach (Skill skill in specialSkills)
         {
-            if (skill == null) { continue; }
-            _specialSkills.Add(skill);
+            if (skill != null)
+            {
+                _specialSkills.Add(skill);
+            }
         }
     }
 
@@ -155,9 +142,10 @@ public class EnemyBattleAI : MonoBehaviour
             enemyDefence.AddTransition(EnemyBattleStateKey.TryAttack, enemyAttack);
         }
 
-        if (_specialSkills.Count > 0 && _enrageAmount > 0)
+        if (_specialSkills.Count > 0)
         {
-            EnemyEnrage enemyEnrage = new EnemyEnrage(this, CreateSkillWeights(_specialSkills));
+            EnemyEnrage enemyEnrage = new EnemyEnrage(this, _specialSkills);
+            _canEnrage = true;
 
             enemyAttack.AddTransition(EnemyBattleStateKey.TryEnrage, enemyEnrage);
 
@@ -175,7 +163,6 @@ public class EnemyBattleAI : MonoBehaviour
         while (true)
         {
             yield return _waitForEnergyRegenDelay;
-
             Energy.ChangeResource(_energyRegen);
         }
     }
@@ -184,12 +171,12 @@ public class EnemyBattleAI : MonoBehaviour
     {
         Dictionary<Skill, int> skillWeights = new Dictionary<Skill, int>();
 
-        foreach (Skill instance in skills)
+        foreach (Skill skill in skills)
         {
             int energyPerSecond = Mathf.RoundToInt(_energyRegen / _energyRegenDelay);
-            int weight = instance.SkillSO.Cooldown * energyPerSecond - instance.SkillSO.Cost;
+            int weight = skill.SkillSO.Cooldown * energyPerSecond - skill.SkillSO.Cost;
 
-            skillWeights.Add(instance, weight);
+            skillWeights.Add(skill, weight);
         }
 
         return skillWeights;

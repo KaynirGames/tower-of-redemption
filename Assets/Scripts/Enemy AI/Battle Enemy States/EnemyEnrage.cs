@@ -1,36 +1,30 @@
 ﻿using KaynirGames.AI;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class EnemyEnrage : BaseState<EnemyBattleStateKey>
 {
     private EnemyBattleAI _enemyBattleAI;
-    private Dictionary<Skill, int> _specialSkillWeights;
+    private List<Skill> _specialSkills;
 
     private EnemyCharacter _enemy;
     private Skill _selectedSkill;
 
     private int _requiredEnergy;
 
-    public EnemyEnrage(EnemyBattleAI battleAI, Dictionary<Skill, int> specialSkillWeights)
+    public EnemyEnrage(EnemyBattleAI battleAI, List<Skill> specialSkills)
     {
         _enemyBattleAI = battleAI;
-        _specialSkillWeights = specialSkillWeights;
+        _specialSkills = specialSkills;
 
         _enemy = _enemyBattleAI.GetComponent<EnemyCharacter>();
     }
 
     public override void EnterState()
     {
-        _selectedSkill = _enemyBattleAI.GetSuitableSkill(_specialSkillWeights);
-
-        if (_selectedSkill == null)
-        {
-            _enemyBattleAI.SetTransition(EnemyBattleStateKey.TryDefence);
-        }
-        else
-        {
-            _requiredEnergy = _selectedSkill.SkillSO.Cost;
-        }
+        int random = Random.Range(0, _specialSkills.Count - 1);
+        _selectedSkill = _specialSkills[random];
+        _requiredEnergy = _selectedSkill.SkillSO.Cost;
     }
 
     public override void ExitState()
@@ -41,13 +35,13 @@ public class EnemyEnrage : BaseState<EnemyBattleStateKey>
 
     public override BaseState<EnemyBattleStateKey> UpdateState()
     {
-        if (_selectedSkill == null) { return this; }
-
-        if (_enemyBattleAI.Energy.CurrentValue >= _requiredEnergy)
+        if (_selectedSkill != null)
         {
-            _selectedSkill.TryExecute(_enemy);
-            _specialSkillWeights[_selectedSkill] += _requiredEnergy;
-            return this;
+            if (_enemyBattleAI.Energy.CurrentValue >= _requiredEnergy)
+            {
+                _selectedSkill.TryExecute(_enemy);
+                _enemyBattleAI.SetTransition(EnemyBattleStateKey.TryAttack);
+            }
         }
 
         return null;

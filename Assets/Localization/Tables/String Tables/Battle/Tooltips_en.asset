@@ -36,5 +36,80 @@ MonoBehaviour:
       5 sec.'
     m_Metadata:
       m_Items: []
+  - m_Id: 16369917476794368
+    m_Localized: 'Deals 2 water damage every 1 sec.
+
+      Reduces Magic Defence
+      by 10%.
+
+      Duration: 5 sec.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16374597221150720
+    m_Localized: 'Nullifies 1 physical attack.
+
+      Duration: 20 sec.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16375539790311424
+    m_Localized: 'Nullifies any 2 attacks.
+
+      Duration: 120 sec.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16376187567009792
+    m_Localized: 'Reduces strength by 20% of the base value.
+
+      Duration: 12
+      sec.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16376316319559680
+    m_Localized: 'Increases defence by 20% of the base value.
+
+      Duration: 12
+      sec.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16376909377368064
+    m_Localized: 'Increases defence by 35% of the base value.
+
+      Duration: 10
+      sec.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16377190571896832
+    m_Localized: 'Reduces defence by 35% of the base value.
+
+      Duration: 10 sec.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16377828827525120
+    m_Localized: 'Reduces strength by 35% of the base value.
+
+      Duration: 10
+      sec.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16377739581124608
+    m_Localized: 'Increases strength by 35% of the base value.
+
+      Duration: 10
+      sec.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16378066820722688
+    m_Localized: 'Reduces will by 35% of the base value.
+
+      Duration: 10 sec.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16378185829904384
+    m_Localized: 'Increases strength by 50% of the base value.
+
+      Duration: 8
+      sec.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

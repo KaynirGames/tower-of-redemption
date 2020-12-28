@@ -19,3 +19,15 @@ MonoBehaviour:
   _statData: {fileID: 11400000, guid: cd8aaa68ebbd26d47b352337c2a6a8af, type: 2}
   _buffIcon: {fileID: 3267751114351710683, guid: 51a028b802010294b8087a2ff21269f1,
     type: 3}
+  _buffName:
+    m_TableReference:
+      m_TableCollectionName: GUID:eb870e2553eec4a48ad476083e5bd3d9
+    m_TableEntryReference:
+      m_KeyId: 16384855071059968
+      m_Key: 
+  _buffTooltip:
+    m_TableReference:
+      m_TableCollectionName: GUID:83e88c540d53c314bb6705121f156f5f
+    m_TableEntryReference:
+      m_KeyId: 16378066820722688
+      m_Key: 

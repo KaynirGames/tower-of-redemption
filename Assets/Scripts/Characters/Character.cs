@@ -22,7 +22,6 @@ public abstract class Character : MonoBehaviour
     public virtual void ExitBattle(Vector3 lastPosition)
     {
         transform.position = lastPosition;
-
         SkillBook.TogglePassiveBattleEffects(false);
     }
 

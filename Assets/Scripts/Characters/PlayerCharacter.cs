@@ -74,14 +74,10 @@ public class PlayerCharacter : Character
         PlayMoveAnimation(Vector2.zero);
     }
 
-    public void ToggleInput(bool enabled)
+    public override void PrepareForBattle()
     {
-        if (!enabled)
-        {
-            StopPlayer();
-        }
-
-        _enableInput = enabled;
+        PlayMoveAnimation(Vector2.right);
+        StopPlayer();
     }
 
     public override void ExitBattle(Vector3 lastPosition)

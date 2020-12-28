@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "Stat BuffGrade #", menuName = "Scriptable Objects/Battle/Effects/Stat Buff SO")]
 public class StatBuffSO : EffectSO
@@ -7,11 +8,15 @@ public class StatBuffSO : EffectSO
     [SerializeField] private StatBuffGradeSO _buffGrade = null;
     [SerializeField] private StatSO _statData = null;
     [SerializeField] private Sprite _buffIcon = null;
+    [SerializeField] private LocalizedString _buffName = null;
+    [SerializeField] private LocalizedString _buffTooltip = null;
 
     public StatType StatType => _statData.StatType;
     public StatBuffGradeSO BuffGrade => _buffGrade;
 
     public override Sprite EffectIcon => _buffIcon;
+    public override string EffectName => _buffName.GetLocalizedString().Result;
+    public override string Tooltip => _buffTooltip.GetLocalizedString().Result;
 
     public override void Apply(Character target, object effectSource)
     {

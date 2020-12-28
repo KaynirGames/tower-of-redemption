@@ -23,6 +23,50 @@ MonoBehaviour:
     m_Key: Tooltip.Poison.D
     m_Metadata:
       m_Items: []
+  - m_Id: 16369917476794368
+    m_Key: Tooltip.Chills.D
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16374597221150720
+    m_Key: Tooltip.NullifyPhys.D
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16375539790311424
+    m_Key: Tooltip.NullifyAll.D
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16376187567009792
+    m_Key: Tooltip.StrengthDown.Small
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16376316319559680
+    m_Key: Tooltip.DefenceUp.Small
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16376909377368064
+    m_Key: Tooltip.DefenceUp.Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16377190571896832
+    m_Key: Tooltip.DefenceDown.Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16377739581124608
+    m_Key: Tooltip.StrengthUp.Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16377828827525120
+    m_Key: Tooltip.StrengthDown.Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16378066820722688
+    m_Key: Tooltip.WillDown.Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16378185829904384
+    m_Key: Tooltip.StrengthUp.Large
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

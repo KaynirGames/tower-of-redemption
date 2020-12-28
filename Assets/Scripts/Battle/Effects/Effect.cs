@@ -67,7 +67,7 @@ public class Effect
 
     public void ResetDuration()
     {
-        _durationTimer = EffectSO.Duration;
+        _durationTimer += EffectSO.Duration;
     }
 
     public void RemoveCharge()

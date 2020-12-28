@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BossDoor_Catacombs
   m_EditorClassIdentifier: 
   _placingPriority: 2
-  _doorGFX: {fileID: 6203271674832713108, guid: 5b14bfcacdf1d23418574dd79700bff8,
+  _doorGFX: {fileID: 6203271674832713108, guid: 10725d712c9381e4cbec6a46eb81ec40,
     type: 3}

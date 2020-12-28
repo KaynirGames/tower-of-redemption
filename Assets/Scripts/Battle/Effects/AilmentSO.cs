@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "Undefined Ailment SO", menuName = "Scriptable Objects/Battle/Ailment SO")]
 public class AilmentSO : ScriptableObject
 {
     [SerializeField] private Sprite _icon = null;
+    [SerializeField] private LocalizedString _name = null;
 
     public Sprite Icon => _icon;
+    public string Name => _name.GetLocalizedString().Result;
 
     public bool TryRestartAilment(Character target, EffectSO effect)
     {

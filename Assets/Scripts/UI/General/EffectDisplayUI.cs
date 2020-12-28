@@ -18,14 +18,18 @@ public class EffectDisplayUI : MonoBehaviour
     private bool _enableScrolling;
 
     private List<EffectSlotUI> _effectSlots;
-    private Queue<EffectSlotUI> _emptySlotsPool;
+    private PoolManager _poolManager;
 
     private Coroutine _lastScrollRoutine = null;
 
     private void Awake()
     {
         _effectSlots = new List<EffectSlotUI>();
-        _emptySlotsPool = new Queue<EffectSlotUI>();
+    }
+
+    private void Start()
+    {
+        _poolManager = PoolManager.Instance;
     }
 
     public void RegisterCharacterEffects(CharacterEffects characterEffects)
@@ -37,40 +41,29 @@ public class EffectDisplayUI : MonoBehaviour
     public void HandleEmptySlot(EffectSlotUI effectSlot)
     {
         _effectSlots.Remove(effectSlot);
-        _emptySlotsPool.Enqueue(effectSlot);
-
         HandleContentScroll();
     }
 
     public void ClearEffectsUI()
     {
-        _effectSlots.ForEach(slot => slot.Clear());
+        //_effectSlots.ForEach(slot => slot.Clear());
     }
 
-    private void UpdateEffectsDisplay(Effect instance)
+    private void UpdateEffectsDisplay(Effect effect)
     {
-        _effectSlots.Add(CreateSlot(instance));
-
+        _effectSlots.Add(CreateSlot(effect));
         HandleContentScroll();
     }
 
-    private EffectSlotUI CreateSlot(Effect instance)
+    private EffectSlotUI CreateSlot(Effect effect)
     {
-        EffectSlotUI effectSlot = _emptySlotsPool.Count > 0
-            ? GetSlotFromPool()
-            : Instantiate(_effectSlotPrefab, _effectSlotsParent);
+        GameObject slotObject = _poolManager.Take(_effectSlotPrefab.tag);
+        slotObject.transform.SetParent(_effectSlotsParent, false);
 
-        effectSlot.RegisterEffect(instance);
+        EffectSlotUI effectSlot = slotObject.GetComponent<EffectSlotUI>();
+        effectSlot.RegisterSlot(this, effect);
 
         return effectSlot;
-    }
-
-    private EffectSlotUI GetSlotFromPool()
-    {
-        EffectSlotUI slot = _emptySlotsPool.Dequeue();
-        slot.SetSlotParent(_effectSlotsParent);
-
-        return slot;
     }
 
     private void HandleContentScroll()

@@ -20,3 +20,9 @@ MonoBehaviour:
   _baseStatModifyRate: -10
   _statData: {fileID: 11400000, guid: 181a046ebfc855047bb451010478f0ce, type: 2}
   _ailmentData: {fileID: 11400000, guid: ec0a8798c4ee3c54a9e496f532b25ae5, type: 2}
+  _effectTooltip:
+    m_TableReference:
+      m_TableCollectionName: GUID:83e88c540d53c314bb6705121f156f5f
+    m_TableEntryReference:
+      m_KeyId: 16369917476794368
+      m_Key: 

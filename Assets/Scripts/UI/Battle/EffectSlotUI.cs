@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EffectSlotUI : MonoBehaviour
+public class EffectSlotUI : MonoBehaviour, ITooltipHandler
 {
     [SerializeField] private Image _effectIcon = null;
     [SerializeField] private Image _durationIcon = null;
@@ -11,31 +11,30 @@ public class EffectSlotUI : MonoBehaviour
     private RectTransform _rectTransform;
     private EffectDisplayUI _effectDisplayUI;
 
-    private Effect _effectInstance;
+    private Effect _effect;
     private float _effectDuration;
 
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
-        _effectDisplayUI = gameObject.GetComponentInParent<EffectDisplayUI>();
     }
 
-    public void RegisterEffect(Effect effectInstance)
+    public void RegisterSlot(EffectDisplayUI effectDisplayUI, Effect effect)
     {
-        _effectInstance = effectInstance;
-        _effectDuration = effectInstance.EffectSO.Duration;
-        _effectInstance.OnDurationTick += UpdateDurationDisplay;
-        _effectInstance.OnDurationExpire += StopDurationDisplay;
+        _effectDisplayUI = effectDisplayUI;
+        _effect = effect;
+        _effectDuration = effect.EffectSO.Duration;
+        _effect.OnDurationTick += UpdateDurationDisplay;
+        _effect.OnDurationExpire += StopDurationDisplay;
 
-        if (effectInstance.EffectSO.ChargesAmount > 0)
+        if (effect.EffectSO.ChargesAmount > 0)
         {
-            UpdateChargesDisplay(effectInstance.EffectSO.ChargesAmount);
-            _effectInstance.OnChargeConsume += UpdateChargesDisplay;
+            UpdateChargesDisplay(effect.EffectSO.ChargesAmount);
+            _effect.OnChargeConsume += UpdateChargesDisplay;
             _chargesText.gameObject.SetActive(true);
         }
 
-        _effectIcon.sprite = effectInstance.EffectSO.EffectIcon;
-        _durationIcon.sprite = effectInstance.EffectSO.EffectIcon;
+        _effectIcon.sprite = effect.EffectSO.EffectIcon;
         _durationIcon.fillAmount = 1;
 
         gameObject.SetActive(true);
@@ -43,19 +42,18 @@ public class EffectSlotUI : MonoBehaviour
 
     public void Clear()
     {
-        _effectInstance.OnDurationTick -= UpdateDurationDisplay;
-        _effectInstance.OnDurationExpire -= StopDurationDisplay;
+        _effect.OnDurationTick -= UpdateDurationDisplay;
+        _effect.OnDurationExpire -= StopDurationDisplay;
 
-        if (_effectInstance.EffectSO.ChargesAmount > 0)
+        if (_effect.EffectSO.ChargesAmount > 0)
         {
-            _effectInstance.OnChargeConsume -= UpdateChargesDisplay;
+            _effect.OnChargeConsume -= UpdateChargesDisplay;
             _chargesText.gameObject.SetActive(false);
         }
 
-        _effectInstance = null;
-
-        SetSlotParent(null);
-        gameObject.SetActive(false);
+        _effect = null;
+        PoolManager.Instance.Store(gameObject);
+        TooltipManager.Instance.HideTooltip();
     }
 
     public void SetAsLastSlot()
@@ -63,9 +61,20 @@ public class EffectSlotUI : MonoBehaviour
         _rectTransform.SetAsLastSibling();
     }
 
-    public void SetSlotParent(Transform parent)
+    public bool OnTooltipRequest(out string content, out string header)
     {
-        _rectTransform.SetParent(parent);
+        if (_effect != null)
+        {
+            content = _effect.EffectSO.Tooltip;
+            header = _effect.EffectSO.EffectName;
+            return true;
+        }
+        else
+        {
+            content = null;
+            header = null;
+            return false;
+        }
     }
 
     private void UpdateDurationDisplay(float timer)
@@ -80,7 +89,8 @@ public class EffectSlotUI : MonoBehaviour
 
     private void StopDurationDisplay()
     {
-        Clear();
         _effectDisplayUI.HandleEmptySlot(this);
+
+        Clear();
     }
 }

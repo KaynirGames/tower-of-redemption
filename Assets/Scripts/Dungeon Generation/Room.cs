@@ -33,14 +33,6 @@ public class Room : MonoBehaviour
         LoadedRooms.Add(this);
     }
 
-    private void Start()
-    {
-        if (_isClear)
-        {
-            SetRoomStatus(true);
-        }
-    }
-
     public void SetRoomPosition(Vector2Int gridPosition)
     {
         _gridPosition = gridPosition;
@@ -56,6 +48,10 @@ public class Room : MonoBehaviour
     {
         SetupCorrectDoors();
         SetupPathfinder();
+        if (_isClear)
+        {
+            SetRoomStatus(true);
+        }
     }
 
     public void SetRoomStatus(bool isClear)

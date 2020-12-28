@@ -67,11 +67,51 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9630368722944
-    m_Localized: <color=#{0}>Burn</color>
+    m_Localized: Burn
     m_Metadata:
       m_Items: []
   - m_Id: 9695795671040
-    m_Localized: <color=#{0}>Perfect guard</color>
+    m_Localized: Nullify attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16383600407932928
+    m_Localized: Poison
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16383936816279552
+    m_Localized: Chills
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16384758245552128
+    m_Localized: Medium strength up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16384486941192192
+    m_Localized: Small strength down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16384728252084224
+    m_Localized: Small defence down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16384787471462400
+    m_Localized: Medium strength down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16384855071059968
+    m_Localized: Medium will down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16385538960715776
+    m_Localized: Medium defence up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16385629486379008
+    m_Localized: Medium defence down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16385704258236416
+    m_Localized: Large strength up
     m_Metadata:
       m_Items: []
   references:

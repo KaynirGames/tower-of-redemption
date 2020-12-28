@@ -2,18 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using DG.Tweening;
 
 public class GameMaster : MonoBehaviour
 {
     public static GameMaster Instance { get; private set; }
 
     [SerializeField] private CanvasGroup _loadingScreenGroup = null;
+    [Header("Название этажа подземелья:")]
+    [SerializeField] private CanvasGroup _dungeonTitleGroup = null;
+    [SerializeField] private float _titleScaleDuration = 2f;
+    [SerializeField] private float _titleFadeDuration = 4f;
 
     public GameSettings GameSettings { get; private set; }
     public bool IsPause { get; private set; }
 
     private DungeonStageGenerator _stageGenerator;
     private AssetManager _assetManager;
+    private TextMeshProUGUI _dungeonTitleField;
 
     private Queue<DungeonStage> _selectedStages;
     private DungeonStage _currentStage;
@@ -37,6 +44,7 @@ public class GameMaster : MonoBehaviour
 
         GameSettings = GetComponent<GameSettings>();
         _stageGenerator = GetComponent<DungeonStageGenerator>();
+        _dungeonTitleField = _dungeonTitleGroup.GetComponentInChildren<TextMeshProUGUI>();
 
         SaveSystem.Init();
     }
@@ -126,10 +134,12 @@ public class GameMaster : MonoBehaviour
             _currentStage = _selectedStages.Dequeue();
             yield return _stageGenerator.LoadDungeonStage(_currentStage);
             SpawnPlayer(Vector3.zero);
+            ShowDungeonStageTitle(_currentStage);
         }
         else
         {
             // load credits scene
+            yield break;
         }
 
         yield return ToggleLoadingScreenRoutine(false);
@@ -172,5 +182,16 @@ public class GameMaster : MonoBehaviour
                         position,
                         Quaternion.identity);
         }
+    }
+
+    private void ShowDungeonStageTitle(DungeonStage stage)
+    {
+        _dungeonTitleField.SetText(stage.StageName);
+        _dungeonTitleField.transform.localScale = Vector3.zero;
+        _dungeonTitleGroup.alpha = 1f;
+
+        _dungeonTitleField.transform.DOScale(Vector3.one, _titleScaleDuration)
+                                    .OnComplete(() =>
+                                    _dungeonTitleGroup.DOFade(0f, _titleFadeDuration));
     }
 }

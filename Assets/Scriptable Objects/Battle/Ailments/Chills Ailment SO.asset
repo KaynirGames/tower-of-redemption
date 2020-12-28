@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Chills Ailment SO
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: b7d9fe93d41d1044796c2d2adfe15940, type: 3}
+  _name:
+    m_TableReference:
+      m_TableCollectionName: GUID:eb870e2553eec4a48ad476083e5bd3d9
+    m_TableEntryReference:
+      m_KeyId: 16383936816279552
+      m_Key: 

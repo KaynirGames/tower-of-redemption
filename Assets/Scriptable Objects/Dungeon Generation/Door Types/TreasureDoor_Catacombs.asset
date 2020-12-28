@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TreasureDoor_Catacombs
   m_EditorClassIdentifier: 
   _placingPriority: 1
-  _doorGFX: {fileID: 6203271674832713108, guid: 5b14bfcacdf1d23418574dd79700bff8,
+  _doorGFX: {fileID: 6203271674832713108, guid: 449bf8d9223c7c64f9f1d9865893a92f,
     type: 3}
