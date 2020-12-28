@@ -11,6 +11,7 @@ public abstract class SkillSO : ScriptableObject, IIdentifiable
     [SerializeField] protected LocalizedString _type = null;
     [SerializeField] protected Sprite _icon = null;
     [SerializeField] protected SkillSlot _slot = SkillSlot.Active;
+    [SerializeField] protected BattleAction _battleAction = BattleAction.Attack;
     [Header("Общие параметры умения:")]
     [SerializeField] protected int _cost = 0;
     [SerializeField] protected int _cooldown = 0;
@@ -22,6 +23,7 @@ public abstract class SkillSO : ScriptableObject, IIdentifiable
     public string Type => _type.GetLocalizedString().Result;
     public Sprite Icon => _icon;
     public SkillSlot Slot => _slot;
+    public BattleAction BattleAction => _battleAction;
 
     public int Cost => _cost;
     public int Cooldown => _cooldown;

@@ -32,6 +32,7 @@ MonoBehaviour:
       m_Key: 
   _icon: {fileID: 21300000, guid: 30b771c5b1021f84b8cf15cbf7e14953, type: 3}
   _slot: 1
+  _battleAction: 3
   _cost: 0
   _cooldown: 0
   _ownerEffects: []

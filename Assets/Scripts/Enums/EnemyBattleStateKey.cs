@@ -1,6 +1,5 @@
 ﻿public enum EnemyBattleStateKey
 {
-    TryAttack,
-    TryDefence,
-    TryEnrage
+    Decide,
+    Act
 }

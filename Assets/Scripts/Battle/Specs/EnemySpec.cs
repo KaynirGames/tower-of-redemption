@@ -10,6 +10,6 @@ public class EnemySpec : SpecBase
     [SerializeField] private float _energyRegen = 1f;
     [SerializeField] private float _energyRegenDelay = 1f;
 
-    public float EnergyRegen => _energyRegen;
-    public float EnergyRegenDelay => _energyRegenDelay;
+    public float SpiritRegen => _energyRegen;
+    public float SpiritRegenDelay => _energyRegenDelay;
 }

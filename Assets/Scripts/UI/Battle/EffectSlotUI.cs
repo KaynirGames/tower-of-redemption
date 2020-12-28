@@ -42,8 +42,8 @@ public class EffectSlotUI : MonoBehaviour, ITooltipHandler
 
     public void Clear()
     {
-        _effect.OnDurationTick -= UpdateDurationDisplay;
         _effect.OnDurationExpire -= StopDurationDisplay;
+        _effect.OnDurationTick -= UpdateDurationDisplay;
 
         if (_effect.EffectSO.ChargesAmount > 0)
         {
@@ -51,9 +51,8 @@ public class EffectSlotUI : MonoBehaviour, ITooltipHandler
             _chargesText.gameObject.SetActive(false);
         }
 
-        _effect = null;
-        PoolManager.Instance.Store(gameObject);
         TooltipManager.Instance.HideTooltip();
+        PoolManager.Instance.Store(gameObject);
     }
 
     public void SetAsLastSlot()

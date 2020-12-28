@@ -36,7 +36,7 @@ public class EnemyCharacter : Character
         Stats.SetCharacterStats(_enemySpec);
         SkillBook.LoadSkills(_enemySpec.BaseSkills);
 
-        _enemyBattleAI.InitializeBattleAI(SkillBook);
+        _enemyBattleAI.InitializeBattleAI();
         ActiveEnemies.Add(this);
     }
 
@@ -73,7 +73,7 @@ public class EnemyCharacter : Character
     private void ToggleBattleAI(bool enable)
     {
         _enemyBattleAI.enabled = enable;
-        _enemyBattleAI.ToggleEnergyRegen(enable);
+        _enemyBattleAI.ToggleSpiritRegen(enable);
     }
 
     protected override void Die()

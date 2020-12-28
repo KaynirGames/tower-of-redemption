@@ -1,35 +1,30 @@
 ﻿using KaynirGames.AI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBattleAI : MonoBehaviour
 {
-    [SerializeField, Range(0, 1)] private float _healthRateForEnrage = 0.2f;
-
     public CharacterResource Health { get; private set; }
-    public CharacterResource Energy { get; private set; }
+    public CharacterResource Spirit { get; private set; }
+
+    public Skill NextSkill { get; private set; }
 
     private StateMachine<EnemyBattleStateKey> _stateMachine;
-
-    private List<Skill> _attackSkills;
-    private List<Skill> _defenceSkills;
-    private List<Skill> _specialSkills;
-
     private EnemyCharacter _enemy;
-    private float _energyRegen;
-    private float _energyRegenDelay;
+    private List<Skill> _avaliableSkills;
 
-    private Coroutine _lastEnergyRegenRoutine;
-    private WaitForSeconds _waitForEnergyRegenDelay;
-    private bool _canEnrage;
+    private float _spiritRegen;
+    private float _spiritRegenDelay;
+    private float _spiritRegenTimer;
+
+    private bool _enableSpiritRegen;
+
+    private Dictionary<BattleAction, float> _battleActionRates;
 
     private void Awake()
     {
-        _attackSkills = new List<Skill>();
-        _defenceSkills = new List<Skill>();
-        _specialSkills = new List<Skill>();
-
         _enemy = GetComponent<EnemyCharacter>();
     }
 
@@ -37,42 +32,29 @@ public class EnemyBattleAI : MonoBehaviour
     {
         _stateMachine.Update();
 
-        if (_canEnrage)
+        if (_enableSpiritRegen)
         {
-            if (Health.CurrentValue < _healthRateForEnrage * Health.MaxValue.GetFinalValue())
-            {
-                _canEnrage = false;
-                _stateMachine.TransitionNext(EnemyBattleStateKey.TryEnrage);
-            }
+            HandleSpiritRegen();
         }
     }
 
-    public void InitializeBattleAI(SkillBook skillBook)
+    public void InitializeBattleAI()
     {
         Health = _enemy.Stats.Health;
-        Energy = _enemy.Stats.Spirit;
+        Spirit = _enemy.Stats.Spirit;
 
-        _energyRegen = _enemy.EnemySpec.EnergyRegen;
-        _energyRegenDelay = _enemy.EnemySpec.EnergyRegenDelay;
-        _waitForEnergyRegenDelay = new WaitForSeconds(_energyRegenDelay);
+        _spiritRegen = _enemy.EnemySpec.SpiritRegen;
+        _spiritRegenDelay = _enemy.EnemySpec.SpiritRegenDelay;
+        _spiritRegenTimer = _spiritRegenDelay;
 
-        CollectSkills(skillBook);
+        _avaliableSkills = CollectSkills(_enemy.SkillBook);
+
         CreateAvailableStates();
     }
 
-    public void ToggleEnergyRegen(bool enable)
+    public void ToggleSpiritRegen(bool enable)
     {
-        if (enable && gameObject.activeSelf)
-        {
-            _lastEnergyRegenRoutine = StartCoroutine(EnergyRegenRoutine());
-        }
-        else
-        {
-            if (_lastEnergyRegenRoutine != null)
-            {
-                StopCoroutine(_lastEnergyRegenRoutine);
-            }
-        }
+        _enableSpiritRegen = enable;
     }
 
     public void SetTransition(EnemyBattleStateKey battleStateKey)
@@ -80,105 +62,102 @@ public class EnemyBattleAI : MonoBehaviour
         _stateMachine.TransitionNext(battleStateKey);
     }
 
-    public Skill GetSuitableSkill(Dictionary<Skill, int> skillWeights)
+    public Dictionary<Skill, float> CalculateSkillWeights()
     {
-        Skill skill = null;
-        int minWeight = int.MaxValue;
+        CalculateBattleActionRates();
 
-        foreach (var pair in skillWeights)
+        Dictionary<Skill, float> weights = new Dictionary<Skill, float>();
+
+        foreach (Skill skill in _avaliableSkills)
         {
-            if (!pair.Key.IsCooldown)
+            if (skill.IsCooldown)
             {
-                if (pair.Value <= minWeight)
+                weights.Add(skill, 0);
+            }
+            else
+            {
+                weights.Add(skill, GetSkillWeight(skill));
+            }
+        }
+
+        return weights;
+    }
+
+    public void SetNextSkill(Skill nextSkill)
+    {
+        NextSkill = nextSkill;
+    }
+
+    private float GetSkillWeight(Skill skill)
+    {
+        float baseWeight = _spiritRegen
+                           * skill.SkillSO.Cooldown
+                           + Spirit.CurrentValue
+                           - skill.SkillSO.Cost;
+
+        float battleActionRate = _battleActionRates[skill.SkillSO.BattleAction];
+
+        return baseWeight * battleActionRate;
+    }
+
+    private void CalculateBattleActionRates()
+    {
+        CharacterResource playerHealth = PlayerCharacter.Active.Stats.Health;
+
+        float playerHealthRate = playerHealth.MaxValue.GetFinalValue() / playerHealth.CurrentValue;
+        float enemyHealthRate = Health.MaxValue.GetFinalValue() / Health.CurrentValue;
+
+        _battleActionRates = new Dictionary<BattleAction, float>()
+        { 
+            { BattleAction.Attack, playerHealthRate},
+            { BattleAction.Defence, 1 - playerHealthRate + enemyHealthRate},
+            { BattleAction.Heal, enemyHealthRate}
+        };
+    }
+
+    private List<Skill> CollectSkills(SkillBook skillBook)
+    {
+        List<Skill> skills = new List<Skill>();
+
+        foreach (SkillSlot slot in Enum.GetValues(typeof(SkillSlot)))
+        {
+            if (slot == SkillSlot.Passive) { continue; }
+
+            Skill[] slots = skillBook.GetSkillSlots(slot);
+
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i] != null)
                 {
-                    minWeight = pair.Value;
-                    skill = pair.Key;
+                    skills.Add(slots[i]);
                 }
             }
         }
 
-        return skill;
-    }
-
-    private void CollectSkills(SkillBook skillBook)
-    {
-        var activeSkills = skillBook.GetSkillSlots(SkillSlot.Active);
-
-        foreach (Skill skill in activeSkills)
-        {
-            if (skill == null) { continue; }
-
-            if (skill.SkillSO.GetType() == typeof(AttackSkillSO))
-            {
-                _attackSkills.Add(skill);
-            }
-            else if (skill.SkillSO.GetType() == typeof(DefenceSkillSO))
-            {
-                _defenceSkills.Add(skill);
-            }
-        }
-
-        var specialSkills = skillBook.GetSkillSlots(SkillSlot.Special);
-
-        foreach (Skill skill in specialSkills)
-        {
-            if (skill != null)
-            {
-                _specialSkills.Add(skill);
-            }
-        }
+        return skills;
     }
 
     private void CreateAvailableStates()
     {
-        EnemyAttack enemyAttack = new EnemyAttack(this, CreateSkillWeights(_attackSkills));
-        EnemyDefence enemyDefence = null;
+        EnemyAct enemyAct = new EnemyAct(this);
+        EnemyDecide enemyDecide = new EnemyDecide(this);
 
-        if (_defenceSkills.Count > 0)
-        {
-            enemyDefence = new EnemyDefence(this, CreateSkillWeights(_defenceSkills));
+        enemyAct.AddTransition(EnemyBattleStateKey.Decide, enemyDecide);
+        enemyDecide.AddTransition(EnemyBattleStateKey.Act, enemyAct);
 
-            enemyAttack.AddTransition(EnemyBattleStateKey.TryDefence, enemyDefence);
-            enemyDefence.AddTransition(EnemyBattleStateKey.TryAttack, enemyAttack);
-        }
-
-        if (_specialSkills.Count > 0)
-        {
-            EnemyEnrage enemyEnrage = new EnemyEnrage(this, _specialSkills);
-            _canEnrage = true;
-
-            enemyAttack.AddTransition(EnemyBattleStateKey.TryEnrage, enemyEnrage);
-
-            if (enemyDefence != null)
-            {
-                enemyDefence.AddTransition(EnemyBattleStateKey.TryEnrage, enemyEnrage);
-            }
-        }
-
-        _stateMachine = new StateMachine<EnemyBattleStateKey>(enemyAttack);
+        _stateMachine = new StateMachine<EnemyBattleStateKey>(enemyDecide);
     }
 
-    private IEnumerator EnergyRegenRoutine()
+    private void HandleSpiritRegen()
     {
-        while (true)
+        if (_spiritRegenTimer <= 0)
         {
-            yield return _waitForEnergyRegenDelay;
-            Energy.ChangeResource(_energyRegen);
+            Spirit.ChangeResource(_spiritRegen);
+            _spiritRegenTimer += _spiritRegenDelay;
         }
-    }
-
-    private Dictionary<Skill, int> CreateSkillWeights(List<Skill> skills)
-    {
-        Dictionary<Skill, int> skillWeights = new Dictionary<Skill, int>();
-
-        foreach (Skill skill in skills)
+        else
         {
-            int energyPerSecond = Mathf.RoundToInt(_energyRegen / _energyRegenDelay);
-            int weight = skill.SkillSO.Cooldown * energyPerSecond - skill.SkillSO.Cost;
-
-            skillWeights.Add(skill, weight);
+            _spiritRegenTimer -= Time.deltaTime;
         }
-
-        return skillWeights;
     }
 }
