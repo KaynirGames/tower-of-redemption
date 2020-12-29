@@ -1,14 +1,30 @@
 ﻿using UnityEngine;
+using UnityEngine.Localization;
 
 public class ItemPickup : Interactable
 {
     [SerializeField] private ItemSO _itemSO = null;
+    [SerializeField] private LocalizedString _pickupTextFormat = null;
 
     public override void Interact()
     {
-        PlayerCharacter.Active.Inventory.AddItem(_itemSO);
+        PlayerCharacter player = PlayerCharacter.Active;
+
+        CreatePickupItemPopup(_pickupTextFormat.GetLocalizedString(_itemSO.Name).Result,
+                              player.transform.position);
+
+        player.Inventory.AddItem(_itemSO);
+
         _onInteraction?.Invoke();
         Destroy(gameObject);
+    }
+
+    private void CreatePickupItemPopup(string text, Vector2 position)
+    {
+        string tag = AssetManager.Instance.PickupItemPopup.tag;
+        TextPopup textPopup = PoolManager.Instance.Take(tag)
+                                                  .GetComponent<TextPopup>();
+        textPopup.Setup(text, position);
     }
 
     protected override void OnTriggerEnter2D(Collider2D other) { }

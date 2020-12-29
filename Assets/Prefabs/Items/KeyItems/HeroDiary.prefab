@@ -149,20 +149,14 @@ MonoBehaviour:
   _interactOnce: 0
   _onInteraction:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   _itemSO: {fileID: 11400000, guid: be503326ec4fc8f4886da3fd7d013635, type: 2}
+  _pickupTextFormat:
+    m_TableReference:
+      m_TableCollectionName: GUID:a27c007587e81934bb9a9ddf394e7be9
+    m_TableEntryReference:
+      m_KeyId: 17083536741036032
+      m_Key: 
 --- !u!114 &1185750297184314029
 MonoBehaviour:
   m_ObjectHideFlags: 0

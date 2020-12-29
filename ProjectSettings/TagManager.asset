@@ -8,6 +8,10 @@ TagManager:
   - DamagePopup
   - SpiritPopup
   - EffectSlot
+  - DescriptionCanvas
+  - DungeonTitlePopup
+  - PickupItemPopup
+  - SpiritShortagePopup
   layers:
   - Default
   - TransparentFX

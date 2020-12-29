@@ -62,7 +62,10 @@ public class PoolManager : MonoBehaviour
 
         foreach (Pool pool in _pools)
         {
-            _poolDictionary.Add(pool.Prefab.tag, pool);
+            if (!_poolDictionary.ContainsKey(pool.Prefab.tag))
+            {
+                _poolDictionary.Add(pool.Prefab.tag, pool);
+            }
         }
     }
 }

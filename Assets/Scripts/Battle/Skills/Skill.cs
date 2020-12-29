@@ -65,20 +65,15 @@ public class Skill
 
     private bool ExecuteActiveSkill(Character owner)
     {
-        if (IsCooldown) { return false; }
-
-        if (!owner.Stats.IsEnoughEnergy(SkillSO.Cost))
+        if (!IsCooldown && owner.Stats.IsEnoughSpirit(SkillSO.Cost))
         {
-            OnRequiredEnergyShortage.Invoke();
-            Debug.Log("Not enough energy!");
-            return false;
+            SkillSO.Execute(owner, owner.CurrentOpponent, this);
+            owner.StartCoroutine(CooldownRoutine());
+
+            return true;
         }
 
-        SkillSO.Execute(owner, owner.CurrentOpponent, this);
-
-        owner.StartCoroutine(CooldownRoutine());
-
-        return true;
+        return false;
     }
 
     private void ExecutePassiveSkill(Character owner)

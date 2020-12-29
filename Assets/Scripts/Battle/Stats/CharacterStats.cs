@@ -18,7 +18,9 @@ public class CharacterStats : MonoBehaviour
     private Dictionary<StatType, Stat> _statDictionary;
     private Dictionary<ElementType, float> _elementEfficacyDictionary;
 
-    private FloatingTextPopup _damageTextPopup;
+    private TextPopup _damageTextPopup;
+    private TextPopup _spiritShortageTextPopup;
+    private PoolManager _poolManager;
     private Character _character;
 
     private void Awake()
@@ -34,6 +36,8 @@ public class CharacterStats : MonoBehaviour
         _elementEfficacyDictionary = CreateElementEfficacyDictionary(spec);
 
         _damageTextPopup = AssetManager.Instance.DamageTextPopup;
+        _spiritShortageTextPopup = AssetManager.Instance.SpiritShortageTextPopup;
+        _poolManager = PoolManager.Instance;
     }
 
     public Stat GetStat(StatType statType)
@@ -52,7 +56,8 @@ public class CharacterStats : MonoBehaviour
 
         if (healthAmount < 0)
         {
-            ShowDamageTextPopup(healthAmount);
+            CreateDamageTextPopup(healthAmount.ToString(),
+                                  transform.position);
         }
 
         if (Health.CurrentValue <= 0)
@@ -78,9 +83,33 @@ public class CharacterStats : MonoBehaviour
         UpdateStatDisplay(statType);
     }
 
-    public bool IsEnoughEnergy(float energyCost)
+    public bool IsEnoughSpirit(float energyCost)
     {
-        return Spirit.CurrentValue - energyCost >= 0;
+        if (Spirit.CurrentValue - energyCost < 0)
+        {
+            if (_character.GetType() == typeof(PlayerCharacter))
+            {
+                CreateSpiritShortageTextPopup(transform.position);
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
+    private void CreateDamageTextPopup(string text, Vector2 position)
+    {
+        TextPopup textPopup = _poolManager.Take(_damageTextPopup.tag)
+                                          .GetComponent<TextPopup>();
+        textPopup.Setup(text, position);
+    }
+
+    private void CreateSpiritShortageTextPopup(Vector2 position)
+    {
+        TextPopup textPopup = _poolManager.Take(_spiritShortageTextPopup.tag)
+                                          .GetComponent<TextPopup>();
+        textPopup.Setup(position);
     }
 
     private void CreateCharacterStats(SpecBase spec)
@@ -140,12 +169,5 @@ public class CharacterStats : MonoBehaviour
                 Spirit.FixCurrentValue(true);
                 break;
         }
-    }
-
-    private void ShowDamageTextPopup(float damageTaken)
-    {
-        _damageTextPopup.Create(damageTaken,
-                                transform.position,
-                                true);
     }
 }

@@ -17,7 +17,7 @@ public class SpiritGenerator : MonoBehaviour
     private List<Gemstone> _matchingGemstones = new List<Gemstone>();
     private List<int> _changedColumns = new List<int>();
 
-    private FloatingTextPopup _spiritTextPopup;
+    private TextPopup _spiritTextPopup;
     private WaitForSeconds _waitForMatrixUpdate;
 
     private void Start()
@@ -67,7 +67,8 @@ public class SpiritGenerator : MonoBehaviour
 
             PlayerCharacter.Active.Stats.ChangeSpirit(energyGain);
 
-            ShowSpiritTextPopup(energyGain);
+            CreateSpiritTextPopup(energyGain.ToString(),
+                                  KaynirTools.GetPointerWorldPosition());
         }
 
         ClearGemSelection();
@@ -81,6 +82,13 @@ public class SpiritGenerator : MonoBehaviour
         }
 
         _matchingGemstones.Clear();
+    }
+
+    private void CreateSpiritTextPopup(string text, Vector2 position)
+    {
+        TextPopup textPopup = PoolManager.Instance.Take(_spiritTextPopup.tag)
+                                                  .GetComponent<TextPopup>();
+        textPopup.Setup(text, position);
     }
 
     private void HandleGemstoneDisposal(Gemstone gemstone)
@@ -117,12 +125,5 @@ public class SpiritGenerator : MonoBehaviour
         yield return _waitForMatrixUpdate;
 
         _gemMatrixUI.UpdateMatrixColumnUI(column);
-    }
-
-    private void ShowSpiritTextPopup(float spiritGain)
-    {
-        _spiritTextPopup.Create(spiritGain,
-                                KaynirTools.GetPointerRawPosition(),
-                                true);
     }
 }

@@ -107,16 +107,17 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281416622
-  m_fontColor: {r: 0.68235296, g: 0.23137257, b: 0.19215688, a: 1}
-  m_enableVertexGradient: 0
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: a0280166d18f1144f894796408b95370,
+    type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -180,7 +181,7 @@ GameObject:
   - component: {fileID: 3775270695086437065}
   - component: {fileID: 3775270695086437066}
   m_Layer: 0
-  m_Name: FloatingDamagePopup
+  m_Name: DamageTextPopup
   m_TagString: DamagePopup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,31 +211,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 3775270695086437067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce07a48d7b21b2c419c9a023ee9a4a98, type: 3}
+  m_Script: {fileID: 11500000, guid: aa2d6fe0547d5ce4a9cbda928355c131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textMesh: {fileID: 3775270694045679504}
-  _textColor: {r: 0.68235296, g: 0.23137257, b: 0.19215688, a: 1}
-  _fontSize: 8
   _popupLifetime: 2
-  _fadeDelay: 1
-  _minMoveOffset: {x: -1, y: 2}
-  _maxMoveOffset: {x: 1, y: 2}
-  _scaleFactor: {x: 1.5, y: 1.5}
+  _moveSpeed: 0.5
+  _minMoveOffset: {x: -1, y: 1}
+  _maxMoveOffset: {x: 1, y: 1}
+  _fadeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.35
+      value: 1
+      inSlope: -0
+      outSlope: -1.5384616
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.5384616
+      outSlope: -1.5600193
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.13908875
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _scaleCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
       value: 1
       inSlope: 0
       outSlope: 0
@@ -243,8 +264,17 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 0.5
+      value: 1.25
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 136

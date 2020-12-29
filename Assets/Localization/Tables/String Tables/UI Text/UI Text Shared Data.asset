@@ -107,6 +107,14 @@ MonoBehaviour:
     m_Key: UI.GameTitle
     m_Metadata:
       m_Items: []
+  - m_Id: 17083536741036032
+    m_Key: UI.PickupItem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17121478477934592
+    m_Key: UI.SpiritShortageWarning
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

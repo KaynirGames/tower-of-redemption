@@ -106,5 +106,13 @@ MonoBehaviour:
     m_Localized: Tower of Redemption
     m_Metadata:
       m_Items: []
+  - m_Id: 17083536741036032
+    m_Localized: You found {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17121478477934592
+    m_Localized: Not enough spirit!
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

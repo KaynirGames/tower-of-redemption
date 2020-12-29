@@ -2,30 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
-using DG.Tweening;
 
 public class GameMaster : MonoBehaviour
 {
     public static GameMaster Instance { get; private set; }
 
     [SerializeField] private CanvasGroup _loadingScreenGroup = null;
-    [Header("Название этажа подземелья:")]
-    [SerializeField] private CanvasGroup _dungeonTitleGroup = null;
-    [SerializeField] private float _titleScaleDuration = 2f;
-    [SerializeField] private float _titleFadeDuration = 4f;
+    [SerializeField] private Transform _dungeonTitlePlacement = null;
 
     public GameSettings GameSettings { get; private set; }
     public bool IsPause { get; private set; }
 
     private DungeonStageGenerator _stageGenerator;
     private AssetManager _assetManager;
-    private TextMeshProUGUI _dungeonTitleField;
+    private PoolManager _poolManager;
 
     private Queue<DungeonStage> _selectedStages;
     private DungeonStage _currentStage;
     private GameObject _selectedPlayerPrefab;
-    
+
     private SaveData _currentSaveData;
     private bool _continueGame;
 
@@ -44,7 +39,6 @@ public class GameMaster : MonoBehaviour
 
         GameSettings = GetComponent<GameSettings>();
         _stageGenerator = GetComponent<DungeonStageGenerator>();
-        _dungeonTitleField = _dungeonTitleGroup.GetComponentInChildren<TextMeshProUGUI>();
 
         SaveSystem.Init();
     }
@@ -52,6 +46,7 @@ public class GameMaster : MonoBehaviour
     private void Start()
     {
         _assetManager = AssetManager.Instance;
+        _poolManager = PoolManager.Instance;
     }
 
     public void TogglePause(bool isPause)
@@ -186,12 +181,8 @@ public class GameMaster : MonoBehaviour
 
     private void ShowDungeonStageTitle(DungeonStage stage)
     {
-        _dungeonTitleField.SetText(stage.StageName);
-        _dungeonTitleField.transform.localScale = Vector3.zero;
-        _dungeonTitleGroup.alpha = 1f;
-
-        _dungeonTitleField.transform.DOScale(Vector3.one, _titleScaleDuration)
-                                    .OnComplete(() =>
-                                    _dungeonTitleGroup.DOFade(0f, _titleFadeDuration));
+        TextPopup textPopup = _poolManager.Take(_assetManager.DungeonTitlePopup.tag)
+                                          .GetComponent<TextPopup>();
+        textPopup.Setup(stage.StageName, _dungeonTitlePlacement.position);
     }
 }

@@ -48,9 +48,15 @@ MonoBehaviour:
     type: 3}
   _gemSlotPrefab: {fileID: 3577948330208753192, guid: 6b209d0ca4745d84db3dd2d8c819a8da,
     type: 3}
-  _spiritTextPopup: {fileID: 3775270695086437066, guid: 9ab0a5df27b052f4cbea5babb088af61,
+  _spiritTextPopup: {fileID: 3775270695086437066, guid: 9f16651ef0f36004994489f8a64cf7ee,
     type: 3}
   _damageTextPopup: {fileID: 3775270695086437066, guid: 49fce650f7d9bd949888f55b7663db4e,
+    type: 3}
+  _pickupItemPopup: {fileID: 3775270695086437066, guid: 1c3aeddf86f9f474390bd5bd0eeeae4b,
+    type: 3}
+  _dungeonTitlePopup: {fileID: 3775270695086437066, guid: cfc49d93c50d0e041bde3c8b76e02d3b,
+    type: 3}
+  _spiritShortageTextPopup: {fileID: 3775270695086437066, guid: f5bfd3a5a4a9d6c439b843b39f09f49a,
     type: 3}
   _statDatabase: {fileID: 11400000, guid: 3565a9af924d17d40813db3770c8150c, type: 2}
   _stageDatabase: {fileID: 11400000, guid: a4c0add3f73751c479c3884253eadd39, type: 2}
@@ -72,9 +78,15 @@ MonoBehaviour:
   _pools:
   - _prefab: {fileID: 3551053097261825995, guid: 13d9716a683969f489ad37f8eed197ff,
       type: 3}
-  - _prefab: {fileID: 3775270695086437067, guid: 9ab0a5df27b052f4cbea5babb088af61,
+  - _prefab: {fileID: 3775270695086437067, guid: 9f16651ef0f36004994489f8a64cf7ee,
       type: 3}
   - _prefab: {fileID: 3775270695086437067, guid: 49fce650f7d9bd949888f55b7663db4e,
       type: 3}
   - _prefab: {fileID: 6459740503176005825, guid: 9c980c3ae498da34c847a5a335088efa,
+      type: 3}
+  - _prefab: {fileID: 3775270695086437067, guid: 1c3aeddf86f9f474390bd5bd0eeeae4b,
+      type: 3}
+  - _prefab: {fileID: 3775270695086437067, guid: cfc49d93c50d0e041bde3c8b76e02d3b,
+      type: 3}
+  - _prefab: {fileID: 3775270695086437067, guid: f5bfd3a5a4a9d6c439b843b39f09f49a,
       type: 3}
