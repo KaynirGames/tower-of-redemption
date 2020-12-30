@@ -87,4 +87,9 @@ public class SkillReplaceUI : MonoBehaviour
             _avaliableSlots = null;
         }
     }
+
+    private void OnDestroy()
+    {
+        PlayerCharacter.OnPlayerActive -= RegisterSkillBook;
+    }
 }

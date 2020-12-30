@@ -30,4 +30,9 @@ public class Pool
 
         return gameObject;
     }
+
+    public void Clear()
+    {
+        _poolQueue.Clear();
+    }
 }

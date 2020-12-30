@@ -22,7 +22,6 @@ public class MenuUI : MonoBehaviour
         _menuCanvasGroup = GetComponent<CanvasGroup>();
 
         _actionPopupUI.OnItemDescriptionCall += ShowDescription;
-
         SkillSlotUI.OnSkillDescriptionCall += ShowDescription;
     }
 
@@ -66,5 +65,11 @@ public class MenuUI : MonoBehaviour
     private void ShowDescription(string name, string type, string description)
     {
         _descriptionUI.SetDescriptionText(name, type, description);
+    }
+
+    private void OnDestroy()
+    {
+        _actionPopupUI.OnItemDescriptionCall -= ShowDescription;
+        SkillSlotUI.OnSkillDescriptionCall -= ShowDescription;
     }
 }

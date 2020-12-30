@@ -35,4 +35,9 @@ public class PlayerUI : MonoBehaviour
             joystickHandler.SetJoystick(_joystick, _attackButton);
         }
     }
+
+    private void OnDestroy()
+    {
+        PlayerCharacter.OnPlayerActive -= RegisterPlayer;
+    }
 }

@@ -36,6 +36,14 @@ public class PoolManager : MonoBehaviour
         return pool.Take();
     }
 
+    public void ClearPools()
+    {
+        foreach (var pool in _poolDictionary)
+        {
+            pool.Value.Clear();
+        }
+    }
+
     private void ExpandPool(Pool pool, int amount)
     {
         for (int i = 0; i < amount; i++)

@@ -122,6 +122,9 @@ public class GameMaster : MonoBehaviour
     private IEnumerator LoadDungeonRoutine()
     {
         yield return ToggleLoadingScreenRoutine(true);
+
+        ClearData();
+
         yield return AsyncLoadRoutine(SceneType.Dungeon);
 
         if (_selectedStages.Count > 0)
@@ -142,6 +145,8 @@ public class GameMaster : MonoBehaviour
 
     private IEnumerator ToggleLoadingScreenRoutine(bool enable)
     {
+        yield return null;
+
         if (enable)
         {
             _loadingScreenGroup.gameObject.SetActive(true);
@@ -184,5 +189,12 @@ public class GameMaster : MonoBehaviour
         TextPopup textPopup = _poolManager.Take(_assetManager.DungeonTitlePopup.tag)
                                           .GetComponent<TextPopup>();
         textPopup.Setup(stage.StageName, _dungeonTitlePlacement.position);
+    }
+
+    private void ClearData()
+    {
+        Room.LoadedRooms.Clear();
+        EnemyCharacter.ActiveEnemies.Clear();
+        _poolManager.ClearPools();
     }
 }

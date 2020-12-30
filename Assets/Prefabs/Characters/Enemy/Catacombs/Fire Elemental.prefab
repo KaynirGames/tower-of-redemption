@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: -2355929328813718076}
   - component: {fileID: -7678371869788603351}
   - component: {fileID: -5133250933088991838}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fire Elemental
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,8 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1909d42307af9c849b499237b35dcc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sightRange: 4
-  _waitTimeOnTargetLost: 3
+  _sightRange: 5
+  _waitTimeOnTargetLost: 2
   _includeObstaclesOnPatrol: 1
   _displayGizmos: 0
 --- !u!114 &-6886865580493011481
@@ -107,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ed50a8035bf9a46a4451583118237c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthRateForEnrage: 0.2
 --- !u!114 &6019955237486239111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +214,7 @@ GameObject:
   - component: {fileID: 7282492576520255804}
   - component: {fileID: 5763809499401112461}
   - component: {fileID: 2188462988356910047}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

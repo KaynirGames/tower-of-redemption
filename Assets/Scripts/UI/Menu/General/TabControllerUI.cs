@@ -43,4 +43,9 @@ public class TabControllerUI : MonoBehaviour
 
         SetTab(_currentTabIndex);
     }
+
+    private void OnDestroy()
+    {
+        PlayerCharacter.OnPlayerActive -= RegisterPlayer;
+    }
 }
