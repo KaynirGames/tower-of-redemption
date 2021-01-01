@@ -12,4 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110a07c0a7811174f872ff9777f86f8e, type: 3}
   m_Name: Cata Bronze Loot ST
   m_EditorClassIdentifier: 
-  _spawnableObjects: []
+  _spawnableObjects:
+  - _objectToSpawn: {fileID: 2384022530287293373, guid: b166c450b344ae144b8051e4ab19656b,
+      type: 3}
+    _weight: 75
+    _index: 0
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: 94c7c6fdbf9e199439746b9ec6ee916f,
+      type: 3}
+    _weight: 5
+    _index: 1
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: fb03393cfd6c56747982f7959e12648a,
+      type: 3}
+    _weight: 5
+    _index: 2
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: 267b0b78b7c70b7499341b5d093febea,
+      type: 3}
+    _weight: 5
+    _index: 3
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: 21107d657ee7ee346a86d1bca28b72c8,
+      type: 3}
+    _weight: 5
+    _index: 4
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: c104d804c546faf44a65135eded9e97f,
+      type: 3}
+    _weight: 5
+    _index: 5

@@ -28,8 +28,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3618068583739392
-    m_Localized: An ancient scroll containing a detailed description of the "Fortification"
-      skill. You just need to read it, and the knowledge will be yours.
+    m_Localized: An ancient scroll containing a detailed description of the active
+      skill. Just read it, and the knowledge will be yours.
     m_Metadata:
       m_Items: []
   - m_Id: 7740026942451712
@@ -42,6 +42,16 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7986302426607616
     m_Localized: Smells good... want a bite? Heals for 15% HP.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14153931461816320
+    m_Localized: An ancient scroll containing a detailed description of the special
+      skill. Just read it, and the knowledge will be yours.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14154042074001408
+    m_Localized: An ancient scroll containing a detailed description of the passive
+      skill. Just read it, and the knowledge will be yours.
     m_Metadata:
       m_Items: []
   references:

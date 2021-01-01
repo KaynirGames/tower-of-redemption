@@ -39,6 +39,50 @@ MonoBehaviour:
     m_Key: Food.Name.Ham
     m_Metadata:
       m_Items: []
+  - m_Id: 14145089244033024
+    m_Key: SkillScroll.Name.CreepySkull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14145617302712320
+    m_Key: SkillScroll.Name.StrongBone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14146125518139392
+    m_Key: SkillScroll.Name.Bonewhirl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14146466582163456
+    m_Key: SkillScroll.Name.ArmorBreaker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14146708471869440
+    m_Key: SkillScroll.Name.BattleCry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14147034277015552
+    m_Key: SkillScroll.Name.SecondWind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14147389433901056
+    m_Key: SkillScroll.Name.FireShell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14151990895767552
+    m_Key: SkillScroll.Name.FlameStream
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14152255610875904
+    m_Key: SkillScroll.Name.Tremor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14152377904197632
+    m_Key: SkillScroll.Name.IceShard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14152465149915136
+    m_Key: SkillScroll.Name.Cure
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

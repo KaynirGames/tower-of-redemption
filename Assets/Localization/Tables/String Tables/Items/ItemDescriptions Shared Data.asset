@@ -24,7 +24,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3618068583739392
-    m_Key: SkillScroll.Desc.Fortification
+    m_Key: SkillScroll.Desc.Active
     m_Metadata:
       m_Items: []
   - m_Id: 7740026942451712
@@ -37,6 +37,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7986302426607616
     m_Key: Food.Desc.Ham
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14153931461816320
+    m_Key: SkillScroll.Desc.Special
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14154042074001408
+    m_Key: SkillScroll.Desc.Passive
     m_Metadata:
       m_Items: []
   m_Metadata:

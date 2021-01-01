@@ -12,4 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110a07c0a7811174f872ff9777f86f8e, type: 3}
   m_Name: Cata Silver Loot ST
   m_EditorClassIdentifier: 
-  _spawnableObjects: []
+  _spawnableObjects:
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: 94c7c6fdbf9e199439746b9ec6ee916f,
+      type: 3}
+    _weight: 14
+    _index: 0
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: fb03393cfd6c56747982f7959e12648a,
+      type: 3}
+    _weight: 14
+    _index: 1
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: 267b0b78b7c70b7499341b5d093febea,
+      type: 3}
+    _weight: 14
+    _index: 2
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: 21107d657ee7ee346a86d1bca28b72c8,
+      type: 3}
+    _weight: 14
+    _index: 3
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: c104d804c546faf44a65135eded9e97f,
+      type: 3}
+    _weight: 14
+    _index: 4
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: 9566521df9637194c9b032ea11547e00,
+      type: 3}
+    _weight: 6
+    _index: 5
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: 3e0692a15babc814ba3a1b29d4eda3ee,
+      type: 3}
+    _weight: 6
+    _index: 6
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: 8790ed8795e3db34ea5e0fe658f23f57,
+      type: 3}
+    _weight: 5
+    _index: 7
+  - _objectToSpawn: {fileID: 8405743419961305623, guid: 1552841852fd6f940a010114e12094fa,
+      type: 3}
+    _weight: 3
+    _index: 8

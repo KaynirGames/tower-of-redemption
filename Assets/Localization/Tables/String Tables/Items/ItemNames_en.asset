@@ -23,11 +23,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 133569665363968
-    m_Localized: Hero's Diary
+    m_Localized: Diary of Hero
     m_Metadata:
       m_Items: []
   - m_Id: 3618068638265344
-    m_Localized: '"Fortification" Scroll'
+    m_Localized: '"Fortification" scroll'
     m_Metadata:
       m_Items: []
   - m_Id: 7739701284106240
@@ -40,6 +40,50 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7986825833803776
     m_Localized: Ham
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14145089244033024
+    m_Localized: Scroll of "Creepy skull"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14145617302712320
+    m_Localized: Scroll of "Strong bone"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14146125518139392
+    m_Localized: Scroll of "Bonewhirl"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14146466582163456
+    m_Localized: Scroll of "Armor breaker"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14146708471869440
+    m_Localized: Scroll of "Battle cry"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14147034277015552
+    m_Localized: Scroll of "Second wind"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14147389433901056
+    m_Localized: Scroll of "Fire shell"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14151990895767552
+    m_Localized: Scroll of "Flame stream"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14152255610875904
+    m_Localized: Scroll of "Tremor"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14152377904197632
+    m_Localized: Scroll of "Ice shard"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14152465149915136
+    m_Localized: Scroll of "Cure"
     m_Metadata:
       m_Items: []
   references:

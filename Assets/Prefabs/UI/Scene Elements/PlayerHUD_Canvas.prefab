@@ -728,10 +728,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6071804257605525613, guid: 28de8e0e3b55b67468e43cf4bd828e3d,
+    - target: {fileID: 7917458038366574780, guid: 28de8e0e3b55b67468e43cf4bd828e3d,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 1
+      propertyPath: m_AnchoredPosition.x
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7917458038366574780, guid: 28de8e0e3b55b67468e43cf4bd828e3d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28de8e0e3b55b67468e43cf4bd828e3d, type: 3}

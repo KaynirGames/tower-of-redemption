@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 7759473561509179013}
   - component: {fileID: 7656357522702894841}
   - component: {fileID: 6458994075644275399}
+  - component: {fileID: 5140488863419117569}
   m_Layer: 11
   m_Name: BattleSkillSlot
   m_TagString: Untagged
@@ -229,6 +230,19 @@ MonoBehaviour:
   _useButton: {fileID: 7656357522702894841}
   _displayCooldown: 1
   _skillCooldownMask: {fileID: 7244374227129055900}
+--- !u!114 &5140488863419117569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6730174096114230184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e5a9e4c0bac6b409ba5f1900df4265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tooltipDelay: 0.5
 --- !u!1 &8093416064658386689
 GameObject:
   m_ObjectHideFlags: 0

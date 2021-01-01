@@ -21,6 +21,7 @@ public class AttackSkillSO : SkillSO
         _ownerEffects.ForEach(effect => effect.Apply(owner, skill));
         _opponentEffects.ForEach(effect => effect.Apply(opponent, skill));
 
+        opponent.Animations.SetParameter("Hurt");
         opponent.Stats.ChangeHealth(-damage);
     }
 

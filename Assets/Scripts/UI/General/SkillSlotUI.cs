@@ -4,7 +4,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Слот умения на UI.
 /// </summary>
-public class SkillSlotUI : MonoBehaviour
+public class SkillSlotUI : MonoBehaviour, ITooltipHandler
 {
     public static event DescriptionUI.OnDescriptionCall OnSkillDescriptionCall = delegate { };
 
@@ -61,6 +61,22 @@ public class SkillSlotUI : MonoBehaviour
     public void ToggleSlotInteraction(bool enable)
     {
         _useButton.interactable = enable;
+    }
+
+    public bool OnTooltipRequest(out string content, out string header)
+    {
+        if (Skill != null)
+        {
+            content = Skill.SkillSO.Description;
+            header = Skill.SkillSO.Name;
+            return true;
+        }
+        else
+        {
+            content = null;
+            header = null;
+            return false;
+        }
     }
 
     private void FillSlotUI(Skill skill)
