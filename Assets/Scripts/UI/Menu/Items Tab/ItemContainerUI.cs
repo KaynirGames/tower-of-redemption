@@ -11,12 +11,10 @@ public class ItemContainerUI : MonoBehaviour
     private List<Item> _items;
 
     private PoolManager _poolManager;
-    private AssetManager _assetManager;
 
     private void Start()
     {
         _poolManager = PoolManager.Instance;
-        _assetManager = AssetManager.Instance;
         _itemSlots = new List<ItemSlotUI>();
 
         CreateItemSlots(_maxSlots);
@@ -68,7 +66,7 @@ public class ItemContainerUI : MonoBehaviour
 
     private void CreateSlot()
     {
-        GameObject slotObject = _poolManager.Take(_assetManager.ItemSlotPrefab.tag);
+        GameObject slotObject = _poolManager.Take(PoolTags.ItemSlot.ToString());
         slotObject.transform.SetParent(_slotsParent.transform, false);
 
         _itemSlots.Add(slotObject.GetComponent<ItemSlotUI>());

@@ -14,9 +14,18 @@ public class EffectSlotUI : MonoBehaviour, ITooltipHandler
     private Effect _effect;
     private float _effectDuration;
 
+    private PoolManager _poolManager;
+    private TooltipManager _tooltipManager;
+
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
+    }
+
+    private void Start()
+    {
+        _poolManager = PoolManager.Instance;
+        _tooltipManager = TooltipManager.Instance;
     }
 
     public void RegisterSlot(EffectDisplayUI effectDisplayUI, Effect effect)
@@ -51,8 +60,8 @@ public class EffectSlotUI : MonoBehaviour, ITooltipHandler
             _chargesText.gameObject.SetActive(false);
         }
 
-        TooltipManager.Instance.HideTooltip();
-        PoolManager.Instance.Store(gameObject);
+        _tooltipManager.HideTooltip();
+        _poolManager.Store(gameObject);
     }
 
     public void SetAsLastSlot()

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +7,6 @@ public class EffectDisplayUI : MonoBehaviour
 {
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private RectTransform _effectSlotsParent = null;
-    [SerializeField] private EffectSlotUI _effectSlotPrefab = null;
     [Header("Параметры отображения эффектов:")]
     [SerializeField] private float _scrollSpeed = 0.5f;
     [SerializeField] private int _minAmountToScroll = 4;
@@ -61,7 +59,7 @@ public class EffectDisplayUI : MonoBehaviour
 
     private EffectSlotUI CreateSlot(Effect effect)
     {
-        GameObject slotObject = _poolManager.Take(_effectSlotPrefab.tag);
+        GameObject slotObject = _poolManager.Take(PoolTags.EffectSlot.ToString());
         slotObject.transform.SetParent(_effectSlotsParent, false);
 
         EffectSlotUI effectSlot = slotObject.GetComponent<EffectSlotUI>();

@@ -24,18 +24,19 @@ public class DamageOverTimeSO : EffectSO
 
         if (!TryRestartEffect(target))
         {
-            Effect effectInstance = new Effect(this, target, effectSource);
+            Effect effect = new Effect(this, target, effectSource);
 
             float statModifierValue = target.Stats.GetStat(_statData.StatType).BaseValue
                                       * _baseStatModifyRate
                                       / 100f;
 
-            StatModifier statModifier = new StatModifier(statModifierValue, effectInstance);
+            StatModifier statModifier = new StatModifier(statModifierValue, effect);
             target.Stats.AddStatModifier(_statData.StatType, statModifier);
 
-            target.Effects.AilmentEffects.Add(_ailmentData, effectInstance);
+            target.Effects.AilmentEffects.Add(_ailmentData, effect);
 
-            effectInstance.StartDuration();
+            _ailmentData.ShowAilmentNamePopup(target.transform.position);
+            effect.StartDuration();
         }
     }
 

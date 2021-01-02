@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Skill
@@ -10,22 +9,17 @@ public class Skill
     public event OnSkillCooldownTick OnCooldownTick = delegate { };
     public event OnSkillCooldownToggle OnCooldownToggle = delegate { };
 
-    public event Action OnRequiredEnergyShortage = delegate { };
-
     public SkillSO SkillSO { get; private set; }
     public bool IsCooldown { get; private set; }
 
     private string _cachedDescription;
     private float _cooldownTimer;
 
-    private string _skillNamePopupTag;
     private PoolManager _poolManager;
 
     public Skill(SkillSO skillSO)
     {
         SkillSO = skillSO;
-
-        _skillNamePopupTag = AssetManager.Instance.SkillNamePopup.tag;
         _poolManager = PoolManager.Instance;
     }
 
@@ -86,7 +80,7 @@ public class Skill
 
     private void ShowSkillNamePopup(Transform ownerTransform)
     {
-        GameObject popup = _poolManager.Take(_skillNamePopupTag);
+        GameObject popup = _poolManager.Take(PoolTags.SkillNamePopup.ToString());
         popup.GetComponent<TextPopup>().Setup(SkillSO.Name,
                                               ownerTransform.position);
     }

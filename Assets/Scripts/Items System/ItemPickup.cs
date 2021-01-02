@@ -28,10 +28,9 @@ public class ItemPickup : Interactable
 
     private void CreatePickupItemPopup(string text, Vector2 position)
     {
-        string tag = AssetManager.Instance.PickupItemPopup.tag;
-        TextPopup textPopup = PoolManager.Instance.Take(tag)
-                                                  .GetComponent<TextPopup>();
-        textPopup.Setup(text, position);
+        PoolManager.Instance.Take(PoolTags.PickupItemPopup.ToString())
+                            .GetComponent<TextPopup>()
+                            .Setup(text, position);
     }
 
     protected override void OnTriggerEnter2D(Collider2D other) { }

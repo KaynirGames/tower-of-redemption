@@ -32,4 +32,11 @@ public class AilmentSO : ScriptableObject
 
         return false;
     }
+
+    public void ShowAilmentNamePopup(Vector2 position)
+    {
+        PoolManager.Instance.Take(PoolTags.AilmentNamePopup.ToString())
+                            .GetComponent<TextPopup>()
+                            .Setup(Name, position);
+    }
 }

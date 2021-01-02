@@ -97,7 +97,6 @@ public class Effect
             yield return _waitForNextTick;
         }
 
-        _lastDurationRoutine = null;
         RemoveEffect();
     }
 }

@@ -37,7 +37,7 @@ public class AttackSkillSO : SkillSO
 
                 if (nullifier.IsAttackNullable(_damageType))
                 {
-                    // Вопроизвести анимацию/показать текст о блокировании атаки?
+                    ailment.Key.ShowAilmentNamePopup(character.transform.position);
                     ailment.Value.RemoveCharge();
                     return true;
                 }

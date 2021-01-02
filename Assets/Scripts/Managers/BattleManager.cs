@@ -29,6 +29,7 @@ public class BattleManager : MonoBehaviour
     private PlayerCharacter _player;
     private EnemyCharacter _enemy;
     private List<EnemyCharacter> _activeEnemies;
+    private GameMaster _gameMaster;
 
     private Vector3 _lastPlayerPosition;
     private Vector3 _lastEnemyPosition;
@@ -50,6 +51,7 @@ public class BattleManager : MonoBehaviour
     {
         _waitBeforeEnemyActivation = new WaitForSeconds(_enemyActivationDelay);
         _activeEnemies = EnemyCharacter.ActiveEnemies;
+        _gameMaster = GameMaster.Instance;
     }
 
     private bool StartBattle(EnemyCharacter enemy, bool isPlayerAdvantage)
@@ -125,13 +127,13 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator BattleStartRoutine()
     {
-        GameMaster.Instance.TogglePause(true);
+        _gameMaster.TogglePause(true);
 
         yield return _transitionController.PlayAndWaitForAnimRoutine("Enter",
                                                                      true,
                                                                      PrepareBattlefield);
 
-        GameMaster.Instance.TogglePause(false);
+        _gameMaster.TogglePause(false);
         OnBattleEnter.Invoke();
 
         yield return _waitBeforeEnemyActivation;
@@ -142,7 +144,7 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator BattleVictoryRoutine()
     {
-        GameMaster.Instance.TogglePause(true);
+        _gameMaster.TogglePause(true);
 
         yield return _enemy.Animations.PlayAndWaitForAnimRoutine("Death",
                                                                  true);
@@ -151,7 +153,7 @@ public class BattleManager : MonoBehaviour
                                                                      true,
                                                                      CloseBattlefield);
 
-        GameMaster.Instance.TogglePause(false);
+        _gameMaster.TogglePause(false);
         OnBattleExit.Invoke();
 
         yield return _waitBeforeEnemyActivation;
@@ -165,14 +167,14 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator BattleDefeatRoutine()
     {
-        GameMaster.Instance.TogglePause(true);
+        _gameMaster.TogglePause(true);
 
         yield return _player.Animations.PlayAndWaitForAnimRoutine("Death",
                                                                   true);
 
         _transitionController.PlayAnimation("Defeat");
 
-        GameMaster.Instance.TogglePause(false);
+        _gameMaster.TogglePause(false);
     }
 
     private void CheckIfRoomClear()

@@ -20,11 +20,11 @@ public class AttackNullifierSO : EffectSO
     {
         if (!TryRestartEffect(target))
         {
-            Effect effectInstance = new Effect(this, target, effectSource);
+            Effect effect = new Effect(this, target, effectSource);
 
-            target.Effects.AilmentEffects.Add(_ailmentData, effectInstance);
+            target.Effects.AilmentEffects.Add(_ailmentData, effect);
 
-            effectInstance.StartDuration();
+            effect.StartDuration();
         }
     }
 

@@ -27,9 +27,9 @@ public class CharacterEffects : MonoBehaviour
             : _negativeStatBuffs;
     }
 
-    public void DisplayEffect(Effect instance)
+    public void DisplayEffect(Effect effect)
     {
-        OnDisplayEffectCall.Invoke(instance);
+        OnDisplayEffectCall.Invoke(effect);
     }
 
     public void DisableBattleEffects()

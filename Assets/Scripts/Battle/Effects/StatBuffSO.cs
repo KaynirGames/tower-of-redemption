@@ -22,18 +22,18 @@ public class StatBuffSO : EffectSO
     {
         if (!TryRestartEffect(target))
         {
-            Effect newInstance = new Effect(this, target, effectSource);
+            Effect effect = new Effect(this, target, effectSource);
 
             Stat stat = target.Stats.GetStat(StatType);
             float buffValue = _buffGrade.CalculateBuffValue(stat.BaseValue);
 
-            StatModifier statModifier = new StatModifier(buffValue, newInstance);
+            StatModifier statModifier = new StatModifier(buffValue, effect);
             target.Stats.AddStatModifier(StatType, statModifier);
 
             target.Effects.GetStatBuffs(_buffGrade.IsPositive)
-                          .Add(StatType, newInstance);
+                          .Add(StatType, effect);
 
-            newInstance.StartDuration();
+            effect.StartDuration();
         }
     }
 

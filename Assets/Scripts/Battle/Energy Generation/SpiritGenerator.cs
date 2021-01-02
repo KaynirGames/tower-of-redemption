@@ -17,12 +17,12 @@ public class SpiritGenerator : MonoBehaviour
     private List<Gemstone> _matchingGemstones = new List<Gemstone>();
     private List<int> _changedColumns = new List<int>();
 
-    private TextPopup _spiritTextPopup;
+    private PoolManager _poolManager;
     private WaitForSeconds _waitForMatrixUpdate;
 
     private void Start()
     {
-        _spiritTextPopup = AssetManager.Instance.SpiritTextPopup;
+        _poolManager = PoolManager.Instance;
         _waitForMatrixUpdate = new WaitForSeconds(_timeForMatrixUpdate);
         SetupGenerator();
     }
@@ -86,9 +86,9 @@ public class SpiritGenerator : MonoBehaviour
 
     private void CreateSpiritTextPopup(string text, Vector2 position)
     {
-        TextPopup textPopup = PoolManager.Instance.Take(_spiritTextPopup.tag)
-                                                  .GetComponent<TextPopup>();
-        textPopup.Setup(text, position);
+        _poolManager.Take(PoolTags.SpiritPopup.ToString())
+                    .GetComponent<TextPopup>()
+                    .Setup(text, position);
     }
 
     private void HandleGemstoneDisposal(Gemstone gemstone)

@@ -18,8 +18,6 @@ public class CharacterStats : MonoBehaviour
     private Dictionary<StatType, Stat> _statDictionary;
     private Dictionary<ElementType, float> _elementEfficacyDictionary;
 
-    private TextPopup _damageTextPopup;
-    private TextPopup _spiritShortageTextPopup;
     private PoolManager _poolManager;
     private Character _character;
 
@@ -35,8 +33,6 @@ public class CharacterStats : MonoBehaviour
         _statDictionary = CreateStatDictionary();
         _elementEfficacyDictionary = CreateElementEfficacyDictionary(spec);
 
-        _damageTextPopup = AssetManager.Instance.DamageTextPopup;
-        _spiritShortageTextPopup = AssetManager.Instance.SpiritShortageTextPopup;
         _poolManager = PoolManager.Instance;
     }
 
@@ -100,14 +96,14 @@ public class CharacterStats : MonoBehaviour
 
     private void CreateDamageTextPopup(string text, Vector2 position)
     {
-        TextPopup textPopup = _poolManager.Take(_damageTextPopup.tag)
+        TextPopup textPopup = _poolManager.Take(PoolTags.DamagePopup.ToString())
                                           .GetComponent<TextPopup>();
         textPopup.Setup(text, position);
     }
 
     private void CreateSpiritShortageTextPopup(Vector2 position)
     {
-        TextPopup textPopup = _poolManager.Take(_spiritShortageTextPopup.tag)
+        TextPopup textPopup = _poolManager.Take(PoolTags.SpiritShortagePopup.ToString())
                                           .GetComponent<TextPopup>();
         textPopup.Setup(position);
     }

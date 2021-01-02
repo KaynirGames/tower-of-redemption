@@ -9,11 +9,11 @@ public class StatBonusSO : EffectSO
 
     public override void Apply(Character target, object effectSource)
     {
-        Effect newInstance = new Effect(this, target, effectSource);
-        StatModifier modifier = new StatModifier(_bonusValue, newInstance);
+        Effect effect = new Effect(this, target, effectSource);
+        StatModifier modifier = new StatModifier(_bonusValue, effect);
 
         target.Stats.AddStatModifier(_statData.StatType, modifier);
-        target.Effects.StatBonuses.Add(newInstance);
+        target.Effects.StatBonuses.Add(effect);
     }
 
     public override void Tick(Character target) { }

@@ -12,6 +12,7 @@ TagManager:
   - PickupItemPopup
   - SpiritShortagePopup
   - SkillNamePopup
+  - AilmentNamePopup
   layers:
   - Default
   - TransparentFX

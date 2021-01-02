@@ -186,9 +186,9 @@ public class GameMaster : MonoBehaviour
 
     private void ShowDungeonStageTitle(DungeonStage stage)
     {
-        TextPopup textPopup = _poolManager.Take(_assetManager.DungeonTitlePopup.tag)
-                                          .GetComponent<TextPopup>();
-        textPopup.Setup(stage.StageName, _dungeonTitlePlacement.position);
+        _poolManager.Take(PoolTags.DungeonTitlePopup.ToString())
+                    .GetComponent<TextPopup>()
+                    .Setup(stage.StageName, _dungeonTitlePlacement.position);
     }
 
     private void ClearDungeonData()
