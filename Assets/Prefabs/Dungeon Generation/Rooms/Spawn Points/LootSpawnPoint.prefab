@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTable: {fileID: 0}
+  _spawnEffect: {fileID: 4091913423889737229, guid: 8c5e8d93c10a92f4cbfcd2de0d78df3b,
+    type: 3}
   _spawnAmount: 1
   _applyForce: 0
   _forceValue: 1

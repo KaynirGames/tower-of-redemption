@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5369139391450359123}
   - component: {fileID: 4092966761594363554}
   m_Layer: 9
-  m_Name: SilverChest
+  m_Name: CatacombsSilverChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,6 +196,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _destroyDelay: 3
 --- !u!114 &4092966761594363554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +209,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36373f62a0be74642962505484e226c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnTable: {fileID: 0}
+  _spawnTable: {fileID: 11400000, guid: 51b8cfea9e0bc3b47b7675753c3466d3, type: 2}
+  _spawnEffect: {fileID: 4091913423889737229, guid: 8c5e8d93c10a92f4cbfcd2de0d78df3b,
+    type: 3}
   _spawnAmount: 1
   _applyForce: 1
   _forceValue: 1

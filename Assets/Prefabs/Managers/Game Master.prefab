@@ -543,6 +543,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2619269295099557820, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
+        type: 3}
+      propertyPath: _textWrapLimit
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2619269295604910675, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
         type: 3}
       propertyPath: m_SizeDelta.x

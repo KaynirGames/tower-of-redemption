@@ -18,9 +18,15 @@ public class Skill
     private string _cachedDescription;
     private float _cooldownTimer;
 
+    private string _skillNamePopupTag;
+    private PoolManager _poolManager;
+
     public Skill(SkillSO skillSO)
     {
         SkillSO = skillSO;
+
+        _skillNamePopupTag = AssetManager.Instance.SkillNamePopup.tag;
+        _poolManager = PoolManager.Instance;
     }
 
     public bool TryExecute(Character owner)
@@ -70,10 +76,19 @@ public class Skill
             SkillSO.Execute(owner, owner.CurrentOpponent, this);
             owner.StartCoroutine(CooldownRoutine());
 
+            ShowSkillNamePopup(owner.transform);
+
             return true;
         }
 
         return false;
+    }
+
+    private void ShowSkillNamePopup(Transform ownerTransform)
+    {
+        GameObject popup = _poolManager.Take(_skillNamePopupTag);
+        popup.GetComponent<TextPopup>().Setup(SkillSO.Name,
+                                              ownerTransform.position);
     }
 
     private void ExecutePassiveSkill(Character owner)

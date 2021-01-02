@@ -49,12 +49,12 @@ public class TooltipUI : MonoBehaviour
     {
         position /= _canvasRect.localScale.x;
 
-        if (position.x - _popupRect.rect.width < 0)
+        if (position.x - _popupRect.rect.width <= 0)
         {
             position.x = _popupRect.rect.width;
         }
 
-        if (position.y + _popupRect.rect.height > _canvasRect.rect.height)
+        if (position.y + _popupRect.rect.height >= _canvasRect.rect.height)
         {
             position.y = _canvasRect.rect.height - _popupRect.rect.height;
         }
@@ -67,8 +67,10 @@ public class TooltipUI : MonoBehaviour
         int headerLength = _headerField.text.Length;
         int contentLength = _contentField.text.Length;
 
-        _popupLayoutElement.enabled = (headerLength > _textWrapLimit || contentLength > _textWrapLimit)
+        _popupLayoutElement.enabled = (headerLength >= _textWrapLimit || contentLength >= _textWrapLimit)
             ? true
             : false;
+
+        _canvasRect.RefreshLayoutGroups();
     }
 }

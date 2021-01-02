@@ -25,7 +25,7 @@ public class TextPopup : MonoBehaviour
 
     private void OnEnable()
     {
-        //Setup(Vector2.zero);
+        Setup(Vector2.zero);
     }
 
     private void Update()

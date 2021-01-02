@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class SpawnPoint : MonoBehaviour
 {
     [SerializeField] private SpawnTable _spawnTable = null;
+    [SerializeField] private ParticleSystem _spawnEffect = null;
     [SerializeField] private int _spawnAmount = 1;
     [SerializeField] private bool _applyForce = false;
     [SerializeField] private float _forceValue = 1f;
@@ -17,6 +18,11 @@ public class SpawnPoint : MonoBehaviour
 
     public List<GameObject> Spawn(GameObject prefab, int amount, bool applyForce = false)
     {
+        if (_spawnEffect != null)
+        {
+            Instantiate(_spawnEffect.gameObject, transform.position, Quaternion.identity);
+        }
+
         List<GameObject> spawnedObjects = new List<GameObject>();
 
         for (int i = 0; i < amount; i++)

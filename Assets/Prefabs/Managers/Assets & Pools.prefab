@@ -58,6 +58,8 @@ MonoBehaviour:
     type: 3}
   _spiritShortageTextPopup: {fileID: 3775270695086437066, guid: f5bfd3a5a4a9d6c439b843b39f09f49a,
     type: 3}
+  _skillNamePopup: {fileID: 3939378532822336629, guid: 190bb8c1bc1eba248a5c4dad432288cd,
+    type: 3}
   _statDatabase: {fileID: 11400000, guid: 3565a9af924d17d40813db3770c8150c, type: 2}
   _stageDatabase: {fileID: 11400000, guid: a4c0add3f73751c479c3884253eadd39, type: 2}
   _playerDatabase: {fileID: 11400000, guid: 60910ae2250ca654d84d95cada9c95f0, type: 2}
@@ -89,4 +91,6 @@ MonoBehaviour:
   - _prefab: {fileID: 3775270695086437067, guid: cfc49d93c50d0e041bde3c8b76e02d3b,
       type: 3}
   - _prefab: {fileID: 3775270695086437067, guid: f5bfd3a5a4a9d6c439b843b39f09f49a,
+      type: 3}
+  - _prefab: {fileID: 3939378532822336628, guid: 190bb8c1bc1eba248a5c4dad432288cd,
       type: 3}

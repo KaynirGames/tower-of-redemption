@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8236556235308108334}
   - component: {fileID: 750072287}
   m_Layer: 9
-  m_Name: Barrel
+  m_Name: TutorialBarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -186,6 +186,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _destroyDelay: 3
 --- !u!114 &750072287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTable: {fileID: 11400000, guid: b1cff924d603ae64a8552e8d61404ea3, type: 2}
+  _spawnEffect: {fileID: 4091913423889737229, guid: 8c5e8d93c10a92f4cbfcd2de0d78df3b,
+    type: 3}
   _spawnAmount: 1
   _applyForce: 1
   _forceValue: 1

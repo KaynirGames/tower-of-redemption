@@ -1,5 +1,4 @@
 ﻿using KaynirGames.Tools;
-using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class TooltipBattle : TooltipBase, IPointerEnterHandler, IPointerExitHandler

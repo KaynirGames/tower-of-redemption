@@ -47,6 +47,10 @@ public class EffectDisplayUI : MonoBehaviour
     public void ClearEffectsUI()
     {
         _effectSlots.ForEach(slot => slot.Clear());
+        _effectSlots.Clear();
+
+        _characterEffects.OnDisplayEffectCall -= UpdateEffectsDisplay;
+        _characterEffects = null;
     }
 
     private void UpdateEffectsDisplay(Effect effect)

@@ -15,7 +15,7 @@ MonoBehaviour:
   _energyGainValue: 2
   _gemSprite: {fileID: -2484504479209722582, guid: e623e47baa0d92b41aadfaaaab5591a5,
     type: 3}
-  _consumedGemstoneParticles: {fileID: 717228997598360981, guid: 6f3792e838e370940860276c9ce0efee,
+  _consumedGemstoneParticles: {fileID: 6702958169184394739, guid: ad1d089b8929eff458c9af8b316a3b4d,
     type: 3}
   _matchingGemStones:
   - {fileID: 11400000}

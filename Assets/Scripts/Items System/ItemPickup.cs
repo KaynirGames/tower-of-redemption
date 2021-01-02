@@ -6,12 +6,19 @@ public class ItemPickup : Interactable
     [SerializeField] private ItemSO _itemSO = null;
     [SerializeField] private LocalizedString _pickupTextFormat = null;
 
+    private Camera _camera;
+
+    private void Start()
+    {
+        _camera = Camera.main;
+    }
+
     public override void Interact()
     {
         PlayerCharacter player = PlayerCharacter.Active;
 
         CreatePickupItemPopup(_pickupTextFormat.GetLocalizedString(_itemSO.Name).Result,
-                              player.transform.position);
+                              _camera.transform.position);
 
         player.Inventory.AddItem(_itemSO);
 

@@ -123,7 +123,7 @@ public class GameMaster : MonoBehaviour
     {
         yield return ToggleLoadingScreenRoutine(true);
 
-        ClearData();
+        ClearDungeonData();
 
         yield return AsyncLoadRoutine(SceneType.Dungeon);
 
@@ -191,7 +191,7 @@ public class GameMaster : MonoBehaviour
         textPopup.Setup(stage.StageName, _dungeonTitlePlacement.position);
     }
 
-    private void ClearData()
+    private void ClearDungeonData()
     {
         Room.LoadedRooms.Clear();
         EnemyCharacter.ActiveEnemies.Clear();

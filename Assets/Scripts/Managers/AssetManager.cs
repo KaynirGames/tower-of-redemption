@@ -12,6 +12,7 @@ public class AssetManager : MonoBehaviour
     [SerializeField] private TextPopup _pickupItemPopup = null;
     [SerializeField] private TextPopup _dungeonTitlePopup = null;
     [SerializeField] private TextPopup _spiritShortageTextPopup = null;
+    [SerializeField] private TextPopup _skillNamePopup = null;
     [Header("Базы данных:")]
     [SerializeField] private StatDatabase _statDatabase = null;
     [SerializeField] private DungeonStageDatabase _stageDatabase = null;
@@ -26,6 +27,7 @@ public class AssetManager : MonoBehaviour
     public TextPopup PickupItemPopup => _pickupItemPopup;
     public TextPopup DungeonTitlePopup => _dungeonTitlePopup;
     public TextPopup SpiritShortageTextPopup => _spiritShortageTextPopup;
+    public TextPopup SkillNamePopup => _skillNamePopup;
 
     public StatDatabase StatDatabase => _statDatabase;
     public DungeonStageDatabase StageDatabase => _stageDatabase;
