@@ -10,13 +10,6 @@ public class GemstoneMatrixUI : MonoBehaviour
     private int _sizeX;
     private int _sizeY;
 
-    private GemstoneUI _gemSlotPrefab;
-
-    private void Start()
-    {
-        _gemSlotPrefab = AssetManager.Instance.GemSlotPrefab;
-    }
-
     public void DeselectGemSlotUI(int posX, int posY)
     {
         _gemstoneMatrixUI[posX, posY].ToggleSelectionAnimation(false);
@@ -30,11 +23,13 @@ public class GemstoneMatrixUI : MonoBehaviour
         _sizeX = sizeX;
         _sizeY = sizeY;
 
+        GemstoneUI gemSlotPrefab = AssetManager.Instance.GemSlotPrefab;
+
         for (int x = 0; x < sizeX; x++)
         {
             for (int y = 0; y < sizeY; y++)
             {
-                GameObject gemSlotObject = Instantiate(_gemSlotPrefab.gameObject, _gemSlotsParent.transform);
+                GameObject gemSlotObject = Instantiate(gemSlotPrefab.gameObject, _gemSlotsParent.transform);
                 gemSlotObject.name = string.Format("GemSlot [{0},{1}]", x, y);
 
                 _gemstoneMatrixUI[x, y] = gemSlotObject.GetComponent<GemstoneUI>();

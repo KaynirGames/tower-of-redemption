@@ -21,6 +21,11 @@ public class BattleManager : MonoBehaviour
     [Header("Бонусная энергия при боевом преимуществе:")]
     [SerializeField] private float _playerSpiritBonus = 0.25f;
     [SerializeField] private float _enemySpiritBonus = 1f;
+    [Header("Музыка:")]
+    [SerializeField] private AudioClip _battleTheme = null;
+    [SerializeField] private AudioClip _victoryTheme = null;
+    [SerializeField] private AudioClip _defeatTheme = null;
+    [SerializeField] private AudioClip _battleTransitionSFX = null;
 
     public SpiritGenerator SpiritGenerator => _spiritGenerator;
 
@@ -30,6 +35,7 @@ public class BattleManager : MonoBehaviour
     private EnemyCharacter _enemy;
     private List<EnemyCharacter> _activeEnemies;
     private GameMaster _gameMaster;
+    private MusicManager _musicManager;
 
     private Vector3 _lastPlayerPosition;
     private Vector3 _lastEnemyPosition;
@@ -52,6 +58,7 @@ public class BattleManager : MonoBehaviour
         _waitBeforeEnemyActivation = new WaitForSeconds(_enemyActivationDelay);
         _activeEnemies = EnemyCharacter.ActiveEnemies;
         _gameMaster = GameMaster.Instance;
+        _musicManager = MusicManager.Instance;
     }
 
     private bool StartBattle(EnemyCharacter enemy, bool isPlayerAdvantage)
@@ -128,12 +135,15 @@ public class BattleManager : MonoBehaviour
     private IEnumerator BattleStartRoutine()
     {
         _gameMaster.TogglePause(true);
+        _musicManager.StopMusic(true);
+        _musicManager.PlayMusic(_battleTransitionSFX);
 
         yield return _transitionController.PlayAndWaitForAnimRoutine("Enter",
                                                                      true,
                                                                      PrepareBattlefield);
-
         _gameMaster.TogglePause(false);
+        _musicManager.PlayMusic(_battleTheme);
+
         OnBattleEnter.Invoke();
 
         yield return _waitBeforeEnemyActivation;
@@ -148,7 +158,7 @@ public class BattleManager : MonoBehaviour
 
         yield return _enemy.Animations.PlayAndWaitForAnimRoutine("Death",
                                                                  true);
-
+        _musicManager.PlayMusic(_victoryTheme);
         yield return _transitionController.PlayAndWaitForAnimRoutine("Victory",
                                                                      true,
                                                                      CloseBattlefield);
@@ -171,7 +181,7 @@ public class BattleManager : MonoBehaviour
 
         yield return _player.Animations.PlayAndWaitForAnimRoutine("Death",
                                                                   true);
-
+        _musicManager.PlayMusic(_defeatTheme);
         _transitionController.PlayAnimation("Defeat");
 
         _gameMaster.TogglePause(false);

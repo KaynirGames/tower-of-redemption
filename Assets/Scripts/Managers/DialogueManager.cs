@@ -18,14 +18,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
 
         _canvasGroup = _dialogueCanvas.GetComponent<CanvasGroup>();
         _linesQueue = new Queue<DialogueLine>();

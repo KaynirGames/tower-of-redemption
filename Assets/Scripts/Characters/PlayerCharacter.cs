@@ -116,6 +116,7 @@ public class PlayerCharacter : Character
         _enableInput = false;
         _moveBase.SetMoveDirection(Vector3.zero);
 
+        Sounds.PlaySound("Attack");
         yield return Animations.PlayAndWaitForAnimRoutine("Attack", true);
         
         _enableInput = true;

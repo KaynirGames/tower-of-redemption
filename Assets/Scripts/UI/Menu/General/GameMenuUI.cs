@@ -13,7 +13,7 @@ public class GameMenuUI : MonoBehaviour
 
         if (_continueButton != null)
         {
-            _continueButton.interactable = _gameMaster.TryLoadSaveData();
+            _continueButton.gameObject.SetActive(_gameMaster.TryLoadSaveData());
         }
     }
 

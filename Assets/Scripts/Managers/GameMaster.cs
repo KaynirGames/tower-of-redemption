@@ -16,6 +16,7 @@ public class GameMaster : MonoBehaviour
     private DungeonStageGenerator _stageGenerator;
     private AssetManager _assetManager;
     private PoolManager _poolManager;
+    private MusicManager _musicManager;
 
     private Queue<DungeonStage> _selectedStages;
     private DungeonStage _currentStage;
@@ -39,6 +40,7 @@ public class GameMaster : MonoBehaviour
 
         GameSettings = GetComponent<GameSettings>();
         _stageGenerator = GetComponent<DungeonStageGenerator>();
+        BattleManager.OnBattleExit += PlayStageTheme;
 
         SaveSystem.Init();
     }
@@ -47,6 +49,7 @@ public class GameMaster : MonoBehaviour
     {
         _assetManager = AssetManager.Instance;
         _poolManager = PoolManager.Instance;
+        _musicManager = MusicManager.Instance;
     }
 
     public void TogglePause(bool isPause)
@@ -122,9 +125,6 @@ public class GameMaster : MonoBehaviour
     private IEnumerator LoadDungeonRoutine()
     {
         yield return ToggleLoadingScreenRoutine(true);
-
-        ClearDungeonData();
-
         yield return AsyncLoadRoutine(SceneType.Dungeon);
 
         if (_selectedStages.Count > 0)
@@ -133,6 +133,7 @@ public class GameMaster : MonoBehaviour
             yield return _stageGenerator.LoadDungeonStage(_currentStage);
             SpawnPlayer(Vector3.zero);
             ShowDungeonStageTitle(_currentStage);
+            PlayStageTheme();
         }
         else
         {
@@ -161,6 +162,8 @@ public class GameMaster : MonoBehaviour
 
     private IEnumerator AsyncLoadRoutine(SceneType sceneType)
     {
+        ClearTemporaryData();
+
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync((int)sceneType);
 
         while (!asyncOperation.isDone)
@@ -191,10 +194,22 @@ public class GameMaster : MonoBehaviour
                     .Setup(stage.StageName, _dungeonTitlePlacement.position);
     }
 
-    private void ClearDungeonData()
+    private void ClearTemporaryData()
     {
         Room.LoadedRooms.Clear();
         EnemyCharacter.ActiveEnemies.Clear();
+        _currentStage = null;
+
         _poolManager.ClearPools();
+        _musicManager.StopMusic(false);
+        _musicManager.ClearPlaybackTimeStorage();
+    }
+
+    private void PlayStageTheme()
+    {
+        if (_currentStage != null)
+        {
+            _musicManager.PlayMusic(_currentStage.StageTheme);
+        }
     }
 }

@@ -6,6 +6,7 @@ public abstract class Character : MonoBehaviour
     public CharacterEffects Effects { get; protected set; }
     public SkillBook SkillBook { get; protected set; }
     public AnimationController Animations { get; protected set; }
+    public SoundController Sounds { get; protected set; }
 
     public Character CurrentOpponent { get; set; }
 
@@ -15,6 +16,7 @@ public abstract class Character : MonoBehaviour
         Effects = GetComponent<CharacterEffects>();
         SkillBook = GetComponent<SkillBook>();
         Animations = GetComponentInChildren<AnimationController>();
+        Sounds = GetComponentInChildren<SoundController>();
     }
 
     public virtual void PrepareForBattle() { }
