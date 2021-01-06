@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1530589851097545840}
   - component: {fileID: 2687894585964067681}
   - component: {fileID: -7112601388011005486}
+  - component: {fileID: 5531755436079878347}
   m_Layer: 0
   m_Name: Door Base
   m_TagString: Untagged
@@ -51,8 +52,6 @@ MonoBehaviour:
   _doorCollider: {fileID: 1530589851097545840}
   _playerTransferTrigger: {fileID: 2687894585964067681}
   _closedDoorwayCollider: {fileID: 0}
-  _openDoorSFX: {fileID: 8300000, guid: 574313eae77003d49b64a6f63b6ab63c, type: 3}
-  _closeDoorSFX: {fileID: 8300000, guid: c25ce05c29649aa479ed39a0a492a64d, type: 3}
 --- !u!60 &1530589851097545840
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -123,8 +122,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -208,3 +207,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5531755436079878347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190791384878936708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b7c6b331136e4241b386b93205fa047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundClips:
+  - {fileID: 11400000, guid: a2da5e92abe829f42950e745a9fdfec5, type: 2}
+  - {fileID: 11400000, guid: 90c9678dedd43d74eac968327385b388, type: 2}

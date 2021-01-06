@@ -297,6 +297,83 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 58d50d603decb8249b554a5f744cca32,
+        type: 2}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MenuButtonHighlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 5037f3f1c4ebca641a5a2fa005936a90,
+        type: 2}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: SoundClipSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: SoundClipSO, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3446111168887072818, guid: eb70773450505dc4582199cc5bcf6629,
         type: 3}
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
@@ -492,6 +569,83 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 58d50d603decb8249b554a5f744cca32,
+        type: 2}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MenuButtonHighlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 5037f3f1c4ebca641a5a2fa005936a90,
+        type: 2}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: SoundClipSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: SoundClipSO, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3446111168887072818, guid: eb70773450505dc4582199cc5bcf6629,
         type: 3}
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
@@ -667,6 +821,83 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 58d50d603decb8249b554a5f744cca32,
+        type: 2}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MenuButtonHighlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 5037f3f1c4ebca641a5a2fa005936a90,
+        type: 2}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: SoundClipSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: SoundClipSO, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3446111168887072818, guid: eb70773450505dc4582199cc5bcf6629,
         type: 3}
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
@@ -827,6 +1058,83 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 58d50d603decb8249b554a5f744cca32,
+        type: 2}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MenuButtonHighlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 5037f3f1c4ebca641a5a2fa005936a90,
+        type: 2}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: SoundClipSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: SoundClipSO, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3446111168887072818, guid: eb70773450505dc4582199cc5bcf6629,
         type: 3}
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
@@ -866,7 +1174,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 7875019734609462933}
+      objectReference: {fileID: 3119119121382327768}
     - target: {fileID: 6422754456211770846, guid: eb70773450505dc4582199cc5bcf6629,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -885,7 +1193,7 @@ PrefabInstance:
     - target: {fileID: 6422754456211770846, guid: eb70773450505dc4582199cc5bcf6629,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
+      value: set_enabled
       objectReference: {fileID: 0}
     - target: {fileID: 6422754456211770846, guid: eb70773450505dc4582199cc5bcf6629,
         type: 3}
@@ -895,7 +1203,7 @@ PrefabInstance:
     - target: {fileID: 6422754456211770846, guid: eb70773450505dc4582199cc5bcf6629,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: UnityEngine.Behaviour, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6422754456211770846, guid: eb70773450505dc4582199cc5bcf6629,
         type: 3}
@@ -1061,6 +1369,83 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 58d50d603decb8249b554a5f744cca32,
+        type: 2}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MenuButtonHighlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 5037f3f1c4ebca641a5a2fa005936a90,
+        type: 2}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: SoundClipSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276455651196002751, guid: eb70773450505dc4582199cc5bcf6629,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: SoundClipSO, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3446111168887072818, guid: eb70773450505dc4582199cc5bcf6629,
         type: 3}

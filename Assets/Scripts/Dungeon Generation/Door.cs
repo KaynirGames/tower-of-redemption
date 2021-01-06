@@ -12,17 +12,15 @@ public class Door : MonoBehaviour
     [SerializeField] private Collider2D _doorCollider = null;
     [SerializeField] private Collider2D _playerTransferTrigger = null;
     [SerializeField] private Collider2D _closedDoorwayCollider = null;
-    [SerializeField] private AudioClip _openDoorSFX = null;
-    [SerializeField] private AudioClip _closeDoorSFX = null;
 
     public Direction Direction => _direction;
 
     private Animator _doorAnimator;
-    private AudioSource _audioSource;
+    private SoundController _sounds;
 
     private void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
+        _sounds = GetComponent<SoundController>();
     }
 
     public void CreateDoorGFX(DoorType doorType)
@@ -72,14 +70,14 @@ public class Door : MonoBehaviour
     private void Open()
     {
         _doorAnimator.SetTrigger("Open");
-        _audioSource.PlayOneShot(_openDoorSFX);
+        _sounds.PlaySoundOneShot("DoorOpen");
         ToggleDoorColliders(true);
     }
 
     private void Close()
     {
         _doorAnimator.SetTrigger("Close");
-        _audioSource.PlayOneShot(_closeDoorSFX);
+        _sounds.PlaySoundOneShot("DoorClose");
         ToggleDoorColliders(false);
     }
 

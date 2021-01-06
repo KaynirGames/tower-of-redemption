@@ -212,11 +212,11 @@ MonoBehaviour:
   _enemyActivationDelay: 0.25
   _playerSpiritBonus: 0.25
   _enemySpiritBonus: 0.5
-  _battleTheme: {fileID: 8300000, guid: 8b08d693d085bda4491c8d67ebdbf7c7, type: 3}
-  _victoryTheme: {fileID: 8300000, guid: c54154ad71a75a048bbbd203de595d1c, type: 3}
-  _defeatTheme: {fileID: 8300000, guid: a50dce33fc81b8447b58b2b49d01da7c, type: 3}
-  _battleTransitionSFX: {fileID: 8300000, guid: e911b344db7499c4d862d6e4347b08f1,
-    type: 3}
+  _battleTheme: {fileID: 11400000, guid: 2932b7e8f6b1cce4284a981473d03c19, type: 2}
+  _victoryTheme: {fileID: 11400000, guid: 8fed85bc0902843448d49dba5bf34f75, type: 2}
+  _defeatTheme: {fileID: 11400000, guid: 189d88caeffd0494481ea4ff255842a3, type: 2}
+  _battleTransitionSFX: {fileID: 11400000, guid: 0193442bc91ab4d4c8c7aec2bfa90948,
+    type: 2}
 --- !u!1001 &293619909580140975
 PrefabInstance:
   m_ObjectHideFlags: 0

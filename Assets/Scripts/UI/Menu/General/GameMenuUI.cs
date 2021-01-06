@@ -19,7 +19,7 @@ public class GameMenuUI : MonoBehaviour
 
     public void LoadGameMenu()
     {
-        _gameMaster.LoadScene(SceneType.GameMenu);
+        _gameMaster.LoadScene(SceneType.MainMenu);
     }
 
     public void LoadTutorial()
@@ -27,9 +27,13 @@ public class GameMenuUI : MonoBehaviour
         _gameMaster.LoadScene(SceneType.Tutorial);
     }
 
+    public void ContinueGame()
+    {
+        _gameMaster.ContinueGame();
+    }
+
     public void ExitGame()
     {
-        // save
         Application.Quit();
     }
 

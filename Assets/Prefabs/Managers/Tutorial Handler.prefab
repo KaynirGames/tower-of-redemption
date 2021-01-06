@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29edd81ed052034981544548cff0429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tutorialTheme: {fileID: 8300000, guid: 9db7249bb9acc0b478fd116ababc930b, type: 3}
+  _tutorialTheme: {fileID: 11400000, guid: 38521b6a3e17a7f458eb67c45688099e, type: 2}
   _welcomeDialogue: {fileID: 11400000, guid: dea67f74e90ac9d4bb31177f6c4cdb64, type: 2}
   _openMenuButton: {fileID: 0}
   _dialogueDelay: 2

@@ -5,6 +5,7 @@ public class EnemyChase : BaseState<EnemyStateKey>
 {
     private EnemyAI _enemyAI;
     private Transform _target;
+    private EnemyCharacter _enemy;
 
     private Vector2 _previousTargetPosition;
 
@@ -12,10 +13,12 @@ public class EnemyChase : BaseState<EnemyStateKey>
     {
         _enemyAI = enemyAI;
         _target = target;
+        _enemy = _enemyAI.GetComponent<EnemyCharacter>();
     }
 
     public override void EnterState()
     {
+        _enemy.Sounds.PlaySoundOneShot("EnemyChase");
         ChaseTarget();
     }
 

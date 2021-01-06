@@ -42,23 +42,26 @@ public class SkillBook : MonoBehaviour
 
         for (int i = 0; i < skills.Length; i++)
         {
-            switch (skills[i].Slot)
+            if (skills[i] != null)
             {
-                case SkillSlot.Active:
-                    activeCount = LoadSkill(skills[i],
-                                            activeCount,
-                                            _activeSkillsCount);
-                    break;
-                case SkillSlot.Passive:
-                    passiveCount = LoadSkill(skills[i],
-                                             passiveCount,
-                                             _passiveSkillsCount);
-                    break;
-                case SkillSlot.Special:
-                    specialCount = LoadSkill(skills[i],
-                                             specialCount,
-                                             _specialSkillsCount);
-                    break;
+                switch (skills[i].Slot)
+                {
+                    case SkillSlot.Active:
+                        activeCount = LoadSkill(skills[i],
+                                                activeCount,
+                                                _activeSkillsCount);
+                        break;
+                    case SkillSlot.Passive:
+                        passiveCount = LoadSkill(skills[i],
+                                                 passiveCount,
+                                                 _passiveSkillsCount);
+                        break;
+                    case SkillSlot.Special:
+                        specialCount = LoadSkill(skills[i],
+                                                 specialCount,
+                                                 _specialSkillsCount);
+                        break;
+                }
             }
         }
     }

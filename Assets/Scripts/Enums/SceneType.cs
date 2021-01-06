@@ -1,7 +1,7 @@
 ﻿public enum SceneType
 {
     SelectLanguage,
-    GameMenu,
+    MainMenu,
     Tutorial,
     Dungeon
 }

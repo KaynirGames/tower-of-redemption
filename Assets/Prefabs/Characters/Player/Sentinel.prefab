@@ -396,7 +396,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -492,11 +492,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b7c6b331136e4241b386b93205fa047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundEffects:
-  - _audioClip: {fileID: 8300000, guid: 767d20554ac884a4bbfb2b62fb6d0aae, type: 3}
-    _clipName: Attack
-  - _audioClip: {fileID: 8300000, guid: d969badc9f7644d47b4e0916e02cbe42, type: 3}
-    _clipName: Hurt
+  _soundClips:
+  - {fileID: 11400000, guid: cb9d646e08ea7224fae0276a6a7a85b6, type: 2}
+  - {fileID: 11400000, guid: 8bf027e65b955ae4b87a088aadaf757b, type: 2}
 --- !u!1 &7546514800287359469
 GameObject:
   m_ObjectHideFlags: 0

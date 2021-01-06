@@ -80,7 +80,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5503934210043904
-    m_Key: UI.MenuButton.About
+    m_Key: UI.MenuButton.Credits
     m_Metadata:
       m_Items: []
   - m_Id: 5505036066287616

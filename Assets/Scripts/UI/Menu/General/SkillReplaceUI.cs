@@ -62,6 +62,15 @@ public class SkillReplaceUI : MonoBehaviour
         }
     }
 
+    public void ShowSkillDescription(SkillSlotUI skillSlotUI)
+    {
+        if (skillSlotUI != null)
+        {
+            SkillSO skillSO = skillSlotUI.Skill.SkillSO;
+            _descriptionUI.SetDescriptionText(skillSO.Name, skillSO.Type, skillSO.Description);
+        }
+    }
+
     private void RegisterSkillBook(PlayerCharacter player)
     {
         _skillBook = player.SkillBook;

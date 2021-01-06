@@ -1,11 +1,12 @@
 ﻿using KaynirGames.AI;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBattleAI : MonoBehaviour
 {
+    [SerializeField] private float _inputLagTime = 1f;
+
     public CharacterResource Health { get; private set; }
     public CharacterResource Spirit { get; private set; }
 
@@ -18,6 +19,7 @@ public class EnemyBattleAI : MonoBehaviour
     private float _spiritRegen;
     private float _spiritRegenDelay;
     private float _spiritRegenTimer;
+    private float _inputLagTimer;
 
     private bool _enableSpiritRegen;
 
@@ -30,7 +32,15 @@ public class EnemyBattleAI : MonoBehaviour
 
     private void Update()
     {
-        _stateMachine.Update();
+        if (_inputLagTimer <= 0)
+        {
+            _inputLagTimer += _inputLagTime;
+            _stateMachine.Update();
+        }
+        else
+        {
+            _inputLagTimer -= Time.unscaledDeltaTime;
+        }
 
         if (_enableSpiritRegen)
         {
@@ -108,7 +118,7 @@ public class EnemyBattleAI : MonoBehaviour
         float enemyHealthRate = Health.MaxValue.GetFinalValue() / Health.CurrentValue;
 
         _battleActionRates = new Dictionary<BattleAction, float>()
-        { 
+        {
             { BattleAction.Attack, playerHealthRate},
             { BattleAction.Defence, 1 - playerHealthRate + enemyHealthRate},
             { BattleAction.Heal, enemyHealthRate}

@@ -9,6 +9,13 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField] private bool _applyForce = false;
     [SerializeField] private float _forceValue = 1f;
 
+    private SoundController _sounds;
+
+    private void Awake()
+    {
+        _sounds = GetComponent<SoundController>();
+    }
+
     public void Spawn()
     {
         Spawn((GameObject)_spawnTable.ChooseRandom(),
@@ -22,6 +29,8 @@ public class SpawnPoint : MonoBehaviour
         {
             Instantiate(_spawnEffect.gameObject, transform.position, Quaternion.identity);
         }
+
+        _sounds.PlaySoundOneShot("SpawnObject");
 
         List<GameObject> spawnedObjects = new List<GameObject>();
 

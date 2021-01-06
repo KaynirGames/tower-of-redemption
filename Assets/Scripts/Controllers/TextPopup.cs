@@ -34,11 +34,11 @@ public class TextPopup : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position,
                                                      _targetPosition,
-                                                     Time.deltaTime * _moveSpeed);
+                                                     Time.unscaledDeltaTime * _moveSpeed);
             HandleScale();
             HandleFade();
 
-            _timer += Time.deltaTime;
+            _timer += Time.unscaledDeltaTime;
         }
         else
         {

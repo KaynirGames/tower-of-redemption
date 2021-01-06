@@ -18,7 +18,7 @@ MonoBehaviour:
     m_TableEntryReference:
       m_KeyId: 27576823808
       m_Key: 
-  _stageTheme: {fileID: 8300000, guid: 9db7249bb9acc0b478fd116ababc930b, type: 3}
+  _stageTheme: {fileID: 11400000, guid: 38521b6a3e17a7f458eb67c45688099e, type: 2}
   _minRouteLength: 3
   _maxRouteLength: 5
   _routeSpawnerCount: 1

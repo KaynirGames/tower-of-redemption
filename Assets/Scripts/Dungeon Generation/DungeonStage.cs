@@ -8,7 +8,7 @@ public class DungeonStage : ScriptableObject, IIdentifiable
 {
     [Header("Базовая информация об этаже:")]
     [SerializeField] private LocalizedString _stageName = null;
-    [SerializeField] private AudioClip _stageTheme = null;
+    [SerializeField] private SoundClipSO _stageTheme = null;
     [Header("Параметры создания этажа:")]
     [SerializeField] private int _minRouteLength = 1;
     [SerializeField] private int _maxRouteLength = 1;
@@ -20,7 +20,7 @@ public class DungeonStage : ScriptableObject, IIdentifiable
     [SerializeField] private Light2D _globalLightPrefab = null;
 
     public string StageName => _stageName.GetLocalizedString().Result;
-    public AudioClip StageTheme => _stageTheme;
+    public SoundClipSO StageTheme => _stageTheme;
 
     public int RandomRouteLength => Random.Range(_minRouteLength, _maxRouteLength + 1);
     public int RouteSpawnerCount => _routeSpawnerCount;
