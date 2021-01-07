@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class GameMenuUI : MonoBehaviour
+public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private Button _continueButton = null;
 
