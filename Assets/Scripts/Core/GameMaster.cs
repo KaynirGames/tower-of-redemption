@@ -41,6 +41,7 @@ public class GameMaster : MonoBehaviour
         GameSettings = GetComponent<GameSettings>();
         _stageGenerator = GetComponent<DungeonStageGenerator>();
         BattleManager.OnBattleExit += PlayStageTheme;
+        Credits.OnCreditsEnd += () => LoadScene(SceneType.MainMenu);
 
         SaveSystem.Init();
     }
@@ -73,6 +74,9 @@ public class GameMaster : MonoBehaviour
                 break;
             case SceneType.Dungeon:
                 StartCoroutine(LoadDungeonRoutine());
+                break;
+            case SceneType.Credits:
+                StartCoroutine(LoadCreditsRoutine());
                 break;
             default:
                 break;
@@ -139,10 +143,18 @@ public class GameMaster : MonoBehaviour
         else
         {
             SaveSystem.DeleteSaveFile();
-            yield return LoadMainMenuRoutine();
+            yield return AsyncLoadRoutine(SceneType.Credits);
         }
 
         yield return ToggleLoadingScreenRoutine(false);
+    }
+
+    private IEnumerator LoadCreditsRoutine()
+    {
+        yield return ToggleLoadingScreenRoutine(true);
+        yield return AsyncLoadRoutine(SceneType.Credits);
+        yield return ToggleLoadingScreenRoutine(false);
+        _musicManager.PlayMusic("Credits");
     }
 
     private IEnumerator ToggleLoadingScreenRoutine(bool enable)

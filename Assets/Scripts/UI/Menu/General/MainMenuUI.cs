@@ -27,6 +27,11 @@ public class MainMenuUI : MonoBehaviour
         _gameMaster.LoadScene(SceneType.Tutorial);
     }
 
+    public void LoadCredits()
+    {
+        _gameMaster.LoadScene(SceneType.Credits);
+    }
+
     public void ContinueGame()
     {
         _gameMaster.ContinueGame();

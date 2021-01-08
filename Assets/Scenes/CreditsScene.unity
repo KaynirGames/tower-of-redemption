@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _creditsTextField: {fileID: 1762330408}
-  _scrollSpeed: 100
+  _scrollSpeed: 50
   _play: 1
 --- !u!1 &184146740
 GameObject:
@@ -631,7 +631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -713,19 +713,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'New Text
+  m_text: '<b><size=48>Tower of Redemption (Demo)</b></size>
 
-    sdfsdfsdf
 
-    sdfsdfsdf
+    Developed by KaynirGames
 
-    sdfsdf'
+
+    <b><size=48>Programming</size></b>
+
+
+    Denis
+    Znov (kaynirgames.itch.io)
+
+
+    <b><size=48>Art</size></b>
+
+
+    Denis Znov
+    (kaynirgames.itch.io)
+
+    Elthen''s Pixel Art Shop (elthen.itch.io)
+
+    Quintino
+    Pixels (quintino-pixels.itch.io)
+
+    Taarna23 (taarna23.itch.io)
+
+    RavenTale
+    (raventale.itch.io)
+
+
+    <b><size=48>Music</size></b>
+
+
+    Sara Garrard (sonatina.itch.io)
+
+    Cactusdude
+    (cactusdude.itch.io)
+
+    Tim Beek (timbeek.com)
+
+    Naufal Shidqi Rabbani (greentabbyaudio.com)
+
+
+    <b><size=48>Sound
+    Effects</size></b>
+
+
+    Mayra Gandra (maysama.itch.io)
+
+    Game Supply (gamesupply.itch.io)
+
+    Kevin
+    Fowler (hitrison.itch.io)
+
+
+    <b><size=48>THANKS FOR PLAYING!</b></size>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ad4c8be3259daf84aae23d726bb6e484, type: 2}
   m_sharedMaterial: {fileID: -3224307257120733419, guid: ad4c8be3259daf84aae23d726bb6e484,
@@ -754,8 +803,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

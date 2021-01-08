@@ -3,5 +3,6 @@
     SelectLanguage,
     MainMenu,
     Tutorial,
-    Dungeon
+    Dungeon,
+    Credits
 }

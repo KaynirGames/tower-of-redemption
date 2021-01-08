@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class Credits : MonoBehaviour
 {
+    public static event System.Action OnCreditsEnd = delegate { };
+
     [SerializeField] private TextMeshProUGUI _creditsTextField = null;
     [SerializeField] private float _scrollSpeed = 2f;
     [SerializeField] private bool _play = false;
@@ -12,7 +14,6 @@ public class Credits : MonoBehaviour
     private RectTransform _creditsRect;
 
     private Vector2 _scrollEndPosition;
-
     private int _scrollSpeedRate;
 
     private void Awake()
@@ -38,7 +39,7 @@ public class Credits : MonoBehaviour
         if (!TryScrollCredits())
         {
             _play = false;
-            // Action or UnityAction
+            OnCreditsEnd?.Invoke();
         }
     }
 
