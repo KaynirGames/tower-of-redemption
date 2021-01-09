@@ -3137,11 +3137,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 561847662203003057}
     m_Modifications:
-    - target: {fileID: 5552362222263667258, guid: 22d5590b9283690488164b30e83a74f3,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5552362224103499868, guid: 22d5590b9283690488164b30e83a74f3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3794,6 +3789,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386073553501679700, guid: 503155f5ffef2674f846f26712e029a8,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386073553501679700, guid: 503155f5ffef2674f846f26712e029a8,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 8386073553501679702, guid: 503155f5ffef2674f846f26712e029a8,
         type: 3}

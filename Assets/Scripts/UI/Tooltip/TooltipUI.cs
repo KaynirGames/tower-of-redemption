@@ -8,10 +8,11 @@ public class TooltipUI : MonoBehaviour
     [SerializeField] private LayoutElement _popupLayoutElement = null;
     [SerializeField] private TextMeshProUGUI _headerField = null;
     [SerializeField] private TextMeshProUGUI _contentField = null;
-    [SerializeField] private int _textWrapLimit = 200;
 
     private CanvasGroup _canvasGroup;
     private RectTransform _canvasRect;
+
+    private float _preferredWidth;
 
     private void Awake()
     {
@@ -21,6 +22,8 @@ public class TooltipUI : MonoBehaviour
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.interactable = false;
         _canvasGroup.alpha = 0;
+
+        _preferredWidth = _popupLayoutElement.preferredWidth;
     }
 
     public void SetTooltipText(string content, string header = "")
@@ -33,9 +36,11 @@ public class TooltipUI : MonoBehaviour
         {
             _headerField.SetText(header);
             _headerField.gameObject.SetActive(true);
+            _headerField.ForceMeshUpdate();
         }
 
         _contentField.SetText(content);
+        _contentField.ForceMeshUpdate();
 
         ResizeTooltip();
     }
@@ -64,10 +69,10 @@ public class TooltipUI : MonoBehaviour
 
     private void ResizeTooltip()
     {
-        int headerLength = _headerField.text.Length;
-        int contentLength = _contentField.text.Length;
+        float headerWidth = _headerField.GetPreferredValues(_headerField.text).x;
+        float contentWidth = _contentField.GetPreferredValues(_contentField.text).x;
 
-        _popupLayoutElement.enabled = (headerLength >= _textWrapLimit || contentLength >= _textWrapLimit)
+        _popupLayoutElement.enabled = (headerWidth > _preferredWidth || contentWidth > _preferredWidth)
             ? true
             : false;
 

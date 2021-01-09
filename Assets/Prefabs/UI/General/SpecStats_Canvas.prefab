@@ -188,6 +188,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: ValueDef
       objectReference: {fileID: 0}
+    - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: _tooltipHeaderText.m_TableEntryReference.m_KeyId
+      value: 635092398080
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: _tooltipContentText.m_TableEntryReference.m_KeyId
+      value: 20807249529466880
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: _tooltipHeaderText.m_TableReference.m_TableCollectionName
+      value: GUID:eb870e2553eec4a48ad476083e5bd3d9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: _tooltipContentText.m_TableReference.m_TableCollectionName
+      value: GUID:83e88c540d53c314bb6705121f156f5f
+      objectReference: {fileID: 0}
     - target: {fileID: 3245739289114412444, guid: 4dec661cf38a8c44c97e93e5d8d09509,
         type: 3}
       propertyPath: m_Name
@@ -385,6 +405,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ValueWill
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: _tooltipHeaderText.m_TableEntryReference.m_KeyId
+      value: 353470050304
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: _tooltipContentText.m_TableEntryReference.m_KeyId
+      value: 20806716244684800
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: _tooltipHeaderText.m_TableReference.m_TableCollectionName
+      value: GUID:eb870e2553eec4a48ad476083e5bd3d9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: _tooltipContentText.m_TableReference.m_TableCollectionName
+      value: GUID:83e88c540d53c314bb6705121f156f5f
       objectReference: {fileID: 0}
     - target: {fileID: 3245739289114412444, guid: 4dec661cf38a8c44c97e93e5d8d09509,
         type: 3}
@@ -657,7 +697,7 @@ PrefabInstance:
     - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
       propertyPath: _tooltipContentText.m_TableEntryReference.m_KeyId
-      value: 16316512075051008
+      value: 20806086331527168
       objectReference: {fileID: 0}
     - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
         type: 3}
@@ -756,6 +796,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ValueMdef
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: _tooltipHeaderText.m_TableEntryReference.m_KeyId
+      value: 794429812736
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: _tooltipContentText.m_TableEntryReference.m_KeyId
+      value: 20807316223094784
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: _tooltipHeaderText.m_TableReference.m_TableCollectionName
+      value: GUID:eb870e2553eec4a48ad476083e5bd3d9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640360092330558494, guid: 4fe48bc68c18782458c584c6d42caead,
+        type: 3}
+      propertyPath: _tooltipContentText.m_TableReference.m_TableCollectionName
+      value: GUID:83e88c540d53c314bb6705121f156f5f
       objectReference: {fileID: 0}
     - target: {fileID: 3245739289114412444, guid: 4dec661cf38a8c44c97e93e5d8d09509,
         type: 3}

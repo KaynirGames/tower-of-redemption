@@ -122,5 +122,25 @@ MonoBehaviour:
       \u0441\u0438\u043B\u044B"
     m_Metadata:
       m_Items: []
+  - m_Id: 20833164993032192
+    m_Localized: "\u042D\u0444\u0444\u0435\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u044C
+      \u043E\u0433\u043D\u044F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20833261256503296
+    m_Localized: "\u042D\u0444\u0444\u0435\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u044C
+      \u0437\u0435\u043C\u043B\u0438"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20833300963979264
+    m_Localized: "\u042D\u0444\u0444\u0435\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u044C
+      \u0432\u0435\u0442\u0440\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20833315828592640
+    m_Localized: "\u042D\u0444\u0444\u0435\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u044C
+      \u0432\u043E\u0434\u044B"
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

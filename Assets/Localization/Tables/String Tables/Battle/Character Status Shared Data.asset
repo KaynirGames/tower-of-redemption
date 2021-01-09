@@ -111,6 +111,22 @@ MonoBehaviour:
     m_Key: Buff.LargeStrengthUp
     m_Metadata:
       m_Items: []
+  - m_Id: 20833164993032192
+    m_Key: Efficacy.Fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20833261256503296
+    m_Key: Efficacy.Earth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20833300963979264
+    m_Key: Efficacy.Wind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20833315828592640
+    m_Key: Efficacy.Water
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

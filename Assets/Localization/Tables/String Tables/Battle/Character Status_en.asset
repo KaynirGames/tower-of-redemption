@@ -114,5 +114,21 @@ MonoBehaviour:
     m_Localized: Large strength up
     m_Metadata:
       m_Items: []
+  - m_Id: 20833164993032192
+    m_Localized: Fire efficacy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20833261256503296
+    m_Localized: Earth efficacy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20833300963979264
+    m_Localized: Wind efficacy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20833315828592640
+    m_Localized: Water efficacy
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

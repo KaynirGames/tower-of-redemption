@@ -23,11 +23,6 @@ public class TextPopup : MonoBehaviour
         _textColor = _textMesh.color;
     }
 
-    private void OnEnable()
-    {
-        Setup(Vector2.zero);
-    }
-
     private void Update()
     {
         if (_timer <= _popupLifetime)

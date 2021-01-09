@@ -22,10 +22,11 @@ public class CharacterSelector : MonoBehaviour
 
         for (int i = 0; i < _playerCharacters.Count; i++)
         {
-            _characterCards.Add(Instantiate(_characterCardPrefab,
-                                _characterLayoutGroup.transform,
-                                false));
-            _characterCards[i].SetCharacter(_playerCharacters[i]);
+            CharacterSelectionCard card = Instantiate(_characterCardPrefab,
+                                                      _characterLayoutGroup.transform,
+                                                      false);
+            card.SetCharacter(_playerCharacters[i]);
+            _characterCards.Add(card);
         }
     }
 

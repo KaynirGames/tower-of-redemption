@@ -75,10 +75,6 @@ MonoBehaviour:
     m_Key: UI.MenuButton.Tutorial
     m_Metadata:
       m_Items: []
-  - m_Id: 5503466679365632
-    m_Key: UI.MenuButton.Options
-    m_Metadata:
-      m_Items: []
   - m_Id: 5503934210043904
     m_Key: UI.MenuButton.Credits
     m_Metadata:
@@ -96,7 +92,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7997401066696704
-    m_Key: UI.MenuButton.Choose
+    m_Key: UI.MenuButton.Play
     m_Metadata:
       m_Items: []
   - m_Id: 7997457098403840
@@ -121,6 +117,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 20679105321431040
     m_Key: UI.Demo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21052333114060800
+    m_Key: UI.SelectCharacter
     m_Metadata:
       m_Items: []
   m_Metadata:

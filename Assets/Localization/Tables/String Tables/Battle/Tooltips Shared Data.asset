@@ -67,6 +67,46 @@ MonoBehaviour:
     m_Key: Tooltip.StrengthUp.Large
     m_Metadata:
       m_Items: []
+  - m_Id: 20806086331527168
+    m_Key: Tooltip.Stat.Strength
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20806716244684800
+    m_Key: Tooltip.Stat.Will
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20807249529466880
+    m_Key: Tooltip.Stat.Defence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20807316223094784
+    m_Key: Tooltip.Stat.MagicDefence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20807842356588544
+    m_Key: Tooltip.Efficacy.Fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20812400365465600
+    m_Key: Tooltip.Efficacy.Earth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20812427137708032
+    m_Key: Tooltip.Efficacy.Wind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20812444351131648
+    m_Key: Tooltip.Efficacy.Water
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20812738837409792
+    m_Key: Tooltip.Resource.HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20812789039034368
+    m_Key: Tooltip.Resource.SP
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

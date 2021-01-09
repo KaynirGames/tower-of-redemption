@@ -70,8 +70,8 @@ MonoBehaviour:
     m_Localized: Continue
     m_Metadata:
       m_Items: []
-  - m_Id: 5503466679365632
-    m_Localized: Options
+  - m_Id: 21052333114060800
+    m_Localized: 'Select character:'
     m_Metadata:
       m_Items: []
   - m_Id: 5503003657564160
@@ -95,7 +95,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7997401066696704
-    m_Localized: Choose
+    m_Localized: Play
     m_Metadata:
       m_Items: []
   - m_Id: 7997457098403840

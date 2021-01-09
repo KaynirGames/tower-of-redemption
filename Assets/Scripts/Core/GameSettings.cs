@@ -23,10 +23,11 @@ public class GameSettings : MonoBehaviour
     {
         if (!_isInit)
         {
-            yield return LocalizationSettings.InitializationOperation;
-
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales
-                                                                      .Locales[(int)_gameLanguage];
+                                                          .Locales[(int)_gameLanguage];
+
+            yield return LocalizationSettings.InitializationOperation;
+            
             _isInit = true;
         }
     }

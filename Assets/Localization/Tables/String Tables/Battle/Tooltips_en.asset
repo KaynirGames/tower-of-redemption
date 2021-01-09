@@ -111,5 +111,46 @@ MonoBehaviour:
       sec.'
     m_Metadata:
       m_Items: []
+  - m_Id: 20806086331527168
+    m_Localized: Determines physical damage dealt by skills.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20806716244684800
+    m_Localized: "Determines magi\u0441al damage dealt by skills."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20807249529466880
+    m_Localized: Reduces physical damage taken.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20807316223094784
+    m_Localized: Reduces magical damage taken.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20807842356588544
+    m_Localized: Determines the fire element efficacy against the character.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20812444351131648
+    m_Localized: Determines the water element efficacy against the character.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20812427137708032
+    m_Localized: Determines the wind element efficacy against the character.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20812400365465600
+    m_Localized: Determines the earth element efficacy against the character.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20812738837409792
+    m_Localized: The amount of character health points. If it reaches 0, the character
+      dies.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20812789039034368
+    m_Localized: The amount of character spirit points. Used to power skills.
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

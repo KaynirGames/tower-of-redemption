@@ -559,16 +559,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tooltip_Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 2619269295099557816, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
-        type: 3}
-      propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2619269295099557818, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 2619269295099557819, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -673,11 +663,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2619269295099557820, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
-        type: 3}
-      propertyPath: _textWrapLimit
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2619269295604910675, guid: bc94075bf4bfb3e45ad8e14f9b5fde2f,
         type: 3}
