@@ -24,9 +24,9 @@ MonoBehaviour:
     m_TableEntryReference:
       m_KeyId: 0
       m_Key: 
-  _baseHealth: 30
-  _baseSpirit: 20
-  _baseStrength: 15
+  _baseHealth: 40
+  _baseSpirit: 30
+  _baseStrength: 30
   _baseWill: 10
   _baseDefence: 30
   _baseMagicDefence: 20
@@ -37,5 +37,5 @@ MonoBehaviour:
   _baseSkills:
   - {fileID: 11400000, guid: 566b3aa5d8415d84f8c32cd686901eed, type: 2}
   - {fileID: 11400000, guid: ba22fb5b7f4c84a4f90499f3eb349462, type: 2}
-  _energyRegen: 1
+  _energyRegen: 3
   _energyRegenDelay: 1

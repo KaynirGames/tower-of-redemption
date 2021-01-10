@@ -26,9 +26,9 @@ MonoBehaviour:
       m_Key: 
   _baseHealth: 60
   _baseSpirit: 80
-  _baseStrength: 20
-  _baseWill: 20
-  _baseDefence: 25
+  _baseStrength: 35
+  _baseWill: 35
+  _baseDefence: 15
   _baseMagicDefence: 30
   _baseFireEfficacy: 100
   _baseAirEfficacy: 100
@@ -41,5 +41,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dff22b941f68469418a9f806b772951e, type: 2}
   - {fileID: 11400000, guid: fd031dade6bb44d4cbd37afc6c31884a, type: 2}
   - {fileID: 11400000, guid: 9929814c90e1c84409045a1cfe9725ca, type: 2}
-  _energyRegen: 2
+  _energyRegen: 4
   _energyRegenDelay: 1

@@ -56,6 +56,15 @@ public class BattleManager : MonoBehaviour
         _musicManager = MusicManager.Instance;
     }
 
+    private void OnDestroy()
+    {
+        Instance = null;
+        EnemyCharacter.OnBattleTrigger -= StartBattle;
+        PlayerAttackHit.OnBattleTrigger -= StartBattle;
+        EnemyCharacter.OnBattleEnd -= EndBattle;
+        PlayerCharacter.OnBattleEnd -= EndBattle;
+    }
+
     private bool StartBattle(EnemyCharacter enemy, bool isPlayerAdvantage)
     {
         if (_enemy == null)

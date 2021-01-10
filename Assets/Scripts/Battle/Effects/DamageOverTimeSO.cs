@@ -43,7 +43,7 @@ public class DamageOverTimeSO : EffectSO
     public override void Tick(Character target)
     {
         float tickDamage = _damageType.CalculateDamage(target,
-                                                       _damageOverTick / _duration);
+                                                       _damageOverTick);
         target.Stats.ChangeHealth(-tickDamage);
     }
 
