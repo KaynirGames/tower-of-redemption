@@ -52,13 +52,13 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4330686755696640
     m_Localized: (The diary contains information about the character's specialization,
-      characteristics and available skills.)
+      attributes and available skills.)
     m_Metadata:
       m_Items: []
   - m_Id: 4333647024156672
     m_Localized: (Each specialization has an initial set of skills, which will change
-      when special scrolls are found. The number of applied skills is limited, so
-      you need to choose them wisely.)
+      when you find special scrolls. The number of applied skills is limited, so
+      you have to choose them wisely.)
     m_Metadata:
       m_Items: []
   - m_Id: 4360850420068352
@@ -162,8 +162,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7657482666438656
-    m_Localized: (If there are no free cells, then the player will be prompted to
-      replace one of the existing skills.)
+    m_Localized: (If there are no free slots, the player will be prompted to replace
+      one of the existing skills.)
     m_Metadata:
       m_Items: []
   - m_Id: 7657619904065536

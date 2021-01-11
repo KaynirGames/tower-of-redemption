@@ -1,15 +1,12 @@
 ﻿using KaynirGames.Tools;
 using TMPro;
-using UnityEditor.Localization;
 using UnityEngine;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
-using UnityEngine.Localization.Tables;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization.Tables;
 
 public class TooltipLink : TooltipBase, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] private StringTableCollection _tooltipTable = null;
+    [SerializeField] private StringTable[] _tooltipTables = null;
     [SerializeField] private TextMeshProUGUI _linkedTextField = null;
 
     public void OnPointerDown(PointerEventData eventData)
@@ -41,10 +38,10 @@ public class TooltipLink : TooltipBase, IPointerDownHandler, IPointerUpHandler
         if (linkIndex >= 0)
         {
             TMP_LinkInfo linkInfo = _linkedTextField.textInfo.linkInfo[linkIndex];
-            LocaleIdentifier localeID = LocalizationSettings.SelectedLocale.Identifier;
-            StringTable table = (StringTable)_tooltipTable.GetTable(localeID);
+            int localeID = GameMaster.Instance.GameSettings.CurrentLanguageID;
 
-            content = table.GetEntry(linkInfo.GetLinkID()).GetLocalizedString();
+            content = _tooltipTables[localeID].GetEntry(linkInfo.GetLinkID())
+                                              .GetLocalizedString();
             header = linkInfo.GetLinkText();
 
             return true;

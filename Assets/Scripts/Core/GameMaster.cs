@@ -214,7 +214,10 @@ public class GameMaster : MonoBehaviour
         EnemyCharacter.ActiveEnemies.Clear();
         _currentStage = null;
 
-        _poolManager.ClearPools();
+        if (_poolManager != null)
+        {
+            _poolManager.ClearPools();
+        }
     }
 
     private void PlayStageTheme()

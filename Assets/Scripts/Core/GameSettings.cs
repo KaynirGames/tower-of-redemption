@@ -6,6 +6,8 @@ public class GameSettings : MonoBehaviour
 {
     [SerializeField] private GameLanguage _gameLanguage = GameLanguage.Russian;
 
+    public int CurrentLanguageID => (int)_gameLanguage;
+
     private bool _isInit;
 
     private void Start()
@@ -23,11 +25,11 @@ public class GameSettings : MonoBehaviour
     {
         if (!_isInit)
         {
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales
-                                                          .Locales[(int)_gameLanguage];
-
             yield return LocalizationSettings.InitializationOperation;
-            
+
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales
+                                                                      .Locales[CurrentLanguageID];
+
             _isInit = true;
         }
     }

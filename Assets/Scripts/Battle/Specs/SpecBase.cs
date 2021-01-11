@@ -41,9 +41,11 @@ public abstract class SpecBase : ScriptableObject, IIdentifiable
 
     public string ID { get; private set; }
 
+#if UNITY_EDITOR
     protected void OnValidate()
     {
         string path = AssetDatabase.GetAssetPath(this);
         ID = AssetDatabase.AssetPathToGUID(path);
     }
+#endif
 }

@@ -32,9 +32,11 @@ public class DungeonStage : ScriptableObject, IIdentifiable
 
     public string ID { get; private set; }
 
+#if UNITY_EDITOR
     private void OnValidate()
     {
         string path = AssetDatabase.GetAssetPath(this);
         ID = AssetDatabase.AssetPathToGUID(path);
     }
+#endif
 }

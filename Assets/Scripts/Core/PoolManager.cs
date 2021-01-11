@@ -13,6 +13,7 @@ public class PoolManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        CreatePools();
     }
 
     public void Store(GameObject objectToStore)
@@ -64,7 +65,7 @@ public class PoolManager : MonoBehaviour
         return _poolDictionary[tag];
     }
 
-    private void OnValidate()
+    private void CreatePools()
     {
         _poolDictionary = new Dictionary<string, Pool>();
 

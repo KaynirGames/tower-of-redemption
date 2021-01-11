@@ -34,9 +34,11 @@ public abstract class SkillSO : ScriptableObject, IIdentifiable
 
     public abstract void Terminate(Character owner, Character opponent, Skill skill);
 
+#if UNITY_EDITOR
     protected virtual void OnValidate()
     {
         string path = AssetDatabase.GetAssetPath(this);
         ID = AssetDatabase.AssetPathToGUID(path);
     }
+#endif
 }

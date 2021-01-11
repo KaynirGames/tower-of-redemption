@@ -27,9 +27,11 @@ public class ItemSO : ScriptableObject, IIdentifiable
         return false;
     }
 
+#if UNITY_EDITOR
     protected virtual void OnValidate()
     {
         string path = AssetDatabase.GetAssetPath(this);
         ID = AssetDatabase.AssetPathToGUID(path);
     }
+#endif
 }

@@ -12,105 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
   m_Name: Skill Names Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: Skill Names
+  m_TableCollectionName: 
   m_TableCollectionNameGuidString: 78457a4a7d81ad54686e524e7c680190
-  m_Entries:
-  - m_Id: 202824633085952
-    m_Key: Skill.Name.ShieldBash
-    m_Metadata:
-      m_Items: []
-  - m_Id: 298047048577024
-    m_Key: Skill.Name.Fortification
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8846984600346624
-    m_Key: Skill.Name.PerfectGuard
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8847026253979648
-    m_Key: Skill.Name.StickySpit
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8962800528384000
-    m_Key: Skill.Name.AcidBreath
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9597738411876352
-    m_Key: Skill.Name.BoneThrow
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9598203354669056
-    m_Key: Skill.Name.RuneShield
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9599089191673856
-    m_Key: Skill.Name.CreepySkull
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9599195462754304
-    m_Key: Skill.Name.Intimidation
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9599277587226624
-    m_Key: Skill.Name.StrongBone
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9599409766522880
-    m_Key: Skill.Name.Bonewhirl
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9599642130964480
-    m_Key: Skill.Name.MightyCrush
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9599813573140480
-    m_Key: Skill.Name.BattleCry
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9599901410254848
-    m_Key: Skill.Name.ArmorBreaker
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9599949644750848
-    m_Key: Skill.Name.Magifobia
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9600054145835008
-    m_Key: Skill.Name.SecondWind
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11549210246967296
-    m_Key: Skill.Name.Injection
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11549268963028992
-    m_Key: Skill.Name.PredatorGaze
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11549335203672064
-    m_Key: Skill.Name.FireShell
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11549369420804096
-    m_Key: Skill.Name.FlameStream
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11549397648470016
-    m_Key: Skill.Name.Rockfall
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11549419484016640
-    m_Key: Skill.Name.Tremor
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11549442854678528
-    m_Key: Skill.Name.Cure
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11549457538936832
-    m_Key: Skill.Name.IceShard
-    m_Metadata:
-      m_Items: []
+  m_Entries: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
@@ -121,4 +25,4 @@ MonoBehaviour:
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
         asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1605301397365
+        m_CustomEpoch: 1610373176389

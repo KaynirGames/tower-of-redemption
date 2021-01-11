@@ -150,7 +150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tooltipDelay: 0
-  _tooltipTable: {fileID: 11400000, guid: e999986a625e682479616fad49b6dfb0, type: 2}
+  _tooltipTables:
+  - {fileID: 11400000, guid: 75ff4e3b9de73704fb5c049d108a8fb9, type: 2}
+  - {fileID: 11400000, guid: dd9f4631c0b7ac34e81832067c80f574, type: 2}
   _linkedTextField: {fileID: 3059917176533977517}
 --- !u!1 &5552362222263667256
 GameObject:
