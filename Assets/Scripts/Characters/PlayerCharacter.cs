@@ -38,6 +38,8 @@ public class PlayerCharacter : Character
         _enableAttack = true;
         _enableInput = true;
         _waitForNextAttack = new WaitForSeconds(_attackSpeed);
+        
+        Stats.SetCharacterStats(_playerSpec);
 
         Stats.OnCharacterDeath += Die;
     }
@@ -47,7 +49,6 @@ public class PlayerCharacter : Character
         _gameMaster = GameMaster.Instance;
         _battleManager = BattleManager.Instance;
 
-        Stats.SetCharacterStats(_playerSpec);
         SkillBook.LoadSkills(_playerSpec.BaseSkills);
 
         Active = this;
@@ -108,6 +109,7 @@ public class PlayerCharacter : Character
     protected override void Die()
     {
         OnBattleEnd.Invoke(false);
+        Stats.OnCharacterDeath -= Die;
     }
 
     private IEnumerator AttackRoutine()

@@ -29,8 +29,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4260294460502016
-    m_Localized: First rule. Carefully study the environment. Sometimes interesting
-      things can be found in the most unexpected places.
+    m_Localized: 'Rule first: carefully study the environment. Sometimes interesting
+      things can be found in the most unexpected places.'
     m_Metadata:
       m_Items: []
   - m_Id: 4294922047123456

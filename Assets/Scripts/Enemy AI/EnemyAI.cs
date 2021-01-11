@@ -63,6 +63,14 @@ public class EnemyAI : MonoBehaviour
         return Vector2.Distance(transform.position, target.position) <= range;
     }
 
+    private void OnEnable()
+    {
+        if (_stateMachine != null)
+        {
+            SetTransition(EnemyStateKey.PlayerOffSight);
+        }
+    }
+
     private void OnDisable()
     {
         Enemy.StopMovement();

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1389146310100684892}
   - component: {fileID: 8865200604849295362}
-  - component: {fileID: 6384685837703353550}
   m_Layer: 0
   m_Name: SpiritGenerator
   m_TagString: Untagged
@@ -51,19 +50,86 @@ MonoBehaviour:
   _gemMatrixSize: {x: 4, y: 8}
   _minGemstonesForConsume: 2
   _timeForMatrixUpdate: 0.25
---- !u!82 &6384685837703353550
+--- !u!114 &1104232366726207435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095424597614476665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1afbeb92ebe2d624d930a9a9318b8648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gemSlotsParent: {fileID: 8095424596731827950}
+--- !u!1 &8095424598031946909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8095424598031946882}
+  - component: {fileID: 8095424598031946883}
+  - component: {fileID: 8537733776790926255}
+  - component: {fileID: 9222913286303847385}
+  m_Layer: 0
+  m_Name: Battle Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8095424598031946882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095424598031946909}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1389146310100684892}
+  - {fileID: 8095424598250325876}
+  - {fileID: 8095424597516202944}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8095424598031946883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095424598031946909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa5a6a379d5a33c44ab6fea37bb069f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _battleUI: {fileID: 8095424597516202945}
+  _spiritGenerator: {fileID: 8865200604849295362}
+  _transitionController: {fileID: 8643175066535183256}
+  _enemyActivationDelay: 0.25
+  _playerSpiritBonus: 0.25
+  _enemySpiritBonus: 0.5
+--- !u!82 &8537733776790926255
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8048735830426964947}
+  m_GameObject: {fileID: 8095424598031946909}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3ffec09b3a14a114e8c60f03eb8fc8da, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -147,54 +213,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1104232366726207435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8095424597614476665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1afbeb92ebe2d624d930a9a9318b8648, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gemSlotsParent: {fileID: 8095424596731827950}
---- !u!1 &8095424598031946909
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8095424598031946882}
-  - component: {fileID: 8095424598031946883}
-  m_Layer: 0
-  m_Name: Battle Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8095424598031946882
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8095424598031946909}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1389146310100684892}
-  - {fileID: 8095424598250325876}
-  - {fileID: 8095424597516202944}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8095424598031946883
+--- !u!114 &9222913286303847385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,20 +222,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8095424598031946909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa5a6a379d5a33c44ab6fea37bb069f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b7c6b331136e4241b386b93205fa047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _battleUI: {fileID: 8095424597516202945}
-  _spiritGenerator: {fileID: 8865200604849295362}
-  _transitionController: {fileID: 8643175066535183256}
-  _enemyActivationDelay: 0.25
-  _playerSpiritBonus: 0.25
-  _enemySpiritBonus: 0.5
-  _battleTheme: {fileID: 11400000, guid: 2932b7e8f6b1cce4284a981473d03c19, type: 2}
-  _victoryTheme: {fileID: 11400000, guid: 8fed85bc0902843448d49dba5bf34f75, type: 2}
-  _defeatTheme: {fileID: 11400000, guid: 189d88caeffd0494481ea4ff255842a3, type: 2}
-  _battleTransitionSFX: {fileID: 11400000, guid: 0193442bc91ab4d4c8c7aec2bfa90948,
-    type: 2}
+  _soundClips:
+  - {fileID: 11400000, guid: f54801f3777fc7244b5385844d02b6d8, type: 2}
 --- !u!1001 &293619909580140975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -883,6 +893,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4003893134730349600, guid: 4f221cfb246d2bb4a96a59bbf343c5e5,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9222913286303847385}
+    - target: {fileID: 4003893134730349600, guid: 4f221cfb246d2bb4a96a59bbf343c5e5,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9222913286303847385}
+    - target: {fileID: 4979498088655000095, guid: 4f221cfb246d2bb4a96a59bbf343c5e5,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9222913286303847385}
+    - target: {fileID: 4979498088655000095, guid: 4f221cfb246d2bb4a96a59bbf343c5e5,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9222913286303847385}
     - target: {fileID: 5166191682480921490, guid: 4f221cfb246d2bb4a96a59bbf343c5e5,
         type: 3}
       propertyPath: m_StringReference.m_TableReference.m_TableCollectionName

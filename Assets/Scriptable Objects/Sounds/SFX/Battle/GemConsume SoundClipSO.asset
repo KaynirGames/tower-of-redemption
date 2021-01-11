@@ -16,6 +16,6 @@ MonoBehaviour:
   _name: GemConsume
   _loop: 0
   _allowPlaybackSave: 0
-  _volume: 0.025
+  _volume: 0.05
   _pitch: 1
   _stereoPan: 0

@@ -143,7 +143,8 @@ public class GameMaster : MonoBehaviour
         else
         {
             SaveSystem.DeleteSaveFile();
-            yield return LoadCreditsRoutine();
+            yield return AsyncLoadRoutine(SceneType.Credits);
+            _musicManager.PlayMusic("Credits");
         }
 
         yield return ToggleLoadingScreenRoutine(false);

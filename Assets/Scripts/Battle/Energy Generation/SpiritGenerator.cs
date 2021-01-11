@@ -19,12 +19,12 @@ public class SpiritGenerator : MonoBehaviour
 
     private PoolManager _poolManager;
     private WaitForSeconds _waitForMatrixUpdate;
-    
-    private AudioSource _audioSource;
+
+    private SoundController _sounds;
 
     private void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
+        _sounds = transform.root.GetComponent<SoundController>();
     }
 
     private void Start()
@@ -102,7 +102,7 @@ public class SpiritGenerator : MonoBehaviour
     {
         _gemMatrix.UpdateMatrixSlot(gemstone.X, gemstone.Y, null);
         _gemMatrixUI.UpdateMatrixSlotUI(gemstone.X, gemstone.Y, null);
-        _audioSource.Play();
+        _sounds.PlaySoundOneShot("GemConsume");
 
         if (!_changedColumns.Contains(gemstone.Y))
         {
