@@ -19,6 +19,8 @@ public class DungeonStage : ScriptableObject, IIdentifiable
     [SerializeField] private SpawnTable _optionalRoomsTable = null;
     [SerializeField] private Light2D _globalLightPrefab = null;
 
+    [SerializeField] private string _id = null;
+
     public string StageName => _stageName.GetLocalizedString().Result;
     public SoundClipSO StageTheme => _stageTheme;
 
@@ -30,13 +32,13 @@ public class DungeonStage : ScriptableObject, IIdentifiable
     public GameObject RandomOptionalRoomPrefab => _optionalRoomsTable.ChooseRandom() as GameObject;
     public GameObject GlobalLightPrefab => _globalLightPrefab.gameObject;
 
-    public string ID { get; private set; }
+    public string ID => _id;
 
 #if UNITY_EDITOR
     private void OnValidate()
     {
         string path = AssetDatabase.GetAssetPath(this);
-        ID = AssetDatabase.AssetPathToGUID(path);
+        _id = AssetDatabase.AssetPathToGUID(path);
     }
 #endif
 }

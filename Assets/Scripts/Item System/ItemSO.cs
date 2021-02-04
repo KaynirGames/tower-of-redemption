@@ -12,6 +12,8 @@ public class ItemSO : ScriptableObject, IIdentifiable
     [SerializeField] private ItemSlot _slot = ItemSlot.Consumable;
     [SerializeField] private Sprite _icon = null;
 
+    [SerializeField] private string _id = null;
+
     public string Name => _name.GetLocalizedString().Result;
     public string Description => _description.GetLocalizedString().Result;
     public string Type => _type.GetLocalizedString().Result;
@@ -20,7 +22,7 @@ public class ItemSO : ScriptableObject, IIdentifiable
 
     public virtual Sprite Icon => _icon;
 
-    public string ID { get; private set; }
+    public string ID => _id;
 
     public virtual bool TryUse(PlayerCharacter player, Item item)
     {
@@ -31,7 +33,7 @@ public class ItemSO : ScriptableObject, IIdentifiable
     protected virtual void OnValidate()
     {
         string path = AssetDatabase.GetAssetPath(this);
-        ID = AssetDatabase.AssetPathToGUID(path);
+        _id = AssetDatabase.AssetPathToGUID(path);
     }
 #endif
 }

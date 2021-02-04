@@ -188,7 +188,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _destroyDelay: 1.5
+  _destroyDelay: 1
 --- !u!114 &750072287
 MonoBehaviour:
   m_ObjectHideFlags: 0

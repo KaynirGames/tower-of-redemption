@@ -18,6 +18,8 @@ public abstract class SkillSO : ScriptableObject, IIdentifiable
     [SerializeField] protected List<EffectSO> _ownerEffects = new List<EffectSO>();
     [SerializeField] protected List<EffectSO> _opponentEffects = new List<EffectSO>();
 
+    [SerializeField] private string _id = null;
+
     public string Name => _name.GetLocalizedString().Result;
     public string Description => _description.GetLocalizedString().Result;
     public string Type => _type.GetLocalizedString().Result;
@@ -28,7 +30,7 @@ public abstract class SkillSO : ScriptableObject, IIdentifiable
     public int Cost => _cost;
     public int Cooldown => _cooldown;
 
-    public string ID { get; private set; }
+    public string ID => _id;
 
     public abstract void Execute(Character owner, Character opponent, Skill skill);
 
@@ -38,7 +40,7 @@ public abstract class SkillSO : ScriptableObject, IIdentifiable
     protected virtual void OnValidate()
     {
         string path = AssetDatabase.GetAssetPath(this);
-        ID = AssetDatabase.AssetPathToGUID(path);
+        _id = AssetDatabase.AssetPathToGUID(path);
     }
 #endif
 }

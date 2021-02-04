@@ -22,6 +22,8 @@ public abstract class SpecBase : ScriptableObject, IIdentifiable
     [Header("Базовые умения спека:")]
     [SerializeField] private SkillSO[] _baseSkills = null;
 
+    [SerializeField] private string _id = null;
+
     public string SpecName => _specName.GetLocalizedString().Result;
     public string SpecDescription => _specDescription.GetLocalizedString().Result;
 
@@ -39,13 +41,13 @@ public abstract class SpecBase : ScriptableObject, IIdentifiable
 
     public SkillSO[] BaseSkills => _baseSkills;
 
-    public string ID { get; private set; }
+    public string ID => _id;
 
 #if UNITY_EDITOR
     protected void OnValidate()
     {
         string path = AssetDatabase.GetAssetPath(this);
-        ID = AssetDatabase.AssetPathToGUID(path);
+        _id = AssetDatabase.AssetPathToGUID(path);
     }
 #endif
 }
