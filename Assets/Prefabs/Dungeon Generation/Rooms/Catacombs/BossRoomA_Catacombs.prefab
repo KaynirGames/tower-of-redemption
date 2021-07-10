@@ -147,15 +147,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8435705379515551049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ecfbfcfc7a228f47a0a035c01d0b970, type: 3}
+  m_Script: {fileID: 11500000, guid: ea156ba00cd05194c9ef1793f3f6a030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gridSize: {x: 16, y: 8}
   _nodeSize: 1
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 256
-  _displayGrid: 0
+    m_Bits: 0
+  _displayGrid: 1
 --- !u!1 &8605735012270250802
 GameObject:
   m_ObjectHideFlags: 0

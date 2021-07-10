@@ -87,8 +87,8 @@ GameObject:
   - component: {fileID: 3597064783027234837}
   - component: {fileID: 3597064783027234836}
   - component: {fileID: 7233533201263309741}
-  - component: {fileID: 3597064783027234841}
-  - component: {fileID: 4661792844993879684}
+  - component: {fileID: 2887408862874867685}
+  - component: {fileID: 1640019182718713403}
   - component: {fileID: 3597064783027234842}
   - component: {fileID: 1739911840165887882}
   - component: {fileID: 665066989}
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSpec: {fileID: 11400000, guid: 57db7f12630d5a44b81264d6bb185e8d, type: 2}
   _attackSpeed: 1
---- !u!114 &3597064783027234841
+--- !u!114 &2887408862874867685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,25 +175,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 3597064783027234846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80210416293c62f438cc38025549aa70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 30
-  _moveSmoothing: 0.05
-  _enableSmoothing: 1
---- !u!114 &4661792844993879684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3597064783027234846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1d8a8b13fcd2294abf6d64fc4a9e923, type: 3}
+  m_Script: {fileID: 11500000, guid: 348ea9044bf696d4f9cd7d5fa61890f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _snapMovementAxes: 1
+--- !u!114 &1640019182718713403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3597064783027234846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9980b50bc0001cd499516187b3fd8fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 25
+  _moveSmoothing: 0.05
+  _enableSmoothing: 0
 --- !u!114 &3597064783027234842
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2552262075084934516}
   - component: {fileID: 6457358859994804073}
   - component: {fileID: 6426329001179500896}
-  - component: {fileID: 2802838635580280039}
   - component: {fileID: 2096602849910124632}
   - component: {fileID: 8361186416080202841}
+  - component: {fileID: 7138491281326603138}
   m_Layer: 5
   m_Name: Joystick Button
   m_TagString: Untagged
@@ -78,18 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2802838635580280039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8760464843952032595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e37e1f2a2ef5b4c985b5ffdbe83790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2096602849910124632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,3 +140,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7138491281326603138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760464843952032595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab6c0b0495ed6742bfdf6e35bcfc85e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

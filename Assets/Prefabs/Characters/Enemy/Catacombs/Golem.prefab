@@ -17,9 +17,9 @@ GameObject:
   - component: {fileID: 4577616968161644827}
   - component: {fileID: 2721498490193036206}
   - component: {fileID: -7143604648000324319}
-  - component: {fileID: -5112063427935761703}
-  - component: {fileID: -6837624081416669980}
-  - component: {fileID: 876658704261043946}
+  - component: {fileID: 3735432882453958253}
+  - component: {fileID: 4039957564938369064}
+  - component: {fileID: 2989462472579489571}
   m_Layer: 10
   m_Name: Golem
   m_TagString: Untagged
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ed50a8035bf9a46a4451583118237c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputLagTime: 1
 --- !u!114 &6019955237486239111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ MonoBehaviour:
   _activeSkillsCount: 4
   _passiveSkillsCount: 3
   _specialSkillsCount: 1
---- !u!114 &-5112063427935761703
+--- !u!114 &3735432882453958253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,10 +169,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4577616968161644898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc042a7ed4aaed64ba532bd5649c7cdb, type: 3}
+  m_Script: {fileID: 11500000, guid: 9980b50bc0001cd499516187b3fd8fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-6837624081416669980
+  _moveSpeed: 25
+  _moveSmoothing: 0.05
+  _enableSmoothing: 0
+--- !u!114 &4039957564938369064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,27 +184,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 4577616968161644898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27f70337ab5436a41a5d03654fafb56b, type: 3}
+  m_Script: {fileID: 11500000, guid: e28b7592d0e95b8499bbff18e22a9b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2989462472579489571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577616968161644898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a701e7ada101154cb481de381780f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _positionReachedDistance: 0.05
   _useSimplePath: 1
   _displayPath: 0
---- !u!114 &876658704261043946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4577616968161644898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80210416293c62f438cc38025549aa70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 18
-  _moveSmoothing: 0.05
-  _enableSmoothing: 1
 --- !u!1 &7282492576520255794
 GameObject:
   m_ObjectHideFlags: 0

@@ -116,7 +116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5556582731643198022}
-  - component: {fileID: 1471219019327298598}
+  - component: {fileID: 3141206002681274288}
   m_Layer: 0
   m_Name: Pathfinder
   m_TagString: Untagged
@@ -138,7 +138,7 @@ Transform:
   m_Father: {fileID: 8605735013295192380}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1471219019327298598
+--- !u!114 &3141206002681274288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,15 +147,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8435705379515551049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ecfbfcfc7a228f47a0a035c01d0b970, type: 3}
+  m_Script: {fileID: 11500000, guid: ea156ba00cd05194c9ef1793f3f6a030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gridSize: {x: 16, y: 8}
   _nodeSize: 1
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 256
-  _displayGrid: 0
+    m_Bits: 0
+  _displayGrid: 1
 --- !u!1 &8605735012270250802
 GameObject:
   m_ObjectHideFlags: 0
@@ -3219,7 +3219,7 @@ MonoBehaviour:
   _height: 14
   _roomType: {fileID: 11400000, guid: b63a30da179b1fb4aad1a2ec4786acf8, type: 2}
   _doorsParent: {fileID: 8605735012270250802}
-  _pathfinder: {fileID: 1471219019327298598}
+  _pathfinder: {fileID: 0}
   _parentToDisableInBattle: {fileID: 1695550891816714610}
   _enemySpawner: {fileID: 1111472639124059570}
   _gridPosition: {x: 0, y: 0}
